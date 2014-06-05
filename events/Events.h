@@ -2,10 +2,9 @@
 #define Events_h_
 
 
-#include "SimpleEvent.h"
-#include "ValueEvent.h"
-#include "DataEvent.h"
-#include "OutputUpdateEvent.h"
+#include "EmptyEvent.h"
+#include "NumberEvent.h"
+#include "NumberEvent_Input.h"
 
 
 #endif

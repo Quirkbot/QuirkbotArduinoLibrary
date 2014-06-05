@@ -1,24 +1,28 @@
 #ifndef Logger_h_
 #define Logger_h_
 
+#include <map>
+
 #include "Bot.h"
-#include "BaseNode.h"
+#include "Node.h"
+#include "Input.h"
+
 
 #include "Arduino.h"
 
-class Logger : public BaseNode{
+class Logger : public Node{
 	public:
 	
 	Logger();
 	Logger(Stream &stream);
-	~Logger(){};
 
-	Parameter input;
-	Parameter interval;
+	Input source;
+	Input interval;
 
 	protected:
 
-	void onParameterUpdated(Parameter& parameter);
+	void onInternalInputChange(Input &input);
+	void onSourceChange();
 
 	private:
 

@@ -3,8 +3,7 @@
 
 #include "Constants.h"
 #include "Bot.h"
-#include "BaseNode.h"
+#include "Node.h"
 #include "Updatable.h"
-#include "Outputable.h"
 
 #endif

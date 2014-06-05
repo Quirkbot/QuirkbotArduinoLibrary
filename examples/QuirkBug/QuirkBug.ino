@@ -2,13 +2,11 @@
 #include <StandardCplusplus.h>
 #include <QuirkBug.h>
 
-#include <nodes/Micros.h>
-#include <nodes/Multiplication.h>
+#include <nodes/Time.h>
 #include <nodes/Logger.h>
 
 
-Micros time;
-Multiplication multiplication;
+Time time;
 Logger logger;
 
 
@@ -17,11 +15,9 @@ void setup() {
 	Timer1.initialize();
 	Timer1.attachInterrupt( Bot::update,  BOT_TIME_INCREMENT_MICROS);
 
-	multiplication.input = time;
-	multiplication.multiplier = 0.0000005;
 	
-	logger.input = multiplication;
-	logger.interval = 50;
+	logger.source = time.seconds;
+	logger.interval = 100;
 }
 
 

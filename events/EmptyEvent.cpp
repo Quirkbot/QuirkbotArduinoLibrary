@@ -1,21 +1,21 @@
-#include "events/DataEvent.h"
+#include "events/EmptyEvent.h"
 
-void DataEvent::add(DataEventHandler handler){
+void EmptyEvent::add(EmptyEventHandler handler){
 	int position = handlerPosition(handler);
 	if(position != -1) return;
 	handlers.push_back(handler);
 }
-void DataEvent::remove(DataEventHandler handler){
+void EmptyEvent::remove(EmptyEventHandler handler){
 	int position = handlerPosition(handler);
 	if(position == -1) return;
 	handlers.erase (handlers.begin()+position);
 }
-void DataEvent::dispatch(void* data){
+void EmptyEvent::dispatch(){
 	for(int i=0; i<handlers.size(); i++){
-		handlers[i](data);
+		handlers[i]();
 	}
 }
-int DataEvent::handlerPosition(DataEventHandler handler){
+int EmptyEvent::handlerPosition(EmptyEventHandler handler){
 	for(int i=0; i<handlers.size(); i++){
 		if(handlers[i] == handler) return i;
 	}

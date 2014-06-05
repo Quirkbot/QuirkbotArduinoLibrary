@@ -1,7 +1,7 @@
 #include "Bot.h"
 
 
-std::vector <BaseNode *> Bot::nodes = std::vector<BaseNode *>();
+std::vector <Node *> Bot::nodes = std::vector<Node *>();
 std::vector <Updatable *> Bot::updatables = std::vector<Updatable *>();
 volatile unsigned long Bot::micros = 0;
 volatile float Bot::millis = 0;
@@ -10,17 +10,17 @@ volatile unsigned long Bot::frames = 0;
 
 
 
-void Bot::addNode(BaseNode * node){
+void Bot::addNode(Node * node){
 	int position = Bot::nodePosition(node);
 	if(position != -1) return;
 	Bot::nodes.push_back(node);
 }
-void Bot::removeNode(BaseNode * node){
+void Bot::removeNode(Node * node){
 	int position = Bot::nodePosition(node);
 	if(position == -1) return;
 	Bot::nodes.erase (Bot::nodes.begin()+position);
 }
-int Bot::nodePosition(BaseNode * node){
+int Bot::nodePosition(Node * node){
 	for(int i=0; i<Bot::nodes.size(); i++){
 		if(Bot::nodes[i] == node) return i;
 	}

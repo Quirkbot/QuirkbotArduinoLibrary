@@ -7,15 +7,19 @@ Logger::Logger(Stream& stream){
 	init(stream);
 }
 void Logger::init(Stream &stream){
-	this->streamPtr = &stream;
-	input.setParent(this);
-	interval.setParent(this);
+	registerInput(source);
+	registerInput(interval);
+
+	streamPtr = &stream;
 	lastPrintMillis = Bot::millis;
 }
-void Logger::onParameterUpdated(Parameter& parameter){
-	if(Bot::millis - lastPrintMillis < interval.getValue())
+void Logger::onInternalInputChange(Input &input){
+	if(&input == &source) onSourceChange();
+};
+void Logger::onSourceChange(){
+	if(Bot::millis - lastPrintMillis < interval)
 		return;
 	
 	lastPrintMillis = Bot::millis;
-	streamPtr->println(input.getValue());
+	streamPtr->println(source);
 };
