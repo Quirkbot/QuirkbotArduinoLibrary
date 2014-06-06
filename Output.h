@@ -12,8 +12,11 @@ class Output {
 	Output();
 	~Output();
 
+
 	operator float();
 	float get();
+
+	Output & operator=(const float &number);	
 	void set(float value);
 
 	NumberEvent_Input* changed;

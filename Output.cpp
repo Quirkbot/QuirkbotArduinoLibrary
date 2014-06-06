@@ -18,3 +18,6 @@ void Output::set(float value){
 	this->value = value;
 	changed->dispatch(value);
 }
+Output& Output::operator=(const float &number){
+	set(number);
+}

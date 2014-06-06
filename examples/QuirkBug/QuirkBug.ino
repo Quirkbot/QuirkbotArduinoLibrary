@@ -3,10 +3,12 @@
 #include <QuirkBug.h>
 
 #include <nodes/Time.h>
+#include <nodes/Sine.h>
 #include <nodes/Logger.h>
 
 
 Time time;
+Sine sine;
 Logger logger;
 
 
@@ -15,9 +17,8 @@ void setup() {
 	Timer1.initialize();
 	Timer1.attachInterrupt( Bot::update,  BOT_TIME_INCREMENT_MICROS);
 
-	
-	logger.source = time.seconds;
-	logger.interval = 100;
+	sine.source = time.seconds;
+	logger.source = sine.result;
 }
 
 

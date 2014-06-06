@@ -10,6 +10,8 @@ void Logger::init(Stream &stream){
 	registerInput(source);
 	registerInput(interval);
 
+	interval = 100;
+
 	streamPtr = &stream;
 	lastPrintMillis = Bot::millis;
 }
