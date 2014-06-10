@@ -16,6 +16,5 @@ Node::~Node(){
 	Bot::removeNode(this);
 }
 void Node::registerInput(BaseInput &input){
-	inputs.push_back(&input);
 	input.node = this;
 }

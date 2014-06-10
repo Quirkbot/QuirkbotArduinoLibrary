@@ -1,7 +1,6 @@
 #ifndef Node_h_
 #define Node_h_
 
-#include <vector>
 #include "Bot.h"
 #include "BaseInput.h"
 
@@ -19,7 +18,6 @@ class Node{
 	
 	protected:
 	unsigned int id;
-	std::vector<const BaseInput*> inputs;	
 
 	private:
 

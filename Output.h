@@ -10,7 +10,7 @@ class Output {
 	void set(T value){
 		if(this->value == value) return;
 		this->value = value;
-		changed.dispatch(value);
+		event.dispatch(value);
 	}
 	void operator=(T value){
 		set(value);
@@ -23,7 +23,7 @@ class Output {
 		return get();
 	}
 
-	Event<T> changed;
+	Event<T> event;
 
 	private:
 

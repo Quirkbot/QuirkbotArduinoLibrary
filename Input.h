@@ -12,30 +12,41 @@ class Input : public BaseInput{
 	friend class Node;
 	public:
 
+	Input(){
+		output = NULL;
+	}
 	~Input(){
 		clearOutput();
 	}
 
-	void set(const T &value){
+	void connect(const T &value){
 		clearOutput();
 		onOutputChange(value);
 	}
 	void operator=(const T &value){
-		set(value);
+		connect(value);
 	}
 	void operator()(T &value){
-		set(value);
+		connect(value);
+	}
+	void operator()(){
+		T value = this->value;
+		connect(value);
 	}
 	void connect(Output<T> &output){
 		clearOutput();
 		this->output = &output;
-		this->output->changed.add(this, &Input<T>::onOutputChange);
+		this->output->event.add(this, &Input<T>::onOutputChange);
 	}	
 	void operator=(Output<T> &output){
 		connect(output);
 	}
 	void operator()(Output<T> &output){
 		connect(output);
+	}
+	void disconnect(Output<T> &output){
+		if(&output != this->output) return;
+		clearOutput();
 	}
 	
 	T get(){
@@ -52,8 +63,10 @@ class Input : public BaseInput{
 		node->onInternalInputChange(*this);
 	}
 	void clearOutput(){
-		if(output)
-			output->changed.remove(&Input<T>::onOutputChange);
+		if(output){
+			output->event.remove(&Input<T>::onOutputChange);
+			output = NULL;
+		}
 	}
 
 	T value;
