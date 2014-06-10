@@ -13,12 +13,12 @@ class Sine : public Node{
 	
 	Sine();
 
-	Input source;
-	Output result;
+	Input<float> source;
+	Output<float> result;
 
 	protected:
 
-	void onInternalInputChange(Input &input);
+	void onInternalInputChange(BaseInput &input);
 	void onSourceChange();
 };
 

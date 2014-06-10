@@ -3,25 +3,23 @@
 
 #include <vector>
 #include "Bot.h"
-#include "Input.h"
-
-class Input;
+#include "BaseInput.h"
 
 class Node{
-	friend class Input;
 	public:
 	
 	Node();
 	Node(unsigned int id);
 	~Node();
+
+
+	void registerInput(BaseInput &input);
+	virtual void onInternalInputChange(BaseInput &input){};
+
 	
 	protected:
-
-	void registerInput(Input &input);
-	virtual void onInternalInputChange(Input &input){};
-
 	unsigned int id;
-	std::vector<const Input*> inputs;	
+	std::vector<const BaseInput*> inputs;	
 
 	private:
 

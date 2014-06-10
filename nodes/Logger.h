@@ -16,12 +16,12 @@ class Logger : public Node{
 	Logger();
 	Logger(Stream &stream);
 
-	Input source;
-	Input interval;
+	Input<float> source;
+	Input<float> interval;
 
 	protected:
 
-	void onInternalInputChange(Input &input);
+	void onInternalInputChange(BaseInput &input);
 	void onSourceChange();
 
 	private:

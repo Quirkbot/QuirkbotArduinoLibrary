@@ -11,13 +11,13 @@ class Time : public Node, public Updatable{
 	
 	void update();
 
-	//Input interval;
-	//Event tick;
+	//Input<float> interval;
+	//Event<float> tick;
 
-	Output frames;
-	Output micros;
-	Output millis;
-	Output seconds;
+	Output<int> frames;
+	Output<float> micros;
+	Output<float> millis;
+	Output<float> seconds;
 
 	
 };

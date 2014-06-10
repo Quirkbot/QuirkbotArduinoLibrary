@@ -15,7 +15,7 @@ void Logger::init(Stream &stream){
 	streamPtr = &stream;
 	lastPrintMillis = Bot::millis;
 }
-void Logger::onInternalInputChange(Input &input){
+void Logger::onInternalInputChange(BaseInput &input){
 	if(&input == &source) onSourceChange();
 };
 void Logger::onSourceChange(){

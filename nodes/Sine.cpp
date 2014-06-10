@@ -3,7 +3,7 @@
 Sine::Sine(){
 	registerInput(source);
 }
-void Sine::onInternalInputChange(Input &input){
+void Sine::onInternalInputChange(BaseInput &input){
 	if(&input == &source) onSourceChange();
 };
 void Sine::onSourceChange(){

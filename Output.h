@@ -1,32 +1,33 @@
 #ifndef Output_h_
 #define Output_h_
 
-#include "events/NumberEvent_Input.h"
+#include "Event.h"
 
-class NumberEvent_Input;
+template <class T>
 class Output {
-	friend class Input;
-
 	public:
 
-	Output();
-	~Output();
+	void set(T value){
+		if(this->value == value) return;
+		this->value = value;
+		changed.dispatch(value);
+	}
+	void operator=(T value){
+		set(value);
+	}	
 
+	T get(){
+		return value;
+	}
+	operator T(){
+		return get();
+	}
 
-	operator float();
-	float get();
-
-	Output & operator=(const float &number);	
-	void set(float value);
-
-	NumberEvent_Input* changed;
-	
-	protected:	
-
+	Event<T> changed;
 
 	private:
 
-	float value;
+	T value;
 		
 };
 

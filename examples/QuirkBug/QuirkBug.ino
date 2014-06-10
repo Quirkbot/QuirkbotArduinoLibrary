@@ -7,6 +7,7 @@
 #include <nodes/Logger.h>
 
 
+
 Time time;
 Sine sine;
 Logger logger;
@@ -19,9 +20,11 @@ void setup() {
 
 	sine.source = time.seconds;
 	logger.source = sine.result;
+
 }
 
 
 void loop() {
-
+	//tested.dispatch(time);
+	delay(1000);
 }
