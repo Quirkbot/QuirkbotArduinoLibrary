@@ -21,7 +21,7 @@ class Sensor : public Node, public Updatable{
 
 	Input<int> pin;
 	Input<float> sensibility;
-	Input<float> frequency;
+	Input<float> interval;
 
 	Output<float> value;
 
@@ -31,7 +31,6 @@ class Sensor : public Node, public Updatable{
 	float raw;
 	float smooth;
 	float filterValue;
-	int frequencyFrames;
 };
 
 #endif

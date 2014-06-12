@@ -1,28 +1,25 @@
 #include <QuirkBug.h>
 
-#include <Time.h>
-#include <Sine.h>
+//#include <Time.h>
+//#include <Sine.h>
 #include <Sensor.h>
 #include <Logger.h>
+#include <Led.h>
 
 
-Time time;
-Sine sine;
-
+Led led;
 Sensor sensor;
 Logger logger;
 
 void setup() {	
-
 	sensor.pin = A0;
-	sensor.sensibility = 0.1;
+
+	led.pin = 11;
+	led.brighteness = sensor.value;
 
 	logger.source = sensor.value;
-	
-	//sine.source = time.seconds;
-	//logger.source = sine.result;
 }
 
 void loop() {
-	delay(1000);
+
 }

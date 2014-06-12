@@ -69,25 +69,25 @@ class Event {
 	private:
 	int position(VoidHandler handler){
 		for(int i=0; i<voidHandlers.size(); i++){
-			if(voidHandlers[i] == handler) return i;
+			if(&(voidHandlers[i]) == &handler) return i;
 		}
 		return -1;
 	}
 	int position(TypedHandler handler){
 		for(int i=0; i<typedHandlers.size(); i++){
-			if(typedHandlers[i] == handler) return i;
+			if(&(typedHandlers[i]) == &handler) return i;
 		}
 		return -1;
 	}
 	int position(TypedInputHandler handler){
 		for(int i=0; i<typedInputHandlers.size(); i++){
-			if(typedInputHandlers[i] == handler) return i;
+			if(&(typedInputHandlers[i]) == &handler) return i;
 		}
 		return -1;
 	}
 	int position(VoidInputHandler handler){
 		for(int i=0; i<voidInputHandlers.size(); i++){
-			if(voidInputHandlers[i] == handler) return i;
+			if(&(voidInputHandlers[i]) == &handler) return i;
 		}
 		return -1;
 	}

@@ -50,10 +50,10 @@ class Vector {
 	}; // Removes value by finding it's index and erasing it.
 
 	void erase(unsigned int index) {
-		d_size--;
 		for (unsigned int i = index; i < d_size; ++i){
 			d_data[i] = d_data[i+1];
 		}
+		d_size--;
 	}; // Pops a value at an specific index. All other values will be moved
 	
 	unsigned int size() const { 

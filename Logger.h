@@ -15,7 +15,7 @@ class Logger : public Node{
 	Logger(Stream &stream);
 
 	Input<float> source;
-	Input<float> interval;
+	Input<float> throttle;
 
 	protected:
 
