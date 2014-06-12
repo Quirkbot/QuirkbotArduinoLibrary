@@ -4,23 +4,21 @@
 #include "Arduino.h"
 
 #include "Bot.h"
-#include "Node.h"
-#include "Updatable.h"
+#include "IntervalNode.h"
 #include "Input.h"
 #include "Output.h"
 
 
 
-class Sensor : public Node, public Updatable{
+class Sensor : public IntervalNode{
 	public:
 	
 	Sensor();
 
-	void update();
+	void onInterval();
 
 	Input<int> pin;
 	Input<float> sensibility;
-	Input<float> interval;
 
 	Output<float> value;
 

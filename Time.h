@@ -2,31 +2,22 @@
 #define Time_h_
 
 #include "Bot.h"
-#include "Node.h"
-//#include "Updatable.h"
+#include "IntervalNode.h"
 #include "Input.h"
 #include "Output.h"
 
 class Node;
 class Updatable;
 
-class Time : public Node, public Updatable{
+class Time : public IntervalNode{
 	public:
-	Time();
 
-	void update();
-
-	Input<float> interval;
+	void onInterval();
 
 	Output<int> frames;
 	Output<float> micros;
 	Output<float> millis;
 	Output<float> seconds;
-
-	protected:
-	void onInternalInputChange(BaseInput &input);
-	void onIntervalChange();
-	
 };
 
 #endif
