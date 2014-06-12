@@ -18,8 +18,6 @@ void setup() {
 	sensor.sensibility = 0.1;
 
 	logger.source = sensor.value;
-	logger.source = sensor.value;
-	logger.source = sensor.value;
 	
 	//sine.source = time.seconds;
 	//logger.source = sine.result;
