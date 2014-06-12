@@ -39,6 +39,10 @@ void setup(){
 	TIMSK1 = _BV(TOIE1);
 	TCCR1B |= bits;
 
+	// Turn off RX and TX leds
+	PORTD &= ~(1<<5);
+	PORTB &= ~(1<<0);
+
 	// Call sketch's setup()
 	_setup();	
 }
