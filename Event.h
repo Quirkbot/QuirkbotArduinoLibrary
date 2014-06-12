@@ -1,7 +1,7 @@
 #ifndef Event_h_
 #define Event_h_
 
-#include <vector>
+#include "Vector.h"
 
 template <class T>
 class Input;
@@ -18,49 +18,49 @@ class Event {
 	void add(VoidHandler handler){
 		int pos = position(handler);
 		if(pos != -1) return;
-		voidHandlers.push_back(handler);
+		voidHandlers.push(handler);
 	}
 	void remove(VoidHandler handler){
 		int pos = position(handler);
 		if(pos == -1) return;
-		voidHandlers.erase (voidHandlers.begin()+pos);
+		voidHandlers.erase(pos);
 	}
 
 	void add(TypedHandler handler){
 		int pos = position(handler);
 		if(pos != -1) return;
-		typedHandlers.push_back(handler);
+		typedHandlers.push(handler);
 	}
 	void remove(TypedHandler handler){
 		int pos = position(handler);
 		if(pos == -1) return;
-		typedHandlers.erase (typedHandlers.begin()+pos);
+		typedHandlers.erase(pos);
 	}
 
 	void add(Input<T>* input, TypedInputHandler handler){
 		int pos = position(handler);
 		if(pos != -1) return;
-		typedInputs.push_back(input);
-		typedInputHandlers.push_back(handler);
+		typedInputs.push(input);
+		typedInputHandlers.push(handler);
 	}
 	void remove(TypedInputHandler handler){
 		int pos = position(handler);
 		if(pos == -1) return;
-		typedInputs.erase (typedInputs.begin()+pos);
-		typedInputHandlers.erase (typedInputHandlers.begin()+pos);
+		typedInputs.erase(pos);
+		typedInputHandlers.erase(pos);
 	}
 
 	void add(Input<T>* input, VoidInputHandler handler){
 		int pos = position(handler);
 		if(pos != -1) return;
-		voidInputs.push_back(input);
-		voidInputHandlers.push_back(handler);
+		voidInputs.push(input);
+		voidInputHandlers.push(handler);
 	}
 	void remove(VoidInputHandler handler){
 		int pos = position(handler);
 		if(pos == -1) return;
-		voidInputs.erase (voidInputs.begin()+pos);
-		voidInputHandlers.erase (voidInputHandlers.begin()+pos);
+		voidInputs.erase(pos);
+		voidInputHandlers.erase(pos);
 	}
 	
 	void dispatch(T &value);
@@ -92,12 +92,12 @@ class Event {
 		return -1;
 	}
 
-	std::vector<VoidHandler > voidHandlers;
-	std::vector<TypedHandler > typedHandlers;
-	std::vector<TypedInputHandler > typedInputHandlers;
-	std::vector<VoidInputHandler > voidInputHandlers;
-	std::vector<Input<T>* > typedInputs;
-	std::vector<Input<T>* > voidInputs;
+	Vector<VoidHandler > voidHandlers;
+	Vector<TypedHandler > typedHandlers;
+	Vector<TypedInputHandler > typedInputHandlers;
+	Vector<VoidInputHandler > voidInputHandlers;
+	Vector<Input<T>* > typedInputs;
+	Vector<Input<T>* > voidInputs;
 	
 };
 template <class T>

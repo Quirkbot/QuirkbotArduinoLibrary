@@ -1,8 +1,8 @@
 #include "Bot.h"
 
 
-std::vector <Node *> Bot::nodes = std::vector<Node *>();
-std::vector <Updatable *> Bot::updatables = std::vector<Updatable *>();
+Vector <Node *> Bot::nodes = Vector<Node *>();
+Vector <Updatable *> Bot::updatables = Vector<Updatable *>();
 volatile unsigned long Bot::micros = 0;
 volatile float Bot::millis = 0;
 volatile float Bot::seconds = 0;
@@ -11,14 +11,12 @@ volatile unsigned long Bot::frames = 0;
 
 
 void Bot::addNode(Node * node){
-	int position = Bot::nodePosition(node);
-	if(position != -1) return;
-	Bot::nodes.push_back(node);
+	if(Bot::nodePosition(node) != -1) return;
+	Bot::nodes.push(node);
 }
 void Bot::removeNode(Node * node){
-	int position = Bot::nodePosition(node);
-	if(position == -1) return;
-	Bot::nodes.erase (Bot::nodes.begin()+position);
+	if(Bot::nodePosition(node) == -1) return;
+	Bot::nodes.pop(node);
 }
 int Bot::nodePosition(Node * node){
 	for(unsigned int i=0; i<Bot::nodes.size(); i++){
@@ -28,14 +26,12 @@ int Bot::nodePosition(Node * node){
 }
 
 void Bot::addUpdatable(Updatable * updatable){
-	int position = Bot::updatablePosition(updatable);
-	if(position != -1) return;
-	Bot::updatables.push_back(updatable);
+	if(Bot::updatablePosition(updatable) != -1) return;
+	Bot::updatables.push(updatable);
 }
 void Bot::removeUpdatable(Updatable * updatable){
-	int position = Bot::updatablePosition(updatable);
-	if(position == -1) return;
-	Bot::updatables.erase (Bot::updatables.begin()+position);
+	if(Bot::updatablePosition(updatable) == -1) return;
+	Bot::updatables.pop(updatable);
 }
 int Bot::updatablePosition(Updatable * updatable){
 	for(unsigned int i=0; i<Bot::updatables.size(); i++){

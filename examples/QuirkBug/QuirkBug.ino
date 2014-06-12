@@ -1,4 +1,3 @@
-#include <StandardCplusplus.h>
 #include <QuirkBug.h>
 
 #include <Time.h>
@@ -18,6 +17,8 @@ void setup() {
 	sensor.pin = A0;
 	sensor.sensibility = 0.1;
 
+	logger.source = sensor.value;
+	logger.source = sensor.value;
 	logger.source = sensor.value;
 	
 	//sine.source = time.seconds;

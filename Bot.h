@@ -5,7 +5,7 @@
 //#include "Node.h"
 #include "Updatable.h"
 
-#include <vector>
+#include "Vector.h"
 
 class Node;
 class Updatable;
@@ -22,8 +22,8 @@ class Bot {
 
 	static void update();
 
-	static std::vector <Node *> nodes;
-	static std::vector <Updatable *> updatables;
+	static Vector <Node *> nodes;
+	static Vector <Updatable *> updatables;
 	static volatile unsigned long micros;
 	static volatile float millis;
 	static volatile float seconds;
