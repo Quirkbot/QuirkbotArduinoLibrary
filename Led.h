@@ -14,15 +14,19 @@ class Led : public Node{
 	
 	Led();
 
-	Input<unsigned int> pin;
+	Input<unsigned int> pin;	
 	Input<float> brighteness;
+	Input<bool> on;
+	Input<bool> off;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
-	
 	void onPinChange();
 	void onBrightenessChange();
+	void onOn();
+	void onOff();
+
+	void onInternalInputChange(BaseInput &input);
 };
 
 #endif

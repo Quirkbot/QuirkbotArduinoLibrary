@@ -11,7 +11,6 @@
 
 
 
-
 class Sensor : public Node, public Updatable{
 	public:
 	

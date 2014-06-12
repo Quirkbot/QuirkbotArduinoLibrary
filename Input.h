@@ -30,6 +30,9 @@ class Input : public BaseInput{
 	void operator()(T &value){
 		connect(value);
 	}
+	void operator()(T value){
+		connect(value);
+	}
 	void operator()(){
 		T value = this->value;
 		connect(value);

@@ -15,11 +15,15 @@ void setup() {
 	sensor.pin = A0;
 
 	led.pin = 11;
-	led.brighteness = sensor.value;
+	//led.brighteness = sensor.value;
+	//led.on();
 
-	logger.source = sensor.value;
+	//logger.source = led.value;
 }
 
 void loop() {
-
+	led.on();
+	delay(1000);
+	led.off();
+	delay(1000);
 }
