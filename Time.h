@@ -3,8 +3,11 @@
 
 #include "Bot.h"
 #include "Node.h"
-#include "Updatable.h"
+//#include "Updatable.h"
 #include "Output.h"
+
+class Node;
+class Updatable;
 
 class Time : public Node, public Updatable{
 	public:

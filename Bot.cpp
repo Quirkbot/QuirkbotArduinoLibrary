@@ -21,7 +21,7 @@ void Bot::removeNode(Node * node){
 	Bot::nodes.erase (Bot::nodes.begin()+position);
 }
 int Bot::nodePosition(Node * node){
-	for(int i=0; i<Bot::nodes.size(); i++){
+	for(unsigned int i=0; i<Bot::nodes.size(); i++){
 		if(Bot::nodes[i] == node) return i;
 	}
 	return -1;
@@ -38,7 +38,7 @@ void Bot::removeUpdatable(Updatable * updatable){
 	Bot::updatables.erase (Bot::updatables.begin()+position);
 }
 int Bot::updatablePosition(Updatable * updatable){
-	for(int i=0; i<Bot::updatables.size(); i++){
+	for(unsigned int i=0; i<Bot::updatables.size(); i++){
 		if(Bot::updatables[i] == updatable) return i;
 	}
 	return -1;
@@ -50,7 +50,7 @@ void Bot::update(){
 	Bot::millis += BOT_TIME_INCREMENT_MILLIS;
 	Bot::seconds += BOT_TIME_INCREMENT_SECONDS;
 	
-	for(int i=0; i<Bot::updatables.size(); i++){
+	for(unsigned int i=0; i<Bot::updatables.size(); i++){
 		Bot::updatables[i]->update();
 	}
 }

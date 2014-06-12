@@ -11,8 +11,8 @@
 #include "Updatable.h"
 
 /**
- * Hijack the setup() call, so we can setup the quirkbug before everything else
- * and then the setup on the sketch.
+ * Hack the setup() call, so we can initialize the QuirkBug before
+ * everything else.
  **/
 void _setup();
 void setup(){

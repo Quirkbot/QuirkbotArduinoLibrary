@@ -2,7 +2,7 @@
 #define Bot_h_
 
 #include "Constants.h"
-#include "Node.h"
+//#include "Node.h"
 #include "Updatable.h"
 
 #include <vector>

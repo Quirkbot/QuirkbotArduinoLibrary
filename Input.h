@@ -1,11 +1,12 @@
 #ifndef Input_h_
 #define Input_h_
 
-#include "Node.h"
-#include "BaseInput.h"
 #include "Output.h"
 
-class Node;
+class BaseInput;
+
+template <class T>
+class Output;
 
 template <class T>
 class Input : public BaseInput{

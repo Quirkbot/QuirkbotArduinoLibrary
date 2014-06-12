@@ -1,8 +1,6 @@
 #ifndef Logger_h_
 #define Logger_h_
 
-#include <map>
-
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"

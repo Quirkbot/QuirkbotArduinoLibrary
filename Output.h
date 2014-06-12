@@ -4,6 +4,9 @@
 #include "Event.h"
 
 template <class T>
+class Event;
+
+template <class T>
 class Output {
 	public:
 

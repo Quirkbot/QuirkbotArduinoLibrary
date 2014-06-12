@@ -4,6 +4,9 @@
 #include "Bot.h"
 #include "BaseInput.h"
 
+class Bot;
+class BaseInput;
+
 class Node{
 	public:
 	

@@ -3,6 +3,8 @@
 
 #include "Bot.h"
 
+class Bot;
+
 class Updatable{
 	friend class Bot;
 
