@@ -30,8 +30,7 @@ class Output {
 
 	private:
 
-	T value;
-		
+	T value;		
 };
 
 #endif

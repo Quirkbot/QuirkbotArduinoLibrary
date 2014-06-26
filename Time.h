@@ -5,19 +5,38 @@
 #include "IntervalNode.h"
 #include "Input.h"
 #include "Output.h"
+#include "ContainsOutputs.h"
+#include "Streams.h"
 
 class Node;
 class Updatable;
 
-class Time : public IntervalNode{
+class Time :
+public IntervalNode,
+public OutputStream<float>,
+public Contains4Outputs<float,float,float,float>
+{
 	public:
+
+	Time():
+	OutputStream<float>(seconds),
+	Contains4Outputs<float,float,float,float>(seconds,millis,micros,frames){
+
+	};
 
 	void onInterval();
 
-	Output<int> frames;
-	Output<float> micros;
-	Output<float> millis;
 	Output<float> seconds;
+	Output<float> millis;
+	Output<float> micros;
+	Output<float> frames;
 };
+
+void Time::onInterval(){
+	seconds.set(Bot::seconds);
+	millis.set(Bot::millis);
+	micros.set(Bot::micros);
+	frames.set(Bot::frames);
+}
 
 #endif

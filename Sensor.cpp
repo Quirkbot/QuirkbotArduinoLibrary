@@ -2,22 +2,25 @@
 
 Sensor::Sensor(){
 	registerInput(pin);
-	registerInput(sensibility);
+	registerInput(smoothing);
 	registerInput(interval);
 
-	sensibility = 0.5;
-	interval = 20;
+	smoothing = 0.5;
+}
+
+void Sensor::onPinChange(){
+	pinMode(pin, INPUT);
 }
 void Sensor::onInternalInputChange(BaseInput &input){
 	IntervalNode::onInternalInputChange(input);
 	
-	if(&input == &sensibility)
-		filterValue = 1.0 - sensibility;
+	if(&input == &pin) onPinChange();
 };
 
 void Sensor::onInterval(){
 	raw = analogRead(pin);
-	smooth = smooth * filterValue + raw * (1.0 - filterValue);
+	float smoothingValue = smoothing;
+	smooth = smooth * smoothingValue + raw * (1.0 - smoothingValue);
 
 	value = smooth / 1024.0;
 };

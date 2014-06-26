@@ -6,9 +6,8 @@
 
 #include "Arduino.h"
 #include "Constants.h"
-#include "Bot.h"
-#include "Node.h"
-#include "Updatable.h"
+#include "Mathematics.h"
+
 
 /**
  * Hack the setup() call, so we can initialize the QuirkBug before
@@ -34,45 +33,7 @@ void setup(){
 	TCCR1B |= (1 << CS11);  
 	// enable timer compare interrupt
 	TIMSK1 |= (1 << OCIE1A);
-	sei();//allow interrupts
-
-	// Setup the timer interrupt
-	/*TCCR1A = 0;
-	TCCR1B = _BV(WGM13); 
-	unsigned char bits;
-	const unsigned long cycles cycles = (F_CPU / 2000000) * BOT_TIME_INCREMENT_MICROS;
-	long resolution = 65536;// 16 bits
-	if(cycles < resolution)					bits = _BV(CS10);            // full
-	else if((cycles >>= 3) < resolution)	bits = _BV(CS11) | _BV(CS10);// /64
-	else if((cycles >>= 2) < resolution)	bits = _BV(CS12);			 // /256
-	else if((cycles >>= 2) < resolution)	bits = _BV(CS12) | _BV(CS10);// /1024
-	else		cycles = resolution - 1,	bits = _BV(CS12) | _BV(CS10);// maximum
-	char oldSREG = SREG;
-	cli();
-	ICR1 = cycles;
-	SREG = oldSREG;
-	TCCR1B &= ~(_BV(CS10) | _BV(CS11) | _BV(CS12));
-	TCCR1B |= bits;
-	TIMSK1 = _BV(TOIE1);
-	TCCR1B |= bits;*/
-
-
-	
-	// Setup the timer interrupt
-	/*TCCR1B = _BV(WGM13); 
-	TCCR1A = 0;	
-	unsigned char bits;
-	unsigned long cycles = (F_CPU / 2000000) * BOT_TIME_INCREMENT_MICROS;
-	if (cycles < 65536UL)  bits = _BV(CS10);
-	if (cycles < 65536UL * 8) bits = _BV(CS11);
-	if (cycles < 65536UL * 64) bits = _BV(CS11) | _BV(CS10);
-	if (cycles < 65536UL * 256) bits = _BV(CS12);
-	if (cycles < 65536UL * 1024) bits = _BV(CS12) | _BV(CS10);
-	else bits = _BV(CS12) | _BV(CS10);
-	ICR1 = cycles;
-	TCCR1B = _BV(WGM13) | bits;
-	TIMSK1 = _BV(TOIE1);*/
-	
+	sei();//allow interrupts	
 
 	// Turn off RX and TX leds
 	PORTD &= ~(1<<5);

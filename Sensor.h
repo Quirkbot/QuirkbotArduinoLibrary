@@ -18,16 +18,16 @@ class Sensor : public IntervalNode{
 	void onInterval();
 
 	Input<int> pin;
-	Input<float> sensibility;
+	Input<float> smoothing;
 
 	Output<float> value;
 
 	protected:
 	void onInternalInputChange(BaseInput &input);
+	void onPinChange();
 
 	float raw;
 	float smooth;
-	float filterValue;
 };
 
 #endif

@@ -4,23 +4,27 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
+#include "ContainsInputs.h"
+#include "Streams.h"
 
-
-#include "Arduino.h"
-
-class Logger : public Node{
+class Logger:
+public Node,
+public InputStream<float>,
+public Contains5Inputs<float, char*, float, float, float>{
 	public:
 	
 	Logger();
-	Logger(Stream &stream);
 
-	Input<float> source;
+	Input<float> base;
+	Input<char*> label;
 	Input<float> throttle;
+
+	Input<float> showLabel;
+	Input<float> showTimestamp;
 
 	protected:
 
 	void onInternalInputChange(BaseInput &input);
-	void onSourceChange();
 
 	private:
 
@@ -30,4 +34,5 @@ class Logger : public Node{
 	float lastPrintMillis;
 };
 
+typedef Logger SerialPrint;
 #endif

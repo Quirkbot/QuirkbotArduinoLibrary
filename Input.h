@@ -2,6 +2,7 @@
 #define Input_h_
 
 #include "Output.h"
+#include "Streams.h"
 
 class BaseInput;
 
@@ -20,6 +21,7 @@ class Input : public BaseInput{
 		clearOutput();
 	}
 
+
 	void connect(const T &value){
 		clearOutput();
 		onOutputChange(value);
@@ -27,30 +29,41 @@ class Input : public BaseInput{
 	void operator=(const T &value){
 		connect(value);
 	}
-	void operator()(T &value){
-		connect(value);
-	}
-	void operator()(T value){
+	void operator()(const T &value){
 		connect(value);
 	}
 	void operator()(){
 		T value = this->value;
 		connect(value);
 	}
-	void connect(Output<T> &output){
+
+	void connect(const Output<T> &output){
 		clearOutput();
-		this->output = &output;
+		this->output = (Output<T>*) &output;
 		this->output->event.add(this, &Input<T>::onOutputChange);
 	}	
-	void operator=(Output<T> &output){
+	void operator=(const Output<T> &output){
 		connect(output);
 	}
-	void operator()(Output<T> &output){
+	void operator()(const Output<T> &output){
 		connect(output);
 	}
-	void disconnect(Output<T> &output){
+	void disconnect(const Output<T> &output){
 		if(&output != this->output) return;
 		clearOutput();
+	}
+
+	void connect(const OutputStream<T> &stream){
+		connect(stream.output);
+	}	
+	void operator=(const OutputStream<T> &stream){
+		connect(stream.output);
+	}
+	void operator()(const OutputStream<T> &stream){
+		connect(stream.output);
+	}
+	void disconnect(const OutputStream<T> &stream){
+		disconnect(stream.output);
 	}
 	
 	T get(){

@@ -24,10 +24,10 @@ class Bot {
 
 	static Vector <Node *> nodes;
 	static Vector <Updatable *> updatables;
-	static volatile unsigned long micros;
+	static volatile float micros;
 	static volatile float millis;
 	static volatile float seconds;
-	static volatile unsigned long frames;
+	static volatile float frames;
 };
 
 #endif
