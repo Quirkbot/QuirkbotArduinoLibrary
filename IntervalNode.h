@@ -20,9 +20,10 @@ class IntervalNode : public Node, public Updatable{
 
 	Input<float> interval;
 
-	protected:
+	/*protected:
 	void onInternalInputChange(BaseInput &input);
-	void onIntervalChange();	
+	void onIntervalChange();
+	*/
 };
 
 #endif

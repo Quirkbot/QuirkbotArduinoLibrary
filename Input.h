@@ -52,6 +52,9 @@ class Input : public BaseInput{
 		if(&output != this->output) return;
 		clearOutput();
 	}
+	void disconnect(){
+		clearOutput();
+	}
 
 	void connect(const OutputStream<T> &stream){
 		connect(stream.output);

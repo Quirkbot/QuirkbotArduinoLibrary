@@ -1,5 +1,5 @@
-#ifndef Math_h_
-#define Math_h_
+#ifndef Mathematics_h_
+#define Mathematics_h_
 
 #include <Arduino.h>
 

@@ -41,5 +41,5 @@ void Logger::onInternalInputChange(BaseInput &input){
 		streamPtr->print("\t");
 	}
 
-	streamPtr->println(base, 3);
+	streamPtr->println(base, 4);
 };

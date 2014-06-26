@@ -1,7 +1,7 @@
 #include <QuirkBug.h>
 
 #include <Time.h>
-//#include <Sensor.h>
+#include <Sensor.h>
 #include <Logger.h>
 //#include <Led.h>
 
@@ -23,7 +23,9 @@ Modulo modulo;
 //Power power;
 //Mapping mapping;
 //Led led;
-//Sensor sensor;
+
+Sensor sensor;
+
 SerialPrint print;
 
 void setup() {	
@@ -106,10 +108,7 @@ void setup() {
 	modulo(ceiling, 5);
 	print(modulo);*/
 
-	print(time.seconds);
-
-	//sensor.pin = A1;
-	//sensor.smoothing = 0.0;
+	
 
 	//mapping.in = sensor.value;
 	//mapping.inMinimum = 0.35;
@@ -128,13 +127,20 @@ void setup() {
 	led.on(sensor.rising);
 	led.off(sensor.under)*/
 
+	sensor.pin = A0;
+	//sensor.interval = 100;
+	print(sensor);
+
 	//print(time);
 }
 
-float i = 0;
+//float i = 0;
 void loop() {
 	//i+=0.1;
 	//print.input = time.output;
+	//delay(100);
+	//Serial.println(sensor.value);
+	//Serial.println(sensor.value);
 	//delay(100);
 	
 }

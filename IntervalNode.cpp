@@ -7,9 +7,9 @@ IntervalNode::IntervalNode(){
 void IntervalNode::update(){
 	if((int)(Bot::millis) % (int)interval == 0) onInterval();
 }
-void IntervalNode::onInternalInputChange(BaseInput &input){
+/*void IntervalNode::onInternalInputChange(BaseInput &input){
 	if(&input == &interval) onIntervalChange();
 };
 void IntervalNode::onIntervalChange(){
 	if(interval < 1) interval = 1;
-};
+};*/
