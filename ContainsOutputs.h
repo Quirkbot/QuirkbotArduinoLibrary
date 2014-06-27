@@ -152,4 +152,47 @@ public Contains5Outputs<
 		Output<T6> &out5;
 };
 
+template <
+	class T1,
+	class T2,
+	class T3,
+	class T4,
+	class T5,
+	class T6,
+	class T7>
+class Contains7Outputs :
+public Contains6Outputs<
+	T1,
+	T2,
+	T3,
+	T4,
+	T5,
+	T6>{
+	public:
+		Contains7Outputs(
+			Output<T1>& _0, 
+			Output<T2>& _1, 
+			Output<T3>& _2,
+			Output<T4>& _3,
+			Output<T5>& _4,
+			Output<T6>& _5,
+			Output<T7>& _6) :
+		Contains6Outputs<
+			T1,
+			T2,
+			T3,
+			T4,
+			T5,
+			T6>(
+				_0,
+				_1,
+				_2,
+				_3,
+				_4,
+				_5),
+		out6(_6){}
+		
+		Output<T7> &out6;
+};
+
 #endif

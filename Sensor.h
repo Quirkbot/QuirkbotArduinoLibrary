@@ -13,47 +13,49 @@
 
 class Sensor :
 public IntervalNode,
-public OutputStream<float>,
-public Contains3Inputs<float,int,float>,
-public Contains1Output<float>
+public OutputStream<float>
 {
 	public:
 	
 	Sensor():
-	OutputStream<float>(value),
-	Contains3Inputs<float,int,float>(interval, pin, smoothing),
-	Contains1Output<float>(value){
-		registerInput(pin);
+	OutputStream<float>(value){
+		registerInput(min);
+		registerInput(max);
+		registerInput(start);
+		registerInput(end);	
 		registerInput(smoothing);
+		
+		min = 0.0;
+		max = 1.0;
+		start = 0.0;
+		end = 1.0;
 		smoothing = 0.5;
 		interval = 100;
+
+		normalizingFactor = 1024.0;
 	};
 
-	void onInterval();
-
-	Input<int> pin;
+	Input<float> min;
+	Input<float> max;
+	Input<float> start;
+	Input<float> end;
 	Input<float> smoothing;
 
+	Output<float> raw;
 	Output<float> value;
 
 	protected:
-	void onInternalInputChange(BaseInput &input);
 
-	float raw;
-	float smooth;
+	float normalizingFactor;
+
+	void processReading(float reading){
+		float smooth = smooth * smoothing + reading * (1.0 - smoothing);
+		raw = smooth / normalizingFactor;
+		value = mapFloat(raw, min, max, start, end);
+	}
+
 };
 
-void Sensor::onInternalInputChange(BaseInput &input){
-	if(&input == &pin) pinMode(pin, INPUT);
-};
-
-void Sensor::onInterval(){
-	raw = analogRead(pin);
-	float smoothingValue = smoothing;
-	smooth = smooth * smoothingValue + raw * (1.0 - smoothingValue);
-
-	value = smooth / 1024.0;
-};
 
 
 #endif

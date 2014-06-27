@@ -12,9 +12,14 @@ class Updatable;
 
 class IntervalNode : public Node, public Updatable{
 	public:
-	IntervalNode();
+	IntervalNode(){
+		registerInput(interval);
+		interval = 1;
+	};
 
-	void update();
+	void update(){
+		if((int)(Bot::millis) % (int)interval == 0) onInterval();
+	};
 
 	virtual void onInterval(){};
 

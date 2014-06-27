@@ -7,6 +7,20 @@
 #define BOT_MILLIS_TO_FRAMES(x) (x * 1000 / BOT_TIME_INCREMENT_MICROS)
 
 
+static float mapFloat(float x, float inMin, float inMax, float outMin, float outMax){
+	float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
+	if(outMin < outMax){
+		if(result < outMin) result = outMin;
+		else if(result > outMax) result = outMax;
+	}
+	else{
+		if(result > outMin) result = outMin;
+		else if(result < outMax) result = outMax;
+	}
+	
+	return result;
+}
+
 /*int leftLegF = 9;
 int rightLegF = 11;
 int rightArmF = 5;

@@ -1,45 +1,48 @@
 #include "Logger.h"
 
 Logger::Logger():
-InputStream<float>(base),
-Contains5Inputs<float, char*, float, float, float>
-(base, label, throttle, showLabel, showTimestamp){
-	init(Serial);
-}
-void Logger::init(Stream &stream){
-	registerInput(base);
-	registerInput(label);
+InputStream<float>(a),
+Contains6Inputs<float, float, float, float, float, float>
+(a, b, c, d, e, throttle){
+	registerInput(a);
+	registerInput(b);
+	registerInput(c);
+	registerInput(d);
+	registerInput(e);
 	registerInput(throttle);
-	registerInput(showLabel);
-	registerInput(showTimestamp);
 
-	label = "Print";
+	a = 0;
+	b = 0;
+	c = 0;
+	d = 0;
+	e = 0;
 	throttle = 100;
-	showLabel = false;
-	showTimestamp = false;
 
-	streamPtr = &stream;
 	lastPrintMillis = Bot::millis;
 }
 void Logger::onInternalInputChange(BaseInput &input){
-	if(&input != &base) return;
+	if(&input == &throttle) return;
 	if(Bot::millis - lastPrintMillis < throttle) return;
 
 	lastPrintMillis = Bot::millis;
-	if(showLabel){
-		streamPtr->print(label);
-		streamPtr->print("\t");
-		streamPtr->print("|");
-		streamPtr->print("\t");
-
+	if(a) {
+		Serial.print(a, 4);	
 	}
-	if(showTimestamp){
-		streamPtr->print(Bot::millis,0);
-		streamPtr->print("ms");
-		streamPtr->print("\t");
-		streamPtr->print("|");
-		streamPtr->print("\t");
+	if(b) {
+		Serial.print("\t|\t");
+		Serial.print(b, 4);
 	}
-
-	streamPtr->println(base, 4);
+	if(c) {
+		Serial.print("\t|\t");
+		Serial.print(c, 4);
+	}
+	if(d) {
+		Serial.print("\t|\t");
+		Serial.print(d, 4);
+	}
+	if(e) {
+		Serial.print("\t|\t");
+		Serial.print(e, 4);
+	}
+	Serial.print("\n");
 };

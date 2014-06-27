@@ -10,26 +10,24 @@
 class Logger:
 public Node,
 public InputStream<float>,
-public Contains5Inputs<float, char*, float, float, float>{
+public Contains6Inputs<float, float, float, float, float, float>{
 	public:
 	
 	Logger();
 
-	Input<float> base;
-	Input<char*> label;
+	Input<float> a;
+	Input<float> b;
+	Input<float> c;
+	Input<float> d;
+	Input<float> e;
 	Input<float> throttle;
 
-	Input<float> showLabel;
-	Input<float> showTimestamp;
 
 	protected:
 
 	void onInternalInputChange(BaseInput &input);
 
 	private:
-
-	void init(Stream &stream);
-	Stream * streamPtr;
 
 	float lastPrintMillis;
 };

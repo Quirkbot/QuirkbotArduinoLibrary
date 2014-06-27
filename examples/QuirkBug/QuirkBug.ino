@@ -1,7 +1,7 @@
 #include <QuirkBug.h>
 
 #include <Time.h>
-#include <Sensor.h>
+#include <AnalogSensor.h>
 #include <Logger.h>
 //#include <Led.h>
 
@@ -24,7 +24,7 @@ Modulo modulo;
 //Mapping mapping;
 //Led led;
 
-Sensor sensor;
+AnalogSensor sensor;
 
 SerialPrint print;
 

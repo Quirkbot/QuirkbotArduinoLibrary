@@ -10,12 +10,12 @@ class Updatable{
 
 	public:
 
-		Updatable();
-		~Updatable();
+	Updatable();
+	~Updatable();
 
 	protected:
 		
-		virtual void update(){};
+	virtual void update(){};
 };
 
 #endif

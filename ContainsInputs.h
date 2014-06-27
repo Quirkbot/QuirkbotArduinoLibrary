@@ -508,4 +508,215 @@ public Contains5Inputs<
 		Input<T6> &in5;
 };
 
+template <
+	class T1,
+	class T2,
+	class T3,
+	class T4,
+	class T5,
+	class T6,
+	class T7>
+class Contains7Inputs :
+public Contains6Inputs<
+	T1,
+	T2,
+	T3,
+	T4,
+	T5,
+	T6>{
+	public:
+		Contains7Inputs(
+			Input<T1>& _0, 
+			Input<T2>& _1, 
+			Input<T3>& _2,
+			Input<T4>& _3,
+			Input<T5>& _4,
+			Input<T6>& _5,
+			Input<T7>& _6) :
+		Contains6Inputs<
+			T1,
+			T2,
+			T3,
+			T4,
+			T5,
+			T6>(
+				_0,
+				_1,
+				_2,
+				_3,
+				_4,
+				_5),
+		in6(_6){}
+
+		template <
+			class TT1>
+		void operator()(
+			const TT1 &_0){
+
+			Contains6Inputs<
+				T1,
+				T2,
+				T3,
+				T4,
+				T5,
+				T6>::operator()(
+				_0);
+		}
+
+		template <
+			class TT1,
+			class TT2>
+		void operator()(
+			const TT1 &_0, 
+			const TT2 &_1){
+
+			Contains6Inputs<
+				T1,
+				T2,
+				T3,
+				T4,
+				T5,
+				T6>::operator()(
+				_0, 
+				_1);
+		}
+
+		template <
+			class TT1,
+			class TT2,
+			class TT3>
+		void operator()(
+			const TT1 &_0, 
+			const TT2 &_1, 
+			const TT3 &_2){
+
+			Contains6Inputs<
+				T1,
+				T2,
+				T3,
+				T4,
+				T5,
+				T6>::operator()(
+				_0, 
+				_1,
+				_2);
+		}
+
+		template <
+			class TT1,
+			class TT2,
+			class TT3,
+			class TT4>
+		void operator()(
+			const TT1 &_0, 
+			const TT2 &_1, 
+			const TT3 &_2,
+			const TT4 &_3){
+
+			Contains6Inputs<
+				T1,
+				T2,
+				T3,
+				T4,
+				T5,
+				T6>::operator()(
+				_0, 
+				_1,
+				_2,
+				_3);
+		}
+
+		template <
+			class TT1,
+			class TT2,
+			class TT3,
+			class TT4,
+			class TT5>
+		void operator()(
+			const TT1 &_0, 
+			const TT2 &_1, 
+			const TT3 &_2,
+			const TT4 &_3,
+			const TT5 &_4){
+
+			Contains6Inputs<
+				T1,
+				T2,
+				T3,
+				T4,
+				T5,
+				T6>::operator()(
+				_0, 
+				_1,
+				_2,
+				_3,
+				_4);
+		}
+
+		template <
+			class TT1,
+			class TT2,
+			class TT3,
+			class TT4,
+			class TT5,
+			class TT6>
+		void operator()(
+			const TT1 &_0, 
+			const TT2 &_1, 
+			const TT3 &_2,
+			const TT4 &_3,
+			const TT5 &_4,
+			const TT6 &_5){
+
+			Contains6Inputs<
+				T1,
+				T2,
+				T3,
+				T4,
+				T5,
+				T6>::operator()(
+				_0, 
+				_1,
+				_2,
+				_3,
+				_4,
+				_5);
+		}
+
+		template <
+			class TT1,
+			class TT2,
+			class TT3,
+			class TT4,
+			class TT5,
+			class TT6,
+			class TT7>
+		void operator()(
+			const TT1 &_0, 
+			const TT2 &_1, 
+			const TT3 &_2,
+			const TT4 &_3,
+			const TT5 &_4,
+			const TT6 &_5,
+			const TT7 &_6){
+
+			Contains6Inputs<
+				T1,
+				T2,
+				T3,
+				T4,
+				T5,
+				T6>::operator()(
+				_0, 
+				_1,
+				_2,
+				_3,
+				_4,
+				_5);
+			in6 = _6;
+		}
+		
+		Input<T7> &in6;
+};
+
 #endif
