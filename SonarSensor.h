@@ -12,7 +12,7 @@ public Contains5Outputs<float, float, float, float, float>
 	
 	SonarSensor():
 	Contains7Inputs<int, float, float, float, float, float, float>
-		(pin, start, end, min, max, smoothing, interval),
+		(pin, begin, end, min, max, smoothing, interval),
 	Contains5Outputs<float, float, float, float, float>
 		(value, raw, micros, centimeters, inches){
 

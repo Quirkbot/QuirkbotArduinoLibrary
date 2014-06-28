@@ -12,7 +12,7 @@ public Contains2Outputs<float, float>
 	
 	AnalogSensor():
 	Contains7Inputs<int, float, float, float, float, float, float>
-		(pin, start, end, min, max, smoothing, interval),
+		(pin, begin, end, min, max, smoothing, interval),
 	Contains2Outputs<float, float>
 		(value, raw){
 		registerInput(pin);

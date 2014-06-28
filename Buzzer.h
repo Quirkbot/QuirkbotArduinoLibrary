@@ -1,6 +1,8 @@
 #ifndef Buzzer_h_
 #define Buzzer_h_
 
+#include "Arduino.h"
+
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
@@ -14,23 +16,23 @@ public Contains4Inputs<int, float, float, float>{
 	public:
 	
 	Buzzer():
-	InputStream<float>,
-		(frequency),
-	Contains3Inputs<int, float, float, float>
-		(pin, frequency, play, stop){
+	InputStream<float>
+		(volume),
+	Contains4Inputs<int, float, float, float>
+		(pin, volume, play, stop){
 
 		registerInput(pin);
-		registerInput(frequency);
+		registerInput(volume);
 		registerInput(play);
 		registerInput(stop);
 
-		frequency = 440;
+		volume = 0.5;
 		stop();
 	};
 
 	Input<int> pin;
 
-	Input<float> frequency;
+	Input<float> volume;
 	
 	Input<float> play;
 	Input<float> stop;
@@ -38,14 +40,28 @@ public Contains4Inputs<int, float, float, float>{
 	protected:
 
 	void onInternalInputChange(BaseInput &input);
+
+	bool playing;
 };
-Buzzer::onInternalInputChange(BaseInput &input){
+void Buzzer::onInternalInputChange(BaseInput &input){
+	if(&input == &pin){
+		pinMode(pin, OUTPUT);
+	}
 	if(&input == &play){
-		tone(pin, frequency);
+		playing = true;
+		analogWrite(pin, volume * 255);
 	}
 	if(&input == &stop){
-		noTone(pin);
+		playing = false;
+		digitalWrite(pin, LOW);
 	}
-
+	if(&input == &volume){
+		if(playing){
+			analogWrite(pin, volume * 255);
+		}
+		else {
+			digitalWrite(pin, LOW);
+		}
+	}
 }
 #endif
