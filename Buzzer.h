@@ -5,63 +5,59 @@
 
 #include "Bot.h"
 #include "Node.h"
+#include "Updatable.h"
 #include "Input.h"
 #include "ContainsInputs.h"
 #include "Streams.h"
 
 class Buzzer:
 public Node,
+public Updatable,
 public InputStream<float>,
-public Contains4Inputs<int, float, float, float>{
+public Contains2Inputs<int, float>{
 	public:
 	
 	Buzzer():
 	InputStream<float>
-		(volume),
-	Contains4Inputs<int, float, float, float>
-		(pin, volume, play, stop){
+		(sound),
+	Contains2Inputs<int, float>
+		(pin, sound){
 
 		registerInput(pin);
-		registerInput(volume);
-		registerInput(play);
-		registerInput(stop);
+		registerInput(sound);
 
-		volume = 0.5;
-		stop();
+		sound = 0;
+		high = false;
 	};
 
-	Input<int> pin;
+	void update();
 
-	Input<float> volume;
-	
-	Input<float> play;
-	Input<float> stop;
+	Input<int> pin;
+	Input<float> sound;
 
 	protected:
 
 	void onInternalInputChange(BaseInput &input);
 
-	bool playing;
+	bool high;
 };
 void Buzzer::onInternalInputChange(BaseInput &input){
 	if(&input == &pin){
 		pinMode(pin, OUTPUT);
 	}
-	if(&input == &play){
-		playing = true;
-		analogWrite(pin, volume * 255);
-	}
-	if(&input == &stop){
-		playing = false;
+}
+
+void Buzzer::update(){
+	if(sound < 0.5) return;
+
+	float t = fmod(Bot::millis, 4);
+	if(t >= 2 && high){
+		high = false;
 		digitalWrite(pin, LOW);
 	}
-	if(&input == &volume){
-		if(playing){
-			analogWrite(pin, volume * 255);
-		}
-		else {
-			digitalWrite(pin, LOW);
-		}
+	else if(t < 2 && !high){
+		high = true;
+		digitalWrite(pin, HIGH);
 	}
 }
 #endif
