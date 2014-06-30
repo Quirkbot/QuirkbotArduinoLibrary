@@ -8,10 +8,17 @@ template <class T>
 class Output;
 
 template <class T>
+class OutputStream;
+
+template <class T>
 class InputStream{
 	public:
 		InputStream(Input<T>& _input):
 		input(_input){}
+
+		void connect(OutputStream<T>& stream){
+			input.connect(stream.output);
+		};
 		
 		Input<T> &input;
 };

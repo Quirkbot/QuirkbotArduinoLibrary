@@ -75,6 +75,7 @@ public Contains1Output<float>
 	float adjust;
 	float position;
 };
+typedef Oscillator Wave; 
 
 void Oscillator::onInternalInputChange(BaseInput &input){
 	if(&input == &type){
@@ -104,15 +105,15 @@ void Oscillator::onInternalInputChange(BaseInput &input){
 		float basePosition = position - offset;
 		if(basePosition < 0) basePosition += 1;
 
-		float currentSeconds = fmod(Bot::seconds, duration);
-		float diff = currentSeconds/duration - basePosition;
+		float currentTime = fmod(Bot::millis, duration);
+		float diff = currentTime/duration - basePosition;
 		adjust = diff * duration;
 	}
 };
 
 void Oscillator::onInterval(){
-	float seconds = fmod(Bot::seconds -adjust + offset * duration, duration);
-	position = seconds / duration;
+	float timeMillis = fmod(Bot::millis -adjust + offset * duration, duration);
+	position = timeMillis / duration;
 	int index = position * 256.0;
 	float base = (float)(pgm_read_word_near(table + index)) * 0.001;
 	value = mapFloat(base, 0, 1.0, begin, end);

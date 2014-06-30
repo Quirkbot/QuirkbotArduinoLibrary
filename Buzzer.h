@@ -5,59 +5,67 @@
 
 #include "Bot.h"
 #include "Node.h"
-#include "Updatable.h"
 #include "Input.h"
 #include "ContainsInputs.h"
 #include "Streams.h"
 
 class Buzzer:
 public Node,
-public Updatable,
 public InputStream<float>,
-public Contains2Inputs<int, float>{
+public Contains3Inputs<int, float, float>{
 	public:
 	
 	Buzzer():
 	InputStream<float>
-		(sound),
-	Contains2Inputs<int, float>
-		(pin, sound){
+		(tone),
+	Contains3Inputs<int, float, float>
+		(pin, tone, sound){
 
 		registerInput(pin);
+		registerInput(tone);
 		registerInput(sound);
 
-		sound = 0;
-		high = false;
+		sound = 1;
+
+		lastSound = -1;
+		lastTone = 0;
+		maxFrequency = 3000.0;
+
+		tone = 440 / maxFrequency;
 	};
 
-	void update();
+	void process();
 
 	Input<int> pin;
+	Input<float> tone;
 	Input<float> sound;
+
+	float maxFrequency;
 
 	protected:
 
 	void onInternalInputChange(BaseInput &input);
 
-	bool high;
+	float lastSound;
+	float lastTone;
 };
 void Buzzer::onInternalInputChange(BaseInput &input){
 	if(&input == &pin){
 		pinMode(pin, OUTPUT);
+		process();
+	}
+	else if(&input == &sound || &input == &tone){
+		process();
+	}
+}
+void Buzzer::process(){
+	if(lastTone == tone && lastSound == sound) return;
+	if(sound >= 0.5 && tone > 0) {
+		::tone(4, (tone * tone) * maxFrequency);
+	}
+	else{
+		noTone(pin);
 	}
 }
 
-void Buzzer::update(){
-	if(sound < 0.5) return;
-
-	float t = fmod(Bot::millis, 4);
-	if(t >= 2 && high){
-		high = false;
-		digitalWrite(pin, LOW);
-	}
-	else if(t < 2 && !high){
-		high = true;
-		digitalWrite(pin, HIGH);
-	}
-}
 #endif

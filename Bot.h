@@ -1,6 +1,7 @@
 #ifndef Bot_h_
 #define Bot_h_
 
+#include "Arduino.h"
 #include "Constants.h"
 //#include "Node.h"
 #include "Updatable.h"

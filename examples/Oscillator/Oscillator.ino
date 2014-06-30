@@ -1,17 +1,14 @@
 #include <QuirkBug.h>
 
-#include <SonarSensor.h>
-#include <Led.h>
-#include <Oscillator.h>
-#include <Logger.h>
-
 Oscillator osc1;
 Led led1;
 
 Oscillator osc2;
 Led led2;
 
-SerialPrint print;
+Monitor monitor;
+
+Servo s;
 
 void setup() {	
 
@@ -33,7 +30,6 @@ void setup() {
 	led2.pin = 10;
 	led2.input.connect(osc2.output);
 
+	monitor(osc1, osc2);
+
 }
-
-
-void loop(){}

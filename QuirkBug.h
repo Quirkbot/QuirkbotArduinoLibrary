@@ -46,7 +46,7 @@ void setup(){
 
 	
 	// Setup Timer 2 
-	TCCR2A = 0;// set entire TCCR2A register to 0
+	/*TCCR2A = 0;// set entire TCCR2A register to 0
 	TCCR2B = 0;// same for TCCR2B
 	TCNT2  = 0;//initialize counter value to 0
 	// set compare match register for 8khz increments
@@ -56,7 +56,7 @@ void setup(){
 	// Set CS22 bit for 64 prescaler
 	TCCR2B |= ((1<<CS22) | (0<<CS21) | (0<<CS20));  
 	// enable timer compare interrupt
-	TIMSK2 |= (1 << OCIE2A);
+	TIMSK2 |= (1 << OCIE2A);*/
 	
 	
 	sei();//allow interrupts
@@ -70,11 +70,15 @@ void setup(){
 }
 #define setup() _setup()
 
+void loop(){
+	Bot::update();
+}
+
 // Interrupt
-ISR(TIMER2_COMPA_vect){
+/*ISR(TIMER2_COMPA_vect){
 	cli();
 	Bot::update();
 	sei();
-}
+}*/
 
 #endif

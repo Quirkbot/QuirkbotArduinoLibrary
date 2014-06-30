@@ -42,9 +42,9 @@ int Bot::updatablePosition(Updatable * updatable){
 
 void Bot::update(){
 	Bot::frames++;
-	Bot::micros += BOT_TIME_INCREMENT_MICROS;
-	Bot::millis += BOT_TIME_INCREMENT_MILLIS;
-	Bot::seconds += BOT_TIME_INCREMENT_SECONDS;
+	Bot::micros = ::micros();
+	Bot::millis = ::millis();
+	Bot::seconds = Bot::millis * 0.001;
 	
 	for(unsigned int i=0; i<Bot::updatables.size(); i++){
 		Bot::updatables[i]->update();
