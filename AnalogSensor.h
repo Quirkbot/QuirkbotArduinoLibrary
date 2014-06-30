@@ -25,6 +25,7 @@ public Contains2Outputs<float, float>
 	protected:
 	void onInternalInputChange(BaseInput &input);
 };
+typedef AnalogSensor LightSensor;
 
 void AnalogSensor::onInternalInputChange(BaseInput &input){
 	if(&input == &pin) pinMode(pin, INPUT);

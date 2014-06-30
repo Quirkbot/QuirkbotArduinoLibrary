@@ -33,4 +33,5 @@ public Contains6Inputs<float, float, float, float, float, float>{
 };
 
 typedef Logger SerialPrint;
+typedef Logger Monitor;
 #endif

@@ -6,8 +6,16 @@
 
 #include "Arduino.h"
 #include "Constants.h"
-#include "Mathematics.h"
 
+#include "Mathematics.h"
+#include "AnalogSensor.h"
+#include "SonarSensor.h"
+#include "Led.h"
+#include "Buzzer.h"
+#include "Servo.h"
+#include "Oscillator.h"
+#include "Time.h"
+#include "Logger.h"
 
 /**
  * Hack the setup() call, so we can initialize the QuirkBug before
