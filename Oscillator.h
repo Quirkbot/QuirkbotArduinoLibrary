@@ -51,6 +51,8 @@ public Contains1Output<float>
 		offset = 0.0;
 
 		table = OSC_SINE_TABLE;
+		adjust = 0;
+		position = 0;
 	};
 
 	void onInterval();
@@ -69,6 +71,9 @@ public Contains1Output<float>
 	const int16_t * table;
 	
 	void onInternalInputChange(BaseInput &input);
+
+	float adjust;
+	float position;
 };
 
 void Oscillator::onInternalInputChange(BaseInput &input){
@@ -95,12 +100,19 @@ void Oscillator::onInternalInputChange(BaseInput &input){
 				break;
 		}
 	}
+	else if(&input == &duration){
+		float basePosition = position - offset;
+		if(basePosition < 0) basePosition += 1;
+
+		float currentSeconds = fmod(Bot::seconds, duration);
+		float diff = currentSeconds/duration - basePosition;
+		adjust = diff * duration;
+	}
 };
 
-
 void Oscillator::onInterval(){
-	float seconds = fmod(Bot::seconds + offset * duration, duration);
-	float position = seconds / duration;
+	float seconds = fmod(Bot::seconds -adjust + offset * duration, duration);
+	position = seconds / duration;
 	int index = position * 256.0;
 	float base = (float)(pgm_read_word_near(table + index)) * 0.001;
 	value = mapFloat(base, 0, 1.0, begin, end);
