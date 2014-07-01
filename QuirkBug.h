@@ -15,7 +15,8 @@
 #include "Servo.h"
 #include "Oscillator.h"
 #include "Time.h"
-#include "Logger.h"
+#include "Monitor.h"
+#include "List.h"
 
 /**
  * Hack the setup() call, so we can initialize the QuirkBug before

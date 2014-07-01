@@ -18,17 +18,21 @@ class IntervalNode : public Node, public Updatable{
 	};
 
 	void update(){
-		if((int)(Bot::millis) % (int)interval == 0) onInterval();
+
+		if((int)(Bot::millis) % (int)interval == 0
+			&& lastMillis != Bot::millis){
+			
+			lastMillis = Bot::millis;
+			onInterval();
+		}
 	};
 
 	virtual void onInterval(){};
 
 	Input<float> interval;
 
-	/*protected:
-	void onInternalInputChange(BaseInput &input);
-	void onIntervalChange();
-	*/
+	private:
+	int lastMillis;
 };
 
 #endif

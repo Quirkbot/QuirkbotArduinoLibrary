@@ -1,18 +1,23 @@
 #include <QuirkBug.h>
 
-#include <Oscillator.h>
-#include <Buzzer.h>
+Wave wave;
+List list;
+Buzzer buzzer;;
+Monitor monitor;
 
-Oscillator osc;
-Buzzer buzzer;
 
 void setup() {	
-	osc.duration = 0.6;
+	wave.duration = 1000;
+	wave.type = WAVE_RAMP_UP;
+
+	list.add(NOTE_C4);
+	list.add(NOTE_A4);
+	
+	list.connect(wave);
 	
 	buzzer.pin = 4;
-	buzzer.input.connect(osc.output);
-}
+	buzzer.connect(list);
 
-void loop(){
-
+	monitor.add(wave);
+	monitor.add(list);
 }

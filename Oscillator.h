@@ -13,12 +13,12 @@
 #include "OscillatorTables.h"
 
 enum OscillatorType{
-	OSC_SINE = 0,
-	OSC_SQUARE,
-	OSC_TRIANGLE,
-	OSC_PULSE,
-	OSC_RAMP_UP,
-	OSC_RAMP_DOWN
+	WAVE_SINE = 0,
+	WAVE_SQUARE,
+	WAVE_TRIANGLE,
+	WAVE_PULSE,
+	WAVE_RAMP_UP,
+	WAVE_RAMP_DOWN
 };
 
 
@@ -45,12 +45,12 @@ public Contains1Output<float>
 
 		begin = 0.0;
 		end = 1.0;
-		type = OSC_SINE;
+		type = WAVE_SINE;
 		duration = 1.0;
 		interval = 33;
 		offset = 0.0;
 
-		table = OSC_SINE_TABLE;
+		table = WAVE_SINE_TABLE;
 		adjust = 0;
 		position = 0;
 	};
@@ -80,24 +80,24 @@ typedef Oscillator Wave;
 void Oscillator::onInternalInputChange(BaseInput &input){
 	if(&input == &type){
 		switch ((int)type){
-			case OSC_SQUARE:
-				table = OSC_SQUARE_TABLE;
+			case WAVE_SQUARE:
+				table = WAVE_SQUARE_TABLE;
 				break;
-			case OSC_PULSE:
-				table = OSC_PULSE_TABLE;
+			case WAVE_PULSE:
+				table = WAVE_PULSE_TABLE;
 				break;
-			case OSC_TRIANGLE:
-				table = OSC_TRIANGLE_TABLE;
+			case WAVE_TRIANGLE:
+				table = WAVE_TRIANGLE_TABLE;
 				break;
-			case OSC_RAMP_UP:
-				table = OSC_RAMP_UP_TABLE;
+			case WAVE_RAMP_UP:
+				table = WAVE_RAMP_UP_TABLE;
 				break;
-			case OSC_RAMP_DOWN:
-				table = OSC_RAMP_DOWN_TABLE;
+			case WAVE_RAMP_DOWN:
+				table = WAVE_RAMP_DOWN_TABLE;
 				break;
-			case OSC_SINE:
+			case WAVE_SINE:
 			default:
-				table = OSC_SINE_TABLE;
+				table = WAVE_SINE_TABLE;
 				break;
 		}
 	}

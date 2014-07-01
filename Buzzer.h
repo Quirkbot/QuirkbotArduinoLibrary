@@ -12,60 +12,179 @@
 class Buzzer:
 public Node,
 public InputStream<float>,
-public Contains3Inputs<int, float, float>{
+public Contains2Inputs<int, float>{
 	public:
 	
 	Buzzer():
 	InputStream<float>
 		(tone),
-	Contains3Inputs<int, float, float>
-		(pin, tone, sound){
+	Contains2Inputs<int, float>
+		(pin, tone){
 
 		registerInput(pin);
 		registerInput(tone);
-		registerInput(sound);
 
-		sound = 1;
-
-		lastSound = -1;
-		lastTone = 0;
-		maxFrequency = 3000.0;
-
-		tone = 440 / maxFrequency;
+		lastFrequency = 0;
+		tone = 0;
 	};
 
 	void process();
 
 	Input<int> pin;
 	Input<float> tone;
-	Input<float> sound;
 
-	float maxFrequency;
+	static float calculateTone(float frequency);
+	static float MAX_FREQUENCY;
 
 	protected:
 
 	void onInternalInputChange(BaseInput &input);
 
-	float lastSound;
-	float lastTone;
+	int lastFrequency;
 };
+float Buzzer::MAX_FREQUENCY = 4978.0;
+float Buzzer::calculateTone(float frequency){
+	return sqrt(frequency / MAX_FREQUENCY);
+}
 void Buzzer::onInternalInputChange(BaseInput &input){
 	if(&input == &pin){
 		pinMode(pin, OUTPUT);
 		process();
 	}
-	else if(&input == &sound || &input == &tone){
+	else if(&input == &tone){
 		process();
 	}
 }
 void Buzzer::process(){
-	if(lastTone == tone && lastSound == sound) return;
-	if(sound >= 0.5 && tone > 0) {
-		::tone(4, (tone * tone) * maxFrequency);
+	int frequency = (tone * tone) * MAX_FREQUENCY;
+	if(lastFrequency == frequency) return;
+	lastFrequency = frequency;
+	if(frequency != 0) {
+		::tone(4, frequency);
 	}
 	else{
 		noTone(pin);
 	}
 }
+
+/**
+Notes generated via JavaScript:
+-------------------------------
+var freq = {'NOTE_B0':31,'NOTE_C1':33,'NOTE_CS1':35,'NOTE_D1':37,'NOTE_DS1':39,
+'NOTE_E1':41,'NOTE_F1':44,'NOTE_FS1':46,'NOTE_G1':49,'NOTE_GS1':52,'NOTE_A1':55,
+'NOTE_AS1':58,'NOTE_B1':62,'NOTE_C2':65,'NOTE_CS2':69,'NOTE_D2':73,
+'NOTE_DS2':78,'NOTE_E2':82,'NOTE_F2':87,'NOTE_FS2':93,'NOTE_G2':98,
+'NOTE_GS2':104,'NOTE_A2':110,'NOTE_AS2':117,'NOTE_B2':123,'NOTE_C3':131,
+'NOTE_CS3':139,'NOTE_D3':147,'NOTE_DS3':156,'NOTE_E3':165,'NOTE_F3':175,
+'NOTE_FS3':185,'NOTE_G3':196,'NOTE_GS3':208,'NOTE_A3':220,'NOTE_AS3':233,
+'NOTE_B3':247,'NOTE_C4':262,'NOTE_CS4':277,'NOTE_D4':294,'NOTE_DS4':311,
+'NOTE_E4':330,'NOTE_F4':349,'NOTE_FS4':370,'NOTE_G4':392,'NOTE_GS4':415,
+'NOTE_A4':440,'NOTE_AS4':466,'NOTE_B4':494,'NOTE_C5':523,'NOTE_CS5':554,
+'NOTE_D5':587,'NOTE_DS5':622,'NOTE_E5':659,'NOTE_F5':698,'NOTE_FS5':740,
+'NOTE_G5':784,'NOTE_GS5':831,'NOTE_A5':880,'NOTE_AS5':932,'NOTE_B5':988,
+'NOTE_C6':1047,'NOTE_CS6':1109,'NOTE_D6':1175,'NOTE_DS6':1245,'NOTE_E6':1319,
+'NOTE_F6':1397,'NOTE_FS6':1480,'NOTE_G6':1568,'NOTE_GS6':1661,'NOTE_A6':1760,
+'NOTE_AS6':1865,'NOTE_B6':1976,'NOTE_C7':2093,'NOTE_CS7':2217,'NOTE_D7':2349,
+'NOTE_DS7':2489,'NOTE_E7':2637,'NOTE_F7':2794,'NOTE_FS7':2960,'NOTE_G7':3136,
+'NOTE_GS7':3322,'NOTE_A7':3520,'NOTE_AS7':3729,'NOTE_B7':3951,'NOTE_C8':4186,
+'NOTE_CS8':4435,'NOTE_D8':4699,'NOTE_DS8':4978};
+var s = '';
+for(var note in freq){
+	s += "#define " + note + ' ';
+	s += Math.sqrt(freq[note]/4978);
+	s += "\n";
+}
+console.log(s);
+**/	
+#define NOTE_SILENCE	0.0
+#define NOTE_B0		0.07891388067048084
+#define NOTE_C1		0.08141970486742799
+#define NOTE_CS1	0.08385067751022207
+#define NOTE_D1		0.0862131306539059
+#define NOTE_DS1	0.08851255094827871
+#define NOTE_E1		0.09075372969523524
+#define NOTE_F1		0.09401537704509885
+#define NOTE_FS1	0.09612834597118733
+#define NOTE_G1		0.0992134596034861
+#define NOTE_GS1	0.10220549023329836
+#define NOTE_A1		0.10511238700155717
+#define NOTE_AS1	0.10794102819827782
+#define NOTE_B1		0.11160108030368604
+#define NOTE_C2		0.11426921191767299
+#define NOTE_CS2	0.11773269872356801
+#define NOTE_D2		0.12109716720544211
+#define NOTE_DS2	0.1251756499912953
+#define NOTE_E2		0.12834515537094357
+#define NOTE_F2		0.13220022069857565
+#define NOTE_FS2	0.13668285074370035
+#define NOTE_G2		0.14030902014120522
+#define NOTE_GS2	0.14454039043692143
+#define NOTE_A2		0.14865136327101158
+#define NOTE_AS2	0.15330823534994753
+#define NOTE_B2		0.1571900708085198
+#define NOTE_C3		0.16222142113076254
+#define NOTE_CS3	0.16710134824884254
+#define NOTE_DS3	0.17184275282792028
+#define NOTE_DS3	0.17702510189655743
+#define NOTE_E3		0.18205999479153948
+#define NOTE_F3		0.18749581487226938
+#define NOTE_FS3	0.19277842069520448
+#define NOTE_G3		0.1984269192069722
+#define NOTE_GS3	0.20441098046659673
+#define NOTE_A3		0.21022477400311435
+#define NOTE_AS3	0.21634681916570375
+#define NOTE_B3		0.22275170170099043
+#define NOTE_C4		0.22941573387056177
+#define NOTE_CS4	0.23589157951069348
+#define NOTE_D4		0.24302235164477237
+#define NOTE_DS4	0.2499497739824163
+#define NOTE_E4		0.2574717137997702
+#define NOTE_F4		0.26478005457383025
+#define NOTE_FS4	0.2726298570800243
+#define NOTE_G4		0.28061804028241044
+#define NOTE_GS4	0.2887331189550632
+#define NOTE_A4		0.29730272654202317
+#define NOTE_AS4	0.3059606058404177
+#define NOTE_B4		0.3150184775872267
+#define NOTE_C5		0.32413311155391816
+#define NOTE_CS5	0.333601070993634
+#define NOTE_D5		0.34339313171465546
+#define NOTE_DS5	0.3534823602780229
+#define NOTE_E5		0.36384403653882996
+#define NOTE_F5		0.374455544224199
+#define NOTE_FS5	0.38555684139040897
+#define NOTE_G5		0.3968538384139444
+#define NOTE_GS5	0.4085762007901947
+#define NOTE_A5		0.4204495480062287
+#define NOTE_AS5	0.4326936383314075
+#define NOTE_B5		0.44550340340198086
+#define NOTE_C6		0.4586125073527341
+#define NOTE_CS6	0.4719960095438428
+#define NOTE_D6		0.4858380076802447
+#define NOTE_DS6	0.5001004318579979
+#define NOTE_E6		0.5147483363147967
+#define NOTE_F6		0.529749745719235
+#define NOTE_FS6	0.5452597141600486
+#define NOTE_G6		0.5612360805648209
+#define NOTE_GS6	0.5776401473367193
+#define NOTE_A6		0.5946054530840463
+#define NOTE_AS6	0.6120853316279143
+#define NOTE_B6		0.6300369551744534
+#define NOTE_C7		0.6484211439424312
+#define NOTE_CS7	0.667352667007116
+#define NOTE_D7		0.6869324970652553
+#define NOTE_DS7	0.7071067811865476
+#define NOTE_E7		0.727826088834819
+#define NOTE_F7		0.7491792750598407
+#define NOTE_FS7	0.7711136827808179
+#define NOTE_G7		0.7937076768278888
+#define NOTE_GS7	0.8169065305347813
+#define NOTE_A7		0.8408990960124574
+#define NOTE_AS7	0.8655033347705805
+#define NOTE_B7		0.8908940710779707
+#define NOTE_C8		0.917005975892863
+#define NOTE_CS8	0.9438856118259953
+#define NOTE_D8		0.9715726400726432
+#define NOTE_DS8 	1.0
 
 #endif
