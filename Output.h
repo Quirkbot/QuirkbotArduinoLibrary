@@ -12,10 +12,9 @@ class Output {
 	public:
 
 	Output(){
-		//addition = NULL;
+		value = T();
 	}
 	~Output(){
-		//if(addition) delete addition;
 	}
 
 	void set(T value){
@@ -34,19 +33,11 @@ class Output {
 		return get();
 	}
 
-	/*Output<T>& operator+(const T &value){
-		if(!addition) addition = new Addition();
-		(*addition)(*this, value);
-		return addition->Output;
-	}*/
-
 	Event<T> event;
 
 	private:
 
 	T value;
-
-	//Addition * addition;	
 };
 
 #endif

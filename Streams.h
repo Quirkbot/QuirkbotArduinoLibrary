@@ -37,7 +37,7 @@ class OutputStream{
 };
 
 template <class T>
-class InputOutputStream : public InputStream<T>, public OutputStream<T>{
+class InputOutputStream :public InputStream<T>, public OutputStream<T>{
 	public:
 		InputOutputStream(Input<T>& _input, Output<T>& _output):
 		InputStream<T>(_input),

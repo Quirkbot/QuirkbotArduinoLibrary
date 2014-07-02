@@ -18,7 +18,10 @@ public InputOutputStream<float>
 	InputOutputStream<float>
 		(index, value){
 		registerInput(index);
+		selected = NULL;
+
 		index = 0;
+		
 	};
 
 	Input<float> index;
@@ -44,7 +47,10 @@ void List::onInternalInputChange(BaseInput &input){
 				value.set(selected->get());
 			}
 		}
-		else selected = NULL;		
+		else{
+			selected = NULL;
+			value.set(0);
+		}		
 	}
 	else if(&input == selected){
 		value.set(selected->get());

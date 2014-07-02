@@ -17,6 +17,7 @@
 #include "Time.h"
 #include "Monitor.h"
 #include "List.h"
+#include "Profile.h"
 
 /**
  * Hack the setup() call, so we can initialize the QuirkBug before

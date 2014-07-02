@@ -7,6 +7,7 @@ volatile float Bot::micros = 0;
 volatile float Bot::millis = 0;
 volatile float Bot::seconds = 0;
 volatile float Bot::frames = 0;
+volatile float Bot::dtMicros = 0;
 
 
 
@@ -42,6 +43,7 @@ int Bot::updatablePosition(Updatable * updatable){
 
 void Bot::update(){
 	Bot::frames++;
+	Bot::dtMicros = ::micros() - Bot::micros;
 	Bot::micros = ::micros();
 	Bot::millis = ::millis();
 	Bot::seconds = Bot::millis * 0.001;

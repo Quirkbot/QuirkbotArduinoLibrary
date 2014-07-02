@@ -22,13 +22,13 @@ public Node
 	};
 	void add(T &value){
 		Input<T> * input = new Input<T>();
-		input->connect(value);
+		(*input) = value;
 		items.push(input);
 		registerInput(*input);
 	};
 	void add(T value){
 		Input<T> * input = new Input<T>();
-		input->connect(value);
+		(*input) = value;
 		items.push(input);
 		registerInput(*input);
 	};

@@ -7,8 +7,6 @@
 #include "IntervalNode.h"
 #include "Input.h"
 #include "Output.h"
-#include "ContainsInputs.h"
-#include "ContainsOutputs.h"
 #include "Streams.h"
 #include "OscillatorTables.h"
 
@@ -24,18 +22,12 @@ enum OscillatorType{
 
 class Oscillator :
 public IntervalNode,
-public OutputStream<float>,
-public Contains6Inputs<float,float,float,float,float,float>,
-public Contains1Output<float>
+public OutputStream<float>
 {
 	public:
 
 	Oscillator():
 	OutputStream<float>
-		(value),
-	Contains6Inputs<float,float,float,float,float,float>
-		(begin, end, duration, offset, type, interval),
-	Contains1Output<float>
 		(value){
 		registerInput(begin);
 		registerInput(end);

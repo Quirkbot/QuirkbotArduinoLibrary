@@ -29,6 +29,7 @@ class Bot {
 	static volatile float millis;
 	static volatile float seconds;
 	static volatile float frames;
+	static volatile float dtMicros;
 };
 
 #endif

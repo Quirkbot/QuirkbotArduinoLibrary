@@ -22,41 +22,35 @@ class Input : public BaseInput{
 	}
 
 
-	void connect(const T &value){
+	/*void connect(const T &value){
 		clearOutput();
 		onOutputChange(value);
-	}
+	}*/
 	void operator=(const T &value){
-		connect(value);
+		handleValueConnection(value);
 	}
 	void operator()(const T &value){
-		connect(value);
+		handleValueConnection(value);
 	}
 	void operator()(){
 		T value = this->value;
-		connect(value);
+		handleValueConnection(value);
 	}
 
 	void connect(const Output<T> &output){
-		clearOutput();
-		this->output = (Output<T>*) &output;
-		this->output->event.add(this, &Input<T>::onOutputChange);
+		handleOutputConnection(output);
 	}	
-	void operator=(const Output<T> &output){
+	/*void operator=(const Output<T> &output){
 		connect(output);
-	}
+	}*/
 	void operator()(const Output<T> &output){
-		connect(output);
-	}
-	void disconnect(const Output<T> &output){
-		if(&output != this->output) return;
-		clearOutput();
+		handleOutputConnection(output);
 	}
 	void disconnect(){
 		clearOutput();
 	}
 
-	void connect(const OutputStream<T> &stream){
+	/*void connect(const OutputStream<T> &stream){
 		connect(stream.output);
 	}	
 	void operator=(const OutputStream<T> &stream){
@@ -67,7 +61,7 @@ class Input : public BaseInput{
 	}
 	void disconnect(const OutputStream<T> &stream){
 		disconnect(stream.output);
-	}
+	}*/
 	
 	T get(){
 		return value;
@@ -77,7 +71,15 @@ class Input : public BaseInput{
 	}
 
 	protected:
-
+	void handleValueConnection(const T &value){
+		clearOutput();
+		onOutputChange(value);
+	}
+	void handleOutputConnection(const Output<T> &output){
+		clearOutput();
+		this->output = (Output<T>*) &output;
+		this->output->event.add(this, &Input<T>::onOutputChange);
+	}
 	void onOutputChange(T value){
 		this->value = value;
 		node->onInternalInputChange(*this);
