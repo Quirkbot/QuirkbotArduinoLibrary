@@ -5,6 +5,7 @@
 #include "Node.h"
 #include "HasInterval.h"
 #include "HasInputCollection.h"
+#include "HasTrigger.h"
 #include "Input.h"
 #include "Output.h"
 #include "Streams.h"
@@ -14,6 +15,7 @@ class Sequence:
 public Node,
 public HasInterval,
 public HasInputCollection<float>,
+public HasTrigger,
 public InputOutputStream<float>
 {
 	public:
@@ -23,21 +25,20 @@ public InputOutputStream<float>
 		(this),
 	HasInputCollection<float>
 		(this),
+	HasTrigger
+		(this),
 	InputOutputStream<float>
 		(trigger, value){
-		registerInput(trigger);
 		registerInput(duration);
 		selected = NULL;
 
 		interval = 33;
 		duration = 1000;
-		trigger = 0;
 		
 	};
 
 	void onInterval();
 
-	Input<float> trigger;
 	Input<float> duration;
 
 	Output<float> value;
@@ -70,7 +71,7 @@ void Sequence::onInterval(){
 
 void Sequence::onInternalInputChange(BaseInput &input){
 	if(&input == &trigger){
-		if(!running && trigger > 0.5){
+		if(!running && aboveTrigger()){
 			startMillis = Bot::millis;
 			running = true;
 			onInterval(); // start immediatelly
