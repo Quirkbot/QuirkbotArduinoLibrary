@@ -22,39 +22,26 @@ public OutputStream<float>
 		(this),
 	OutputStream<float>
 		(value){
-		registerInput(min);
-		registerInput(max);
-		registerInput(begin);
-		registerInput(end);	
 		registerInput(smoothing);
-		
-		min = 0.0;
-		max = 1.0;
-		begin = 0.0;
-		end = 1.0;
-		smoothing = 0.5;
-		interval = 100;
-
+		smooth = 0;
 		normalizingFactor = 1024.0;
+
+		smoothing = 0.5;
+		interval = 100;	
 	};
 
-	Input<float> min;
-	Input<float> max;
-	Input<float> begin;
-	Input<float> end;
 	Input<float> smoothing;
 
-	Output<float> raw;
 	Output<float> value;
 
 	protected:
 
 	float normalizingFactor;
+	float smooth;
 
 	void processReading(float reading){
-		float smooth = smooth * smoothing + reading * (1.0 - smoothing);
-		raw = smooth / normalizingFactor;
-		value = mapFloat(raw, min, max, begin, end);
+		smooth = smooth * smoothing + reading * (1.0 - smoothing);
+		value = smooth / normalizingFactor;
 	}
 
 };

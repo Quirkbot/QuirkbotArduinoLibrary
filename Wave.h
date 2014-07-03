@@ -11,14 +11,14 @@
 #include "Streams.h"
 #include "WaveTables.h"
 
-enum WaveType{
-	WAVE_SINE = 0,
-	WAVE_SQUARE,
-	WAVE_TRIANGLE,
-	WAVE_PULSE,
-	WAVE_RAMP_UP,
-	WAVE_RAMP_DOWN
-};
+
+#define	WAVE_SINE 0
+#define	WAVE_SQUARE 1
+#define	WAVE_TRIANGLE 2
+#define	WAVE_PULSE 3
+#define	WAVE_RAMP_UP 4
+#define	WAVE_RAMP_DOWN 5
+
 
 
 class Wave :

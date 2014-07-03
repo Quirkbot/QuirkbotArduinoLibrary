@@ -9,7 +9,6 @@ public Sensor
 	public:
 	
 	SonarSensor(){
-
 		registerInput(pin);
 
 		centimetersConversion = 27.0;
@@ -31,6 +30,7 @@ public Sensor
 	protected:
 	void onInternalInputChange(BaseInput &input);
 };
+typedef SonarSensor Sonar;
 
 void SonarSensor::onInternalInputChange(BaseInput &input){
 	if(&input == &interval){
@@ -57,9 +57,9 @@ void SonarSensor::onInterval(){
 
 	processReading(reading);
 
-	micros = raw;
-	centimeters = raw / centimetersConversion;
-	inches = raw / inchesConversion;
+	micros = value;
+	centimeters = value / centimetersConversion;
+	inches = value / inchesConversion;
 };
 
 
