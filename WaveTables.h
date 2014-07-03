@@ -1,5 +1,5 @@
-#ifndef OscillatorTables_h_
-#define OscillatorTables_h_
+#ifndef WaveTables_h_
+#define WaveTables_h_
 
 #include <avr/pgmspace.h>
 

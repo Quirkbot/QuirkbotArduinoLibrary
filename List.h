@@ -30,14 +30,11 @@ public InputOutputStream<float>
 	protected:
 
 	void onInternalInputChange(BaseInput &input);
+	void onItemsUpdated();
 
 	private:
 
-	Input<float> * selected;
-};
-
-void List::onInternalInputChange(BaseInput &input){
-	if(&input == &index){
+	void refreshSelected(){
 		if(items.size()){
 			int i = floor(index * items.size()); 
 			if(i < 0 ) i  = 0;
@@ -46,11 +43,21 @@ void List::onInternalInputChange(BaseInput &input){
 				selected = items[i];
 				value.set(selected->get());
 			}
-		}
+		}	
 		else{
 			selected = NULL;
 			value.set(0);
-		}		
+		}
+	}
+
+	Input<float> * selected;
+};
+void List::onItemsUpdated(){
+	refreshSelected();
+};
+void List::onInternalInputChange(BaseInput &input){
+	if(&input == &index){
+		refreshSelected();		
 	}
 	else if(&input == selected){
 		value.set(selected->get());

@@ -1,9 +1,9 @@
 #include <QuirkBug.h>
 
-Oscillator osc1;
+Wave osc1;
 Led led1;
 
-Oscillator osc2;
+Wave osc2;
 Led led2;
 
 Monitor monitor;

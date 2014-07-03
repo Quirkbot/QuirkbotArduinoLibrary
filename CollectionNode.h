@@ -16,21 +16,21 @@ public Node
 
 	void add(Output<T> &output){
 		Input<T> * input = new Input<T>();
+		registerInput(*input);
 		input->connect(output);
 		items.push(input);
-		registerInput(*input);
 	};
 	void add(T &value){
 		Input<T> * input = new Input<T>();
+		registerInput(*input);
 		(*input) = value;
 		items.push(input);
-		registerInput(*input);
 	};
 	void add(T value){
 		Input<T> * input = new Input<T>();
+		registerInput(*input);
 		(*input) = value;
 		items.push(input);
-		registerInput(*input);
 	};
 	void clear(){
 		while(items.size()){
@@ -42,6 +42,9 @@ public Node
 
 	protected:
 	Vector<Input<T> * > items;
+
+	virtual void onItemsUpdated(){};
+
 };
 
 #endif

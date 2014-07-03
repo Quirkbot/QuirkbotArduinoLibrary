@@ -1,5 +1,5 @@
-#ifndef Oscillator_h_
-#define Oscillator_h_
+#ifndef Wave_h_
+#define Wave_h_
 
 #include <Arduino.h>
 
@@ -8,9 +8,9 @@
 #include "Input.h"
 #include "Output.h"
 #include "Streams.h"
-#include "OscillatorTables.h"
+#include "WaveTables.h"
 
-enum OscillatorType{
+enum WaveType{
 	WAVE_SINE = 0,
 	WAVE_SQUARE,
 	WAVE_TRIANGLE,
@@ -20,13 +20,13 @@ enum OscillatorType{
 };
 
 
-class Oscillator :
+class Wave :
 public IntervalNode,
 public OutputStream<float>
 {
 	public:
 
-	Oscillator():
+	Wave():
 	OutputStream<float>
 		(value){
 		registerInput(begin);
@@ -35,16 +35,14 @@ public OutputStream<float>
 		registerInput(offset);
 		registerInput(type);
 
+		interval = 33;
+
+		position = 0;
+		offset = 0.0;
 		begin = 0.0;
 		end = 1.0;
-		type = WAVE_SINE;
-		duration = 1.0;
-		interval = 33;
-		offset = 0.0;
-
-		table = WAVE_SINE_TABLE;
-		adjust = 0;
-		position = 0;
+		type = WAVE_SINE;		
+		duration = 100.0;
 	};
 
 	void onInterval();
@@ -67,9 +65,9 @@ public OutputStream<float>
 	float adjust;
 	float position;
 };
-typedef Oscillator Wave; 
+typedef Wave Wave; 
 
-void Oscillator::onInternalInputChange(BaseInput &input){
+void Wave::onInternalInputChange(BaseInput &input){
 	if(&input == &type){
 		switch ((int)type){
 			case WAVE_SQUARE:
@@ -103,7 +101,7 @@ void Oscillator::onInternalInputChange(BaseInput &input){
 	}
 };
 
-void Oscillator::onInterval(){
+void Wave::onInterval(){
 	float timeMillis = fmod(Bot::millis -adjust + offset * duration, duration);
 	position = timeMillis / duration;
 	int index = position * 256.0;

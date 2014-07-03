@@ -13,7 +13,7 @@
 #include "Led.h"
 #include "Buzzer.h"
 #include "Servo.h"
-#include "Oscillator.h"
+#include "Wave.h"
 #include "Time.h"
 #include "Monitor.h"
 #include "List.h"

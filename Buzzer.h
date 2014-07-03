@@ -92,7 +92,7 @@ for(var note in freq){
 }
 console.log(s);
 **/	
-#define NOTE_SILENCE	0.0
+#define NO_NOTE		0.0
 #define NOTE_B0		0.07891388f
 #define NOTE_C1		0.08141970f
 #define NOTE_CS1	0.08385067f
@@ -120,7 +120,7 @@ console.log(s);
 #define NOTE_B2		0.15719007f
 #define NOTE_C3		0.16222142f
 #define NOTE_CS3	0.16710134f
-#define NOTE_DS3	0.17184275f
+#define NOTE_D3		0.17184275f
 #define NOTE_DS3	0.17702510f
 #define NOTE_E3		0.18205999f
 #define NOTE_F3		0.18749581f

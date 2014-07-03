@@ -1,11 +1,11 @@
 #include <QuirkBug.h>
 
-#include <Oscillator.h>
+#include <Wave.h>
 #include <Servo.h>
 #include <Logger.h>
 
 
-Oscillator osc;
+Wave osc;
 Servo servo;
 
 SerialPrint print;

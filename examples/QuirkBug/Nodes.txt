@@ -79,7 +79,7 @@ Valleys
 // Generators
 Time
 Random // @Rand
-Oscillator // @Osc
+Wave // @Osc
 Ramp // @Fade
 Pulse
 
