@@ -65,7 +65,6 @@ public OutputStream<float>
 	float adjust;
 	float position;
 };
-typedef Wave Wave; 
 
 void Wave::onInternalInputChange(BaseInput &input){
 	if(&input == &type){

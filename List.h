@@ -38,7 +38,7 @@ public InputOutputStream<float>
 		if(items.size()){
 			int i = floor(index * items.size()); 
 			if(i < 0 ) i  = 0;
-			if(i > items.size() - 1) i = items.size() - 1;
+			if(i >= items.size()) i = items.size() - 1;
 			if(items[i] != selected){
 				selected = items[i];
 				value.set(selected->get());

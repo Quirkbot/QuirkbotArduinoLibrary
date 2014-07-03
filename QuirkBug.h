@@ -15,9 +15,10 @@
 #include "Servo.h"
 #include "Wave.h"
 #include "Time.h"
+#include "Profile.h"
 #include "Monitor.h"
 #include "List.h"
-#include "Profile.h"
+#include "Sequence.h"
 
 /**
  * Hack the setup() call, so we can initialize the QuirkBug before

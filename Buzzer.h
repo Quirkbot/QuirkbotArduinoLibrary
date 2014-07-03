@@ -56,10 +56,10 @@ void Buzzer::process(){
 	if(lastFrequency == frequency) return;
 	lastFrequency = frequency;
 	if(frequency != 0) {
-		::tone(4, frequency);
+		::tone((uint8_t)pin.get(), frequency);
 	}
 	else{
-		noTone(pin);
+		noTone((uint8_t)pin.get());
 	}
 }
 
