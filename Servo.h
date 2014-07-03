@@ -7,20 +7,16 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "ContainsInputs.h"
 #include "Streams.h"
 
 class Servo:
 public Node,
-public InputStream<float>,
-public Contains2Inputs<int, float>{
+public InputStream<float>{
 	public:
 	
 	Servo():
 	InputStream<float>
-		(position),
-	Contains2Inputs<int, float>
-		(pin, position){
+		(position){
 
 		registerInput(pin);
 		registerInput(position);

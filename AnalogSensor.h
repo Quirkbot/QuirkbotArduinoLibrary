@@ -4,14 +4,11 @@
 #include "Sensor.h"
 
 class AnalogSensor :
-public Sensor,
-public Contains7Inputs<int, float, float, float, float, float, float>
+public Sensor
 {
 	public:
 	
-	AnalogSensor():
-	Contains7Inputs<int, float, float, float, float, float, float>
-		(pin, begin, end, min, max, smoothing, interval){
+	AnalogSensor(){
 		registerInput(pin);
 	};
 

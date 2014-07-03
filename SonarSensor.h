@@ -4,14 +4,11 @@
 #include "Sensor.h"
 
 class SonarSensor :
-public Sensor,
-public Contains7Inputs<int, float, float, float, float, float, float>
+public Sensor
 {
 	public:
 	
-	SonarSensor():
-	Contains7Inputs<int, float, float, float, float, float, float>
-		(pin, begin, end, min, max, smoothing, interval){
+	SonarSensor(){
 
 		registerInput(pin);
 

@@ -4,7 +4,6 @@
 #include "Bot.h"
 #include "CollectionNode.h"
 #include "Input.h"
-#include "ContainsInputs.h"
 #include "Streams.h"
 
 class Monitor:

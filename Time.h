@@ -10,14 +10,12 @@
 
 class Time :
 public IntervalNode,
-public OutputStream<float>,
-public Contains1Input<float>
+public OutputStream<float>
 {
 	public:
 
 	Time():
-	OutputStream<float>(seconds),
-	Contains1Input<float>(interval){
+	OutputStream<float>(millis){
 		interval = 1;
 	};
 

@@ -6,21 +6,17 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "ContainsInputs.h"
 #include "Streams.h"
 
 
 class Led :
 public Node,
-public InputStream<float>,
-public Contains2Inputs<int, float>{
+public InputStream<float>{
 	public:
 	
 	Led():
 	InputStream<float>
-		(light),
-	Contains2Inputs<int, float>
-		(pin, light){
+		(light){
 		registerInput(pin);
 		registerInput(light);
 

@@ -12,7 +12,7 @@ class Contains1Input{
 		in0(_0){}
 
 		template <class TT1>
-		void operator()(const TT1 &_0){
+		void use(const TT1 &_0){
 			in0 = _0;
 		}
 		
@@ -33,21 +33,13 @@ public Contains1Input<T1>{
 		in1(_1){}
 
 		template <
-			class TT1>
-		void operator()(
-			const TT1 &_0){
-
-			Contains1Input<T1>::operator()(_0);
-		}
-
-		template <
 			class TT1,
 			class TT2>
-		void operator()(
+		void use(
 			const TT1 &_0, 
 			const TT2 &_1){
 
-			Contains1Input<T1>::operator()(_0);
+			Contains1Input<T1>::use(_0);
 			in1 = _1;
 		}
 		
@@ -75,42 +67,17 @@ public Contains2Inputs<
 		in2(_2){}
 
 		template <
-			class TT1>
-		void operator()(
-			const TT1 &_0){
-
-			Contains2Inputs<
-				T1,
-				T2>::operator()(
-				_0);
-		}
-
-		template <
-			class TT1,
-			class TT2>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1){
-
-			Contains2Inputs<
-				T1,
-				T2>::operator()(
-				_0, 
-				_1);
-		}
-
-		template <
 			class TT1,
 			class TT2,
 			class TT3>
-		void operator()(
+		void use(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2){
 
 			Contains2Inputs<
 				T1,
-				T2>::operator()(
+				T2>::use(
 				_0, 
 				_1);
 			in2 = _2;
@@ -145,56 +112,11 @@ public Contains3Inputs<
 		in3(_3){}
 
 		template <
-			class TT1>
-		void operator()(
-			const TT1 &_0){
-
-			Contains3Inputs<
-				T1,
-				T2,
-				T3>::operator()(
-				_0);
-		}
-
-		template <
-			class TT1,
-			class TT2>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1){
-
-			Contains3Inputs<
-				T1,
-				T2,
-				T3>::operator()(
-				_0, 
-				_1);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2){
-
-			Contains3Inputs<
-				T1,
-				T2,
-				T3>::operator()(
-				_0, 
-				_1,
-				_2);
-		}
-
-		template <
 			class TT1,
 			class TT2,
 			class TT3,
 			class TT4>
-		void operator()(
+		void use(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -203,7 +125,7 @@ public Contains3Inputs<
 			Contains3Inputs<
 				T1,
 				T2,
-				T3>::operator()(
+				T3>::use(
 				_0, 
 				_1,
 				_2);
@@ -244,82 +166,12 @@ public Contains4Inputs<
 		in4(_4){}
 
 		template <
-			class TT1>
-		void operator()(
-			const TT1 &_0){
-
-			Contains4Inputs<
-				T1,
-				T2,
-				T3,
-				T4>::operator()(
-				_0);
-		}
-
-		template <
-			class TT1,
-			class TT2>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1){
-
-			Contains4Inputs<
-				T1,
-				T2,
-				T3,
-				T4>::operator()(
-				_0, 
-				_1);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2){
-
-			Contains4Inputs<
-				T1,
-				T2,
-				T3,
-				T4>::operator()(
-				_0, 
-				_1,
-				_2);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3){
-
-			Contains4Inputs<
-				T1,
-				T2,
-				T3,
-				T4>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3);
-		}
-
-		template <
 			class TT1,
 			class TT2,
 			class TT3,
 			class TT4,
 			class TT5>
-		void operator()(
+		void use(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -330,7 +182,7 @@ public Contains4Inputs<
 				T1,
 				T2,
 				T3,
-				T4>::operator()(
+				T4>::use(
 				_0, 
 				_1,
 				_2,
@@ -377,113 +229,13 @@ public Contains5Inputs<
 		in5(_5){}
 
 		template <
-			class TT1>
-		void operator()(
-			const TT1 &_0){
-
-			Contains5Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5>::operator()(
-				_0);
-		}
-
-		template <
-			class TT1,
-			class TT2>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1){
-
-			Contains5Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5>::operator()(
-				_0, 
-				_1);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2){
-
-			Contains5Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5>::operator()(
-				_0, 
-				_1,
-				_2);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3){
-
-			Contains5Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4,
-			class TT5>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3,
-			const TT5 &_4){
-
-			Contains5Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3,
-				_4);
-		}
-
-		template <
 			class TT1,
 			class TT2,
 			class TT3,
 			class TT4,
 			class TT5,
 			class TT6>
-		void operator()(
+		void use(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -496,7 +248,7 @@ public Contains5Inputs<
 				T2,
 				T3,
 				T4,
-				T5>::operator()(
+				T5>::use(
 				_0, 
 				_1,
 				_2,
@@ -549,141 +301,6 @@ public Contains6Inputs<
 		in6(_6){}
 
 		template <
-			class TT1>
-		void operator()(
-			const TT1 &_0){
-
-			Contains6Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6>::operator()(
-				_0);
-		}
-
-		template <
-			class TT1,
-			class TT2>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1){
-
-			Contains6Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6>::operator()(
-				_0, 
-				_1);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2){
-
-			Contains6Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6>::operator()(
-				_0, 
-				_1,
-				_2);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3){
-
-			Contains6Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4,
-			class TT5>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3,
-			const TT5 &_4){
-
-			Contains6Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3,
-				_4);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4,
-			class TT5,
-			class TT6>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3,
-			const TT5 &_4,
-			const TT6 &_5){
-
-			Contains6Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3,
-				_4,
-				_5);
-		}
-
-		template <
 			class TT1,
 			class TT2,
 			class TT3,
@@ -691,7 +308,7 @@ public Contains6Inputs<
 			class TT5,
 			class TT6,
 			class TT7>
-		void operator()(
+		void use(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -706,7 +323,7 @@ public Contains6Inputs<
 				T3,
 				T4,
 				T5,
-				T6>::operator()(
+				T6>::use(
 				_0, 
 				_1,
 				_2,
@@ -763,181 +380,6 @@ public Contains7Inputs<
 				_5,
 				_6),
 		in7(_7){}
-
-		template <
-			class TT1>
-		void operator()(
-			const TT1 &_0){
-
-			Contains7Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6,
-				T7>::operator()(
-				_0);
-		}
-
-		template <
-			class TT1,
-			class TT2>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1){
-
-			Contains7Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6,
-				T7>::operator()(
-				_0, 
-				_1);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2){
-
-			Contains7Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6,
-				T7>::operator()(
-				_0, 
-				_1,
-				_2);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3){
-
-			Contains7Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6,
-				T7>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4,
-			class TT5>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3,
-			const TT5 &_4){
-
-			Contains7Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6,
-				T7>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3,
-				_4);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4,
-			class TT5,
-			class TT6>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3,
-			const TT5 &_4,
-			const TT6 &_5){
-
-			Contains7Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6,
-				T7>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3,
-				_4,
-				_5);
-		}
-
-		template <
-			class TT1,
-			class TT2,
-			class TT3,
-			class TT4,
-			class TT5,
-			class TT6,
-			class TT7>
-		void operator()(
-			const TT1 &_0, 
-			const TT2 &_1, 
-			const TT3 &_2,
-			const TT4 &_3,
-			const TT5 &_4,
-			const TT6 &_5,
-			const TT7 &_6){
-
-			Contains7Inputs<
-				T1,
-				T2,
-				T3,
-				T4,
-				T5,
-				T6,
-				T7>::operator()(
-				_0, 
-				_1,
-				_2,
-				_3,
-				_4,
-				_5,
-				_6);
-		}
 		
 		template <
 			class TT1,
@@ -948,7 +390,7 @@ public Contains7Inputs<
 			class TT6,
 			class TT7,
 			class TT8>
-		void operator()(
+		void use(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -965,7 +407,7 @@ public Contains7Inputs<
 				T4,
 				T5,
 				T6,
-				T7>::operator()(
+				T7>::use(
 				_0, 
 				_1,
 				_2,
