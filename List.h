@@ -6,15 +6,18 @@
 #include "Input.h"
 #include "Output.h"
 #include "Streams.h"
-#include "CollectionNode.h"
+#include "HasInputCollection.h"
 
 class List:
-public CollectionNode<float>,
+public Node,
+public HasInputCollection<float>,
 public InputOutputStream<float>
 {
 	public:
 	
 	List():
+	HasInputCollection<float>
+		(this),
 	InputOutputStream<float>
 		(index, value){
 		registerInput(index);
@@ -35,12 +38,12 @@ public InputOutputStream<float>
 	private:
 
 	void refreshSelected(){
-		if(items.size()){
-			int i = floor(index * items.size()); 
+		if(inputCollection.size()){
+			int i = floor(index * inputCollection.size()); 
 			if(i < 0 ) i  = 0;
-			if(i >= items.size()) i = items.size() - 1;
-			if(items[i] != selected){
-				selected = items[i];
+			if(i >= inputCollection.size()) i = inputCollection.size() - 1;
+			if(inputCollection[i] != selected){
+				selected = inputCollection[i];
 				value.set(selected->get());
 			}
 		}	

@@ -4,21 +4,23 @@
 #include "Bot.h"
 #include "Node.h"
 #include "HasInterval.h"
-#include "CollectionNode.h"
+#include "HasInputCollection.h"
 #include "Input.h"
 #include "Output.h"
 #include "Streams.h"
 
 
 class Sequence:
-
+public Node,
 public HasInterval,
-public CollectionNode<float>,
+public HasInputCollection<float>,
 public InputOutputStream<float>
 {
 	public:
 	
 	Sequence():
+	HasInputCollection<float>
+		(this),
 	InputOutputStream<float>
 		(trigger, value){
 		registerInput(interval);
@@ -57,10 +59,10 @@ void Sequence::onInterval(){
 		position = 1;
 		running = false;
 	}
-	int i = floor(position * items.size());
-	if( i == items.size()) i = items.size() - 1;
-	if(items[i] != selected){
-		selected = items[i];
+	int i = floor(position * inputCollection.size());
+	if( i == inputCollection.size()) i = inputCollection.size() - 1;
+	if(inputCollection[i] != selected){
+		selected = inputCollection[i];
 		value.set(selected->get());
 	}
 }

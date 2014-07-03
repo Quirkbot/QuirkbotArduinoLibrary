@@ -2,15 +2,19 @@
 #define Monitor_h_
 
 #include "Bot.h"
-#include "CollectionNode.h"
+#include "Node.h"
+#include "HasInputCollection.h"
 #include "Input.h"
 #include "Streams.h"
 
 class Monitor:
-public CollectionNode<float>{
+public Node,
+public HasInputCollection<float>{
 	public:
 	
-	Monitor(){
+	Monitor():
+	HasInputCollection<float>
+		(this){
 		registerInput(throttle);
 		throttle = 100;
 
@@ -36,12 +40,12 @@ void Monitor::onInternalInputChange(BaseInput &input){
 
 	lastPrintMillis = Bot::millis;
 
-	for(int i = 0; i < items.size(); i++){
-		Serial.print(items[i]->get(), 3);
+	for(int i = 0; i < inputCollection.size(); i++){
+		Serial.print(inputCollection[i]->get(), 3);
 		Serial.print("\t");
 	}
 
-	if(items.size()) Serial.print("\n");
+	if(inputCollection.size()) Serial.print("\n");
 };
 
 #endif

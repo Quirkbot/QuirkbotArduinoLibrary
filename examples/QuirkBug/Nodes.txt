@@ -96,13 +96,13 @@ Interval // @Tick or @Metronome
 		onTick
 List
 	Inputs
-		items [vector]
+		inputCollection [vector]
 		index [int]
 	Outputs
 		out
 Sequence
 	Inputs
-		items [vector]
+		inputCollection [vector]
 		interval [float]
 		loop [bool]
 
