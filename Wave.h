@@ -4,7 +4,8 @@
 #include <Arduino.h>
 
 #include "Bot.h"
-#include "IntervalNode.h"
+#include "Node.h"
+#include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
 #include "Streams.h"
@@ -21,7 +22,8 @@ enum WaveType{
 
 
 class Wave :
-public IntervalNode,
+public Node,
+public HasInterval,
 public OutputStream<float>
 {
 	public:
@@ -29,6 +31,7 @@ public OutputStream<float>
 	Wave():
 	OutputStream<float>
 		(value){
+		registerInput(interval);
 		registerInput(begin);
 		registerInput(end);
 		registerInput(duration);

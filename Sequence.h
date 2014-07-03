@@ -2,7 +2,8 @@
 #define Sequence_h_
 
 #include "Bot.h"
-#include "IntervalNode.h"
+#include "Node.h"
+#include "HasInterval.h"
 #include "CollectionNode.h"
 #include "Input.h"
 #include "Output.h"
@@ -10,7 +11,8 @@
 
 
 class Sequence:
-public IntervalNode,
+
+public HasInterval,
 public CollectionNode<float>,
 public InputOutputStream<float>
 {
@@ -19,8 +21,9 @@ public InputOutputStream<float>
 	Sequence():
 	InputOutputStream<float>
 		(trigger, value){
-		IntervalNode::registerInput(trigger);
-		IntervalNode::registerInput(duration);
+		registerInput(interval);
+		registerInput(trigger);
+		registerInput(duration);
 		selected = NULL;
 
 		interval = 33;

@@ -4,19 +4,23 @@
 #include "Arduino.h"
 
 #include "Bot.h"
-#include "IntervalNode.h"
+#include "Node.h"
+#include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
 #include "Streams.h"
 
 class Sensor :
-public IntervalNode,
+public Node,
+public HasInterval,
 public OutputStream<float>
 {
 	public:
 	
 	Sensor():
-	OutputStream<float>(value){
+	OutputStream<float>
+		(value){
+		registerInput(interval);
 		registerInput(min);
 		registerInput(max);
 		registerInput(begin);

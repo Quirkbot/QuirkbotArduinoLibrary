@@ -82,7 +82,7 @@ class Input : public BaseInput{
 	}
 	void onOutputChange(T value){
 		this->value = value;
-		node->onInternalInputChange(*this);
+		if(node) node->onInternalInputChange(*this);
 	}
 	void clearOutput(){
 		if(output){

@@ -2,15 +2,18 @@
 #define Profile_h_
 
 #include "Bot.h"
-#include "IntervalNode.h"
+#include "Node.h"
+#include "HasInterval.h"
 #include "Output.h"
 
 class Profile :
-public IntervalNode
+public Node,
+public HasInterval
 {
 	public:
 
 	Profile(){
+		registerInput(interval);
 		interval = 10;
 	};
 

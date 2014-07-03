@@ -2,20 +2,24 @@
 #define Time_h_
 
 #include "Bot.h"
-#include "IntervalNode.h"
+#include "Node.h"
+#include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
 #include "ContainsInputs.h"
 #include "Streams.h"
 
 class Time :
-public IntervalNode,
+public Node,
+public HasInterval,
 public OutputStream<float>
 {
 	public:
 
 	Time():
-	OutputStream<float>(millis){
+	OutputStream<float>
+		(millis){
+		registerInput(interval);
 		interval = 1;
 	};
 

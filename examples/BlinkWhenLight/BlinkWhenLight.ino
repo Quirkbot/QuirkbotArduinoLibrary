@@ -26,4 +26,5 @@ void setup() {
 	
 	monitor.add(sensor.raw);
 	monitor.add(sensor);
+	Serial.println('a');
 }
