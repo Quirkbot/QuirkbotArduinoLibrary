@@ -9,7 +9,7 @@
 Led	LITERAL1
 Monitor	LITERAL1
 Profile	LITERAL1
-Range	LITERAL1
+Conversion	LITERAL1
 Sensor	LITERAL1
 Sequence	LITERAL1
 Servo	LITERAL1
@@ -67,7 +67,7 @@ add	LITERAL1
 connect	LITERAL1
 disconnect	LITERAL1
 clear	LITERAL1
-use	LITERAL1
+set	LITERAL1
 
 
 ###################################

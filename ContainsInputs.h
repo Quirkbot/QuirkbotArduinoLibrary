@@ -12,7 +12,7 @@ class Contains1Input{
 		in0(_0){}
 
 		template <class TT1>
-		void use(const TT1 &_0){
+		void set(const TT1 &_0){
 			in0 = _0;
 		}
 		
@@ -35,11 +35,11 @@ public Contains1Input<T1>{
 		template <
 			class TT1,
 			class TT2>
-		void use(
+		void set(
 			const TT1 &_0, 
 			const TT2 &_1){
 
-			Contains1Input<T1>::use(_0);
+			Contains1Input<T1>::set(_0);
 			in1 = _1;
 		}
 		
@@ -70,14 +70,14 @@ public Contains2Inputs<
 			class TT1,
 			class TT2,
 			class TT3>
-		void use(
+		void set(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2){
 
 			Contains2Inputs<
 				T1,
-				T2>::use(
+				T2>::set(
 				_0, 
 				_1);
 			in2 = _2;
@@ -116,7 +116,7 @@ public Contains3Inputs<
 			class TT2,
 			class TT3,
 			class TT4>
-		void use(
+		void set(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -125,7 +125,7 @@ public Contains3Inputs<
 			Contains3Inputs<
 				T1,
 				T2,
-				T3>::use(
+				T3>::set(
 				_0, 
 				_1,
 				_2);
@@ -171,7 +171,7 @@ public Contains4Inputs<
 			class TT3,
 			class TT4,
 			class TT5>
-		void use(
+		void set(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -182,7 +182,7 @@ public Contains4Inputs<
 				T1,
 				T2,
 				T3,
-				T4>::use(
+				T4>::set(
 				_0, 
 				_1,
 				_2,
@@ -235,7 +235,7 @@ public Contains5Inputs<
 			class TT4,
 			class TT5,
 			class TT6>
-		void use(
+		void set(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -248,7 +248,7 @@ public Contains5Inputs<
 				T2,
 				T3,
 				T4,
-				T5>::use(
+				T5>::set(
 				_0, 
 				_1,
 				_2,
@@ -308,7 +308,7 @@ public Contains6Inputs<
 			class TT5,
 			class TT6,
 			class TT7>
-		void use(
+		void set(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -323,7 +323,7 @@ public Contains6Inputs<
 				T3,
 				T4,
 				T5,
-				T6>::use(
+				T6>::set(
 				_0, 
 				_1,
 				_2,
@@ -390,7 +390,7 @@ public Contains7Inputs<
 			class TT6,
 			class TT7,
 			class TT8>
-		void use(
+		void set(
 			const TT1 &_0, 
 			const TT2 &_1, 
 			const TT3 &_2,
@@ -407,7 +407,7 @@ public Contains7Inputs<
 				T4,
 				T5,
 				T6,
-				T7>::use(
+				T7>::set(
 				_0, 
 				_1,
 				_2,
