@@ -7,8 +7,6 @@
 #include "IntervalNode.h"
 #include "Input.h"
 #include "Output.h"
-#include "ContainsInputs.h"
-#include "ContainsOutputs.h"
 #include "Streams.h"
 
 class Sensor :

@@ -10,7 +10,9 @@
 class Node;
 class Updatable;
 
-class IntervalNode : public Node, public Updatable{
+class IntervalNode:
+public Node,
+public Updatable{
 	public:
 	IntervalNode(){
 		registerInput(interval);

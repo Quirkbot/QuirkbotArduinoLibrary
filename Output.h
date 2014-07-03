@@ -2,7 +2,6 @@
 #define Output_h_
 
 #include "Event.h"
-//#include "Mathematics.h"
 
 template <class T>
 class Event;

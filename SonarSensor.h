@@ -5,16 +5,13 @@
 
 class SonarSensor :
 public Sensor,
-public Contains7Inputs<int, float, float, float, float, float, float>,
-public Contains5Outputs<float, float, float, float, float>
+public Contains7Inputs<int, float, float, float, float, float, float>
 {
 	public:
 	
 	SonarSensor():
 	Contains7Inputs<int, float, float, float, float, float, float>
-		(pin, begin, end, min, max, smoothing, interval),
-	Contains5Outputs<float, float, float, float, float>
-		(value, raw, micros, centimeters, inches){
+		(pin, begin, end, min, max, smoothing, interval){
 
 		registerInput(pin);
 

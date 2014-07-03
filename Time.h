@@ -6,21 +6,18 @@
 #include "Input.h"
 #include "Output.h"
 #include "ContainsInputs.h"
-#include "ContainsOutputs.h"
 #include "Streams.h"
 
 class Time :
 public IntervalNode,
 public OutputStream<float>,
-public Contains1Input<float>,
-public Contains4Outputs<float,float,float,float>
+public Contains1Input<float>
 {
 	public:
 
 	Time():
 	OutputStream<float>(seconds),
-	Contains1Input<float>(interval),
-	Contains4Outputs<float,float,float,float>(seconds,millis,micros,frames){
+	Contains1Input<float>(interval){
 		interval = 1;
 	};
 

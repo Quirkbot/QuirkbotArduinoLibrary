@@ -5,16 +5,13 @@
 
 class AnalogSensor :
 public Sensor,
-public Contains7Inputs<int, float, float, float, float, float, float>,
-public Contains2Outputs<float, float>
+public Contains7Inputs<int, float, float, float, float, float, float>
 {
 	public:
 	
 	AnalogSensor():
 	Contains7Inputs<int, float, float, float, float, float, float>
-		(pin, begin, end, min, max, smoothing, interval),
-	Contains2Outputs<float, float>
-		(value, raw){
+		(pin, begin, end, min, max, smoothing, interval){
 		registerInput(pin);
 	};
 

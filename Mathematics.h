@@ -7,7 +7,6 @@
 #include "Input.h"
 #include "Output.h"
 #include "ContainsInputs.h"
-#include "ContainsOutputs.h"
 #include "Streams.h"
 
 /**
@@ -32,13 +31,11 @@ public InputOutputStream<float>{
  */
 class MathBasicNode:
 public MathNode,
-public Contains1Input<float>,
-public Contains1Output<float>{
+public Contains1Input<float>{
 	public:
 	
 	MathBasicNode() :
-	Contains1Input<float>(base),
-	Contains1Output<float>(result)
+	Contains1Input<float>(base)
 	{}
 };
 
@@ -47,13 +44,11 @@ public Contains1Output<float>{
  */
 class MathOperationNode:
 public MathNode,
-public Contains2Inputs<float, float>,
-public Contains1Output<float>{
+public Contains2Inputs<float, float>{
 	public:
 	
 	MathOperationNode() :
-	Contains2Inputs<float, float>(base, operand),
-	Contains1Output<float>(result)
+	Contains2Inputs<float, float>(base, operand)
 	{
 		registerInput(operand);
 	};
