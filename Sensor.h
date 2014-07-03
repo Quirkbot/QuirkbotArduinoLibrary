@@ -18,9 +18,10 @@ public OutputStream<float>
 	public:
 	
 	Sensor():
+	HasInterval
+		(this),
 	OutputStream<float>
 		(value){
-		registerInput(interval);
 		registerInput(min);
 		registerInput(max);
 		registerInput(begin);

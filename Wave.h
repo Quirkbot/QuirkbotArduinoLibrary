@@ -29,9 +29,10 @@ public OutputStream<float>
 	public:
 
 	Wave():
+	HasInterval
+		(this),
 	OutputStream<float>
 		(value){
-		registerInput(interval);
 		registerInput(begin);
 		registerInput(end);
 		registerInput(duration);

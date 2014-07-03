@@ -19,11 +19,12 @@ public InputOutputStream<float>
 	public:
 	
 	Sequence():
+	HasInterval
+		(this),
 	HasInputCollection<float>
 		(this),
 	InputOutputStream<float>
 		(trigger, value){
-		registerInput(interval);
 		registerInput(trigger);
 		registerInput(duration);
 		selected = NULL;

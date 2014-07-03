@@ -12,7 +12,9 @@ class Updatable;
 class HasInterval:
 public Updatable{
 	public:
-	HasInterval(){
+	HasInterval(Node * node):
+	intervalNode(node){
+		intervalNode->registerInput(interval);
 		interval = 1;
 	};
 
@@ -32,6 +34,7 @@ public Updatable{
 
 	private:
 	int lastMillis;
+	Node * intervalNode;
 };
 
 #endif

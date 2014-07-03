@@ -17,9 +17,10 @@ public OutputStream<float>
 	public:
 
 	Time():
+	HasInterval
+		(this),
 	OutputStream<float>
 		(millis){
-		registerInput(interval);
 		interval = 1;
 	};
 

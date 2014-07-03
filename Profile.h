@@ -12,8 +12,9 @@ public HasInterval
 {
 	public:
 
-	Profile(){
-		registerInput(interval);
+	Profile():
+	HasInterval
+		(this){
 		interval = 10;
 	};
 
