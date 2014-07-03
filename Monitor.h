@@ -3,49 +3,36 @@
 
 #include "Bot.h"
 #include "Node.h"
+#include "HasInterval.h"
 #include "HasInputCollection.h"
 #include "Input.h"
 #include "Streams.h"
 
 class Monitor:
 public Node,
+public HasInterval,
 public HasInputCollection<float>{
 	public:
 	
 	Monitor():
+	HasInterval
+		(this),
 	HasInputCollection<float>
 		(this){
-		registerInput(throttle);
-		throttle = 100;
-
-		lastPrintMillis = Bot::millis;
+		interval = 100;
 	};
 
-	Input<float> throttle;
-
-
-	protected:
-
-	void onInternalInputChange(BaseInput &input);
-
-	private:
-
-	float lastPrintMillis;
+	void onInterval();
 };
 
-void Monitor::onInternalInputChange(BaseInput &input){
-
-	if(&input == &throttle) return;
-	if(Bot::millis - lastPrintMillis < throttle) return;
-
-	lastPrintMillis = Bot::millis;
+void Monitor::onInterval(){
+	if(!inputCollection.size()) return;
 
 	for(int i = 0; i < inputCollection.size(); i++){
 		Serial.print(inputCollection[i]->get(), 3);
 		Serial.print("\t");
 	}
-
-	if(inputCollection.size()) Serial.print("\n");
-};
+	Serial.print("\n");
+}
 
 #endif
