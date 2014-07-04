@@ -15,13 +15,14 @@ public Updatable{
 	HasInterval(Node * node):
 	intervalNode(node){
 		intervalNode->registerInput(interval);
-		interval = 1;
+		interval = 0.1;
 	};
 
 	void update(){
 
-		if((int)(Bot::millis) % (int)interval == 0
-			&& lastMillis != Bot::millis){
+		int millis = (int)(Bot::seconds*1000);
+		if(millis % (int)(interval*1000) == 0
+			&& lastMillis != millis){
 			
 			lastMillis = Bot::millis;
 			onInterval();

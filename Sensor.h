@@ -27,7 +27,7 @@ public OutputStream<float>
 		normalizingFactor = 1024.0;
 
 		smoothing = 0.5;
-		interval = 100;	
+		interval = 0.1;	
 	};
 
 	Input<float> smoothing;

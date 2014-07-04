@@ -72,7 +72,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Logarithm::onInternalInputChange(BaseInput &input){
-	result = logf(base);
+	result = log(base);
 };
 typedef Logarithm Log;
 
@@ -102,7 +102,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void SquareRoot::onInternalInputChange(BaseInput &input){
-	result = sqrtf(base);
+	result = sqrt(base);
 };
 typedef SquareRoot Sqrt;
 
@@ -140,7 +140,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Power::onInternalInputChange(BaseInput &input){
-	result = powf(base, exponent);
+	result = pow(base, exponent);
 };
 typedef Power Pow;
 
@@ -275,7 +275,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Ceiling::onInternalInputChange(BaseInput &input){
-	result = ceilf(base);
+	result = ceil(base);
 };
 typedef Ceiling Ceil;
 
@@ -291,7 +291,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Floor::onInternalInputChange(BaseInput &input){
-	result = floorf(base);
+	result = floor(base);
 };
 
 /**
@@ -306,7 +306,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Round::onInternalInputChange(BaseInput &input){
-	result = roundf(base);
+	result = round(base);
 };
 
 
@@ -326,7 +326,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Sine::onInternalInputChange(BaseInput &input){
-	result = sinf(base);
+	result = sin(base);
 };
 typedef Sine Sin;
 
@@ -343,7 +343,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void ArcSine::onInternalInputChange(BaseInput &input){
-	result = asinf(base);
+	result = asin(base);
 };
 typedef ArcSine Asin;
 
@@ -358,7 +358,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Cosine::onInternalInputChange(BaseInput &input){
-	result = cosf(base);
+	result = cos(base);
 };
 typedef Cosine Cos;
 
@@ -375,7 +375,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void ArcCosine::onInternalInputChange(BaseInput &input){
-	result = acosf(base);
+	result = acos(base);
 };
 typedef ArcCosine Acos;
 
@@ -391,7 +391,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Tangent::onInternalInputChange(BaseInput &input){
-	result = tanf(base);
+	result = tan(base);
 };
 typedef Tangent Tan;
 
@@ -406,7 +406,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void ArcTangent::onInternalInputChange(BaseInput &input){
-	result = atanf(base);
+	result = atan(base);
 };
 typedef ArcTangent Atan;
 

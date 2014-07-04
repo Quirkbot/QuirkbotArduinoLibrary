@@ -15,7 +15,7 @@ public HasInterval
 	Profile():
 	HasInterval
 		(this){
-		interval = 10;
+		interval = 0.01;
 	};
 
 	void onInterval();

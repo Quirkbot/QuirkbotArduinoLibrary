@@ -6,7 +6,7 @@ Buzzer buzzer;
 Monitor monitor;
 
 void setup() {
-	wave.duration = 4000;
+	wave.duration = 4;
 	wave.type = WAVE_PULSE;
 
 	buzzer.pin = 4;

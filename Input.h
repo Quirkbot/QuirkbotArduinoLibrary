@@ -21,48 +21,50 @@ class Input : public BaseInput{
 		clearOutput();
 	}
 
-
-	/*void connect(const T &value){
-		clearOutput();
-		onOutputChange(value);
-	}*/
+	/**
+	 * Preferred handle for primitive connections
+	 **/
 	void operator=(const T &value){
 		handleValueConnection(value);
 	}
-	void operator()(const T &value){
-		handleValueConnection(value);
-	}
-	void operator()(){
-		T value = this->value;
-		handleValueConnection(value);
-	}
-
+	
+	/**
+	 * Preferred handle for output connections
+	 **/
 	void connect(const Output<T> &output){
-		handleOutputConnection(output);
-	}	
-	/*void operator=(const Output<T> &output){
-		connect(output);
-	}*/
-	void operator()(const Output<T> &output){
 		handleOutputConnection(output);
 	}
 	void disconnect(){
 		clearOutput();
 	}
 
-	/*void connect(const OutputStream<T> &stream){
-		connect(stream.output);
-	}	
-	void operator=(const OutputStream<T> &stream){
-		connect(stream.output);
+	/**
+	 * Handle for both, primitives and outputs, connections
+	 **/
+	void bind(const T &value){
+		handleValueConnection(value);
 	}
-	void operator()(const OutputStream<T> &stream){
-		connect(stream.output);
+	void bind(const Output<T> &output){
+		handleOutputConnection(output);
 	}
-	void disconnect(const OutputStream<T> &stream){
-		disconnect(stream.output);
-	}*/
-	
+
+	/**
+	 * Function call style interface
+	 **/
+	void operator()(const T &value){
+		handleValueConnection(value);
+	}
+	void operator()(const Output<T> &output){
+		handleOutputConnection(output);
+	}
+	void operator()(){
+		T value = this->value;
+		handleValueConnection(value);
+	}
+
+	/**
+	 * Getters
+	 **/	
 	T get(){
 		return value;
 	}

@@ -10,6 +10,7 @@
 #include "Output.h"
 #include "Streams.h"
 #include "WaveTables.h"
+#include "ContainsInputs.h"
 
 
 #define	WAVE_SINE 0
@@ -24,6 +25,7 @@
 class Wave :
 public Node,
 public HasInterval,
+public Contains2Inputs<float, float>,
 public OutputStream<float>
 {
 	public:
@@ -31,28 +33,30 @@ public OutputStream<float>
 	Wave():
 	HasInterval
 		(this),
+	Contains2Inputs<float, float>
+		(min, max),
 	OutputStream<float>
 		(value){
-		registerInput(begin);
-		registerInput(end);
+		registerInput(min);
+		registerInput(max);
 		registerInput(duration);
 		registerInput(offset);
 		registerInput(type);
 
-		interval = 33;
+		interval = 0.033;
 
 		position = 0;
 		offset = 0.0;
-		begin = 0.0;
-		end = 1.0;
+		min = 0.0;
+		max = 1.0;
 		type = WAVE_SINE;		
-		duration = 100.0;
+		duration = 1.0;
 	};
 
 	void onInterval();
 
-	Input<float> begin;
-	Input<float> end;
+	Input<float> min;
+	Input<float> max;
 
 	Input<float> duration;
 	Input<float> offset;
@@ -98,18 +102,18 @@ void Wave::onInternalInputChange(BaseInput &input){
 		float basePosition = position - offset;
 		if(basePosition < 0) basePosition += 1;
 
-		float currentTime = fmod(Bot::millis, duration);
+		float currentTime = fmod(Bot::seconds, duration);
 		float diff = currentTime/duration - basePosition;
 		adjust = diff * duration;
 	}
 };
 
 void Wave::onInterval(){
-	float timeMillis = fmod(Bot::millis -adjust + offset * duration, duration);
-	position = timeMillis / duration;
+	float timeSeconds = fmod(Bot::seconds -adjust + offset * duration, duration);
+	position = timeSeconds / duration;
 	int index = position * 256.0;
 	float base = (float)(pgm_read_word_near(table + index)) * 0.001;
-	value = mapFloat(base, 0, 1.0, begin, end);
+	value = mapFloat(base, 0, 1.0, min, max);
 }
 
 #endif

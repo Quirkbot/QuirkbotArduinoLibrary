@@ -7,7 +7,7 @@ Profile profile;
 Monitor monitor;
 
 void setup() {
-	wave.duration = 1500;
+	wave.duration = 1.5;
 	wave.type = WAVE_RAMP_UP;
 
 	list.add(NOTE_C3);

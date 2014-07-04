@@ -15,6 +15,7 @@
 #include "Buzzer.h"
 #include "Servo.h"
 #include "Wave.h"
+#include "Randomizer.h"
 #include "Time.h"
 #include "Profile.h"
 #include "Monitor.h"

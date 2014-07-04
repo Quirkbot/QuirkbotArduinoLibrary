@@ -20,8 +20,8 @@ public OutputStream<float>
 	HasInterval
 		(this),
 	OutputStream<float>
-		(millis){
-		interval = 1;
+		(seconds){
+		interval = 0.001;
 	};
 
 	void onInterval();

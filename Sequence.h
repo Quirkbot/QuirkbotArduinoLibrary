@@ -32,8 +32,8 @@ public InputOutputStream<float>
 		registerInput(duration);
 		selected = NULL;
 
-		interval = 33;
-		duration = 1000;
+		interval = 0.033;
+		duration = 1.0;
 		
 	};
 
@@ -51,12 +51,12 @@ public InputOutputStream<float>
 
 	Input<float> * selected;
 	bool running;
-	float startMillis;
+	float startTime;
 
 };
 void Sequence::onInterval(){
 	if(!running) return;
-	float position = (Bot::millis - startMillis) / duration;
+	float position = (Bot::seconds - startTime) / duration;
 	if(position > 1){
 		position = 1;
 		running = false;
@@ -72,7 +72,7 @@ void Sequence::onInterval(){
 void Sequence::onInternalInputChange(BaseInput &input){
 	if(&input == &trigger){
 		if(!running && aboveTrigger()){
-			startMillis = Bot::millis;
+			startTime = Bot::seconds;
 			running = true;
 			onInterval(); // start immediatelly
 		}

@@ -43,7 +43,7 @@ void setup() {
 	sequence.add(0);
 
 	// Set the sequence duration to half a second
-	sequence.duration = 500;
+	sequence.duration = 0.5;
 
 	// Connect the sequence trigger to the the conversion.
 	// If conversion is 1.0, then sequence will be activated.

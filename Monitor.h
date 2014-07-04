@@ -19,7 +19,7 @@ public HasInputCollection<float>{
 		(this),
 	HasInputCollection<float>
 		(this){
-		interval = 100;
+		interval = 0.1;
 	};
 
 	void onInterval();

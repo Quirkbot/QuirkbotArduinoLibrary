@@ -34,7 +34,7 @@ typedef SonarSensor Sonar;
 
 void SonarSensor::onInternalInputChange(BaseInput &input){
 	if(&input == &interval){
-		if(interval < 50) interval = 50;
+		if(interval < 0.05) interval = 0.05;
 	}
 };
 void SonarSensor::onInterval(){

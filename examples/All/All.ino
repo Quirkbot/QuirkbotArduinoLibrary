@@ -22,7 +22,7 @@ void setup() {
 	led2.pin = 6;
 	sonar.pin = 7;
 	
-	wave.duration = 1000;
+	wave.duration = 1;
 	wave.type = OSC_RAMP_UP;
 	
 	servo.connect(sonar);	
