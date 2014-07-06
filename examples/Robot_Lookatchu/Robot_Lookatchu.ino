@@ -1,44 +1,53 @@
 #include <QuirkBug.h>
 
-// Create the nodes
-/*Randomizer position1;
-Randomizer position2;
-Wave turn;
-
-Gate gate;
-Sonar sonar;
-
 Servo servo;
 Led led;
-Sequence sequence;
-List list;
-Monitor monitor;
-*/
-Monitor monitor;
+Buzzer buzzer;
 Sonar sonar;
+
+Wave wave;
+Converter converter;
+Converter sonarConverter;
+Gate gate;
+
+Wave communicationWave;
+List communicationOutput;
+
+Wave buzzerWave;
+List buzzerOutput;
+
+Monitor monitor;
+
+
 void setup() {
-	/*position1.set(0.3, 0.5);
-	position1.interval = 6;
+ 
+  wave.duration = 5;
+   
+  converter.set(0, 1, 0.4, 0.8);
+  converter.connect(wave);
+  
+  sonar.pin = 7;
+  sonarConverter.set(0.3, 0.5, 1, 0);
+  sonarConverter.connect(sonar);
+  
+  gate.connect(converter);
+  gate.invert = true;
+  gate.trigger(sonarConverter);
+  
+  servo.pin = 3;       
+  servo.connect(gate);
+  
+  communicationWave.duration = 0.5;
+  communicationOutput.add(0);
+  communicationOutput.add(communicationWave);
+  communicationOutput.connect(sonarConverter);
+  
+  led.pin = 5;
+  led.connect(communicationOutput);
+  
+  buzzer.pin = 4;
+  buzzer.connect(communicationOutput);
+  
+ 
 
-	position2.set(0.5, 0.8);
-	position2.interval = 6;
-
-	turn.set(position1, position2);
-	turn.duration = 3;
-
-	gate.connect(turn);
-
-	servo.pin = 3;
-	servo.connect(turn);
-
-	led.pin = 5;
-	led.light.connect(turn);
-
-	sonar.pin = 7;
-	
-	monitor.add(turn);
-	monitor.add(gate);
-	monitor.add(sonar);*/
-	sonar.pin = 7;
-	monitor.add(sonar);
 }

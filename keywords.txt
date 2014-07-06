@@ -6,6 +6,7 @@
 # Datatypes (KEYWORD1)
 ###################################
 
+Buzzer	LITERAL1
 Led	LITERAL1
 Monitor	LITERAL1
 Profile	LITERAL1
@@ -18,6 +19,7 @@ AnalogSensor	LITERAL1
 LightSensor	LITERAL1
 Time	LITERAL1
 Wave	LITERAL1
+List	LITERAL1
 Sequence	LITERAL1
 Gate	LITERAL1
 
@@ -58,6 +60,7 @@ output	KEYWORD2
 begin	KEYWORD2
 end	KEYWORD2
 
+invert	KEYWORD2
 duration	KEYWORD2
 offset	KEYWORD2
 type	KEYWORD2
