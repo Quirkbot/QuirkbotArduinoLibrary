@@ -9,7 +9,7 @@
 Led	LITERAL1
 Monitor	LITERAL1
 Profile	LITERAL1
-Conversion	LITERAL1
+Converter	LITERAL1
 Sensor	LITERAL1
 Sequence	LITERAL1
 Servo	LITERAL1
@@ -19,6 +19,7 @@ LightSensor	LITERAL1
 Time	LITERAL1
 Wave	LITERAL1
 Sequence	LITERAL1
+Gate	LITERAL1
 
 Logarithm 	LITERAL1
 Logarithm10	LITERAL1

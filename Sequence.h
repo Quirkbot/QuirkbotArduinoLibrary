@@ -28,7 +28,7 @@ public InputOutputStream<float>
 	HasTrigger
 		(this),
 	InputOutputStream<float>
-		(trigger, value){
+		(triggerInput, value){
 		registerInput(duration);
 		selected = NULL;
 
@@ -70,7 +70,7 @@ void Sequence::onInterval(){
 }
 
 void Sequence::onInternalInputChange(BaseInput &input){
-	if(&input == &trigger){
+	if(&input == &triggerInput){
 		if(!running && aboveTrigger()){
 			startTime = Bot::seconds;
 			running = true;

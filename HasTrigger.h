@@ -3,24 +3,38 @@
 
 #include "Node.h"
 #include "Input.h"
+#include "Output.h"
 class HasTrigger{
 	public:
 	HasTrigger(Node * node):
 	triggerNode(node){
-		triggerNode->registerInput(trigger);
+		triggerNode->registerInput(triggerInput);
 		triggerNode->registerInput(triggerThreshold);
 		
-		trigger = 0;
+		triggerInput = 0;
 		triggerThreshold = 0.95;
 	};
 
-	Input<float> trigger;
+	void trigger(Output<float> &output){
+		triggerInput.connect(output);
+	};
+	void trigger(float &value){
+		triggerInput = value;
+	};
+	void trigger(float value){
+		triggerInput = value;
+	};
+	void removeTrigger(){
+		triggerInput.disconnect();
+	};
+
+	Input<float> triggerInput;
 	Input<float> triggerThreshold;
 
 	protected:
 
 	bool aboveTrigger(){
-		return trigger > triggerThreshold;
+		return triggerInput > triggerThreshold;
 	}
 
 	private:

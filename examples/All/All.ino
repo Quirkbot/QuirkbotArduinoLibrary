@@ -1,6 +1,6 @@
 #include "QuirkBug.h"
 
-SonarSensor sonar;
+Sonar sonar;
 LightSensor light;
 
 Servo servo;

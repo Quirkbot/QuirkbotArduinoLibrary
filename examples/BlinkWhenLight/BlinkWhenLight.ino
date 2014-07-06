@@ -3,7 +3,7 @@
 // Create the nodes
 AnalogSensor sensor;
 Led led;
-Conversion conversion;
+Converter conversion;
 Sequence sequence;
 Monitor monitor;
 
@@ -47,7 +47,7 @@ void setup() {
 
 	// Connect the sequence trigger to the the conversion.
 	// If conversion is 1.0, then sequence will be activated.
-	sequence.trigger.connect(conversion);
+	sequence.trigger(conversion);
 
 	// Connect the led to the sequence.
 	led.connect(sequence);	

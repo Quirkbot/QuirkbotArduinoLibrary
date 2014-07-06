@@ -1,5 +1,5 @@
-#ifndef Conversion_h_
-#define Conversion_h_
+#ifndef Converter_h_
+#define Converter_h_
 
 #include "Arduino.h"
 
@@ -10,14 +10,14 @@
 #include "ContainsInputs.h"
 #include "Streams.h"
 
-class Conversion :
+class Converter :
 public Node,
 public Contains4Inputs<float, float, float, float>,
 public InputOutputStream<float>
 {
 	public:
 	
-	Conversion():
+	Converter():
 	Contains4Inputs<float, float, float, float>
 		(inputMin, inputMax, outputMin, outputMax),
 	InputOutputStream<float>
@@ -49,7 +49,7 @@ public InputOutputStream<float>
 	void onInternalInputChange(BaseInput &input);
 };
 
-void Conversion::onInternalInputChange(BaseInput &input){
+void Converter::onInternalInputChange(BaseInput &input){
 	if(&input == &source){
 		value = mapFloat(source, inputMin, inputMax, outputMin, outputMax);
 	}

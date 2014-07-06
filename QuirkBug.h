@@ -8,9 +8,9 @@
 #include "Constants.h"
 
 #include "Mathematics.h"
-#include "Conversion.h"
+#include "Converter.h"
 #include "AnalogSensor.h"
-#include "SonarSensor.h"
+#include "Sonar.h"
 #include "Led.h"
 #include "Buzzer.h"
 #include "Servo.h"
@@ -21,6 +21,7 @@
 #include "Monitor.h"
 #include "List.h"
 #include "Sequence.h"
+#include "Gate.h"
 
 /**
  * Hack the setup() call, so we can initialize the QuirkBug before

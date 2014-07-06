@@ -1,11 +1,11 @@
 #include <QuirkBug.h>
 
-#include <SonarSensor.h>
+#include <Sonar.h>
 #include <AnalogSensor.h>
 #include <Logger.h>
 
 
-SonarSensor sonar;
+Sonar sonar;
 AnalogSensor light;
 
 SerialPrint print;

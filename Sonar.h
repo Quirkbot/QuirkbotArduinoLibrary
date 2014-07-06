@@ -1,18 +1,18 @@
-#ifndef SonarSensor_h_
-#define SonarSensor_h_
+#ifndef Sonar_h_
+#define Sonar_h_
 
 #include "Sensor.h"
 
-class SonarSensor :
+class Sonar :
 public Sensor
 {
 	public:
 	
-	SonarSensor(){
+	Sonar(){
 		registerInput(pin);
 
-		centimetersConversion = 27.0;
-		inchesConversion = 146.0;
+		centimetersConverter = 27.0;
+		inchesConverter = 146.0;
 		normalizingFactor = 5000.0;
 	};
 
@@ -24,20 +24,19 @@ public Sensor
 	Output<float> centimeters;
 	Output<float> inches;
 
-	float centimetersConversion;
-	float inchesConversion;
+	float centimetersConverter;
+	float inchesConverter;
 	
 	protected:
 	void onInternalInputChange(BaseInput &input);
 };
-typedef SonarSensor Sonar;
 
-void SonarSensor::onInternalInputChange(BaseInput &input){
+void Sonar::onInternalInputChange(BaseInput &input){
 	if(&input == &interval){
 		if(interval < 0.05) interval = 0.05;
 	}
 };
-void SonarSensor::onInterval(){
+void Sonar::onInterval(){
 	if(pin == -1) return;
 
 
@@ -58,8 +57,8 @@ void SonarSensor::onInterval(){
 	processReading(reading);
 
 	micros = value;
-	centimeters = value / centimetersConversion;
-	inches = value / inchesConversion;
+	centimeters = value / centimetersConverter;
+	inches = value / inchesConverter;
 };
 
 
