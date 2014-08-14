@@ -7,7 +7,7 @@ Sequence sequence;
 Monitor monitor;
 
 Wave wave;
-
+vaf(LOW);
 void setup(){
 	sequence.add(0.15);
 	sequence.add(0.0);
