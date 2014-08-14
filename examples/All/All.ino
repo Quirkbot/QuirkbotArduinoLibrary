@@ -1,4 +1,4 @@
-#include "QuirkBug.h"
+#include "Quirkbot.h"
 
 Sonar sonar;
 LightSensor light;

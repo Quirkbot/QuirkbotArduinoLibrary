@@ -1,5 +1,5 @@
-#ifndef QuirkBug_h_
-#define QuirkBug_h_
+#ifndef Quirkbot_h_
+#define Quirkbot_h_
 
 #include "Arduino.h"
 

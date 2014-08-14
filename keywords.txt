@@ -1,5 +1,5 @@
 ###################################
-# Syntax Coloring Map For QuirkBug
+# Syntax Coloring Map For Quirkbot
 ###################################
 
 ###################################

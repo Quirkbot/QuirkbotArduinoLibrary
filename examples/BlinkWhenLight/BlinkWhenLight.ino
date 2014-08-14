@@ -1,4 +1,4 @@
-#include <QuirkBug.h>
+#include <Quirkbot.h>
 
 // Create the nodes
 AnalogSensor sensor;
