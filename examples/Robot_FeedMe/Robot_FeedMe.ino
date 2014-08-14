@@ -1,14 +1,14 @@
 #include "Quirkbot.h"
 
-Servo servo;
+ServoMotor servo;
 Sonar sonar;
 
 Converter converter;
 Sequence sequence;
 
-Monitor monitor;
+SerialMonitor monitor;
 
-void setup(){
+void start(){
 	sonar.pin = 7;
 
 	converter.set(0.2, 0.5, 1, 0);

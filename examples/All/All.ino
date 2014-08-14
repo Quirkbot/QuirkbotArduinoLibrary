@@ -3,7 +3,7 @@
 Sonar sonar;
 LightSensor light;
 
-Servo servo;
+ServoMotor servo;
 
 Led led1;
 Led led2;
@@ -12,9 +12,9 @@ Buzzer buzzer;
 
 Wave wave;
 
-Monitor monitor;
+SerialMonitor monitor;
 
-void setup() {
+void start() {
 	light.pin = A0;
 	servo.pin = 3;
 	buzzer.pin = 4;

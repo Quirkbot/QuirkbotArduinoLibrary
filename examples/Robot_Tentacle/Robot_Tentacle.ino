@@ -2,11 +2,11 @@
 
 Sonar sonar;
 Converter converter;
-Servo servo;
+ServoMotor servo;
 
-Monitor monitor;
+SerialMonitor monitor;
 
-void setup() {        
+void start() {        
 	sonar.pin = 7;
 
 	converter.set(0.0, 0.5, 0, 0.7);

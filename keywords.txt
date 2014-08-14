@@ -8,12 +8,12 @@
 
 Buzzer	LITERAL1
 Led	LITERAL1
-Monitor	LITERAL1
+SerialMonitor	LITERAL1
 Profile	LITERAL1
 Converter	LITERAL1
 Sensor	LITERAL1
 Sequence	LITERAL1
-Servo	LITERAL1
+ServoMotor	LITERAL1
 Sonar	LITERAL1
 AnalogSensor	LITERAL1
 LightSensor	LITERAL1
@@ -65,12 +65,12 @@ duration	KEYWORD2
 offset	KEYWORD2
 type	KEYWORD2
 
-add	LITERAL1
-connect	LITERAL1
-trigger	LITERAL1
-disconnect	LITERAL1
-clear	LITERAL1
-set	LITERAL1
+add	KEYWORD2
+connect	KEYWORD2
+trigger	KEYWORD2
+disconnect	KEYWORD2
+clear	KEYWORD2
+set	KEYWORD2
 
 
 ###################################

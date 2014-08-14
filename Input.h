@@ -39,16 +39,6 @@ class Input : public BaseInput{
 	}
 
 	/**
-	 * Handle for both, primitives and outputs, connections
-	 **/
-	void bind(const T &value){
-		handleValueConnection(value);
-	}
-	void bind(const Output<T> &output){
-		handleOutputConnection(output);
-	}
-
-	/**
 	 * Function call style interface
 	 **/
 	void operator()(const T &value){

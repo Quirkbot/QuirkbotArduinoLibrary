@@ -1,5 +1,5 @@
-#ifndef Monitor_h_
-#define Monitor_h_
+#ifndef SerialMonitor_h_
+#define SerialMonitor_h_
 
 #include "Bot.h"
 #include "Node.h"
@@ -8,13 +8,13 @@
 #include "Input.h"
 #include "Streams.h"
 
-class Monitor:
+class SerialMonitor:
 public Node,
 public HasInterval,
 public HasInputCollection<float>{
 	public:
 	
-	Monitor():
+	SerialMonitor():
 	HasInterval
 		(this),
 	HasInputCollection<float>
@@ -25,7 +25,7 @@ public HasInputCollection<float>{
 	void onInterval();
 };
 
-void Monitor::onInterval(){
+void SerialMonitor::onInterval(){
 	if(!inputCollection.size()) return;
 
 	for(int i = 0; i < inputCollection.size(); i++){

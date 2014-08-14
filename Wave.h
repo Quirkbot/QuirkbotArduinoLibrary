@@ -10,7 +10,6 @@
 #include "Output.h"
 #include "Streams.h"
 #include "WaveTables.h"
-#include "ContainsInputs.h"
 
 
 #define	WAVE_SINE 0
@@ -25,7 +24,6 @@
 class Wave :
 public Node,
 public HasInterval,
-public Contains2Inputs<float, float>,
 public OutputStream<float>
 {
 	public:
@@ -33,12 +31,8 @@ public OutputStream<float>
 	Wave():
 	HasInterval
 		(this),
-	Contains2Inputs<float, float>
-		(min, max),
 	OutputStream<float>
 		(value){
-		registerInput(min);
-		registerInput(max);
 		registerInput(duration);
 		registerInput(offset);
 		registerInput(type);
@@ -47,16 +41,11 @@ public OutputStream<float>
 
 		position = 0;
 		offset = 0.0;
-		min = 0.0;
-		max = 1.0;
 		type = WAVE_SINE;		
 		duration = 1.0;
 	};
 
 	void onInterval();
-
-	Input<float> min;
-	Input<float> max;
 
 	Input<float> duration;
 	Input<float> offset;
@@ -112,8 +101,7 @@ void Wave::onInterval(){
 	float timeSeconds = fmod(Bot::seconds -adjust + offset * duration, duration);
 	position = timeSeconds / duration;
 	int index = position * 256.0;
-	float base = (float)(pgm_read_word_near(table + index)) * 0.001;
-	value = mapFloat(base, 0, 1.0, min, max);
+	value = (float)(pgm_read_word_near(table + index)) * 0.001;
 }
 
 #endif

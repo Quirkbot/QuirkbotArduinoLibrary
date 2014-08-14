@@ -1,10 +1,10 @@
 #include "Quirkbot.h"
 
-Servo servo;
+ServoMotor servo;
 Wave wave;
 Converter converter;
 
-void setup() {
+void start() {
 	wave.duration = 1;
 	wave.type = WAVE_RAMP_DOWN;
 

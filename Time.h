@@ -27,16 +27,10 @@ public OutputStream<float>
 	void onInterval();
 
 	Output<float> seconds;
-	Output<float> millis;
-	Output<float> micros;
-	Output<float> frames;
 };
 
 void Time::onInterval(){
 	seconds.set(Bot::seconds);
-	millis.set(Bot::millis);
-	micros.set(Bot::micros);
-	frames.set(Bot::frames);
 }
 
 #endif

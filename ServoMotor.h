@@ -1,5 +1,5 @@
-#ifndef Servo_h_
-#define Servo_h_
+#ifndef ServoMotor_h_
+#define ServoMotor_h_
 
 #include "Arduino.h"
 #include "_libs_Servo.h"
@@ -9,12 +9,12 @@
 #include "Input.h"
 #include "Streams.h"
 
-class Servo:
+class ServoMotor:
 public Node,
 public InputStream<float>{
 	public:
 	
-	Servo():
+	ServoMotor():
 	InputStream<float>
 		(position){
 
@@ -36,7 +36,7 @@ public InputStream<float>{
 	_libs_Servo servo;
 	int angle;
 };
-void Servo::onInternalInputChange(BaseInput &input){
+void ServoMotor::onInternalInputChange(BaseInput &input){
 	if(&input == &pin){
 		servo.attach(pin);
 	}

@@ -1,9 +1,9 @@
 #include "Quirkbot.h"
 
-Servo servo;
+ServoMotor servo;
 Wave wave;
 
-void setup() {
+void start() {
 	wave.duration = 3;
 	servo.pin = 3;
 	servo.connect(wave);

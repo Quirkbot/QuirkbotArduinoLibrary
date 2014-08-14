@@ -59,7 +59,7 @@ void Buzzer::process(){
 		::tone((uint8_t)pin.get(), frequency);
 	}
 	else{
-		noTone((uint8_t)pin.get());
+		::noTone((uint8_t)pin.get());
 	}
 }
 

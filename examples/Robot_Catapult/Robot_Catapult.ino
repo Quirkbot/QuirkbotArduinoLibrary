@@ -1,14 +1,14 @@
 #include "Quirkbot.h"
 
-Servo servo;
+ServoMotor servo;
 Sonar sonar;
 Converter converter;
 Sequence sequence;
-Monitor monitor;
+SerialMonitor monitor;
 
 Wave wave;
-vaf(LOW);
-void setup(){
+
+void start(){
 	sequence.add(0.15);
 	sequence.add(0.0);
 	sequence.add(1.0);

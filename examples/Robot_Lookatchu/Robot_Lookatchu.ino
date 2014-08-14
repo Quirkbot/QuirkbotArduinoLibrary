@@ -1,6 +1,6 @@
 #include <Quirkbot.h>
 
-Servo servo;
+ServoMotor servo;
 Led led;
 Buzzer buzzer;
 Sonar sonar;
@@ -16,10 +16,10 @@ List communicationOutput;
 Wave buzzerWave;
 List buzzerOutput;
 
-Monitor monitor;
+SerialMonitor monitor;
 
 
-void setup() {
+void start() {
  
   wave.duration = 5;
    

@@ -5,9 +5,9 @@ AnalogSensor sensor;
 Led led;
 Converter conversion;
 Sequence sequence;
-Monitor monitor;
+SerialMonitor monitor;
 
-void setup() {
+void start() {
 
 	// Attach sensor to pin A0
 	sensor.pin = A0;
