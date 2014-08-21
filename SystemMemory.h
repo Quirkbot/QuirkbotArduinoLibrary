@@ -4,38 +4,40 @@
 #include "Bot.h"
 #include "Node.h"
 #include "HasInterval.h"
+#include "Streams.h"
 #include "Output.h"
 
-class Profile :
+class SystemMemory :
 public Node,
-public HasInterval
+public HasInterval,
+public OutputStream<float>
 {
 	public:
 
-	Profile():
+	SystemMemory():
 	HasInterval
-		(this){
+		(this),
+	OutputStream<float>
+		(ram){
 		interval = 0.01;
 	};
 
 	void onInterval();
 
 	Output<float> ram;
-	Output<float> fps;
 
 	private:
 
 	static int getFreeRam();
 
 };
-int Profile::getFreeRam(){
+int SystemMemory::getFreeRam(){
 	extern int __heap_start, *__brkval; 
 	int v; 
 	return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval); 
 }
-void Profile::onInterval(){
+void SystemMemory::onInterval(){
 	ram.set(getFreeRam());
-	fps.set(1.0/(Bot::dtMicros / 1000000));
 }
 
 #endif

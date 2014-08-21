@@ -62,7 +62,7 @@ public Contains2Inputs<float, float>{
 *******************************************************************************/
 
 /**
- * Compute natural logarithm.
+ * Computes natural logarithm.
  * If "base" negative, a domain error occurs.
  */
 class Logarithm :
@@ -74,10 +74,9 @@ public MathBasicNode{
 void Logarithm::onInternalInputChange(BaseInput &input){
 	result = log(base);
 };
-typedef Logarithm Log;
 
 /**
- * Compute common logarithm.
+ * Computes common logarithm.
  * If "base" negative, a domain error occurs.
  */
 class Logarithm10 :
@@ -89,10 +88,9 @@ public MathBasicNode{
 void Logarithm10::onInternalInputChange(BaseInput &input){
 	result = log10(base);
 };
-typedef Logarithm10 Log10;
 
 /**
- * Compute square root.
+ * Computes square root.
  * If "base" negative, a domain error occurs.
  */
 class SquareRoot : 
@@ -104,10 +102,9 @@ public MathBasicNode{
 void SquareRoot::onInternalInputChange(BaseInput &input){
 	result = sqrt(base);
 };
-typedef SquareRoot Sqrt;
 
 /**
- * Compute absolute value.
+ * Computes absolute value.
  * If "base" negative, a domain error occurs.
  */
 class Absolute :
@@ -119,10 +116,14 @@ public MathBasicNode{
 void Absolute::onInternalInputChange(BaseInput &input){
 	result = fabs(base);
 };
-typedef Absolute Abs;
+
+
+/*******************************************************************************
+** OPERATIONS ******************************************************************
+*******************************************************************************/
 
 /**
- * Compute absolute value.
+ * Computes absolute value.
  * If "base" negative, a domain error occurs.
  */
 class Power :
@@ -142,14 +143,9 @@ public MathOperationNode{
 void Power::onInternalInputChange(BaseInput &input){
 	result = pow(base, exponent);
 };
-typedef Power Pow;
-
-/*******************************************************************************
-** OPERATIONS ******************************************************************
-*******************************************************************************/
 
 /**
- * Compute the sum.
+ * Computes the sum.
  */
 class Addition :
 public MathOperationNode{
@@ -168,10 +164,9 @@ public MathOperationNode{
 void Addition::onInternalInputChange(BaseInput &input){
 	result = base + operand;
 };
-typedef Addition Add;
 
 /**
- * Compute the difference.
+ * Computes the difference.
  */
 class Subtraction :
 public MathOperationNode{
@@ -190,10 +185,9 @@ public MathOperationNode{
 void Subtraction::onInternalInputChange(BaseInput &input){
 	result = base - operand;
 };
-typedef Subtraction Remove;
 
 /**
- * Compute the multiplication.
+ * Computes the multiplication.
  */
 class Multiplication :
 public MathOperationNode{
@@ -212,10 +206,9 @@ public MathOperationNode{
 void Multiplication::onInternalInputChange(BaseInput &input){
 	result = base * operand;
 };
-typedef Multiplication Mult;
 
 /**
- * Compute the division.
+ * Computes the division.
  */
 class Division :
 public MathOperationNode{
@@ -234,10 +227,9 @@ public MathOperationNode{
 void Division::onInternalInputChange(BaseInput &input){
 	result = base / operand;
 };
-typedef Division Div;
 
 /**
- * Compute the remainder.
+ * Computes the remainder.
  */
 class Modulo :
 public MathOperationNode{
@@ -256,7 +248,49 @@ public MathOperationNode{
 void Modulo::onInternalInputChange(BaseInput &input){
 	result = fmod(base,operand);
 };
-typedef Modulo mod;
+
+/**
+ * Computes the largest.
+ */
+class Maximum :
+public MathOperationNode{
+	public:
+	
+	Maximum():
+	alternative(operand)
+	{};
+
+	Input<float> &alternative;
+
+	protected:
+	
+	void onInternalInputChange(BaseInput &input);
+};
+void Maximum::onInternalInputChange(BaseInput &input){
+	result = max(base,operand);
+};
+
+
+/**
+ * Computes the largest.
+ */
+class Minimum :
+public MathOperationNode{
+	public:
+	
+	Minimum():
+	alternative(operand)
+	{};
+
+	Input<float> &alternative;
+
+	protected:
+	
+	void onInternalInputChange(BaseInput &input);
+};
+void Minimum::onInternalInputChange(BaseInput &input){
+	result = min(base,operand);
+};
 
 
 /*******************************************************************************
@@ -277,7 +311,6 @@ public MathBasicNode{
 void Ceiling::onInternalInputChange(BaseInput &input){
 	result = ceil(base);
 };
-typedef Ceiling Ceil;
 
 /**
  * Round down value.
@@ -316,7 +349,7 @@ void Round::onInternalInputChange(BaseInput &input){
 
 
 /**
- * Compute sine.
+ * Computes sine.
  * The "base" is an angle (in radians). The "result" will be between -1 and 1.
  */
 class Sine :
@@ -328,10 +361,9 @@ public MathBasicNode{
 void Sine::onInternalInputChange(BaseInput &input){
 	result = sin(base);
 };
-typedef Sine Sin;
 
 /**
- * Compute arc sine.
+ * Computes arc sine.
  * The "base" is a range (between -1 and 1). The "result" will be an angle
  * (in radians). If "base" is out of this interval (between -1 and 1), a domain
  * error occurs.
@@ -345,10 +377,9 @@ public MathBasicNode{
 void ArcSine::onInternalInputChange(BaseInput &input){
 	result = asin(base);
 };
-typedef ArcSine Asin;
 
 /**
- * Compute cosine.
+ * Computes cosine.
  * The "base" is an angle (in radians). The "result" will be between -1 and 1.
  */
 class Cosine :
@@ -360,10 +391,9 @@ public MathBasicNode{
 void Cosine::onInternalInputChange(BaseInput &input){
 	result = cos(base);
 };
-typedef Cosine Cos;
 
 /**
- * Compute src cosine.
+ * Computes src cosine.
  * The "base" is a range (between -1 and 1). The "result" will be an angle
  * (in radians). If "base" is out of this interval (between -1 and 1), a domain
  * error occurs.
@@ -377,10 +407,9 @@ public MathBasicNode{
 void ArcCosine::onInternalInputChange(BaseInput &input){
 	result = acos(base);
 };
-typedef ArcCosine Acos;
 
 /**
- * Compute tangent.
+ * Computes tangent.
  * The "base" is an angle (in radians). The "result" will be between negative
  * infinity and infinity.
  */
@@ -393,10 +422,9 @@ public MathBasicNode{
 void Tangent::onInternalInputChange(BaseInput &input){
 	result = tan(base);
 };
-typedef Tangent Tan;
 
 /**
- * Compute arc tangent.
+ * Computes arc tangent.
  * The "base" is a range. The "result" will be an angle (in radians).
  */
 class ArcTangent :
@@ -408,6 +436,5 @@ public MathBasicNode{
 void ArcTangent::onInternalInputChange(BaseInput &input){
 	result = atan(base);
 };
-typedef ArcTangent Atan;
 
 #endif

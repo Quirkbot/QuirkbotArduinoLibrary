@@ -39,6 +39,19 @@ class Input : public BaseInput{
 	}
 
 	/**
+	 * Handle for both, primitives and outputs connections.
+	 * If called on a primitive, clearOutput will also be called, causing the
+	 * input to disconnect from a previously connected output.
+	 **/
+	void bind(const T &value){
+		clearOutput();
+		handleValueConnection(value);
+	}
+	void bind(const Output<T> &output){
+		handleOutputConnection(output);
+	}
+
+	/**
 	 * Function call style interface
 	 **/
 	void operator()(const T &value){
@@ -64,7 +77,13 @@ class Input : public BaseInput{
 
 	protected:
 	void handleValueConnection(const T &value){
-		clearOutput();
+		/**
+		 * Should value connections really clear the output? Maybe it's better
+		 * if they keep the connection, so we know that every time we connect to
+		 * an output, the only way to disconnect is by explicitly calling the 
+		 * 'disconnect' method.
+		 **/
+		//clearOutput();
 		onOutputChange(value);
 	}
 	void handleOutputConnection(const Output<T> &output){

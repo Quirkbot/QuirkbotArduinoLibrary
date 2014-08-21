@@ -8,6 +8,7 @@
 
 Buzzer	LITERAL1
 Led	LITERAL1
+RGBLed LITERAL1
 SerialMonitor	LITERAL1
 Profile	LITERAL1
 Converter	LITERAL1
@@ -32,6 +33,9 @@ Addition	LITERAL1
 Subtraction	LITERAL1
 Multiplication	LITERAL1
 Division	LITERAL1
+Maximum  LITERAL1
+Minimum  LITERAL1
+Modulo  LITERAL1
 Modulo	LITERAL1
 Ceiling	LITERAL1
 Floor	LITERAL1
@@ -44,37 +48,39 @@ Tangent	LITERAL1
 ArcTangent	LITERAL1
 
 ###################################
-# Methods and Functions (KEYWORD2)
+# Methods and Functions
 ###################################
 
-pin	KEYWORD2
-interval	KEYWORD2
-triggerThreshold	KEYWORD2
-min	KEYWORD2
-max	KEYWORD2
-smoothing	KEYWORD2
-
-input	KEYWORD2
-output	KEYWORD2
-
-begin	KEYWORD2
-end	KEYWORD2
-
-invert	KEYWORD2
-duration	KEYWORD2
-offset	KEYWORD2
-type	KEYWORD2
-
-add	KEYWORD2
+# most used...
 connect	KEYWORD2
+add	KEYWORD2
 trigger	KEYWORD2
-disconnect	KEYWORD2
-clear	KEYWORD2
 set	KEYWORD2
 
+pin	KEYWORD2
+pinR KEYWORD2
+pinG KEYWORD2
+pinB KEYWORD2
+value	KEYWORD2
+control   KEYWORD2
+duration	KEYWORD2
+type	KEYWORD2
+
+# least used...
+disconnect	KEYWORD2
+clear	KEYWORD2
+
+interval	KEYWORD2
+triggerThreshold	KEYWORD2
+smoothing	KEYWORD2
+input	KEYWORD2
+output	KEYWORD2
+invert	KEYWORD2
+offset	KEYWORD2
+
 
 ###################################
-# Constants (LITERAL1)
+# Constants
 ###################################
 
 WAVE_SINE	KEYWORD2

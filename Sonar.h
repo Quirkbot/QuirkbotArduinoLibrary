@@ -52,7 +52,7 @@ void Sonar::onInterval(){
 
 	float reading = pulseIn(pin, HIGH, 5000);
 
-	if(reading == 0) return;
+	if(reading == 0) reading = 5000;
 
 	processReading(reading);
 

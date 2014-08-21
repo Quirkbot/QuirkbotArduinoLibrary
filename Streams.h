@@ -14,13 +14,15 @@ template <class T>
 class InputStream{
 	public:
 		InputStream(Input<T>& _input):
-		input(_input){}
+		input(_input),
+		control(_input){}
 
 		void connect(OutputStream<T>& stream){
 			input.connect(stream.output);
 		};
 		
 		Input<T> &input;
+		Input<T> &control;
 };
 
 template <class T>

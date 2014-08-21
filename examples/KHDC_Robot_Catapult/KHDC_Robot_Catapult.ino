@@ -16,7 +16,7 @@ void start(){
 	sequence.duration = 3;
 
 	servo.pin = 3;
-	servo.input = 0.15;
+	servo.value = 0.15;
 	servo.connect(sequence);
 
 	sonar.pin = 7;
