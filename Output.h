@@ -21,15 +21,9 @@ class Output {
 		this->value = value;
 		event.dispatch(value);
 	}
-	void operator=(T value){
-		set(value);
-	}	
 
 	T get(){
 		return value;
-	}
-	operator T(){
-		return get();
 	}
 
 	Event<T> event;

@@ -11,8 +11,6 @@ public Sensor
 	Sonar(){
 		registerInput(pin);
 
-		centimetersConverter = 27.0;
-		inchesConverter = 146.0;
 		normalizingFactor = 5000.0;
 	};
 
@@ -20,12 +18,6 @@ public Sensor
 
 	Input<int> pin;
 
-	Output<float> micros;
-	Output<float> centimeters;
-	Output<float> inches;
-
-	float centimetersConverter;
-	float inchesConverter;
 	
 	protected:
 	void onInternalInputChange(BaseInput &input);
@@ -55,10 +47,6 @@ void Sonar::onInterval(){
 	if(reading == 0) reading = 5000;
 
 	processReading(reading);
-
-	micros = value;
-	centimeters = value / centimetersConverter;
-	inches = value / inchesConverter;
 };
 
 

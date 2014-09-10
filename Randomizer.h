@@ -30,7 +30,7 @@ public OutputStream<float>
 };
 
 void Randomizer::onInterval(){
-	value = (float)random(1000) * 0.001;
+	value.set((float)random(1000) * 0.001);
 }
 
 #endif

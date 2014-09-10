@@ -115,7 +115,9 @@ void Wave::onInterval(){
 	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * duration.get(), duration.get());
 	position = timeSeconds / duration.get();
 	int index = position * 256.0;
-	value = (float)(pgm_read_word_near(table + index)) * 0.001;
+	value.set(
+		(float)(pgm_read_word_near(table + index)) * 0.001
+	);
 }
 
 #endif
