@@ -13,11 +13,11 @@
 
 
 #define	WAVE_SINE 0
-#define	WAVE_SQUARE 1
-#define	WAVE_TRIANGLE 2
-#define	WAVE_PULSE 3
-#define	WAVE_RAMP_UP 4
-#define	WAVE_RAMP_DOWN 5
+#define	WAVE_SQUARE 0.2
+#define	WAVE_TRIANGLE 0.4
+#define	WAVE_PULSE 0.6
+#define	WAVE_RAMP_UP 0.8
+#define	WAVE_RAMP_DOWN 1.0
 
 /*
 Should we have a bunch of different nodes with an specific wave form, instead of
