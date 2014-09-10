@@ -51,7 +51,7 @@ public InputOutputStream<float>
 
 void Converter::onInternalInputChange(BaseInput &input){
 	if(&input == &source){
-		value = mapFloat(source, inputMin, inputMax, outputMin, outputMax);
+		value = mapFloat(source.get(), inputMin.get(), inputMax.get(), outputMin.get(), outputMax.get());
 	}
 };
 

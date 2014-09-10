@@ -56,7 +56,7 @@ public InputOutputStream<float>
 };
 void Sequence::onInterval(){
 	if(!running) return;
-	float position = (Bot::seconds - startTime) / duration;
+	float position = (Bot::seconds - startTime) / duration.get();
 	if(position > 1){
 		position = 1;
 		running = false;

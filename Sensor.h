@@ -40,7 +40,7 @@ public OutputStream<float>
 	float smooth;
 
 	void processReading(float reading){
-		smooth = smooth * smoothing + reading * (1.0 - smoothing);
+		smooth = smooth * smoothing.get() + reading * (1.0 - smoothing.get());
 		value = smooth / normalizingFactor;
 	}
 

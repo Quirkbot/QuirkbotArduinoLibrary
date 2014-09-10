@@ -48,11 +48,11 @@ public InputStream<float>{
 	void writePins();
 };
 void RGBLed::onInternalInputChange(BaseInput &input){
-	if(&input == &pinR) pinMode(pinR, OUTPUT);
-	else if(&input == &pinG) pinMode(pinG, OUTPUT);
-	else if(&input == &pinB) pinMode(pinB, OUTPUT);
+	if(&input == &pinR) pinMode(pinR.get(), OUTPUT);
+	else if(&input == &pinG) pinMode(pinG.get(), OUTPUT);
+	else if(&input == &pinB) pinMode(pinB.get(), OUTPUT);
 	else if(&input == &hue || &input == &saturation || &input == &luminosity){
-		calculateRGB(hue, saturation, 0.5);
+		calculateRGB(hue.get(), saturation.get(), 0.5);
 		writePins();
 	};
 };
@@ -115,9 +115,9 @@ void RGBLed::calculateRGB(float h, float s, float l) {
 	}
 }
 void RGBLed::writePins(){
-	analogWrite(pinR, pow(r * luminosity, 2.5) * 255.0);
-	analogWrite(pinG, pow(g * luminosity, 2.5) * 255.0);
-	analogWrite(pinB, pow(b * luminosity, 2.5) * 255.0);
+	analogWrite(pinR.get(), pow(r * luminosity.get(), 2.5) * 255.0);
+	analogWrite(pinG.get(), pow(g * luminosity.get(), 2.5) * 255.0);
+	analogWrite(pinB.get(), pow(b * luminosity.get(), 2.5) * 255.0);
 
 }
 #endif

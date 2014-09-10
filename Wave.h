@@ -52,6 +52,7 @@ public OutputStream<float>
 		interval = 0.033;
 
 		position = 0;
+
 		offset = 0.0;
 		type = WAVE_SINE;		
 		duration = 1.0;
@@ -77,41 +78,42 @@ public OutputStream<float>
 
 void Wave::onInternalInputChange(BaseInput &input){
 	if(&input == &type){
-		switch ((int)type){
-			case WAVE_SQUARE:
-				table = WAVE_SQUARE_TABLE;
-				break;
-			case WAVE_PULSE:
-				table = WAVE_PULSE_TABLE;
-				break;
-			case WAVE_TRIANGLE:
-				table = WAVE_TRIANGLE_TABLE;
-				break;
-			case WAVE_RAMP_UP:
-				table = WAVE_RAMP_UP_TABLE;
-				break;
-			case WAVE_RAMP_DOWN:
-				table = WAVE_RAMP_DOWN_TABLE;
-				break;
-			case WAVE_SINE:
-			default:
-				table = WAVE_SINE_TABLE;
-				break;
+		float t = type.get();
+		if(t <= WAVE_SQUARE){
+			table = WAVE_SQUARE_TABLE;
+		}
+		else if (t <= WAVE_SQUARE){
+			table = WAVE_SQUARE_TABLE;
+		}
+		if (t <= WAVE_PULSE){
+			table = WAVE_PULSE_TABLE;
+		}
+		if (t <= WAVE_TRIANGLE){
+			table = WAVE_TRIANGLE_TABLE;
+		}
+		if (t <= WAVE_RAMP_UP){
+			table = WAVE_RAMP_UP_TABLE;
+		}
+		if (t <= WAVE_RAMP_DOWN){
+			table = WAVE_RAMP_DOWN_TABLE;
+		}
+		if (t <= WAVE_SINE){
+			table = WAVE_SINE_TABLE;
 		}
 	}
 	else if(&input == &duration){
-		float basePosition = position - offset;
+		float basePosition = position - offset.get();
 		if(basePosition < 0) basePosition += 1;
 
-		float currentTime = fmod(Bot::seconds, duration);
-		float diff = currentTime/duration - basePosition;
-		adjust = diff * duration;
+		float currentTime = fmod(Bot::seconds, duration.get());
+		float diff = currentTime/duration.get() - basePosition;
+		adjust = diff * duration.get();
 	}
 };
 
 void Wave::onInterval(){
-	float timeSeconds = fmod(Bot::seconds -adjust + offset * duration, duration);
-	position = timeSeconds / duration;
+	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * duration.get(), duration.get());
+	position = timeSeconds / duration.get();
 	int index = position * 256.0;
 	value = (float)(pgm_read_word_near(table + index)) * 0.001;
 }

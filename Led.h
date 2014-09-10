@@ -31,8 +31,8 @@ public InputStream<float>{
 	void onInternalInputChange(BaseInput &input);
 };
 void Led::onInternalInputChange(BaseInput &input){
-	if(&input == &pin) pinMode(pin, OUTPUT);
-	else if(&input == &light) analogWrite(pin, pow(light, 2.5) * 255.0);
+	if(&input == &pin) pinMode(pin.get(), OUTPUT);
+	else if(&input == &light) analogWrite(pin.get(), pow(light.get(), 2.5) * 255.0);
 };
 
 #endif

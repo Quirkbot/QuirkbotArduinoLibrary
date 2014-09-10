@@ -33,24 +33,24 @@ public Sensor
 
 void Sonar::onInternalInputChange(BaseInput &input){
 	if(&input == &interval){
-		if(interval < 0.05) interval = 0.05;
+		if(interval.get() < 0.05) interval = 0.05;
 	}
 };
 void Sonar::onInterval(){
-	if(pin == -1) return;
+	if(pin.get() == -1) return;
 
 
-	pinMode(pin, OUTPUT);
+	pinMode(pin.get(), OUTPUT);
 
-	digitalWrite(pin, LOW);
+	digitalWrite(pin.get(), LOW);
 	delayMicroseconds(2);
-	digitalWrite(pin, HIGH);
+	digitalWrite(pin.get(), HIGH);
 	delayMicroseconds(5);
-	digitalWrite(pin, LOW);
+	digitalWrite(pin.get(), LOW);
 
-	pinMode(pin, INPUT);
+	pinMode(pin.get(), INPUT);
 
-	float reading = pulseIn(pin, HIGH, 5000);
+	float reading = pulseIn(pin.get(), HIGH, 5000);
 
 	if(reading == 0) reading = 5000;
 

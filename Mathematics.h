@@ -72,7 +72,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Logarithm::onInternalInputChange(BaseInput &input){
-	result = log(base);
+	result = log(base.get());
 };
 
 /**
@@ -86,7 +86,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Logarithm10::onInternalInputChange(BaseInput &input){
-	result = log10(base);
+	result = log10(base.get());
 };
 
 /**
@@ -100,7 +100,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void SquareRoot::onInternalInputChange(BaseInput &input){
-	result = sqrt(base);
+	result = sqrt(base.get());
 };
 
 /**
@@ -114,7 +114,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Absolute::onInternalInputChange(BaseInput &input){
-	result = fabs(base);
+	result = fabs(base.get());
 };
 
 
@@ -141,7 +141,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Power::onInternalInputChange(BaseInput &input){
-	result = pow(base, exponent);
+	result = pow(base.get(), exponent.get());
 };
 
 /**
@@ -162,7 +162,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Addition::onInternalInputChange(BaseInput &input){
-	result = base + operand;
+	result = base.get() + operand.get();
 };
 
 /**
@@ -183,7 +183,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Subtraction::onInternalInputChange(BaseInput &input){
-	result = base - operand;
+	result = base.get() - operand.get();
 };
 
 /**
@@ -204,7 +204,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Multiplication::onInternalInputChange(BaseInput &input){
-	result = base * operand;
+	result = base.get() * operand.get();
 };
 
 /**
@@ -225,7 +225,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Division::onInternalInputChange(BaseInput &input){
-	result = base / operand;
+	result = base.get() / operand.get();
 };
 
 /**
@@ -246,7 +246,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Modulo::onInternalInputChange(BaseInput &input){
-	result = fmod(base,operand);
+	result = fmod(base.get(), operand.get());
 };
 
 /**
@@ -267,7 +267,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Maximum::onInternalInputChange(BaseInput &input){
-	result = max(base,operand);
+	result = max(base.get(), operand.get());
 };
 
 
@@ -289,7 +289,7 @@ public MathOperationNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Minimum::onInternalInputChange(BaseInput &input){
-	result = min(base,operand);
+	result = min(base.get(), operand.get());
 };
 
 
@@ -309,7 +309,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Ceiling::onInternalInputChange(BaseInput &input){
-	result = ceil(base);
+	result = ceil(base.get());
 };
 
 /**
@@ -324,7 +324,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Floor::onInternalInputChange(BaseInput &input){
-	result = floor(base);
+	result = floor(base.get());
 };
 
 /**
@@ -339,7 +339,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Round::onInternalInputChange(BaseInput &input){
-	result = round(base);
+	result = round(base.get());
 };
 
 
@@ -359,7 +359,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Sine::onInternalInputChange(BaseInput &input){
-	result = sin(base);
+	result = sin(base.get());
 };
 
 /**
@@ -375,7 +375,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void ArcSine::onInternalInputChange(BaseInput &input){
-	result = asin(base);
+	result = asin(base.get());
 };
 
 /**
@@ -389,7 +389,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Cosine::onInternalInputChange(BaseInput &input){
-	result = cos(base);
+	result = cos(base.get());
 };
 
 /**
@@ -405,7 +405,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void ArcCosine::onInternalInputChange(BaseInput &input){
-	result = acos(base);
+	result = acos(base.get());
 };
 
 /**
@@ -420,7 +420,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void Tangent::onInternalInputChange(BaseInput &input){
-	result = tan(base);
+	result = tan(base.get());
 };
 
 /**
@@ -434,7 +434,7 @@ public MathBasicNode{
 	void onInternalInputChange(BaseInput &input);
 };
 void ArcTangent::onInternalInputChange(BaseInput &input){
-	result = atan(base);
+	result = atan(base.get());
 };
 
 #endif

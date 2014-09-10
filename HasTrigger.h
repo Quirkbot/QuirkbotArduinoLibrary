@@ -34,7 +34,7 @@ class HasTrigger{
 	protected:
 
 	bool aboveTrigger(){
-		return triggerInput > triggerThreshold;
+		return triggerInput.get() > triggerThreshold.get();
 	}
 
 	private:

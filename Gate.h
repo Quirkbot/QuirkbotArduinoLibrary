@@ -44,7 +44,7 @@ public InputOutputStream<float>
 
 void Gate::onInternalInputChange(BaseInput &input){
 	if(&input == &triggerInput){
-		if(!invert){
+		if(!invert.get()){
 			closed = !aboveTrigger();
 		}
 		else{

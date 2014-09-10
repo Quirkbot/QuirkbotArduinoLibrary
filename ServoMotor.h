@@ -38,10 +38,10 @@ public InputStream<float>{
 };
 void ServoMotor::onInternalInputChange(BaseInput &input){
 	if(&input == &pin){
-		servo.attach(pin);
+		servo.attach(pin.get());
 	}
 	else if(&input == &position){
-		int newAngle = position * 180.0;
+		int newAngle = position.get() * 180.0;
 		if(newAngle != angle){
 			angle = newAngle;
 			servo.write(angle);

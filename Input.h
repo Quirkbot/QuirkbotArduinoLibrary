@@ -20,49 +20,31 @@ class Input : public BaseInput{
 	~Input(){
 		clearOutput();
 	}
-
-	/**
-	 * Preferred handle for primitive connections
-	 **/
-	void operator=(const T &value){
-		handleValueConnection(value);
-	}
 	
-	/**
-	 * Preferred handle for output connections
-	 **/
-	void connect(const Output<T> &output){
-		handleOutputConnection(output);
-	}
-	void disconnect(){
-		clearOutput();
-	}
-
 	/**
 	 * Handle for both, primitives and outputs connections.
 	 * If called on a primitive, clearOutput will also be called, causing the
 	 * input to disconnect from a previously connected output.
 	 **/
-	void bind(const T &value){
+	void operator=(const T &value){
+		handleValueConnection(value);
+	}
+	void operator=(const Output<T> &output){
+		handleOutputConnection(output);
+	}
+	void connect(const T &value){
 		clearOutput();
 		handleValueConnection(value);
 	}
-	void bind(const Output<T> &output){
+	void connect(const Output<T> &output){
 		handleOutputConnection(output);
 	}
 
 	/**
-	 * Function call style interface
+	 * Remove connections
 	 **/
-	void operator()(const T &value){
-		handleValueConnection(value);
-	}
-	void operator()(const Output<T> &output){
-		handleOutputConnection(output);
-	}
-	void operator()(){
-		T value = this->value;
-		handleValueConnection(value);
+	void disconnect(){
+		clearOutput();
 	}
 
 	/**
@@ -71,9 +53,9 @@ class Input : public BaseInput{
 	T get(){
 		return value;
 	}
-	operator T(){
-		return get();
-	}
+	//operator T(){
+	//	return get();
+	//}
 
 	protected:
 	void handleValueConnection(const T &value){

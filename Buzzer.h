@@ -44,7 +44,7 @@ float Buzzer::calculateTone(float frequency){
 }
 void Buzzer::onInternalInputChange(BaseInput &input){
 	if(&input == &pin){
-		pinMode(pin, OUTPUT);
+		pinMode(pin.get(), OUTPUT);
 		process();
 	}
 	else if(&input == &tone){
@@ -52,7 +52,7 @@ void Buzzer::onInternalInputChange(BaseInput &input){
 	}
 }
 void Buzzer::process(){
-	int frequency = (tone * tone) * MAX_FREQUENCY;
+	int frequency = (tone.get() * tone.get()) * MAX_FREQUENCY;
 	if(lastFrequency == frequency) return;
 	lastFrequency = frequency;
 	if(frequency != 0) {

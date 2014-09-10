@@ -39,7 +39,7 @@ public InputOutputStream<float>
 
 	void refreshSelected(){
 		if(inputCollection.size()){
-			int i = floor(index * inputCollection.size()); 
+			int i = floor(index.get() * inputCollection.size()); 
 			if(i < 0 ) i  = 0;
 			if(i >= inputCollection.size()) i = inputCollection.size() - 1;
 			if(inputCollection[i] != selected){

@@ -22,11 +22,11 @@ public Sensor
 typedef AnalogSensor LightSensor;
 
 void AnalogSensor::onInternalInputChange(BaseInput &input){
-	if(&input == &pin) pinMode(pin, INPUT);
+	if(&input == &pin) pinMode(pin.get(), INPUT);
 };
 
 void AnalogSensor::onInterval(){
-	float reading = analogRead(pin);
+	float reading = analogRead(pin.get());
 	processReading(reading);
 }
 
