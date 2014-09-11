@@ -4,7 +4,7 @@
 #include "Bot.h"
 #include "Node.h"
 #include "HasInterval.h"
-#include "Streams.h"
+#include "HasOut.h"
 #include "Output.h"
 
 class SystemMemory :

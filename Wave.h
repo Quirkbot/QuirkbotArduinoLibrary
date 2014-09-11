@@ -5,10 +5,10 @@
 
 #include "Bot.h"
 #include "Node.h"
-#include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasInterval.h"
+#include "HasOut.h"
 #include "WaveTables.h"
 
 

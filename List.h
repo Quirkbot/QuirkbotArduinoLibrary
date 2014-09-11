@@ -5,7 +5,8 @@
 #include "Node.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 #include "HasInputCollection.h"
 
 class List:

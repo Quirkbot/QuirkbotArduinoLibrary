@@ -8,7 +8,7 @@
 #include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasOut.h"
 
 class Sensor :
 public Node,

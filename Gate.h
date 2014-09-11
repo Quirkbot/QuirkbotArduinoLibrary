@@ -6,7 +6,8 @@
 #include "HasTrigger.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 
 class Gate:

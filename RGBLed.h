@@ -6,7 +6,8 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 
 class RGBLed :

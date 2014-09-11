@@ -2,7 +2,6 @@
 #define Input_h_
 
 #include "Output.h"
-#include "Streams.h"
 
 class BaseInput;
 

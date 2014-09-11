@@ -7,7 +7,8 @@
 #include "Input.h"
 #include "Output.h"
 #include "ContainsInputs.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 /**
  * Node with a "in" input and "out" output.

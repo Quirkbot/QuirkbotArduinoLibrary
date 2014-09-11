@@ -8,7 +8,8 @@
 #include "Input.h"
 #include "Output.h"
 #include "ContainsInputs.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 class Converter :
 public Node,

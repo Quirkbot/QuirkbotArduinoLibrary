@@ -1,16 +1,10 @@
-#ifndef Streams_h
-#define Streams_h
+#ifndef HasIn_h
+#define HasIn_h
 
 #include "Node.h"
 
 template <class T>
 class Input;
-
-template <class T>
-class Output;
-
-template <class T>
-class HasOut;
 
 template <class T>
 class HasIn{
@@ -26,13 +20,6 @@ class HasIn{
 		private:
 
 		Node * streamNode;
-};
-
-template <class T>
-class HasOut{
-	public:
-		HasOut(Node * node){}
-		Output<T> out;
 };
 
 #endif

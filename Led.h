@@ -6,7 +6,7 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "Streams.h"
+#include "HasIn.h"
 
 
 class Led :
