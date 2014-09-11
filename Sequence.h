@@ -16,7 +16,7 @@ public Node,
 public HasInterval,
 public HasInputCollection<float>,
 public HasTrigger,
-public InputOutputStream<float>
+public OutputStream<float>
 {
 	public:
 	
@@ -27,25 +27,22 @@ public InputOutputStream<float>
 		(this),
 	HasTrigger
 		(this),
-	InputOutputStream<float>
-		(triggerInput, value){
+	OutputStream<float>
+		(this){
 		registerInput(duration);
 		selected = NULL;
 
 		interval = 0.033;
 		duration = 1.0;
-		
 	};
 
 	void onInterval();
 
 	Input<float> duration;
-
-	Output<float> value;
 	
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	private:
 
@@ -65,12 +62,12 @@ void Sequence::onInterval(){
 	if( i == inputCollection.size()) i = inputCollection.size() - 1;
 	if(inputCollection[i] != selected){
 		selected = inputCollection[i];
-		value.set(selected->get());
+		out.set(selected->get());
 	}
 }
 
-void Sequence::onInternalInputChange(BaseInput &input){
-	if(&input == &triggerInput){
+void Sequence::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &triggerInput){
 		if(!running && aboveTrigger()){
 			startTime = Bot::seconds;
 			running = true;

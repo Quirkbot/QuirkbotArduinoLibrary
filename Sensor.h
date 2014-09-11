@@ -21,7 +21,7 @@ public OutputStream<float>
 	HasInterval
 		(this),
 	OutputStream<float>
-		(value){
+		(this){
 		registerInput(smoothing);
 		smooth = 0;
 		normalizingFactor = 1024.0;
@@ -32,8 +32,6 @@ public OutputStream<float>
 
 	Input<float> smoothing;
 
-	Output<float> value;
-
 	protected:
 
 	float normalizingFactor;
@@ -41,7 +39,7 @@ public OutputStream<float>
 
 	void processReading(float reading){
 		smooth = smooth * smoothing.get() + reading * (1.0 - smoothing.get());
-		value.set( smooth / normalizingFactor );
+		out.set( smooth / normalizingFactor );
 	}
 
 };

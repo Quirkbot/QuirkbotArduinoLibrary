@@ -19,43 +19,38 @@ public InputOutputStream<float>
 	
 	Converter():
 	Contains4Inputs<float, float, float, float>
-		(inputMin, inputMax, outputMin, outputMax),
+		(inMin, inMax, outputMin, outputMax),
 	InputOutputStream<float>
-		(source, value){
-		registerInput(source);
-		registerInput(inputMin);
-		registerInput(inputMax);
+		(this){
+
+		registerInput(inMin);
+		registerInput(inMax);
 		registerInput(outputMin);
 		registerInput(outputMax);
 		
-		source = 0.0;
-		inputMin = 0.0;
-		inputMax = 1.0;
+		inMin = 0.0;
+		inMax = 1.0;
 		outputMin = 0.0;
 		outputMax = 1.0;
 	};
-
-	Input<float> source;
 	
-	Input<float> inputMin;
-	Input<float> inputMax;
+	Input<float> inMin;
+	Input<float> inMax;
 	Input<float> outputMin;
 	Input<float> outputMax;
 
-	Output<float> value;
-
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
 
-void Converter::onInternalInputChange(BaseInput &input){
-	if(&input == &source){
-		value.set( 
+void Converter::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &in){
+		out.set( 
 			mapFloat(
-				source.get(),
-				inputMin.get(),
-				inputMax.get(),
+				in.get(),
+				inMin.get(),
+				inMax.get(),
 				outputMin.get(),
 				outputMax.get()
 			)

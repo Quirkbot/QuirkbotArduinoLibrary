@@ -1,6 +1,8 @@
 #ifndef Streams_h
 #define Streams_h
 
+#include "Node.h"
+
 template <class T>
 class Input;
 
@@ -13,37 +15,32 @@ class OutputStream;
 template <class T>
 class InputStream{
 	public:
-		InputStream(Input<T>& _input):
-		input(_input),
-		control(_input){}
+		InputStream(Node * node):
+		streamNode(node){
+			streamNode->registerInput(in);
+			in = 0;
+		}
+	
+		Input<T> in;
 
-		void connect(OutputStream<T>& stream){
-			input.connect(stream.output);
-		};
-		
-		Input<T> &input;
-		Input<T> &control;
+		private:
+
+		Node * streamNode;
 };
 
 template <class T>
 class OutputStream{
 	public:
-		OutputStream(Output<T>& _output):
-		output(_output){}
-		
-		operator Output<T>&(){
-			return output;
-		}
-
-		Output<T> &output;
+		OutputStream(Node * node){}
+		Output<T> out;
 };
 
 template <class T>
 class InputOutputStream :public InputStream<T>, public OutputStream<T>{
 	public:
-		InputOutputStream(Input<T>& _input, Output<T>& _output):
-		InputStream<T>(_input),
-		OutputStream<T>(_output)
+		InputOutputStream(Node * node):
+		InputStream<T>(node),
+		OutputStream<T>(node)
 		{}
 };
 

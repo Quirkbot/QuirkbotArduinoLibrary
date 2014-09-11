@@ -16,19 +16,17 @@ public InputStream<float>{
 	
 	RGBLed():
 	InputStream<float>
-		(luminosity){
+		(this){
 		registerInput(pinR);
 		registerInput(pinG);
 		registerInput(pinB);
 		registerInput(hue);
 		registerInput(saturation);
-		registerInput(luminosity);
 
 		pinR = -1;
 		pinG = -1;
 		pinB = -1;
 
-		luminosity = 0;
 		saturation = 1;
 		hue = 1;
 	};
@@ -37,21 +35,20 @@ public InputStream<float>{
 	Input<int> pinG;
 	Input<int> pinB;
 	Input<float> hue;
-	Input<float> saturation;	
-	Input<float> luminosity;
+	Input<float> saturation;
 
 	protected:
 	float r,g,b;
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 	void calculateRGB(float h, float s, float l);
 	void writePins();
 };
-void RGBLed::onInternalInputChange(BaseInput &input){
-	if(&input == &pinR) pinMode(pinR.get(), OUTPUT);
-	else if(&input == &pinG) pinMode(pinG.get(), OUTPUT);
-	else if(&input == &pinB) pinMode(pinB.get(), OUTPUT);
-	else if(&input == &hue || &input == &saturation || &input == &luminosity){
+void RGBLed::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pinR) pinMode(pinR.get(), OUTPUT);
+	else if(&internalInput == &pinG) pinMode(pinG.get(), OUTPUT);
+	else if(&internalInput == &pinB) pinMode(pinB.get(), OUTPUT);
+	else if(&internalInput == &hue || &internalInput == &saturation || &internalInput == &in){
 		calculateRGB(hue.get(), saturation.get(), 0.5);
 		writePins();
 	};
@@ -115,9 +112,9 @@ void RGBLed::calculateRGB(float h, float s, float l) {
 	}
 }
 void RGBLed::writePins(){
-	analogWrite(pinR.get(), pow(r * luminosity.get(), 2.5) * 255.0);
-	analogWrite(pinG.get(), pow(g * luminosity.get(), 2.5) * 255.0);
-	analogWrite(pinB.get(), pow(b * luminosity.get(), 2.5) * 255.0);
+	analogWrite(pinR.get(), pow(r * in.get(), 2.5) * 255.0);
+	analogWrite(pinG.get(), pow(g * in.get(), 2.5) * 255.0);
+	analogWrite(pinB.get(), pow(b * in.get(), 2.5) * 255.0);
 
 }
 #endif

@@ -44,7 +44,7 @@ public OutputStream<float>
 	HasInterval
 		(this),
 	OutputStream<float>
-		(value){
+		(this){
 		registerInput(duration);
 		registerInput(offset);
 		registerInput(type);
@@ -63,21 +63,19 @@ public OutputStream<float>
 	Input<float> duration;
 	Input<float> offset;
 	Input<float> type;
-	
-	Output<float> value;
 
 	protected:
 
 	const int16_t * table;
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	float adjust;
 	float position;
 };
 
-void Wave::onInternalInputChange(BaseInput &input){
-	if(&input == &type){
+void Wave::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &type){
 		float t = type.get();
 		if(t <= WAVE_SQUARE){
 			table = WAVE_SQUARE_TABLE;
@@ -101,7 +99,7 @@ void Wave::onInternalInputChange(BaseInput &input){
 			table = WAVE_SINE_TABLE;
 		}
 	}
-	else if(&input == &duration){
+	else if(&internalInput == &duration){
 		float basePosition = position - offset.get();
 		if(basePosition < 0) basePosition += 1;
 
@@ -115,7 +113,7 @@ void Wave::onInterval(){
 	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * duration.get(), duration.get());
 	position = timeSeconds / duration.get();
 	int index = position * 256.0;
-	value.set(
+	out.set(
 		(float)(pgm_read_word_near(table + index)) * 0.001
 	);
 }

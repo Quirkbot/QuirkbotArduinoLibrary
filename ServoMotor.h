@@ -16,32 +16,28 @@ public InputStream<float>{
 	
 	ServoMotor():
 	InputStream<float>
-		(position){
+		(this){
 
 		registerInput(pin);
-		registerInput(position);
 
-		position = 0;
-		angle = -1;
-		
+		angle = -1;		
 	};
 
 	Input<int> pin;
-	Input<float> position;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	_libs_Servo servo;
 	int angle;
 };
-void ServoMotor::onInternalInputChange(BaseInput &input){
-	if(&input == &pin){
+void ServoMotor::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pin){
 		servo.attach(pin.get());
 	}
-	else if(&input == &position){
-		int newAngle = position.get() * 180.0;
+	else if(&internalInput == &in){
+		int newAngle = in.get() * 180.0;
 		if(newAngle != angle){
 			angle = newAngle;
 			servo.write(angle);

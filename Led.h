@@ -16,23 +16,19 @@ public InputStream<float>{
 	
 	Led():
 	InputStream<float>
-		(light){
+		(this){
 		registerInput(pin);
-		registerInput(light);
-
-		light = 0;
 	};
 
 	Input<int> pin;	
-	Input<float> light;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Led::onInternalInputChange(BaseInput &input){
-	if(&input == &pin) pinMode(pin.get(), OUTPUT);
-	else if(&input == &light) analogWrite(pin.get(), pow(light.get(), 2.5) * 255.0);
+void Led::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pin) pinMode(pin.get(), OUTPUT);
+	else if(&internalInput == &in) analogWrite(pin.get(), pow(in.get(), 2.5) * 255.0);
 };
 
 #endif

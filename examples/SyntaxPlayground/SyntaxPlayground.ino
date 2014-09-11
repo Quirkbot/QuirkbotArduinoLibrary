@@ -10,14 +10,14 @@ SerialMonitor monitor;
 void start(){
 	wave.duration = 5;
 
-	converter.input = wave.output;
-	converter.inputMin = 0;
-	converter.inputMax = 1;
-	converter.outputMin = 1.0;
-	converter.outputMax = 0.0;
+	converter.in = wave.out;
+	converter.inMin = 0;
+	converter.inMax = 1;
+	converter.outputMin = 0.47;
+	converter.outputMax = 0.53;
 
 	servo.pin = 8;
-	sonarervo.input = converter.output;
+	servo.in = converter.out;
 
 /*	monitor.add(wave);
 	monitor.add(waveConverter);
@@ -26,4 +26,4 @@ void start(){
 }
 
 
-	//wave.output.connect(converter.input);
+	//wave.output.connect(converter.in);

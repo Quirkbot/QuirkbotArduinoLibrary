@@ -17,12 +17,11 @@ public Sensor
 	Input<int> pin;
 
 	protected:
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-typedef AnalogSensor LightSensor;
 
-void AnalogSensor::onInternalInputChange(BaseInput &input){
-	if(&input == &pin) pinMode(pin.get(), INPUT);
+void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pin) pinMode(pin.get(), INPUT);
 };
 
 void AnalogSensor::onInterval(){

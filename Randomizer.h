@@ -19,18 +19,16 @@ public OutputStream<float>
 	HasInterval
 		(this),
 	OutputStream<float>
-		(value){
+		(this){
 
 		interval = 0.033;
 	};
 
 	void onInterval();
-
-	Output<float> value;
 };
 
 void Randomizer::onInterval(){
-	value.set((float)random(1000) * 0.001);
+	out.set((float)random(1000) * 0.001);
 }
 
 #endif

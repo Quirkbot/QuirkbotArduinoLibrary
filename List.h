@@ -19,37 +19,30 @@ public InputOutputStream<float>
 	HasInputCollection<float>
 		(this),
 	InputOutputStream<float>
-		(index, value){
-		registerInput(index);
-		selected = NULL;
-
-		index = 0;
-		
+		(this){
+		selected = NULL;	
 	};
-
-	Input<float> index;
-	Output<float> value;
 	
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 	void onItemsUpdated();
 
 	private:
 
 	void refreshSelected(){
 		if(inputCollection.size()){
-			int i = floor(index.get() * inputCollection.size()); 
+			int i = floor(in.get() * inputCollection.size()); 
 			if(i < 0 ) i  = 0;
 			if(i >= inputCollection.size()) i = inputCollection.size() - 1;
 			if(inputCollection[i] != selected){
 				selected = inputCollection[i];
-				value.set(selected->get());
+				out.set(selected->get());
 			}
 		}	
 		else{
 			selected = NULL;
-			value.set(0);
+			out.set(0);
 		}
 	}
 
@@ -58,12 +51,12 @@ public InputOutputStream<float>
 void List::onItemsUpdated(){
 	refreshSelected();
 };
-void List::onInternalInputChange(BaseInput &input){
-	if(&input == &index){
+void List::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &in){
 		refreshSelected();		
 	}
-	else if(&input == selected){
-		value.set(selected->get());
+	else if(&internalInput == selected){
+		out.set(selected->get());
 	}
 };
 

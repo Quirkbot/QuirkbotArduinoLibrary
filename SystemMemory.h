@@ -18,13 +18,11 @@ public OutputStream<float>
 	HasInterval
 		(this),
 	OutputStream<float>
-		(ram){
+		(this){
 		interval = 0.01;
 	};
 
 	void onInterval();
-
-	Output<float> ram;
 
 	private:
 
@@ -37,7 +35,7 @@ int SystemMemory::getFreeRam(){
 	return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval); 
 }
 void SystemMemory::onInterval(){
-	ram.set(getFreeRam());
+	out.set(getFreeRam());
 }
 
 #endif

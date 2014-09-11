@@ -10,7 +10,7 @@
 #include "Streams.h"
 
 /**
- * Node with a "base" input and "result" output.
+ * Node with a "in" input and "out" output.
  */
 class MathNode:
 public Node,
@@ -18,16 +18,13 @@ public InputOutputStream<float>{
 	public:
 	
 	MathNode() :
-	InputOutputStream<float>(base, result){
-		registerInput(base);
+	InputOutputStream<float>
+		(this){
 	};
-
-	Input<float> base;
-	Output<float> result;
 };
 
 /**
- * Node with a single "base" input and "result" output.
+ * Node with a single "in" input and "out" output.
  */
 class MathBasicNode:
 public MathNode,
@@ -35,12 +32,12 @@ public Contains1Input<float>{
 	public:
 	
 	MathBasicNode() :
-	Contains1Input<float>(base)
+	Contains1Input<float>(in)
 	{}
 };
 
 /**
- * Node with "base" and "operand" inputs and "result" output.
+ * Node with "in" and "operand" inputs and "out" output.
  */
 class MathOperationNode:
 public MathNode,
@@ -48,7 +45,7 @@ public Contains2Inputs<float, float>{
 	public:
 	
 	MathOperationNode() :
-	Contains2Inputs<float, float>(base, operand)
+	Contains2Inputs<float, float>(in, operand)
 	{
 		registerInput(operand);
 	};
@@ -63,58 +60,58 @@ public Contains2Inputs<float, float>{
 
 /**
  * Computes natural logarithm.
- * If "base" negative, a domain error occurs.
+ * If "in" negative, a domain error occurs.
  */
 class Logarithm :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Logarithm::onInternalInputChange(BaseInput &input){
-	result.set( log(base.get()) );
+void Logarithm::onInternalInputChange(BaseInput &internalInput){
+	out.set( log(in.get()) );
 };
 
 /**
  * Computes common logarithm.
- * If "base" negative, a domain error occurs.
+ * If "in" negative, a domain error occurs.
  */
 class Logarithm10 :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Logarithm10::onInternalInputChange(BaseInput &input){
-	result.set( log10(base.get()) );
+void Logarithm10::onInternalInputChange(BaseInput &internalInput){
+	out.set( log10(in.get()) );
 };
 
 /**
  * Computes square root.
- * If "base" negative, a domain error occurs.
+ * If "in" negative, a domain error occurs.
  */
 class SquareRoot : 
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void SquareRoot::onInternalInputChange(BaseInput &input){
-	result.set( sqrt(base.get()) );
+void SquareRoot::onInternalInputChange(BaseInput &internalInput){
+	out.set( sqrt(in.get()) );
 };
 
 /**
  * Computes absolute value.
- * If "base" negative, a domain error occurs.
+ * If "in" negative, a domain error occurs.
  */
 class Absolute :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Absolute::onInternalInputChange(BaseInput &input){
-	result.set( fabs(base.get()) );
+void Absolute::onInternalInputChange(BaseInput &internalInput){
+	out.set( fabs(in.get()) );
 };
 
 
@@ -124,7 +121,7 @@ void Absolute::onInternalInputChange(BaseInput &input){
 
 /**
  * Computes absolute value.
- * If "base" negative, a domain error occurs.
+ * If "in" negative, a domain error occurs.
  */
 class Power :
 public MathOperationNode{
@@ -138,10 +135,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Power::onInternalInputChange(BaseInput &input){
-	result.set( pow(base.get(), exponent.get()) );
+void Power::onInternalInputChange(BaseInput &internalInput){
+	out.set( pow(in.get(), exponent.get()) );
 };
 
 /**
@@ -159,10 +156,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Addition::onInternalInputChange(BaseInput &input){
-	result.set( base.get() + operand.get() );
+void Addition::onInternalInputChange(BaseInput &internalInput){
+	out.set( in.get() + operand.get() );
 };
 
 /**
@@ -180,10 +177,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Subtraction::onInternalInputChange(BaseInput &input){
-	result.set( base.get() - operand.get() );
+void Subtraction::onInternalInputChange(BaseInput &internalInput){
+	out.set( in.get() - operand.get() );
 };
 
 /**
@@ -201,10 +198,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Multiplication::onInternalInputChange(BaseInput &input){
-	result.set( base.get() * operand.get() );
+void Multiplication::onInternalInputChange(BaseInput &internalInput){
+	out.set( in.get() * operand.get() );
 };
 
 /**
@@ -222,10 +219,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Division::onInternalInputChange(BaseInput &input){
-	result.set( base.get() / operand.get() );
+void Division::onInternalInputChange(BaseInput &internalInput){
+	out.set( in.get() / operand.get() );
 };
 
 /**
@@ -243,10 +240,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Modulo::onInternalInputChange(BaseInput &input){
-	result.set( fmod(base.get(), operand.get()) );
+void Modulo::onInternalInputChange(BaseInput &internalInput){
+	out.set( fmod(in.get(), operand.get()) );
 };
 
 /**
@@ -264,10 +261,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Maximum::onInternalInputChange(BaseInput &input){
-	result.set( max(base.get(), operand.get()) );
+void Maximum::onInternalInputChange(BaseInput &internalInput){
+	out.set( max(in.get(), operand.get()) );
 };
 
 
@@ -286,10 +283,10 @@ public MathOperationNode{
 
 	protected:
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Minimum::onInternalInputChange(BaseInput &input){
-	result.set( min(base.get(), operand.get()) );
+void Minimum::onInternalInputChange(BaseInput &internalInput){
+	out.set( min(in.get(), operand.get()) );
 };
 
 
@@ -299,47 +296,47 @@ void Minimum::onInternalInputChange(BaseInput &input){
 
 /**
  * Round up value.
- * Rounds the "base" upward so that the "result" will be the smallest
- * integral value that is not less than the "base".
+ * Rounds the "in" upward so that the "out" will be the smallest
+ * integral value that is not less than the "in".
  */
 class Ceiling :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Ceiling::onInternalInputChange(BaseInput &input){
-	result.set( ceil(base.get()) );
+void Ceiling::onInternalInputChange(BaseInput &internalInput){
+	out.set( ceil(in.get()) );
 };
 
 /**
  * Round down value.
- * Rounds the "base" downward so that the "result" will be the largest
- * integral value that is not greater than the "base".
+ * Rounds the "in" downward so that the "out" will be the largest
+ * integral value that is not greater than the "in".
  */
 class Floor :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Floor::onInternalInputChange(BaseInput &input){
-	result.set( floor(base.get()) );
+void Floor::onInternalInputChange(BaseInput &internalInput){
+	out.set( floor(in.get()) );
 };
 
 /**
  * Round to nearest.
- * Rounds the "base" so that the "result" will be the integral value that is
- * nearest to the "base", with halfway cases rounded away from zero.
+ * Rounds the "in" so that the "out" will be the integral value that is
+ * nearest to the "in", with halfway cases rounded away from zero.
  */
 class Round :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Round::onInternalInputChange(BaseInput &input){
-	result.set( round(base.get()) );
+void Round::onInternalInputChange(BaseInput &internalInput){
+	out.set( round(in.get()) );
 };
 
 
@@ -350,91 +347,91 @@ void Round::onInternalInputChange(BaseInput &input){
 
 /**
  * Computes sine.
- * The "base" is an angle (in radians). The "result" will be between -1 and 1.
+ * The "in" is an angle (in radians). The "out" will be between -1 and 1.
  */
 class Sine :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Sine::onInternalInputChange(BaseInput &input){
-	result.set( sin(base.get()) );
+void Sine::onInternalInputChange(BaseInput &internalInput){
+	out.set( sin(in.get()) );
 };
 
 /**
  * Computes arc sine.
- * The "base" is a range (between -1 and 1). The "result" will be an angle
- * (in radians). If "base" is out of this interval (between -1 and 1), a domain
+ * The "in" is a range (between -1 and 1). The "out" will be an angle
+ * (in radians). If "in" is out of this interval (between -1 and 1), a domain
  * error occurs.
  */
 class ArcSine :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void ArcSine::onInternalInputChange(BaseInput &input){
-	result.set( asin(base.get()) );
+void ArcSine::onInternalInputChange(BaseInput &internalInput){
+	out.set( asin(in.get()) );
 };
 
 /**
  * Computes cosine.
- * The "base" is an angle (in radians). The "result" will be between -1 and 1.
+ * The "in" is an angle (in radians). The "out" will be between -1 and 1.
  */
 class Cosine :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Cosine::onInternalInputChange(BaseInput &input){
-	result.set( cos(base.get()) );
+void Cosine::onInternalInputChange(BaseInput &internalInput){
+	out.set( cos(in.get()) );
 };
 
 /**
  * Computes src cosine.
- * The "base" is a range (between -1 and 1). The "result" will be an angle
- * (in radians). If "base" is out of this interval (between -1 and 1), a domain
+ * The "in" is a range (between -1 and 1). The "out" will be an angle
+ * (in radians). If "in" is out of this interval (between -1 and 1), a domain
  * error occurs.
  */
 class ArcCosine :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void ArcCosine::onInternalInputChange(BaseInput &input){
-	result.set( acos(base.get()) );
+void ArcCosine::onInternalInputChange(BaseInput &internalInput){
+	out.set( acos(in.get()) );
 };
 
 /**
  * Computes tangent.
- * The "base" is an angle (in radians). The "result" will be between negative
+ * The "in" is an angle (in radians). The "out" will be between negative
  * infinity and infinity.
  */
 class Tangent :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Tangent::onInternalInputChange(BaseInput &input){
-	result.set( tan(base.get()) );
+void Tangent::onInternalInputChange(BaseInput &internalInput){
+	out.set( tan(in.get()) );
 };
 
 /**
  * Computes arc tangent.
- * The "base" is a range. The "result" will be an angle (in radians).
+ * The "in" is a range. The "out" will be an angle (in radians).
  */
 class ArcTangent :
 public MathBasicNode{
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void ArcTangent::onInternalInputChange(BaseInput &input){
-	result.set( atan(base.get()) );
+void ArcTangent::onInternalInputChange(BaseInput &internalInput){
+	out.set( atan(in.get()) );
 };
 
 #endif

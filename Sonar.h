@@ -20,11 +20,11 @@ public Sensor
 
 	
 	protected:
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
 
-void Sonar::onInternalInputChange(BaseInput &input){
-	if(&input == &interval){
+void Sonar::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &interval){
 		if(interval.get() < 0.05) interval = 0.05;
 	}
 };

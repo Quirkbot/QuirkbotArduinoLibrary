@@ -20,17 +20,15 @@ public OutputStream<float>
 	HasInterval
 		(this),
 	OutputStream<float>
-		(seconds){
+		(this){
 		interval = 0.001;
 	};
 
 	void onInterval();
-
-	Output<float> seconds;
 };
 
 void Time::onInterval(){
-	seconds.set(Bot::seconds);
+	out.set(Bot::seconds);
 }
 
 #endif

@@ -20,21 +20,14 @@ public InputOutputStream<float>
 	HasTrigger
 		(this),
 	InputOutputStream<float>
-		(source, value){
-		registerInput(source);
-		source = 0;	
-		invert = false;
+		(this){
+
 		closed = false;
 	};
-
-	Input<float> source;
-	Input<bool> invert;
-
-	Output<float> value;
 	
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	private:
 
@@ -42,17 +35,12 @@ public InputOutputStream<float>
 
 };
 
-void Gate::onInternalInputChange(BaseInput &input){
-	if(&input == &triggerInput){
-		if(!invert.get()){
-			closed = !aboveTrigger();
-		}
-		else{
-			closed = aboveTrigger();
-		}
+void Gate::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &triggerInput){
+		closed = !aboveTrigger();
 	}
-	else if(&input == &source){
-		if(!closed) value.set(source.get());
+	else if(&internalInput == &in){
+		if(!closed) out.set(in.get());
 	}
 };
 
