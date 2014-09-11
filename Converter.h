@@ -13,31 +13,34 @@
 class Converter :
 public Node,
 public Contains4Inputs<float, float, float, float>,
-public InputOutputStream<float>
+public HasIn<float>,
+public HasOut<float>
 {
 	public:
 	
 	Converter():
 	Contains4Inputs<float, float, float, float>
-		(inMin, inMax, outputMin, outputMax),
-	InputOutputStream<float>
+		(inMin, inMax, outMin, outMax),
+	HasIn<float>
+		(this),
+	HasOut<float>
 		(this){
 
 		registerInput(inMin);
 		registerInput(inMax);
-		registerInput(outputMin);
-		registerInput(outputMax);
+		registerInput(outMin);
+		registerInput(outMax);
 		
 		inMin = 0.0;
 		inMax = 1.0;
-		outputMin = 0.0;
-		outputMax = 1.0;
+		outMin = 0.0;
+		outMax = 1.0;
 	};
 	
 	Input<float> inMin;
 	Input<float> inMax;
-	Input<float> outputMin;
-	Input<float> outputMax;
+	Input<float> outMin;
+	Input<float> outMax;
 
 	protected:
 
@@ -51,8 +54,8 @@ void Converter::onInternalInputChange(BaseInput &internalInput){
 				in.get(),
 				inMin.get(),
 				inMax.get(),
-				outputMin.get(),
-				outputMax.get()
+				outMin.get(),
+				outMax.get()
 			)
 		);
 	}

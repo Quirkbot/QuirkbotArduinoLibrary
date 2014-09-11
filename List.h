@@ -11,14 +11,17 @@
 class List:
 public Node,
 public HasInputCollection<float>,
-public InputOutputStream<float>
+public HasIn<float>,
+public HasOut<float>
 {
 	public:
 	
 	List():
 	HasInputCollection<float>
 		(this),
-	InputOutputStream<float>
+	HasIn<float>
+		(this),
+	HasOut<float>
 		(this){
 		selected = NULL;	
 	};

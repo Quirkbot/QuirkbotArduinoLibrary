@@ -12,14 +12,14 @@
 class Time :
 public Node,
 public HasInterval,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 
 	Time():
 	HasInterval
 		(this),
-	OutputStream<float>
+	HasOut<float>
 		(this){
 		interval = 0.001;
 	};

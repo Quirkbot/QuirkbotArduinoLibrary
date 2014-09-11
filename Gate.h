@@ -12,14 +12,17 @@
 class Gate:
 public Node,
 public HasTrigger,
-public InputOutputStream<float>
+public HasIn<float>,
+public HasOut<float>
 {
 	public:
 	
 	Gate():
 	HasTrigger
 		(this),
-	InputOutputStream<float>
+	HasIn<float>
+		(this),
+	HasOut<float>
 		(this){
 
 		closed = false;

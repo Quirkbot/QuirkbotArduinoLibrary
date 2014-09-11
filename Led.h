@@ -11,11 +11,11 @@
 
 class Led :
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	Led():
-	InputStream<float>
+	HasIn<float>
 		(this){
 		registerInput(pin);
 	};

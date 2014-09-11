@@ -16,7 +16,7 @@ public Node,
 public HasInterval,
 public HasInputCollection<float>,
 public HasTrigger,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 	
@@ -27,7 +27,7 @@ public OutputStream<float>
 		(this),
 	HasTrigger
 		(this),
-	OutputStream<float>
+	HasOut<float>
 		(this){
 		registerInput(duration);
 		selected = NULL;

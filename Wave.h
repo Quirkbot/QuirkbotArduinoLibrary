@@ -36,14 +36,14 @@ RampDownWave
 class Wave :
 public Node,
 public HasInterval,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 
 	Wave():
 	HasInterval
 		(this),
-	OutputStream<float>
+	HasOut<float>
 		(this){
 		registerInput(duration);
 		registerInput(offset);

@@ -11,11 +11,11 @@
 
 class ServoMotor:
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	ServoMotor():
-	InputStream<float>
+	HasIn<float>
 		(this){
 
 		registerInput(pin);

@@ -11,11 +11,11 @@
 
 class RGBLed :
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	RGBLed():
-	InputStream<float>
+	HasIn<float>
 		(this){
 		registerInput(pinR);
 		registerInput(pinG);

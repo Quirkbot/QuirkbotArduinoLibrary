@@ -10,11 +10,11 @@
 
 class Buzzer:
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	Buzzer():
-	InputStream<float>
+	HasIn<float>
 		(this){
 
 		registerInput(pin);

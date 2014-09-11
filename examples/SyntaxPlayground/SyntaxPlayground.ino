@@ -13,8 +13,8 @@ void start(){
 	converter.in = wave.out;
 	converter.inMin = 0;
 	converter.inMax = 1;
-	converter.outputMin = 0.47;
-	converter.outputMax = 0.53;
+	converter.outMin = 0.47;
+	converter.outMax = 0.53;
 
 	servo.pin = 8;
 	servo.in = converter.out;

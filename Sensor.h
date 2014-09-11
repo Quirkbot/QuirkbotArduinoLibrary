@@ -13,14 +13,14 @@
 class Sensor :
 public Node,
 public HasInterval,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 	
 	Sensor():
 	HasInterval
 		(this),
-	OutputStream<float>
+	HasOut<float>
 		(this){
 		registerInput(smoothing);
 		smooth = 0;

@@ -10,12 +10,12 @@ template <class T>
 class Output;
 
 template <class T>
-class OutputStream;
+class HasOut;
 
 template <class T>
-class InputStream{
+class HasIn{
 	public:
-		InputStream(Node * node):
+		HasIn(Node * node):
 		streamNode(node){
 			streamNode->registerInput(in);
 			in = 0;
@@ -29,19 +29,10 @@ class InputStream{
 };
 
 template <class T>
-class OutputStream{
+class HasOut{
 	public:
-		OutputStream(Node * node){}
+		HasOut(Node * node){}
 		Output<T> out;
-};
-
-template <class T>
-class InputOutputStream :public InputStream<T>, public OutputStream<T>{
-	public:
-		InputOutputStream(Node * node):
-		InputStream<T>(node),
-		OutputStream<T>(node)
-		{}
 };
 
 #endif

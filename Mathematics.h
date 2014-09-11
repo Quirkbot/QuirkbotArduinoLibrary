@@ -14,11 +14,14 @@
  */
 class MathNode:
 public Node,
-public InputOutputStream<float>{
+public HasIn<float>,
+public HasOut<float>{
 	public:
 	
 	MathNode() :
-	InputOutputStream<float>
+	HasIn<float>
+		(this),
+	HasOut<float>
 		(this){
 	};
 };
