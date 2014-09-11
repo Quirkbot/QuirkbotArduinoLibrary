@@ -17,7 +17,7 @@ void start(){
 	converter.outputMax = 0.0;
 
 	servo.pin = 8;
-	servo.input = converter.output;
+	sonarervo.input = converter.output;
 
 /*	monitor.add(wave);
 	monitor.add(waveConverter);
