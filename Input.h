@@ -48,14 +48,11 @@ class Input : public BaseInput{
 	}
 
 	/**
-	 * Getters
+	 * Getter
 	 **/	
 	T get(){
 		return value;
 	}
-	//operator T(){
-	//	return get();
-	//}
 
 	protected:
 	void handleValueConnection(const T &value){
