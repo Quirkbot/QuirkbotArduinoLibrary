@@ -15,6 +15,7 @@ class Input : public BaseInput{
 
 	Input(){
 		output = NULL;
+		value = T();
 	}
 	~Input(){
 		clearOutput();
