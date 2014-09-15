@@ -24,9 +24,9 @@ class Output {
 	/**
 	 * Handle for input connections.
 	 **/
-	void operator=(Input<T> &input){
+	/*void operator=(Input<T> &input){
 		input.connect(*this);
-	}
+	}*/
 	void connect(Input<T> &input){
 		input.connect(*this);
 	}

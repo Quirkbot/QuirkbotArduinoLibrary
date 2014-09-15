@@ -22,23 +22,32 @@ class Input : public BaseInput{
 	}
 	
 	/**
-	 * Handle for both, primitives and outputs connections.
-	 * If called on a primitive, clearOutput will also be called, causing the
-	 * input to disconnect from a previously connected output.
+	 * Handle for primitives connections.
 	 **/
 	void operator=(const T &value){
 		handleValueConnection(value);
 	}
-	void operator=(const Output<T> &output){
+
+	/**
+	 * Handle for output connections.
+	 **/
+	void connect(const Output<T> &output){
+		handleOutputConnection(output);
+	}
+
+	/**
+	 * Handle for both, primitives and outputs connections.
+	 * If called on a primitive, clearOutput will also be called, causing the
+	 * input to disconnect from a previously connected output.
+	 **/
+
+	/*void operator=(const Output<T> &output){
 		handleOutputConnection(output);
 	}
 	void connect(const T &value){
 		clearOutput();
 		handleValueConnection(value);
-	}
-	void connect(const Output<T> &output){
-		handleOutputConnection(output);
-	}
+	}*/
 
 	/**
 	 * Remove connections
@@ -62,7 +71,7 @@ class Input : public BaseInput{
 		 * an output, the only way to disconnect is by explicitly calling the 
 		 * 'disconnect' method.
 		 **/
-		//clearOutput();
+		clearOutput();
 		onOutputChange(value);
 	}
 	void handleOutputConnection(const Output<T> &output){
