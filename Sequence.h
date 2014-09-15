@@ -69,7 +69,7 @@ void Sequence::onInterval(){
 
 void Sequence::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &triggerInput){
-		if(!running && aboveTrigger()){
+		if(!running && isTriggerActive()){
 			startTime = Bot::seconds;
 			running = true;
 			onInterval(); // start immediatelly

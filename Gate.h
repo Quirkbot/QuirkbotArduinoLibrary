@@ -25,26 +25,17 @@ public HasOut<float>
 		(this),
 	HasOut<float>
 		(this){
-
-		closed = false;
 	};
 	
 	protected:
-
 	void onInternalInputChange(BaseInput &internalInput);
-
-	private:
-
-	bool closed;
-
 };
 
 void Gate::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &triggerInput){
-		closed = !aboveTrigger();
-	}
-	else if(&internalInput == &in){
-		if(!closed) out.set(in.get());
+	if(&internalInput == &in){
+		if(isTriggerActive()){
+			out.set(in.get());
+		}
 	}
 };
 
