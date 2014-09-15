@@ -29,10 +29,12 @@ void SerialMonitor::onInterval(){
 	if(!inputCollection.size()) return;
 
 	for(int i = 0; i < inputCollection.size(); i++){
+		Serial.print(i);
+		Serial.write(": ");
 		Serial.print(inputCollection[i]->get(), 3);
-		Serial.print("\t");
+		Serial.write("\t");
 	}
-	Serial.print("\n");
+	Serial.write("\n");
 }
 
 #endif
