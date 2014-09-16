@@ -6,35 +6,32 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "Streams.h"
+#include "HasIn.h"
 
 class Buzzer:
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	Buzzer():
-	InputStream<float>
-		(tone){
+	HasIn<float>
+		(this){
 
 		registerInput(pin);
-		registerInput(tone);
 
 		lastFrequency = 0;
-		tone = 0;
 	};
 
 	void process();
 
 	Input<int> pin;
-	Input<float> tone;
 
 	static float calculateTone(float frequency);
 	static float MAX_FREQUENCY;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	int lastFrequency;
 };
@@ -42,17 +39,17 @@ float Buzzer::MAX_FREQUENCY = 4978.0;
 float Buzzer::calculateTone(float frequency){
 	return sqrt(frequency / MAX_FREQUENCY);
 }
-void Buzzer::onInternalInputChange(BaseInput &input){
-	if(&input == &pin){
-		pinMode(pin, OUTPUT);
+void Buzzer::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pin){
+		pinMode(pin.get(), OUTPUT);
 		process();
 	}
-	else if(&input == &tone){
+	else if(&internalInput == &in){
 		process();
 	}
 }
 void Buzzer::process(){
-	int frequency = (tone * tone) * MAX_FREQUENCY;
+	int frequency = (in.get() * in.get()) * MAX_FREQUENCY;
 	if(lastFrequency == frequency) return;
 	lastFrequency = frequency;
 	if(frequency != 0) {

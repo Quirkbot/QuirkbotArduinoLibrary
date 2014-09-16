@@ -8,33 +8,19 @@ class HasTrigger{
 	public:
 	HasTrigger(Node * node):
 	triggerNode(node){
-		triggerNode->registerInput(triggerInput);
-		triggerNode->registerInput(triggerThreshold);
+		triggerNode->registerInput(trigger);
 		
-		triggerInput = 0;
+		trigger = 0;
 		triggerThreshold = 0.95;
 	};
 
-	void trigger(Output<float> &output){
-		triggerInput.connect(output);
-	};
-	void trigger(float &value){
-		triggerInput = value;
-	};
-	void trigger(float value){
-		triggerInput = value;
-	};
-	void removeTrigger(){
-		triggerInput.disconnect();
-	};
-
-	Input<float> triggerInput;
-	Input<float> triggerThreshold;
+	Input<float> trigger;
+	float triggerThreshold;
 
 	protected:
 
-	bool aboveTrigger(){
-		return triggerInput > triggerThreshold;
+	bool isTriggerActive(){
+		return trigger.get() > triggerThreshold;
 	}
 
 	private:

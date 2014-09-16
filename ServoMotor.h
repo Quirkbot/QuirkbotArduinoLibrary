@@ -7,41 +7,37 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "Streams.h"
+#include "HasIn.h"
 
 class ServoMotor:
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	ServoMotor():
-	InputStream<float>
-		(position){
+	HasIn<float>
+		(this){
 
 		registerInput(pin);
-		registerInput(position);
 
-		position = 0;
-		angle = -1;
-		
+		angle = -1;		
 	};
 
 	Input<int> pin;
-	Input<float> position;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	_libs_Servo servo;
 	int angle;
 };
-void ServoMotor::onInternalInputChange(BaseInput &input){
-	if(&input == &pin){
-		servo.attach(pin);
+void ServoMotor::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pin){
+		servo.attach(pin.get());
 	}
-	else if(&input == &position){
-		int newAngle = position * 180.0;
+	else if(&internalInput == &in){
+		int newAngle = in.get() * 180.0;
 		if(newAngle != angle){
 			angle = newAngle;
 			servo.write(angle);

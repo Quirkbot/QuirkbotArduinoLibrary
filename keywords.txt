@@ -51,33 +51,9 @@ ArcTangent	LITERAL1
 # Methods and Functions
 ###################################
 
-# most used...
 connect	KEYWORD2
 add	KEYWORD2
-trigger	KEYWORD2
 set	KEYWORD2
-
-pin	KEYWORD2
-pinR KEYWORD2
-pinG KEYWORD2
-pinB KEYWORD2
-value	KEYWORD2
-control   KEYWORD2
-duration	KEYWORD2
-type	KEYWORD2
-
-# least used...
-disconnect	KEYWORD2
-clear	KEYWORD2
-
-interval	KEYWORD2
-triggerThreshold	KEYWORD2
-smoothing	KEYWORD2
-input	KEYWORD2
-output	KEYWORD2
-invert	KEYWORD2
-offset	KEYWORD2
-
 
 ###################################
 # Constants

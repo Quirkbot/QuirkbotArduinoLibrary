@@ -8,7 +8,8 @@
 #include "HasTrigger.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 
 class Sequence:
@@ -16,7 +17,7 @@ public Node,
 public HasInterval,
 public HasInputCollection<float>,
 public HasTrigger,
-public InputOutputStream<float>
+public HasOut<float>
 {
 	public:
 	
@@ -27,25 +28,22 @@ public InputOutputStream<float>
 		(this),
 	HasTrigger
 		(this),
-	InputOutputStream<float>
-		(triggerInput, value){
+	HasOut<float>
+		(this){
 		registerInput(duration);
 		selected = NULL;
 
 		interval = 0.033;
 		duration = 1.0;
-		
 	};
 
 	void onInterval();
 
 	Input<float> duration;
-
-	Output<float> value;
 	
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	private:
 
@@ -56,7 +54,7 @@ public InputOutputStream<float>
 };
 void Sequence::onInterval(){
 	if(!running) return;
-	float position = (Bot::seconds - startTime) / duration;
+	float position = (Bot::seconds - startTime) / duration.get();
 	if(position > 1){
 		position = 1;
 		running = false;
@@ -65,13 +63,13 @@ void Sequence::onInterval(){
 	if( i == inputCollection.size()) i = inputCollection.size() - 1;
 	if(inputCollection[i] != selected){
 		selected = inputCollection[i];
-		value.set(selected->get());
+		out.set(selected->get());
 	}
 }
 
-void Sequence::onInternalInputChange(BaseInput &input){
-	if(&input == &triggerInput){
-		if(!running && aboveTrigger()){
+void Sequence::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &triggerInput){
+		if(!running && isTriggerActive()){
 			startTime = Bot::seconds;
 			running = true;
 			onInterval(); // start immediatelly

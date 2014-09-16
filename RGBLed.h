@@ -6,29 +6,28 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 
 class RGBLed :
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	RGBLed():
-	InputStream<float>
-		(luminosity){
+	HasIn<float>
+		(this){
 		registerInput(pinR);
 		registerInput(pinG);
 		registerInput(pinB);
 		registerInput(hue);
 		registerInput(saturation);
-		registerInput(luminosity);
 
 		pinR = -1;
 		pinG = -1;
 		pinB = -1;
 
-		luminosity = 0;
 		saturation = 1;
 		hue = 1;
 	};
@@ -37,22 +36,21 @@ public InputStream<float>{
 	Input<int> pinG;
 	Input<int> pinB;
 	Input<float> hue;
-	Input<float> saturation;	
-	Input<float> luminosity;
+	Input<float> saturation;
 
 	protected:
 	float r,g,b;
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 	void calculateRGB(float h, float s, float l);
 	void writePins();
 };
-void RGBLed::onInternalInputChange(BaseInput &input){
-	if(&input == &pinR) pinMode(pinR, OUTPUT);
-	else if(&input == &pinG) pinMode(pinG, OUTPUT);
-	else if(&input == &pinB) pinMode(pinB, OUTPUT);
-	else if(&input == &hue || &input == &saturation || &input == &luminosity){
-		calculateRGB(hue, saturation, 0.5);
+void RGBLed::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pinR) pinMode(pinR.get(), OUTPUT);
+	else if(&internalInput == &pinG) pinMode(pinG.get(), OUTPUT);
+	else if(&internalInput == &pinB) pinMode(pinB.get(), OUTPUT);
+	else if(&internalInput == &hue || &internalInput == &saturation || &internalInput == &in){
+		calculateRGB(hue.get(), saturation.get(), 0.5);
 		writePins();
 	};
 };
@@ -115,9 +113,9 @@ void RGBLed::calculateRGB(float h, float s, float l) {
 	}
 }
 void RGBLed::writePins(){
-	analogWrite(pinR, pow(r * luminosity, 2.5) * 255.0);
-	analogWrite(pinG, pow(g * luminosity, 2.5) * 255.0);
-	analogWrite(pinB, pow(b * luminosity, 2.5) * 255.0);
+	analogWrite(pinR.get(), pow(r * in.get(), 2.5) * 255.0);
+	analogWrite(pinG.get(), pow(g * in.get(), 2.5) * 255.0);
+	analogWrite(pinB.get(), pow(b * in.get(), 2.5) * 255.0);
 
 }
 #endif

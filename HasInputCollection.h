@@ -14,23 +14,25 @@ class HasInputCollection{
 
 	};
 
+	// Getter
+	Input<T>& operator[](unsigned int idx)  {
+		while(inputCollection.size() <= idx){
+			registerNewInput();
+		}
+		return *(inputCollection[idx]);
+	};
+
 	void add(Output<T> &output){
-		Input<T> * input = new Input<T>();
-		inputCollectionNode->registerInput(*input);
+		Input<T> * input = registerNewInput();
 		input->connect(output);
-		inputCollection.push(input);
 	};
 	void add(T &value){
-		Input<T> * input = new Input<T>();
-		inputCollectionNode->registerInput(*input);
+		Input<T> * input = registerNewInput();
 		(*input) = value;
-		inputCollection.push(input);
 	};
 	void add(T value){
-		Input<T> * input = new Input<T>();
-		inputCollectionNode->registerInput(*input);
-		(*input) = value;
-		inputCollection.push(input);
+		Input<T> * input = registerNewInput();
+		(*input) = value;		
 	};
 	void clear(){
 		while(inputCollection.size()){
@@ -39,6 +41,14 @@ class HasInputCollection{
 			inputCollection.erase(0);
 		}
 	};
+
+	private:
+	Input<T> * registerNewInput(){
+		Input<T> * input = new Input<T>();
+		inputCollectionNode->registerInput(*input);
+		inputCollection.push(input);
+		return input;
+	}
 
 	protected:
 	Vector<Input<T> * > inputCollection;

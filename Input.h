@@ -2,7 +2,6 @@
 #define Input_h_
 
 #include "Output.h"
-#include "Streams.h"
 
 class BaseInput;
 
@@ -16,26 +15,24 @@ class Input : public BaseInput{
 
 	Input(){
 		output = NULL;
+		value = T();
 	}
 	~Input(){
 		clearOutput();
 	}
-
+	
 	/**
-	 * Preferred handle for primitive connections
+	 * Handle for primitives connections.
 	 **/
 	void operator=(const T &value){
 		handleValueConnection(value);
 	}
-	
+
 	/**
-	 * Preferred handle for output connections
+	 * Handle for output connections.
 	 **/
 	void connect(const Output<T> &output){
 		handleOutputConnection(output);
-	}
-	void disconnect(){
-		clearOutput();
 	}
 
 	/**
@@ -43,36 +40,27 @@ class Input : public BaseInput{
 	 * If called on a primitive, clearOutput will also be called, causing the
 	 * input to disconnect from a previously connected output.
 	 **/
-	void bind(const T &value){
+
+	/*void operator=(const Output<T> &output){
+		handleOutputConnection(output);
+	}
+	void connect(const T &value){
 		clearOutput();
 		handleValueConnection(value);
-	}
-	void bind(const Output<T> &output){
-		handleOutputConnection(output);
-	}
+	}*/
 
 	/**
-	 * Function call style interface
+	 * Remove connections
 	 **/
-	void operator()(const T &value){
-		handleValueConnection(value);
-	}
-	void operator()(const Output<T> &output){
-		handleOutputConnection(output);
-	}
-	void operator()(){
-		T value = this->value;
-		handleValueConnection(value);
+	void disconnect(){
+		clearOutput();
 	}
 
 	/**
-	 * Getters
+	 * Getter
 	 **/	
 	T get(){
 		return value;
-	}
-	operator T(){
-		return get();
 	}
 
 	protected:
@@ -83,7 +71,7 @@ class Input : public BaseInput{
 		 * an output, the only way to disconnect is by explicitly calling the 
 		 * 'disconnect' method.
 		 **/
-		//clearOutput();
+		clearOutput();
 		onOutputChange(value);
 	}
 	void handleOutputConnection(const Output<T> &output){

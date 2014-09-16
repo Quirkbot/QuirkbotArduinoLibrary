@@ -7,30 +7,28 @@
 #include "Input.h"
 #include "Output.h"
 #include "ContainsInputs.h"
-#include "Streams.h"
+#include "HasOut.h"
 
 class Time :
 public Node,
 public HasInterval,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 
 	Time():
 	HasInterval
 		(this),
-	OutputStream<float>
-		(seconds){
+	HasOut<float>
+		(this){
 		interval = 0.001;
 	};
 
 	void onInterval();
-
-	Output<float> seconds;
 };
 
 void Time::onInterval(){
-	seconds.set(Bot::seconds);
+	out.set(Bot::seconds);
 }
 
 #endif

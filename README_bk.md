@@ -104,7 +104,7 @@ Read the data from the sensor and log it using serial communication
 
 
 --------------------------------
-**Category:** *[Sensor](#Sensor), [HasPin](#HasPin), [HasInterval](#HasInterval), [OutputStream](#OutputStream)*
+**Category:** *[Sensor](#Sensor), [HasPin](#HasPin), [HasInterval](#HasInterval), [HasOut](#HasOut)*
 
 ##Properties
 
@@ -166,7 +166,7 @@ How often (in seconds) will the sensor report it's readings.
 
 Measures eletric resitance. Can be used with photo sensors, humidity sensors, potenciometers, etc.
 
-**Category:** *[Sensor](#Sensor), [HasPin](#HasPin), [HasInterval](#HasInterval), [OutputStream](#OutputStream)*
+**Category:** *[Sensor](#Sensor), [HasPin](#HasPin), [HasInterval](#HasInterval), [HasOut](#HasOut)*
 
 ##Properties
 
@@ -225,7 +225,7 @@ How often (in seconds) will the sensor report it's readings.
 
 Light Emiting Diode. It blinks :).
 
-**Category:** *[HasPin](#HasPin), [InputStream](#InputStream)*
+**Category:** *[HasPin](#HasPin), [HasIn](#HasIn)*
 
 ##Properties
 
@@ -258,7 +258,7 @@ Set the brigtheness of the lamp.
 
 ##Methods
 
-###connect(OutputStream& output)
+###connect(HasOut& output)
 
 Connects to an output node, causing the light to update everytime  there is a change in the signal.
 	

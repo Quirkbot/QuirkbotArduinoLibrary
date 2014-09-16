@@ -6,53 +6,36 @@
 #include "HasTrigger.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 
 class Gate:
 public Node,
 public HasTrigger,
-public InputOutputStream<float>
+public HasIn<float>,
+public HasOut<float>
 {
 	public:
 	
 	Gate():
 	HasTrigger
 		(this),
-	InputOutputStream<float>
-		(source, value){
-		registerInput(source);
-		source = 0;	
-		invert = false;
-		closed = false;
+	HasIn<float>
+		(this),
+	HasOut<float>
+		(this){
 	};
-
-	Input<float> source;
-	Input<bool> invert;
-
-	Output<float> value;
 	
 	protected:
-
-	void onInternalInputChange(BaseInput &input);
-
-	private:
-
-	bool closed;
-
+	void onInternalInputChange(BaseInput &internalInput);
 };
 
-void Gate::onInternalInputChange(BaseInput &input){
-	if(&input == &triggerInput){
-		if(!invert){
-			closed = !aboveTrigger();
+void Gate::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &in){
+		if(isTriggerActive()){
+			out.set(in.get());
 		}
-		else{
-			closed = aboveTrigger();
-		}
-	}
-	else if(&input == &source){
-		if(!closed) value.set(source.get());
 	}
 };
 

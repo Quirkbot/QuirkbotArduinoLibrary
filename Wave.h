@@ -5,10 +5,10 @@
 
 #include "Bot.h"
 #include "Node.h"
-#include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasInterval.h"
+#include "HasOut.h"
 #include "WaveTables.h"
 
 
@@ -36,15 +36,15 @@ RampDownWave
 class Wave :
 public Node,
 public HasInterval,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 
 	Wave():
 	HasInterval
 		(this),
-	OutputStream<float>
-		(value){
+	HasOut<float>
+		(this){
 		registerInput(duration);
 		registerInput(offset);
 		registerInput(type);
@@ -52,6 +52,7 @@ public OutputStream<float>
 		interval = 0.033;
 
 		position = 0;
+
 		offset = 0.0;
 		type = WAVE_SINE;		
 		duration = 1.0;
@@ -62,58 +63,59 @@ public OutputStream<float>
 	Input<float> duration;
 	Input<float> offset;
 	Input<float> type;
-	
-	Output<float> value;
 
 	protected:
 
 	const int16_t * table;
 	
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 
 	float adjust;
 	float position;
 };
 
-void Wave::onInternalInputChange(BaseInput &input){
-	if(&input == &type){
-		switch ((int)type){
-			case WAVE_SQUARE:
-				table = WAVE_SQUARE_TABLE;
-				break;
-			case WAVE_PULSE:
-				table = WAVE_PULSE_TABLE;
-				break;
-			case WAVE_TRIANGLE:
-				table = WAVE_TRIANGLE_TABLE;
-				break;
-			case WAVE_RAMP_UP:
-				table = WAVE_RAMP_UP_TABLE;
-				break;
-			case WAVE_RAMP_DOWN:
-				table = WAVE_RAMP_DOWN_TABLE;
-				break;
-			case WAVE_SINE:
-			default:
-				table = WAVE_SINE_TABLE;
-				break;
+void Wave::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &type){
+		float t = type.get();
+		if(t <= WAVE_SQUARE){
+			table = WAVE_SQUARE_TABLE;
+		}
+		else if (t <= WAVE_SQUARE){
+			table = WAVE_SQUARE_TABLE;
+		}
+		if (t <= WAVE_PULSE){
+			table = WAVE_PULSE_TABLE;
+		}
+		if (t <= WAVE_TRIANGLE){
+			table = WAVE_TRIANGLE_TABLE;
+		}
+		if (t <= WAVE_RAMP_UP){
+			table = WAVE_RAMP_UP_TABLE;
+		}
+		if (t <= WAVE_RAMP_DOWN){
+			table = WAVE_RAMP_DOWN_TABLE;
+		}
+		if (t <= WAVE_SINE){
+			table = WAVE_SINE_TABLE;
 		}
 	}
-	else if(&input == &duration){
-		float basePosition = position - offset;
+	else if(&internalInput == &duration){
+		float basePosition = position - offset.get();
 		if(basePosition < 0) basePosition += 1;
 
-		float currentTime = fmod(Bot::seconds, duration);
-		float diff = currentTime/duration - basePosition;
-		adjust = diff * duration;
+		float currentTime = fmod(Bot::seconds, duration.get());
+		float diff = currentTime/duration.get() - basePosition;
+		adjust = diff * duration.get();
 	}
 };
 
 void Wave::onInterval(){
-	float timeSeconds = fmod(Bot::seconds -adjust + offset * duration, duration);
-	position = timeSeconds / duration;
+	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * duration.get(), duration.get());
+	position = timeSeconds / duration.get();
 	int index = position * 256.0;
-	value = (float)(pgm_read_word_near(table + index)) * 0.001;
+	out.set(
+		(float)(pgm_read_word_near(table + index)) * 0.001
+	);
 }
 
 #endif
