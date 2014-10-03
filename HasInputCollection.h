@@ -16,10 +16,10 @@ class HasInputCollection{
 
 	// Getter
 	Input<T>& operator[](unsigned int idx)  {
-		while(inputCollection.size() <= idx){
+		while(items.size() <= idx){
 			registerNewInput();
 		}
-		return *(inputCollection[idx]);
+		return *(items[idx]);
 	};
 
 	void add(Output<T> &output){
@@ -35,10 +35,10 @@ class HasInputCollection{
 		(*input) = value;		
 	};
 	void clear(){
-		while(inputCollection.size()){
-			inputCollection[0]->disconnect();
-			delete inputCollection[0];
-			inputCollection.erase(0);
+		while(items.size()){
+			items[0]->disconnect();
+			delete items[0];
+			items.erase(0);
 		}
 	};
 
@@ -46,12 +46,12 @@ class HasInputCollection{
 	Input<T> * registerNewInput(){
 		Input<T> * input = new Input<T>();
 		inputCollectionNode->registerInput(*input);
-		inputCollection.push(input);
+		items.push(input);
 		return input;
 	}
 
 	protected:
-	Vector<Input<T> * > inputCollection;
+	Vector<Input<T> * > items;
 
 	Node * inputCollectionNode;
 	virtual void onItemsUpdated(){};
