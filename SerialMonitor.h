@@ -26,12 +26,12 @@ public HasInputCollection<float>{
 };
 
 void SerialMonitor::onInterval(){
-	if(!inputCollection.size()) return;
+	if(!items.size()) return;
 
-	for(int i = 0; i < inputCollection.size(); i++){
+	for(int i = 0; i < items.size(); i++){
 		Serial.print(i);
 		Serial.write(": ");
-		Serial.print(inputCollection[i]->get(), 3);
+		Serial.print(items[i]->get(), 3);
 		Serial.write("\t");
 	}
 	Serial.write("\n");

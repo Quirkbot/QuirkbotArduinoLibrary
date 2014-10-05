@@ -35,12 +35,12 @@ public HasOut<float>
 	private:
 
 	void refreshSelected(){
-		if(inputCollection.size()){
-			int i = floor(in.get() * inputCollection.size()); 
+		if(items.size()){
+			int i = floor(in.get() * items.size()); 
 			if(i < 0 ) i  = 0;
-			if(i >= inputCollection.size()) i = inputCollection.size() - 1;
-			if(inputCollection[i] != selected){
-				selected = inputCollection[i];
+			if(i >= items.size()) i = items.size() - 1;
+			if(items[i] != selected){
+				selected = items[i];
 				out.set(selected->get());
 			}
 		}	

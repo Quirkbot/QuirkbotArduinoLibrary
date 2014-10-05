@@ -59,16 +59,16 @@ void Sequence::onInterval(){
 		position = 1;
 		running = false;
 	}
-	int i = floor(position * inputCollection.size());
-	if( i == inputCollection.size()) i = inputCollection.size() - 1;
-	if(inputCollection[i] != selected){
-		selected = inputCollection[i];
+	int i = floor(position * items.size());
+	if( i == items.size()) i = items.size() - 1;
+	if(items[i] != selected){
+		selected = items[i];
 		out.set(selected->get());
 	}
 }
 
 void Sequence::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &triggerInput){
+	if(&internalInput == &trigger){
 		if(!running && isTriggerActive()){
 			startTime = Bot::seconds;
 			running = true;
