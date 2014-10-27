@@ -14,34 +14,44 @@ class HasInputCollection{
 
 	};
 
+	// Getter
+	Input<T>& operator[](unsigned int idx)  {
+		while(items.size() <= idx){
+			registerNewInput();
+		}
+		return *(items[idx]);
+	};
+
 	void add(Output<T> &output){
-		Input<T> * input = new Input<T>();
-		inputCollectionNode->registerInput(*input);
+		Input<T> * input = registerNewInput();
 		input->connect(output);
-		inputCollection.push(input);
 	};
 	void add(T &value){
-		Input<T> * input = new Input<T>();
-		inputCollectionNode->registerInput(*input);
+		Input<T> * input = registerNewInput();
 		(*input) = value;
-		inputCollection.push(input);
 	};
 	void add(T value){
-		Input<T> * input = new Input<T>();
-		inputCollectionNode->registerInput(*input);
-		(*input) = value;
-		inputCollection.push(input);
+		Input<T> * input = registerNewInput();
+		(*input) = value;		
 	};
 	void clear(){
-		while(inputCollection.size()){
-			inputCollection[0]->disconnect();
-			delete inputCollection[0];
-			inputCollection.erase(0);
+		while(items.size()){
+			items[0]->disconnect();
+			delete items[0];
+			items.erase(0);
 		}
 	};
 
+	private:
+	Input<T> * registerNewInput(){
+		Input<T> * input = new Input<T>();
+		inputCollectionNode->registerInput(*input);
+		items.push(input);
+		return input;
+	}
+
 	protected:
-	Vector<Input<T> * > inputCollection;
+	Vector<Input<T> * > items;
 
 	Node * inputCollectionNode;
 	virtual void onItemsUpdated(){};

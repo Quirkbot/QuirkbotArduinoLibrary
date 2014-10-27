@@ -3,10 +3,10 @@
 
 #include "Bot.h"
 #include "Node.h"
+#include "Input.h"
 #include "HasInterval.h"
 #include "HasInputCollection.h"
-#include "Input.h"
-#include "Streams.h"
+
 
 class SerialMonitor:
 public Node,
@@ -26,13 +26,15 @@ public HasInputCollection<float>{
 };
 
 void SerialMonitor::onInterval(){
-	if(!inputCollection.size()) return;
+	if(!items.size()) return;
 
-	for(int i = 0; i < inputCollection.size(); i++){
-		Serial.print(inputCollection[i]->get(), 3);
-		Serial.print("\t");
+	for(int i = 0; i < items.size(); i++){
+		Serial.print(i);
+		Serial.write(": ");
+		Serial.print(items[i]->get(), 3);
+		Serial.write("\t");
 	}
-	Serial.print("\n");
+	Serial.write("\n");
 }
 
 #endif

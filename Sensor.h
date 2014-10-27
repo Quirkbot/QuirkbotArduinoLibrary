@@ -8,20 +8,20 @@
 #include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasOut.h"
 
 class Sensor :
 public Node,
 public HasInterval,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 	
 	Sensor():
 	HasInterval
 		(this),
-	OutputStream<float>
-		(value){
+	HasOut<float>
+		(this){
 		registerInput(smoothing);
 		smooth = 0;
 		normalizingFactor = 1024.0;
@@ -32,16 +32,14 @@ public OutputStream<float>
 
 	Input<float> smoothing;
 
-	Output<float> value;
-
 	protected:
 
 	float normalizingFactor;
 	float smooth;
 
 	void processReading(float reading){
-		smooth = smooth * smoothing + reading * (1.0 - smoothing);
-		value = smooth / normalizingFactor;
+		smooth = smooth * smoothing.get() + reading * (1.0 - smoothing.get());
+		out.set( smooth / normalizingFactor );
 	}
 
 };

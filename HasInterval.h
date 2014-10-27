@@ -21,7 +21,7 @@ public Updatable{
 	void update(){
 
 		int millis = (int)(Bot::seconds*1000);
-		if(millis % (int)(interval*1000) == 0
+		if(millis % (int)(interval.get()*1000) == 0
 			&& lastMillis != millis){
 			
 			lastMillis = Bot::millis;

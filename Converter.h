@@ -7,51 +7,54 @@
 #include "Node.h"
 #include "Input.h"
 #include "Output.h"
-#include "ContainsInputs.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 
 class Converter :
 public Node,
-public Contains4Inputs<float, float, float, float>,
-public InputOutputStream<float>
+public HasIn<float>,
+public HasOut<float>
 {
 	public:
 	
 	Converter():
-	Contains4Inputs<float, float, float, float>
-		(inputMin, inputMax, outputMin, outputMax),
-	InputOutputStream<float>
-		(source, value){
-		registerInput(source);
-		registerInput(inputMin);
-		registerInput(inputMax);
-		registerInput(outputMin);
-		registerInput(outputMax);
+	HasIn<float>
+		(this),
+	HasOut<float>
+		(this){
+
+		registerInput(inMin);
+		registerInput(inMax);
+		registerInput(outMin);
+		registerInput(outMax);
 		
-		source = 0.0;
-		inputMin = 0.0;
-		inputMax = 1.0;
-		outputMin = 0.0;
-		outputMax = 1.0;
+		inMin = 0.0;
+		inMax = 1.0;
+		outMin = 0.0;
+		outMax = 1.0;
 	};
-
-	Input<float> source;
 	
-	Input<float> inputMin;
-	Input<float> inputMax;
-	Input<float> outputMin;
-	Input<float> outputMax;
-
-	Output<float> value;
+	Input<float> inMin;
+	Input<float> inMax;
+	Input<float> outMin;
+	Input<float> outMax;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
 
-void Converter::onInternalInputChange(BaseInput &input){
-	if(&input == &source){
-		value = mapFloat(source, inputMin, inputMax, outputMin, outputMax);
+void Converter::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &in){
+		out.set( 
+			mapFloat(
+				in.get(),
+				inMin.get(),
+				inMax.get(),
+				outMin.get(),
+				outMax.get()
+			)
+		);
 	}
 };
 

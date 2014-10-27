@@ -13,11 +13,11 @@ class Contains1Input{
 
 		template <class TT1>
 		void set(const TT1 &_0){
-			in0.bind(_0);
+			in0.connect(_0);
 		}
 		template <class TT1>
 		void set(TT1 &_0){
-			in0.bind(_0);
+			in0.connect(_0);
 		}
 		
 		Input<T1> &in0;
@@ -44,7 +44,7 @@ public Contains1Input<T1>{
 			TT2 &_1){
 
 			Contains1Input<T1>::set(_0);
-			in1.bind(_1);
+			in1.connect(_1);
 		}
 		template <
 			class TT1,
@@ -54,7 +54,7 @@ public Contains1Input<T1>{
 			const TT2 &_1){
 
 			Contains1Input<T1>::set(_0);
-			in1.bind(_1);
+			in1.connect(_1);
 		}
 		
 		Input<T2> &in1;
@@ -94,7 +94,7 @@ public Contains2Inputs<
 				T2>::set(
 				_0, 
 				_1);
-			in2.bind(_2);
+			in2.connect(_2);
 		}
 
 		template <
@@ -111,7 +111,7 @@ public Contains2Inputs<
 				T2>::set(
 				_0, 
 				_1);
-			in2.bind(_2);
+			in2.connect(_2);
 		}
 		
 		Input<T3> &in2;
@@ -160,7 +160,7 @@ public Contains3Inputs<
 				_0, 
 				_1,
 				_2);
-			in3.bind(_3);
+			in3.connect(_3);
 		}
 
 		template <
@@ -181,7 +181,7 @@ public Contains3Inputs<
 				_0, 
 				_1,
 				_2);
-			in3.bind(_3);
+			in3.connect(_3);
 		}
 		
 		Input<T4> &in3;
@@ -239,7 +239,7 @@ public Contains4Inputs<
 				_1,
 				_2,
 				_3);
-			in4.bind(_4);
+			in4.connect(_4);
 		}
 
 		template <
@@ -264,7 +264,7 @@ public Contains4Inputs<
 				_1,
 				_2,
 				_3);
-			in4.bind(_4);
+			in4.connect(_4);
 		}
 		
 		Input<T5> &in4;
@@ -331,7 +331,7 @@ public Contains5Inputs<
 				_2,
 				_3,
 				_4);
-			in5.bind(_5);
+			in5.connect(_5);
 		}
 
 		template <
@@ -360,7 +360,7 @@ public Contains5Inputs<
 				_2,
 				_3,
 				_4);
-			in5.bind(_5);
+			in5.connect(_5);
 		}
 		
 		Input<T6> &in5;
@@ -436,7 +436,7 @@ public Contains6Inputs<
 				_3,
 				_4,
 				_5);
-			in6.bind(_6);
+			in6.connect(_6);
 		}
 
 		template <
@@ -469,7 +469,7 @@ public Contains6Inputs<
 				_3,
 				_4,
 				_5);
-			in6.bind(_6);
+			in6.connect(_6);
 		}
 		
 		Input<T7> &in6;
@@ -554,7 +554,7 @@ public Contains7Inputs<
 				_4,
 				_5,
 				_6);
-			in7.bind(_7);
+			in7.connect(_7);
 		}
 
 		template <
@@ -591,7 +591,7 @@ public Contains7Inputs<
 				_4,
 				_5,
 				_6);
-			in7.bind(_7);
+			in7.connect(_7);
 		}
 
 		Input<T8> &in7;

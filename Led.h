@@ -6,33 +6,29 @@
 #include "Bot.h"
 #include "Node.h"
 #include "Input.h"
-#include "Streams.h"
+#include "HasIn.h"
 
 
 class Led :
 public Node,
-public InputStream<float>{
+public HasIn<float>{
 	public:
 	
 	Led():
-	InputStream<float>
-		(light){
+	HasIn<float>
+		(this){
 		registerInput(pin);
-		registerInput(light);
-
-		light = 0;
 	};
 
 	Input<int> pin;	
-	Input<float> light;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 };
-void Led::onInternalInputChange(BaseInput &input){
-	if(&input == &pin) pinMode(pin, OUTPUT);
-	else if(&input == &light) analogWrite(pin, pow(light, 2.5) * 255.0);
+void Led::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &pin) pinMode(pin.get(), OUTPUT);
+	else if(&internalInput == &in) analogWrite(pin.get(), pow(in.get(), 2.5) * 255.0);
 };
 
 #endif

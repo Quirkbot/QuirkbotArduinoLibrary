@@ -16,7 +16,7 @@ class Node{
 
 
 	void registerInput(BaseInput &input);
-	virtual void onInternalInputChange(BaseInput &input){};
+	virtual void onInternalInputChange(BaseInput &internalInput){};
 
 	
 	protected:

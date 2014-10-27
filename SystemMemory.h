@@ -4,27 +4,25 @@
 #include "Bot.h"
 #include "Node.h"
 #include "HasInterval.h"
-#include "Streams.h"
+#include "HasOut.h"
 #include "Output.h"
 
 class SystemMemory :
 public Node,
 public HasInterval,
-public OutputStream<float>
+public HasOut<float>
 {
 	public:
 
 	SystemMemory():
 	HasInterval
 		(this),
-	OutputStream<float>
-		(ram){
+	HasOut<float>
+		(this){
 		interval = 0.01;
 	};
 
 	void onInterval();
-
-	Output<float> ram;
 
 	private:
 
@@ -37,7 +35,7 @@ int SystemMemory::getFreeRam(){
 	return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval); 
 }
 void SystemMemory::onInterval(){
-	ram.set(getFreeRam());
+	out.set(getFreeRam());
 }
 
 #endif

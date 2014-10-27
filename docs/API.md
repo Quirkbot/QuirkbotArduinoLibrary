@@ -9,13 +9,15 @@
 	- [RGBLed](#RGBLed)
 	- [ServoMotor](#ServoMotor)
 	- [Buzzer](#Buzzer)
+    - *[CapacitativeSensor](#CapacitativeSensor)
 2. Generators
 	- [Wave](#Wave)
 	- [Randomizer](#Randomizer)
     - [Time](#Time)
-    - [Fader](#Fader)
+    - *[Fader](#Fader)
 3. Flow Control
 	- [Sequence](#Sequence)
+    - *[SmoothSequence](#SmoothSequence)(?maybe chaning a fader is the best)
 	- [List](#List)
     - [Gate](#Gate)
 4. Debugging

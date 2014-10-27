@@ -5,51 +5,48 @@
 #include "Node.h"
 #include "Input.h"
 #include "Output.h"
-#include "Streams.h"
+#include "HasIn.h"
+#include "HasOut.h"
 #include "HasInputCollection.h"
 
 class List:
 public Node,
 public HasInputCollection<float>,
-public InputOutputStream<float>
+public HasIn<float>,
+public HasOut<float>
 {
 	public:
 	
 	List():
 	HasInputCollection<float>
 		(this),
-	InputOutputStream<float>
-		(index, value){
-		registerInput(index);
-		selected = NULL;
-
-		index = 0;
-		
+	HasIn<float>
+		(this),
+	HasOut<float>
+		(this){
+		selected = NULL;	
 	};
-
-	Input<float> index;
-	Output<float> value;
 	
 	protected:
 
-	void onInternalInputChange(BaseInput &input);
+	void onInternalInputChange(BaseInput &internalInput);
 	void onItemsUpdated();
 
 	private:
 
 	void refreshSelected(){
-		if(inputCollection.size()){
-			int i = floor(index * inputCollection.size()); 
+		if(items.size()){
+			int i = floor(in.get() * items.size()); 
 			if(i < 0 ) i  = 0;
-			if(i >= inputCollection.size()) i = inputCollection.size() - 1;
-			if(inputCollection[i] != selected){
-				selected = inputCollection[i];
-				value.set(selected->get());
+			if(i >= items.size()) i = items.size() - 1;
+			if(items[i] != selected){
+				selected = items[i];
+				out.set(selected->get());
 			}
 		}	
 		else{
 			selected = NULL;
-			value.set(0);
+			out.set(0);
 		}
 	}
 
@@ -58,12 +55,12 @@ public InputOutputStream<float>
 void List::onItemsUpdated(){
 	refreshSelected();
 };
-void List::onInternalInputChange(BaseInput &input){
-	if(&input == &index){
+void List::onInternalInputChange(BaseInput &internalInput){
+	if(&internalInput == &in){
 		refreshSelected();		
 	}
-	else if(&input == selected){
-		value.set(selected->get());
+	else if(&internalInput == selected){
+		out.set(selected->get());
 	}
 };
 

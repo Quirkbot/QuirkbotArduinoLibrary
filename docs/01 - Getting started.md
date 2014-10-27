@@ -50,8 +50,65 @@ This simple program makes a Led pulsate.
 
 ---
 
-#.connect( ) & .control
+#Flow programming
+
+The Quirkbot uses concepts from 'flow programming'. This means a program is nothing more than streams of data connect to each other.
+
+There are 3 types of nodes:
+
+- Input
+- Output
+- Input and Outoput
+
+---
+#Syntax 
+
+
+##.connect( ) & .control
 
 ---
 
-#.connect( ) & .control
+##.set( )
+
+---
+
+##.trigger( )
+
+---
+
+##.add( )
+
+---
+
+##.Other paraments( )
+
+###.pin
+###.duration
+###.type
+
+---
+
+#Generators
+
+###Wave
+###Randomizer
+###Time 
+
+---
+
+#Converter
+
+###Usable range
+###Invert values
+###Triggers
+
+---
+
+#Collections
+
+###List
+###Sequence
+
+---
+
+#Math
