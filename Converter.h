@@ -7,21 +7,17 @@
 #include "Node.h"
 #include "Input.h"
 #include "Output.h"
-#include "ContainsInputs.h"
 #include "HasIn.h"
 #include "HasOut.h"
 
 class Converter :
 public Node,
-public Contains4Inputs<float, float, float, float>,
 public HasIn<float>,
 public HasOut<float>
 {
 	public:
 	
 	Converter():
-	Contains4Inputs<float, float, float, float>
-		(inMin, inMax, outMin, outMax),
 	HasIn<float>
 		(this),
 	HasOut<float>

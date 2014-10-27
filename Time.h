@@ -6,7 +6,6 @@
 #include "HasInterval.h"
 #include "Input.h"
 #include "Output.h"
-#include "ContainsInputs.h"
 #include "HasOut.h"
 
 class Time :

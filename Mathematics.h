@@ -31,26 +31,20 @@ public HasOut<float>{
  * Node with a single "in" input and "out" output.
  */
 class MathBasicNode:
-public MathNode,
-public Contains1Input<float>{
+public MathNode{
 	public:
 	
-	MathBasicNode() :
-	Contains1Input<float>(in)
-	{}
+	MathBasicNode(){}
 };
 
 /**
  * Node with "in" and "operand" inputs and "out" output.
  */
 class MathOperationNode:
-public MathNode,
-public Contains2Inputs<float, float>{
+public MathNode{
 	public:
 	
-	MathOperationNode() :
-	Contains2Inputs<float, float>(in, operand)
-	{
+	MathOperationNode(){
 		registerInput(operand);
 	};
 
