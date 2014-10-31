@@ -24,7 +24,7 @@ void start();
 
 void setup(){
 
-	Serial.begin(115200);
+	Serial.begin(9600);
 
 	PORTD &= ~(1<<5);
 	PORTB &= ~(1<<0);
