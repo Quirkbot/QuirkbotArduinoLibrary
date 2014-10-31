@@ -1,11 +1,7 @@
 #ifndef SystemMemory_h_
 #define SystemMemory_h_
 
-#include "Bot.h"
-#include "Node.h"
-#include "HasInterval.h"
-#include "HasOut.h"
-#include "Output.h"
+#include "CommonNodeIncludes.h"
 
 class SystemMemory :
 public Node,

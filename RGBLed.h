@@ -1,14 +1,7 @@
 #ifndef RGBLed_h_
 #define RGBLed_h_
 
-#include "Arduino.h"
-
-#include "Bot.h"
-#include "Node.h"
-#include "Input.h"
-#include "HasIn.h"
-#include "HasOut.h"
-
+#include "CommonNodeIncludes.h"
 
 class RGBLed :
 public Node,

@@ -1,13 +1,7 @@
 #ifndef List_h_
 #define List_h_
 
-#include "Bot.h"
-#include "Node.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasIn.h"
-#include "HasOut.h"
-#include "HasInputCollection.h"
+#include "CommonNodeIncludes.h"
 
 class List:
 public Node,

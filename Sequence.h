@@ -1,16 +1,7 @@
 #ifndef Sequence_h_
 #define Sequence_h_
 
-#include "Bot.h"
-#include "Node.h"
-#include "HasInterval.h"
-#include "HasInputCollection.h"
-#include "HasTrigger.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasIn.h"
-#include "HasOut.h"
-
+#include "CommonNodeIncludes.h"
 
 class Sequence:
 public Node,

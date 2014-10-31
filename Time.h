@@ -1,12 +1,7 @@
 #ifndef Time_h_
 #define Time_h_
 
-#include "Bot.h"
-#include "Node.h"
-#include "HasInterval.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasOut.h"
+#include "CommonNodeIncludes.h"
 
 class Time :
 public Node,

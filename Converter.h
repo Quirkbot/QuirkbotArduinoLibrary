@@ -1,14 +1,7 @@
 #ifndef Converter_h_
 #define Converter_h_
 
-#include "Arduino.h"
-
-#include "Bot.h"
-#include "Node.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasIn.h"
-#include "HasOut.h"
+#include "CommonNodeIncludes.h"
 
 class Converter :
 public Node,

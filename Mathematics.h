@@ -1,13 +1,7 @@
 #ifndef Mathematics_h_
 #define Mathematics_h_
 
-#include <Arduino.h>
-
-#include "Node.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasIn.h"
-#include "HasOut.h"
+#include "CommonNodeIncludes.h"
 
 /**
  * Node with a "in" input and "out" output.

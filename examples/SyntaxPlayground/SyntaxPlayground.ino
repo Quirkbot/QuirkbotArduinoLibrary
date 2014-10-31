@@ -3,6 +3,8 @@
 Wave wave;
 Converter converter;
 
+Sonar sonar;
+AnalogSensor analogSensor;
 ServoMotor servo;
 Led led;
 

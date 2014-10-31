@@ -1,16 +1,9 @@
 #ifndef Wave_h_
 #define Wave_h_
 
-#include <Arduino.h>
+#include "CommonNodeIncludes.h"
 
-#include "Bot.h"
-#include "Node.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasInterval.h"
-#include "HasOut.h"
 #include "WaveTables.h"
-
 
 #define	WAVE_SINE 0
 #define	WAVE_SQUARE 0.2
