@@ -1,14 +1,7 @@
 #ifndef Gate_h_
 #define Gate_h_
 
-#include "Bot.h"
-#include "Node.h"
-#include "HasTrigger.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasIn.h"
-#include "HasOut.h"
-
+#include "CommonNodeIncludes.h"
 
 class Gate:
 public Node,

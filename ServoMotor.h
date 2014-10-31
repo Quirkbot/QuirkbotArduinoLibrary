@@ -1,13 +1,9 @@
 #ifndef ServoMotor_h_
 #define ServoMotor_h_
 
-#include "Arduino.h"
-#include "_libs_Servo.h"
+#include "CommonNodeIncludes.h"
 
-#include "Bot.h"
-#include "Node.h"
-#include "Input.h"
-#include "HasIn.h"
+#include "_libs_Servo.h"
 
 class ServoMotor:
 public Node,

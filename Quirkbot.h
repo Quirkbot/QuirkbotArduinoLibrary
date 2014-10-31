@@ -3,8 +3,6 @@
 
 #include "Arduino.h"
 
-#include "Constants.h"
-
 #include "Mathematics.h"
 #include "Converter.h"
 #include "AnalogSensor.h"

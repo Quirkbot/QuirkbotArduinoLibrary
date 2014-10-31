@@ -1,14 +1,7 @@
 #ifndef Sensor_h_
 #define Sensor_h_
 
-#include "Arduino.h"
-
-#include "Bot.h"
-#include "Node.h"
-#include "HasInterval.h"
-#include "Input.h"
-#include "Output.h"
-#include "HasOut.h"
+#include "CommonNodeIncludes.h"
 
 class Sensor :
 public Node,

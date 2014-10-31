@@ -1,13 +1,7 @@
 #ifndef Led_h_
 #define Led_h_
 
-#include "Arduino.h"
-
-#include "Bot.h"
-#include "Node.h"
-#include "Input.h"
-#include "HasIn.h"
-
+#include "CommonNodeIncludes.h"
 
 class Led :
 public Node,
