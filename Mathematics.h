@@ -6,7 +6,6 @@
 #include "Node.h"
 #include "Input.h"
 #include "Output.h"
-#include "ContainsInputs.h"
 #include "HasIn.h"
 #include "HasOut.h"
 
