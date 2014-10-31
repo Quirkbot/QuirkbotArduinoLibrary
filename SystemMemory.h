@@ -1,5 +1,5 @@
-#ifndef Profile_h_
-#define Profile_h_
+#ifndef SystemMemory_h_
+#define SystemMemory_h_
 
 #include "Bot.h"
 #include "Node.h"

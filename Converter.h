@@ -41,13 +41,27 @@ public HasOut<float>
 
 	protected:
 
+	static float mapFloat(float x, float inMin, float inMax, float outMin, float outMax){
+		float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
+		if(outMin < outMax){
+			if(result < outMin) result = outMin;
+			else if(result > outMax) result = outMax;
+		}
+		else{
+			if(result > outMin) result = outMin;
+			else if(result < outMax) result = outMax;
+		}
+		
+		return result;
+	}
+
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
 void Converter::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
 		out.set( 
-			mapFloat(
+			Converter::mapFloat(
 				in.get(),
 				inMin.get(),
 				inMax.get(),

@@ -2,7 +2,6 @@
 #define Bot_h_
 
 #include "Arduino.h"
-#include "Constants.h"
 #include "Updatable.h"
 
 #include "Vector.h"
