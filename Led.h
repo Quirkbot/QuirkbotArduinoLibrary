@@ -14,6 +14,10 @@ public HasIn<float>{
 		registerInput(pin);
 	};
 
+	void update(){
+		HasInterval::update();
+	};
+
 	Input<int> pin;	
 
 	protected:
