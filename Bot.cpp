@@ -3,13 +3,11 @@
 
 Vector <Node *> Bot::nodes = Vector<Node *>();
 Vector <Updatable *> Bot::updatables = Vector<Updatable *>();
-volatile float Bot::micros = 0;
-volatile float Bot::millis = 0;
+volatile unsigned long Bot::frames = 0;
+volatile unsigned long Bot::dtMicros = 0;
+volatile unsigned long Bot::micros = 0;
+volatile unsigned long Bot::millis = 0;
 volatile float Bot::seconds = 0;
-volatile float Bot::frames = 0;
-volatile float Bot::dtMicros = 0;
-
-
 
 void Bot::addNode(Node * node){
 	if(Bot::nodePosition(node) != -1) return;
