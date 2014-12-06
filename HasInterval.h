@@ -16,15 +16,12 @@ public Updatable{
 	intervalNode(node){
 		intervalNode->registerInput(interval);
 		interval = 0.1;
+		nextTick = Bot::millis + (unsigned long)(interval.get()*1000);
 	};
 
 	void update(){
-
-		int millis = (int)(Bot::seconds*1000);
-		if(millis % (int)(interval.get()*1000) == 0
-			&& lastMillis != millis){
-			
-			lastMillis = Bot::millis;
+		if(Bot::millis >= nextTick){
+			nextTick = Bot::millis + (unsigned long)(interval.get()*1000);
 			onInterval();
 		}
 	};
@@ -34,7 +31,7 @@ public Updatable{
 	Input<float> interval;
 
 	private:
-	int lastMillis;
+	unsigned long nextTick;
 	Node * intervalNode;
 };
 
