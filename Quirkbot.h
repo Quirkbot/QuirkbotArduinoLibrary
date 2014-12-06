@@ -6,6 +6,7 @@
 #include "Mathematics.h"
 #include "Converter.h"
 #include "AnalogSensor.h"
+#include "DigitalSensor.h"
 #include "Sonar.h"
 #include "Led.h"
 #include "RGBLed.h"
@@ -23,12 +24,6 @@
 void start();
 
 void setup(){
-
-	/*Serial.begin(9600);
-
-	PORTD &= ~(1<<5);
-	PORTB &= ~(1<<0);*/
-
 	start();	
 }
 

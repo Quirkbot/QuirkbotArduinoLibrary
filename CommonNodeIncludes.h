@@ -17,7 +17,7 @@
 #define RX_LED_ON() PORTB |= (1<<0)      // Right Mounth LED ON   (PB0)
 #define RX_LED_OFF()  PORTB &= ~(1<<0)   // Right Mounth LED OFF
 
-// These constants are just for ease of use with the core Led object:
+// These constants are just for ease of use:
 
 #define LM 101    // Left Mouth       (PD5) 
 #define RM 102    // Right Mouth      (PB0) 
