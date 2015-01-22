@@ -6,11 +6,11 @@
 #include "WaveTables.h"
 
 #define	WAVE_SINE 0
-#define	WAVE_SQUARE 0.2
-#define	WAVE_TRIANGLE 0.4
-#define	WAVE_PULSE 0.6
-#define	WAVE_RAMP_UP 0.8
-#define	WAVE_RAMP_DOWN 1.0
+#define	WAVE_SQUARE 1
+#define	WAVE_TRIANGLE 2
+#define	WAVE_PULSE 3
+#define	WAVE_RAMP_UP 4
+#define	WAVE_RAMP_DOWN 5
 
 /*
 Should we have a bunch of different nodes with an specific wave form, instead of
@@ -70,25 +70,25 @@ public HasOut<float>
 void Wave::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &type){
 		float t = type.get();
-		if(t <= WAVE_SQUARE){
+		if(t == WAVE_SQUARE){
 			table = WAVE_SQUARE_TABLE;
 		}
-		else if (t <= WAVE_SQUARE){
+		else if (t == WAVE_SQUARE){
 			table = WAVE_SQUARE_TABLE;
 		}
-		if (t <= WAVE_PULSE){
+		if (t == WAVE_PULSE){
 			table = WAVE_PULSE_TABLE;
 		}
-		if (t <= WAVE_TRIANGLE){
+		if (t == WAVE_TRIANGLE){
 			table = WAVE_TRIANGLE_TABLE;
 		}
-		if (t <= WAVE_RAMP_UP){
+		if (t == WAVE_RAMP_UP){
 			table = WAVE_RAMP_UP_TABLE;
 		}
-		if (t <= WAVE_RAMP_DOWN){
+		if (t == WAVE_RAMP_DOWN){
 			table = WAVE_RAMP_DOWN_TABLE;
 		}
-		if (t <= WAVE_SINE){
+		if (t == WAVE_SINE){
 			table = WAVE_SINE_TABLE;
 		}
 	}
