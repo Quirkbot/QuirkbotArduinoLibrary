@@ -108,7 +108,7 @@ void Wave::onInternalInputChange(BaseInput &internalInput){
 
 void Wave::onInterval(){
 	if(duration.get() == 0){
-		out.set(0);
+		//out.set(0);
 		return;
 	}
 	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * duration.get(), duration.get());
