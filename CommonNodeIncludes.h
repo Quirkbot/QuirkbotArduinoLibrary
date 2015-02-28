@@ -35,6 +35,12 @@
 #define HF 13    // Horn Front        (PC7)             PWM (10BIT)
 #define LAF 10   // Left Arm Front    (PB6)    ADC13    PWM (16BIT)
 
+#define LL LLF
+#define RL RLF
+#define RA RAF
+#define H HF
+#define LA LAF
+
 #define LLB A0   // Left Leg Back     (PF7)    ADC7
 #define RLB A4   // Right Leg Back    (PF1)    ADC1
 #define RAB A3   // Right Arm Back    (PF4)    ADC4
