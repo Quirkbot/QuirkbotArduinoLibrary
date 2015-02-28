@@ -97,6 +97,10 @@ void Wave::onInternalInputChange(BaseInput &internalInput){
 		if(basePosition < 0) basePosition += 1;
 
 		float currentTime = fmod(Bot::seconds, duration.get());
+		if(duration.get() == 0){
+			adjust = 0;
+			return;
+		}
 		float diff = currentTime/duration.get() - basePosition;
 		adjust = diff * duration.get();
 	}
