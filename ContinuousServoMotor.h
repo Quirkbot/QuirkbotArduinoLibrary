@@ -3,15 +3,27 @@
 
 #include "CommonNodeIncludes.h"
 
+#include "_libs_Servo.h"
+
 class ContinuousServoMotor:
-public Servo{
+public Node,
+public HasIn<float>{
 	public:
 	
-	ContinuousServoMotor(){
+	ContinuousServoMotor():
+	HasIn<float>
+		(this){
+		registerInput(pin);
+		angle = -1;		
 		attached = true;
 	};
 
+	Input<int> pin;
+	Input<float> in;
 	protected:
+
+	_libs_Servo servo;
+	int angle;
 
 	bool attached;
 
@@ -40,7 +52,7 @@ void ContinuousServoMotor::attachServo(){
 	attached = true;
 }
 void ContinuousServoMotor::dettachServo(){
-	servo.dettach();
+	servo.detach();
 	attached = false;
 }
 

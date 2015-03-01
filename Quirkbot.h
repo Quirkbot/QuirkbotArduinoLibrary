@@ -14,6 +14,7 @@
 #include "RGBLed.h"
 #include "Buzzer.h"
 #include "ServoMotor.h"
+#include "ContinuousServoMotor.h"
 #include "Wave.h"
 #include "Randomizer.h"
 #include "Time.h"
@@ -27,11 +28,11 @@ void start();
 
 void setup(){
 	// Everything in the back off
-	pinMode(LLB, OUTPUT);
+	/*pinMode(LLB, OUTPUT);
 	pinMode(RLB, OUTPUT);
 	pinMode(RAB, OUTPUT);
 	pinMode(HB, OUTPUT);
-	pinMode(LAB, OUTPUT);
+	pinMode(LAB, OUTPUT);*/
 	digitalWrite(LLB, LOW);
 	digitalWrite(RLB, LOW);
 	digitalWrite(RAB, LOW);
