@@ -24,7 +24,7 @@ public HasIn<float>{
 		angle = -1;		
 		iddleAngle = -1;
 		iddleCount = 0;	
-		iddleMaxTime = 3;			
+		iddleLimit = 3;			
 	};
 
 	Input<int> pin;
@@ -37,6 +37,7 @@ public HasIn<float>{
 	void attach();
 	void detach();
 	void write();
+	int mapAngle();
 
 	_libs_Servo servo;
 	int angle;
@@ -45,7 +46,7 @@ public HasIn<float>{
 	bool attached;
 	int iddleAngle;
 	int iddleCount;
-	int iddleMaxTime;
+	int iddleLimit;
 };
 void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 
@@ -79,11 +80,14 @@ void ServoMotor::detach(){
 void ServoMotor::write(){
 	if(in.get() == -1) return;
 
-	int newAngle = in.get() * 180.0;
+	int newAngle = mapAngle();
 	if(newAngle != angle){
 		angle = newAngle;
 		servo.write(angle);
 	}
+}
+int ServoMotor::mapAngle(){
+	return in.get() * 180.0;
 }
 void ServoMotor::onInterval(){
 	if(!attached) return;
@@ -93,7 +97,7 @@ void ServoMotor::onInterval(){
 
 	iddleAngle = angle;
 
-	if(iddleCount >= iddleMaxTime) {
+	if(iddleCount >= iddleLimit) {
 		detach();
 	}
 }
