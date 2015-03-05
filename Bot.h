@@ -18,8 +18,15 @@ class Bot {
 	static void removeUpdatable(Updatable * updatable);
 	static int updatablePosition(Updatable * updatable);
 
-
 	static void update();
+
+	// Utils
+	static float mapFloat(
+		float x, 
+		float inMin, float inMax, 
+		float outMin, float outMax
+	);
+	
 
 	static Vector <Node *> nodes;
 	static Vector <Updatable *> updatables;

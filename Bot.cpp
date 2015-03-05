@@ -50,3 +50,17 @@ void Bot::update(){
 		Bot::updatables[i]->update();
 	}
 }
+
+float Bot::mapFloat(float x, float inMin, float inMax, float outMin, float outMax){
+		float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
+		if(outMin < outMax){
+			if(result < outMin) result = outMin;
+			else if(result > outMax) result = outMax;
+		}
+		else{
+			if(result > outMin) result = outMin;
+			else if(result < outMax) result = outMax;
+		}
+		
+		return result;
+	}
