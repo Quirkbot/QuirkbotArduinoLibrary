@@ -17,17 +17,19 @@ public HasIn<float>{
 	HasIn<float>
 		(this){
 		registerInput(pin);
+		registerInput(iddleTime);
 
-		interval = 0.5;
+		interval = 0.1;
+		iddleTime = 1.5;
 
 		attached = false;
 		angle = -1;		
 		iddleAngle = -1;
-		iddleCount = 0;	
-		iddleLimit = 3;			
+		iddleCount = 0;			
 	};
 
 	Input<int> pin;
+	Input<float> iddleTime;
 
 	protected:
 
@@ -65,6 +67,10 @@ void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 		}
 		write();		
 	}
+	else if(&internalInput == &iddleTime){
+		iddleLimit = iddleTime.get() / interval.get();		
+	}
+	
 }
 void ServoMotor::attach(){
 	if(attached) detach();

@@ -3,14 +3,12 @@
 
 #include "CommonNodeIncludes.h"
 
-//#include "_libs_Servo.h"
-
 class ContinuousServoMotor:
 public ServoMotor {
 	public:
 
 	ContinuousServoMotor(){
-		iddleLimit = 1;
+		iddleTime = 0.1;
 	}
 	void onInterval();
 };
