@@ -43,7 +43,7 @@ void setup(){
  	PORTB &= ~(1<<0);
 
  	// Start serial
- 	Serial.begin(9600);
+ 	Serial.begin(115200);
 
 	start();	
 }
