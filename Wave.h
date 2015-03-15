@@ -120,7 +120,7 @@ void Wave::onInterval(){
 	position = timeSeconds / duration.get();
 	int index = position * 256.0;
 	out.set(
-		Bot::mapFloat(
+		Bot::map(
 			(float)(pgm_read_word_near(table + index)) * 0.001,
 			0.0,
 			1.0,

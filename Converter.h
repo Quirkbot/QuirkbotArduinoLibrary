@@ -40,7 +40,7 @@ public HasOut<float>
 void Converter::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
 		out.set( 
-			Bot::mapFloat(
+			Bot::map(
 				in.get(),
 				inMin.get(),
 				inMax.get(),

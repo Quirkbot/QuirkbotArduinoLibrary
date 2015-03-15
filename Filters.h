@@ -8,19 +8,17 @@
 class FilterBase {
 	public:
 
-	virtual FilterBase();
 	virtual void push(float number){};
 	
 	float get(){
 		return value;
 	} 
 
-	protected:
-
-	float value;
 	float alpha;
 	float beta;
 	float gamma;
+	float value;
+	
 };
 
 class NoFilter :
