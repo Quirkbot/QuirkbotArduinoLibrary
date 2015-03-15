@@ -28,17 +28,7 @@
 void start();
 
 void setup(){
-	// Everything in the back off
-	/*pinMode(LLB, OUTPUT);
-	pinMode(RLB, OUTPUT);
-	pinMode(RAB, OUTPUT);
-	pinMode(HB, OUTPUT);
-	pinMode(LAB, OUTPUT);*/
-	digitalWrite(LLB, LOW);
-	digitalWrite(RLB, LOW);
-	digitalWrite(RAB, LOW);
-	digitalWrite(HB, LOW);
-	digitalWrite(LAB, LOW);
+
 	// Mouth off
 	PORTD &= ~(1<<5);
  	PORTB &= ~(1<<0);
