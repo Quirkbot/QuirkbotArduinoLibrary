@@ -30,11 +30,11 @@ public HasIn<float>{
 	unsigned int pwmOffset;
 	volatile uint8_t *outPort;
 	uint8_t pinMask;
-	int singnalPin = -1;
+	int singnalPin;
 
 };
 void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &pin){
+	if(&internalInput == &where){
 		int location = where.get();
 		
 		if(location == LM || location == RM){
@@ -67,7 +67,7 @@ void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
 			pwmOffset = (int)((float)QB_LED_SOFT_PWM_WIDTH * in.get());
 		}
 		else{
-			analogWrite(pin.get(), in.get() * 255.0);
+			analogWrite(singnalPin, in.get() * 255.0);
 		}
 
 	}
