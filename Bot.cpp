@@ -51,16 +51,55 @@ void Bot::update(){
 	}
 }
 
-float Bot::mapFloat(float x, float inMin, float inMax, float outMin, float outMax){
-		float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
-		if(outMin < outMax){
-			if(result < outMin) result = outMin;
-			else if(result > outMax) result = outMax;
-		}
-		else{
-			if(result > outMin) result = outMin;
-			else if(result < outMax) result = outMax;
-		}
-		
-		return result;
+float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
+	float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
+	if(outMin < outMax){
+		if(result < outMin) result = outMin;
+		else if(result > outMax) result = outMax;
 	}
+	else{
+		if(result > outMin) result = outMin;
+		else if(result < outMax) result = outMax;
+	}
+	
+	return result;
+}
+float Bot::minimum(float a, float b){
+	return min(a,b);
+}
+float Bot::maximum(float a, float b){
+	return max(a,b);
+}
+
+int Bot::locationToBackPin(int location){
+	switch(location){
+		case LL:
+			return LLB;
+		case RL:
+			return RLB;
+		case RA:
+			return RAB;
+		case H:
+			return HB;
+		case LA:
+			return LAB;
+		default:
+			return NO_LOCATION;
+	}
+};
+int Bot::locationToFrontPin(int location){
+	switch(location){
+		case LL:
+			return LLF;
+		case RL:
+			return RLF;
+		case RA:
+			return RAF;
+		case H:
+			return HF;
+		case LA:
+			return LAF;
+		default:
+			return NO_LOCATION;
+	}
+};

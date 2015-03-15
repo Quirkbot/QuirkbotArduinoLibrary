@@ -1,14 +1,20 @@
 #ifndef AnalogSensor_h_
 #define AnalogSensor_h_
 
-#include "Sensor.h"
+#include "CommonNodeIncludes.h"
 
 class AnalogSensor :
-public Sensor
+public Node,
+public HasInterval,
+public HasOut<float>
 {
 	public:
 	
-	AnalogSensor(){
+	AnalogSensor():
+	HasInterval
+		(this),
+	HasOut<float>
+		(this){
 		registerInput(pin);
 	};
 
@@ -17,7 +23,11 @@ public Sensor
 	Input<int> pin;
 
 	protected:
+
 	void onInternalInputChange(BaseInput &internalInput);
+
+	MedianFilter preMedianFilter;
+	MedianFilter postMedianFilter;
 };
 
 void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
@@ -25,8 +35,9 @@ void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
 };
 
 void AnalogSensor::onInterval(){
-	float reading = analogRead(pin.get());
-	processReading(reading);
+	preMedianFilter.push(analogRead(pin.get()));
+	postMedianFilter.push(preMedianFilter.get());
+	out.set(postMedianFilter.get()/1024.0);
 }
 
 #endif

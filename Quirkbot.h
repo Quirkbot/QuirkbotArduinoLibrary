@@ -9,6 +9,7 @@
 #include "Converter.h"
 #include "AnalogSensor.h"
 #include "DigitalSensor.h"
+#include "SqueezeSensor.h"
 #include "Sonar.h"
 #include "Led.h"
 #include "RGBLed.h"
