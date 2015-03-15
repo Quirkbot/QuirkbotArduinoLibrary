@@ -30,10 +30,6 @@ void start();
 
 void setup(){
 
-	// Mouth off
-	//PORTD &= ~(1<<5);
- 	//PORTB &= ~(1<<0);
-
  	// Start serial
  	Serial.begin(115200);
 

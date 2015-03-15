@@ -3,8 +3,6 @@
 
 #include "CommonNodeIncludes.h"
 
-#define QB_LED_SOFT_PWM_WIDTH 16
-
 class OutputVoltage :
 public Updatable,
 public Node,
@@ -16,7 +14,8 @@ public HasIn<float>{
 		(this){
 		registerInput(where);
 		useSoftPWM = false;
-		pwmOffset = QB_LED_SOFT_PWM_WIDTH;
+		pwmWidth = 16;
+		pwmOffset = pwmWidth;
 		singnalPin = -1;
 	};
 
@@ -27,6 +26,7 @@ public HasIn<float>{
 	void update();
 
 	bool useSoftPWM;
+	int pwmWidth;
 	unsigned int pwmOffset;
 	volatile uint8_t *outPort;
 	uint8_t pinMask;
@@ -64,7 +64,7 @@ void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
 	}
 	else if(&internalInput == &in){
 		if(useSoftPWM){
-			pwmOffset = (int)((float)QB_LED_SOFT_PWM_WIDTH * in.get());
+			pwmOffset = (int)((float)pwmWidth * in.get());
 		}
 		else{
 			analogWrite(singnalPin, in.get() * 255.0);
@@ -75,7 +75,7 @@ void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
 void OutputVoltage::update(){
 	if(!useSoftPWM) return;
 
-	if(Bot::frames % QB_LED_SOFT_PWM_WIDTH < pwmOffset){
+	if(Bot::frames % pwmWidth < pwmOffset){
 		*outPort |= pinMask;
 	}
 	else{
