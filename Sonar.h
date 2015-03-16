@@ -15,14 +15,14 @@ public HasOut<float>
 		(this),
 	HasOut<float>
 		(this){
-		registerInput(pin);
+		registerInput(place);
 
-		pin = -1;
+		place = -1;
 	};
 
 	void onInterval();
 
-	Input<int> pin;
+	Input<int> place;
 
 	protected:
 
@@ -30,20 +30,20 @@ public HasOut<float>
 };
 
 void Sonar::onInterval(){
-	if(pin.get() == -1) return;
+	if(place.get() == -1) return;
 
 
-	pinMode(pin.get(), OUTPUT);
+	pinMode(place.get(), OUTPUT);
 
-	digitalWrite(pin.get(), LOW);
+	digitalWrite(place.get(), LOW);
 	delayMicroseconds(2);
-	digitalWrite(pin.get(), HIGH);
+	digitalWrite(place.get(), HIGH);
 	delayMicroseconds(5);
-	digitalWrite(pin.get(), LOW);
+	digitalWrite(place.get(), LOW);
 
-	pinMode(pin.get(), INPUT);
+	pinMode(place.get(), INPUT);
 
-	float reading = pulseIn(pin.get(), HIGH, 5000);
+	float reading = pulseIn(place.get(), HIGH, 5000);
 	if(reading == 0) reading = 5000;
 	medianFilter.push( reading );
 	

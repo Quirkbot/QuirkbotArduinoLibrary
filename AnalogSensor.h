@@ -15,12 +15,12 @@ public HasOut<float>
 		(this),
 	HasOut<float>
 		(this){
-		registerInput(pin);
+		registerInput(place);
 	};
 
 	void onInterval();
 
-	Input<int> pin;
+	Input<float> place;
 
 	protected:
 
@@ -31,11 +31,11 @@ public HasOut<float>
 };
 
 void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &pin) pinMode(pin.get(), INPUT);
+	if(&internalInput == &place) pinMode(place.get(), INPUT);
 };
 
 void AnalogSensor::onInterval(){
-	preMedianFilter.push(analogRead(pin.get()));
+	preMedianFilter.push(analogRead(place.get()));
 	postMedianFilter.push(preMedianFilter.get());
 	out.set(postMedianFilter.get()/1024.0);
 }

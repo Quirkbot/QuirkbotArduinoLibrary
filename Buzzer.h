@@ -12,14 +12,14 @@ public HasIn<float>{
 	HasIn<float>
 		(this){
 
-		registerInput(pin);
+		registerInput(place);
 
 		lastFrequency = 0;
 	};
 
 	void process();
 
-	Input<int> pin;
+	Input<int> place;
 
 	static float calculateTone(float frequency);
 	static float MAX_FREQUENCY;
@@ -35,8 +35,8 @@ float Buzzer::calculateTone(float frequency){
 	return sqrt(frequency / MAX_FREQUENCY);
 }
 void Buzzer::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &pin){
-		pinMode(pin.get(), OUTPUT);
+	if(&internalInput == &place){
+		pinMode(place.get(), OUTPUT);
 		process();
 	}
 	else if(&internalInput == &in){
@@ -48,10 +48,10 @@ void Buzzer::process(){
 	if(lastFrequency == frequency) return;
 	lastFrequency = frequency;
 	if(frequency != 0) {
-		::tone((uint8_t)pin.get(), frequency);
+		::tone((uint8_t)place.get(), frequency);
 	}
 	else{
-		::noTone((uint8_t)pin.get());
+		::noTone((uint8_t)place.get());
 	}
 }
 
