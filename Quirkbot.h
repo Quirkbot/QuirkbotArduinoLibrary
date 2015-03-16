@@ -13,6 +13,7 @@
 #include "Sonar.h"
 #include "OutputVoltage.h"
 #include "Led.h"
+#include "DualColorLed.h"
 #include "RGBLed.h"
 #include "Buzzer.h"
 #include "ServoMotor.h"
