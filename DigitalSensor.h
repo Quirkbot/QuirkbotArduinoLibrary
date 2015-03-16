@@ -20,7 +20,7 @@ public HasOut<float>
 
 	void onInterval();
 
-	Input<int> place;
+	Input<float> place;
 
 	protected:
 

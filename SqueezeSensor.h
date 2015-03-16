@@ -74,7 +74,9 @@ void SqueezeSensor::onInterval(){
 	refMax = Bot::maximum(refMax, reference.get());
 
 	filter.push(reading);
-	float value = Bot::map(filter.get(), refMin, refMax, min.get(), max.get());
+	float value = Bot::map(filter.get(), refMin, refMax, 0, 1);
+	value = pow(value, 0.5);
+	value = Bot::map(value, 0, 1, min.get(), max.get());
 	out.set(value);
 }
 

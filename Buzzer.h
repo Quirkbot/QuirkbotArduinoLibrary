@@ -19,7 +19,7 @@ public HasIn<float>{
 
 	void process();
 
-	Input<int> place;
+	Input<float> place;
 
 	static float calculateTone(float frequency);
 	static float MAX_FREQUENCY;

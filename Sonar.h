@@ -17,12 +17,12 @@ public HasOut<float>
 		(this){
 		registerInput(place);
 
-		place = -1;
+		place = BP4;
 	};
 
 	void onInterval();
 
-	Input<int> place;
+	Input<float> place;
 
 	protected:
 
