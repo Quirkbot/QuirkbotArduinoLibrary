@@ -12,14 +12,14 @@ public HasIn<float>{
 	OutputVoltage():
 	HasIn<float>
 		(this){
-		registerInput(where);
+		registerInput(place);
 		useSoftPWM = false;
-		pwmWidth = 32;
+		pwmWidth = 16;
 		pwmOffset = pwmWidth;
-		singnalPin = -1;
+		signalPin = -1;
 	};
 
-	Input<float> where;
+	Input<float> place;
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
@@ -30,15 +30,16 @@ public HasIn<float>{
 	unsigned int pwmOffset;
 	volatile uint8_t *outPort;
 	uint8_t pinMask;
-	int singnalPin;
+	int signalPin;
 
 };
 void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &where){
-		int location = where.get();
+	if(&internalInput == &place){
+		int location = place.get();
 		
 		if(location == LM || location == RM){
 			useSoftPWM = true;
+			signalPin = -1;
 			switch(location){
 				case LM:
 					outPort = &PORTD;
@@ -51,13 +52,15 @@ void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
 			}
 		}
 		else{		
-			singnalPin = Bot::locationToFrontPin(location);
-			if(singnalPin == NO_LOCATION) singnalPin = location;
+			signalPin = Bot::locationToFrontPin(location);
+			if(signalPin == NO_LOCATION) signalPin = location;
 
-			if( digitalPinToTimer(singnalPin) == NOT_ON_TIMER ){
+			pinMode(signalPin, OUTPUT);
+
+			if( digitalPinToTimer(signalPin) == NOT_ON_TIMER ){
 				useSoftPWM = true;				
-				outPort = portOutputRegister(digitalPinToPort(singnalPin));
-				pinMask = digitalPinToBitMask(singnalPin);
+				outPort = portOutputRegister(digitalPinToPort(signalPin));
+				pinMask = digitalPinToBitMask(signalPin);
 			}
 			else useSoftPWM = false;
 		}
@@ -67,7 +70,7 @@ void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
 			pwmOffset = (int)((float)pwmWidth * in.get());
 		}
 		else{
-			analogWrite(singnalPin, in.get() * 255.0);
+			analogWrite(signalPin, in.get() * 255.0);
 		}
 
 	}

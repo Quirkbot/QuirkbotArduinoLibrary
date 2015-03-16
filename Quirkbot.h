@@ -32,6 +32,9 @@ void setup(){
 
  	// Start serial
  	Serial.begin(115200);
+ 	
+ 	PORTD &= ~(1<<5);
+	PORTB &= ~(1<<0);
 
 	start();	
 }

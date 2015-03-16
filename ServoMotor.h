@@ -16,7 +16,7 @@ public HasIn<float>{
 		(this),
 	HasIn<float>
 		(this){
-		registerInput(pin);
+		registerInput(place);
 		registerInput(iddleTime);
 
 		interval = 0.1;
@@ -28,7 +28,7 @@ public HasIn<float>{
 		iddleCount = 0;			
 	};
 
-	Input<int> pin;
+	Input<float> place;
 	Input<float> iddleTime;
 
 	protected:
@@ -52,7 +52,7 @@ public HasIn<float>{
 };
 void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 
-	if(&internalInput == &pin){
+	if(&internalInput == &place){
 		if(!attached){
 			attach();
 		}
@@ -76,7 +76,7 @@ void ServoMotor::attach(){
 	if(attached) detach();
 
 	attached = true;
-	attachedPin = pin.get();
+	attachedPin = place.get();
 	servo.attach(attachedPin);
 }
 void ServoMotor::detach(){

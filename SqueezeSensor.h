@@ -15,9 +15,9 @@ public HasOut<float>
 		(this),
 	HasOut<float>
 		(this){
-		registerInput(where);
+		registerInput(place);
 
-		where = 0;
+		place = 0;
 
 		min = 0;
 		max = 1;
@@ -29,7 +29,7 @@ public HasOut<float>
 
 	void onInterval();
 
-	Input<float> where;
+	Input<float> place;
 	Input<float> min;
 	Input<float> max;
 
@@ -46,12 +46,13 @@ public HasOut<float>
 };
 
 void SqueezeSensor::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &where){
-		backPin = Bot::locationToBackPin(where.get());
-		frontPin = Bot::locationToFrontPin(where.get());
+	if(&internalInput == &place){
+		backPin = Bot::locationToBackPin(place.get());
+		frontPin = Bot::locationToFrontPin(place.get());
 
 		if(backPin != NO_LOCATION &&  frontPin != NO_LOCATION){
 			pinMode(backPin, INPUT);
+			digitalWrite(backPin, LOW);
 			pinMode(frontPin, OUTPUT);
 			digitalWrite(frontPin, HIGH);
 		}
