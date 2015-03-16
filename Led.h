@@ -14,7 +14,7 @@ public HasIn<float>{
 		(this){
 		registerInput(where);
 		useSoftPWM = false;
-		pwmWidth = 16;
+		pwmWidth = 32;
 		pwmOffset = pwmWidth;
 		singnalPin = -1;
 	};

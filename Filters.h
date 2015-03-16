@@ -1,10 +1,6 @@
 #ifndef Filters_h_
 #define Filters_h_
 
-#define QB_NO_FILTER 0
-#define QB_MEDIAN_FILTER 1
-#define QB_LOW_PASS_FILTER 2
-
 class FilterBase {
 	public:
 
@@ -83,6 +79,36 @@ public FilterBase
 	void push(float number){
 		value = value * alpha + number * (1 - alpha);
 	}
+};
+
+class UpperFilter :
+public FilterBase 
+{
+	public:
+	
+	UpperFilter(){
+		a = 0;
+		b = 0;
+		c = 0;
+		d = 0;
+		value = 0;
+	}
+
+	void push(float number){
+		a = b;
+		b = c;
+		c = d;
+		d = number;
+
+		value = max( max( max( a, b ), c ), d );
+	}
+
+	private:
+
+	float a;
+	float b;
+	float c;
+	float d;
 };
 
 #endif
