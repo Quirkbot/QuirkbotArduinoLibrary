@@ -1,33 +1,34 @@
 #ifndef Sonar_h_
 #define Sonar_h_
 
-#include "Sensor.h"
+#include "CommonNodeIncludes.h"
 
 class Sonar :
-public Sensor
+public Node,
+public HasInterval,
+public HasOut<float>
 {
 	public:
 	
-	Sonar(){
+	Sonar():
+	HasInterval
+		(this),
+	HasOut<float>
+		(this){
 		registerInput(pin);
 
-		normalizingFactor = 5000.0;
+		pin = -1;
 	};
 
 	void onInterval();
 
 	Input<int> pin;
 
-	
 	protected:
-	void onInternalInputChange(BaseInput &internalInput);
+
+	MedianFilter medianFilter;
 };
 
-void Sonar::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &interval){
-		if(interval.get() < 0.05) interval = 0.05;
-	}
-};
 void Sonar::onInterval(){
 	if(pin.get() == -1) return;
 
@@ -43,11 +44,10 @@ void Sonar::onInterval(){
 	pinMode(pin.get(), INPUT);
 
 	float reading = pulseIn(pin.get(), HIGH, 5000);
-
 	if(reading == 0) reading = 5000;
-
-	processReading(reading);
-};
-
+	medianFilter.push( reading );
+	
+	out.set(medianFilter.get() / 5000.0);	
+}
 
 #endif

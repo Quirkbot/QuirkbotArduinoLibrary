@@ -44,16 +44,21 @@ public HasOut<float>
 
 		interval = 0.033;
 
-		position = 0;
+		min = 0;
+		max = 1;
 
 		offset = 0.0;
 		type = WAVE_SINE;		
 		duration = 1.0;
+
+		position = 0;
 	};
 
 	void onInterval();
 
 	Input<float> duration;
+	Input<float> min;
+	Input<float> max;
 	Input<float> offset;
 	Input<float> type;
 
@@ -115,7 +120,13 @@ void Wave::onInterval(){
 	position = timeSeconds / duration.get();
 	int index = position * 256.0;
 	out.set(
-		(float)(pgm_read_word_near(table + index)) * 0.001
+		Bot::map(
+			(float)(pgm_read_word_near(table + index)) * 0.001,
+			0.0,
+			1.0,
+			min.get(),
+			max.get()
+		)
 	);
 }
 

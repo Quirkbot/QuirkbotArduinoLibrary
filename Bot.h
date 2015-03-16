@@ -2,6 +2,7 @@
 #define Bot_h_
 
 #include "Arduino.h"
+#include "Board.h"
 #include "Updatable.h"
 
 #include "Vector.h"
@@ -18,8 +19,19 @@ class Bot {
 	static void removeUpdatable(Updatable * updatable);
 	static int updatablePosition(Updatable * updatable);
 
-
 	static void update();
+
+	// Utils
+	static float map(
+		float x, 
+		float inMin, float inMax, 
+		float outMin, float outMax
+	);
+	static float minimum(float a, float b);
+	static float maximum(float a, float b);
+	static int locationToBackPin(int location);
+	static int locationToFrontPin(int location);
+	
 
 	static Vector <Node *> nodes;
 	static Vector <Updatable *> updatables;

@@ -1,19 +1,21 @@
 #ifndef DigitalSensor_h_
 #define DigitalSensor_h_
 
-#include "Sensor.h"
+#include "CommonNodeIncludes.h"
 
 class DigitalSensor :
-public Sensor
+public Node,
+public HasInterval,
+public HasOut<float>
 {
 	public:
 	
-	DigitalSensor(){
+	DigitalSensor():
+	HasInterval
+		(this),
+	HasOut<float>
+		(this){
 		registerInput(pin);
-		normalizingFactor = 1.0;
-		interval = 0.005;
-		smoothing = 0.97;
-		processReading(0);
 	};
 
 	void onInterval();
@@ -21,7 +23,10 @@ public Sensor
 	Input<int> pin;
 
 	protected:
+
 	void onInternalInputChange(BaseInput &internalInput);
+
+	MedianFilter medianFilter;
 };
 
 void DigitalSensor::onInternalInputChange(BaseInput &internalInput){
@@ -29,8 +34,8 @@ void DigitalSensor::onInternalInputChange(BaseInput &internalInput){
 };
 
 void DigitalSensor::onInterval(){
-	float reading = digitalRead(pin.get());
-	processReading(reading);
+	medianFilter.push(digitalRead(pin.get()));
+	out.set(medianFilter.get());
 }
 
 #endif

@@ -1,15 +1,15 @@
-#ifndef Led_h_
-#define Led_h_
+#ifndef OutputVoltage_h_
+#define OutputVoltage_h_
 
 #include "CommonNodeIncludes.h"
 
-class Led :
+class OutputVoltage :
 public Updatable,
 public Node,
 public HasIn<float>{
 	public:
 	
-	Led():
+	OutputVoltage():
 	HasIn<float>
 		(this){
 		registerInput(where);
@@ -30,11 +30,10 @@ public HasIn<float>{
 	unsigned int pwmOffset;
 	volatile uint8_t *outPort;
 	uint8_t pinMask;
-
-	int singnalPin;	
+	int singnalPin;
 
 };
-void Led::onInternalInputChange(BaseInput &internalInput){
+void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &where){
 		int location = where.get();
 		
@@ -51,14 +50,7 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 					break;	
 			}
 		}
-		else{
-			int groundPin = Bot::locationToBackPin(location);
-
-			if(groundPin != NO_LOCATION){
-				pinMode(groundPin, OUTPUT);
-				digitalWrite(groundPin, LOW);
-			}
-			
+		else{		
 			singnalPin = Bot::locationToFrontPin(location);
 			if(singnalPin == NO_LOCATION) singnalPin = location;
 
@@ -72,15 +64,15 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 	}
 	else if(&internalInput == &in){
 		if(useSoftPWM){
-			pwmOffset = (int)((float)pwmWidth * pow(in.get(), 2.5));
+			pwmOffset = (int)((float)pwmWidth * in.get());
 		}
 		else{
-			analogWrite(singnalPin, pow(in.get(), 2.5) * 255.0);
+			analogWrite(singnalPin, in.get() * 255.0);
 		}
 
 	}
 };
-void Led::update(){
+void OutputVoltage::update(){
 	if(!useSoftPWM) return;
 
 	if(Bot::frames % pwmWidth < pwmOffset){
