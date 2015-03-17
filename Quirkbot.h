@@ -11,7 +11,7 @@
 #include "DigitalSensor.h"
 #include "SqueezeSensor.h"
 #include "Sonar.h"
-#include "OutputVoltage.h"
+#include "VoltageOutput.h"
 #include "Led.h"
 #include "DualColorLed.h"
 #include "RGBLed.h"

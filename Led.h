@@ -17,6 +17,7 @@ public HasIn<float>{
 		pwmWidth = 16;
 		pwmOffset = pwmWidth;
 		signalPin = -1;
+		location = -1;
 	};
 
 	Input<float> place;
@@ -31,12 +32,19 @@ public HasIn<float>{
 	volatile uint8_t *outPort;
 	uint8_t pinMask;
 
-	int signalPin;	
+	int signalPin;
+
+	int location;	
 
 };
 void Led::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
-		int location = place.get();
+		// Disable when disconnected
+		if(location != -1){
+			*outPort &= ~(pinMask);
+		}
+
+		location = place.get();
 		
 		if(location == LM || location == RM){
 			useSoftPWM = true;
@@ -62,26 +70,22 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 			
 			signalPin = Bot::locationToFrontPin(location);
 			if(signalPin == NO_LOCATION) signalPin = location;
-			
+			outPort = portOutputRegister(digitalPinToPort(signalPin));
+			pinMask = digitalPinToBitMask(signalPin);
 			pinMode(signalPin, OUTPUT);
 
 			if( digitalPinToTimer(signalPin) == NOT_ON_TIMER ){
-				useSoftPWM = true;				
-				outPort = portOutputRegister(digitalPinToPort(signalPin));
-				pinMask = digitalPinToBitMask(signalPin);
-
+				useSoftPWM = true;
 			}
 			else useSoftPWM = false;
 		}
 	}
-	else if(&internalInput == &in){
-		if(useSoftPWM){
-			pwmOffset = (int)((float)pwmWidth * pow(in.get(), 2.5));
-		}
-		else{
-			analogWrite(signalPin, pow(in.get(), 2.5) * 255.0);
-		}
 
+	if(useSoftPWM){
+		pwmOffset = (int)((float)pwmWidth * pow(in.get(), 2.5));
+	}
+	else{
+		analogWrite(signalPin, pow(in.get(), 2.5) * 255.0);
 	}
 };
 void Led::update(){

@@ -21,6 +21,7 @@ public HasIn<float>{
 		pwmWidth = 32;		
 		pwmOffsetFront = pwmWidth;
 		active = false;
+		location = -1;
 	};
 
 	Input<float> place;
@@ -47,10 +48,18 @@ public HasIn<float>{
 
 	bool active;
 
+	int location;
+
 };
 void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
-		int location = place.get();
+		// Disable when disconnected
+		if(location != -1){
+			*outPortBack &= ~(pinMaskBack);
+			*outPortFront &= ~(pinMaskFront);
+		}
+
+		location = place.get();
 		backPin = Bot::locationToBackPin(location);
 		frontPin = Bot::locationToFrontPin(location);
 
@@ -72,8 +81,8 @@ void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 	}
 	else if(&internalInput == &in || &internalInput == &color){
 		pwmOffset = (int)((float)pwmWidth * pow(in.get(), 2.5));
-		pwmOffsetFront = (float)pwmOffset * color.get();
-		pwmOffsetBack = pwmOffset - pwmOffsetFront;
+		pwmOffsetBack = (float)pwmOffset * color.get();
+		pwmOffsetFront = pwmOffset - pwmOffsetBack;
 	}
 };
 void DualColorLed::update(){
