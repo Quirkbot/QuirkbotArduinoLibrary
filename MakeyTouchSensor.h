@@ -19,7 +19,7 @@ public HasOut<float>
 		
 		place = -1;
 
-		filter.alpha = 0.8;
+		filter.alpha = 0.9;
 	};
 
 	Input<float> place;
@@ -31,6 +31,7 @@ public HasOut<float>
 	void onInternalInputChange(BaseInput &internalInput);
 
 	LowPassFilter filter;
+	MedianFilter median;
 
 	unsigned int frontPin;
 	unsigned int backPin;
@@ -49,8 +50,13 @@ void MakeyTouchSensor::onInternalInputChange(BaseInput &internalInput){
 
 		if(backPin == NO_LOCATION) return;
 
+		// Internal pull up
+		pinMode(PULL_UP_PIN, OUTPUT);
+		digitalWrite(PULL_UP_PIN, HIGH);
+
+		// Back pins as ground
 		pinMode(backPin, OUTPUT);
-		digitalWrite(backPin, HIGH);
+		digitalWrite(backPin, LOW);
 
 		switch(location){
 			case H:
@@ -92,7 +98,8 @@ void MakeyTouchSensor::update(){
 
 		filter.push(reading);
 
-		if(filter.get() > 0.99) out.set(1);
+		Serial.println(filter.get());
+		if(filter.get() < 0.15) out.set(1);
 		else  out.set(0);
 	}
 
