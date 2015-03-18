@@ -11,6 +11,7 @@
 #include "DigitalSensor.h"
 #include "MakeyTouchSensor.h"
 #include "SqueezeSensor.h"
+#include "KeyPress.h"
 #include "Sonar.h"
 #include "VoltageOutput.h"
 #include "Led.h"
