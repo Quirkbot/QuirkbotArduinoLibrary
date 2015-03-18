@@ -9,6 +9,7 @@
 #include "Converter.h"
 #include "AnalogSensor.h"
 #include "DigitalSensor.h"
+#include "MakeyTouchSensor.h"
 #include "SqueezeSensor.h"
 #include "Sonar.h"
 #include "VoltageOutput.h"
@@ -33,7 +34,11 @@ void setup(){
 
  	// Start serial
  	Serial.begin(115200);
+
+ 	// Start Keyboard
+ 	Keyboard.begin();
  	
+ 	// Force mouth to turn off (only used if you have to use the LillyPad USB)
  	PORTD &= ~(1<<5);
 	PORTB &= ~(1<<0);
 
