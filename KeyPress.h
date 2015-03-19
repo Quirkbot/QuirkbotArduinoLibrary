@@ -33,13 +33,20 @@ void KeyPress::onInternalInputChange(BaseInput &internalInput){
 
 		if(!pressed && isTriggerActive()){
 			pressed = true;
-			Keyboard.press('0');
+			Keyboard.press(currentKey);
 		}
 		else if(pressed && !isTriggerActive()){
 			pressed = false;
-			Keyboard.release('0');
+			Keyboard.release(currentKey);
+			currentKey = key.get();
 		}
 		
+	}
+	else if(&internalInput == &key){
+
+		if(!isTriggerActive()){
+			currentKey = key.get();
+		}		
 	}
 };
 
