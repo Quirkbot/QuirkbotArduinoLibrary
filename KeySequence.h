@@ -3,52 +3,79 @@
 
 #include "CommonNodeIncludes.h"
 
+#define QB_MAX_SIMULTANEOUS_KEYS 20
+
 class KeySequence :
 public Node,
-public HasTrigger
+public HasIn<float>,
+public HasInterval
 {
 	public:
 	
 	KeySequence():
-	HasTrigger
+	HasIn<float>
+		(this),
+	HasInterval
 		(this){
-		registerInput(key);
+		registerInput(hold);
 
-		currentKey = 0;
-		pressed = 5;
+		hold = 0.3;
+
+		for (int i = 0; i < QB_MAX_SIMULTANEOUS_KEYS; ++i){
+			schedule[i][0] = 0;
+			schedule[i][1] = 0;
+		}
+
+		index = 0;
 	};
 
-	Input<float> key;
+	Input<float> hold;
+
 
 	protected:
-
+	void onInterval();
 	void onInternalInputChange(BaseInput &internalInput);
 
-	int currentKey;
-	bool pressed;
+	int schedule[QB_MAX_SIMULTANEOUS_KEYS][2];
+	int index;
 };
 
 void KeySequence::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &trigger){
+	if(&internalInput == &in){
+		// Check if some key needs to be dropped
+		if(schedule[index][0] && Bot::millis < schedule[index][1]){
+			Keyboard.release(schedule[index][0]);
+		}
 
-		if(!pressed && isTriggerActive()){
-			pressed = true;
-			Keyboard.press(currentKey);
-		}
-		else if(pressed && !isTriggerActive()){
-			pressed = false;
-			Keyboard.release(currentKey);
-			currentKey = key.get();
-		}
+
+		int currentKey = in.get();
+		int currentTime = Bot::millis + hold.get() * 1000;
+
+		Keyboard.press(currentKey);
+
+		schedule[index][0] = currentKey;
+		schedule[index][1] = currentTime;
+
+		index++;
+		if(index == QB_MAX_SIMULTANEOUS_KEYS) index = 0;
+
 		
 	}
-	else if(&internalInput == &key){
 
-		if(!isTriggerActive()){
-			currentKey = key.get();
-		}		
-	}
 };
+
+void KeySequence::onInterval(){
+	for (int i = 0; i < QB_MAX_SIMULTANEOUS_KEYS; ++i) {
+		int key = schedule[i][0];
+		int time =  schedule[i][1];
+		if(!key) continue;
+		if(Bot::millis > time){
+			Keyboard.release(key);
+			schedule[i][0] = 0;
+
+		}
+	}
+}
 
 
 #endif

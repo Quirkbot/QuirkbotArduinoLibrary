@@ -19,7 +19,7 @@ public HasOut<float>
 		
 		place = -1;
 
-		filter.alpha = 0.9;
+		filter.alpha = 0.87;
 	};
 
 	Input<float> place;
@@ -98,8 +98,10 @@ void MakeyTouchSensor::update(){
 
 		filter.push(reading);
 
+		if(Bot::seconds < 1.5) return;
+		
 		Serial.println(filter.get());
-		if(filter.get() < 0.15) out.set(1);
+		if(filter.get() < 0.3) out.set(1);
 		else  out.set(0);
 	}
 
