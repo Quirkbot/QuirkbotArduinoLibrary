@@ -16,5 +16,6 @@
 #include "HasInputCollection.h"
 #include "HasTrigger.h"
 #include "Filters.h"
+#include "KeyCodes.h"
 
 #endif
