@@ -65,7 +65,7 @@ void RGBLed::calculateRGB(float h, float s, float l) {
 		vsf = v * sv * fract;
 		mid1 = m + vsf;
 		mid2 = v - vsf;
-		Serial.println(v);
+		
 		switch (sextant){
 			case 0:
 				r = v;
