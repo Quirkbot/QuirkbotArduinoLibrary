@@ -67,6 +67,7 @@ public HasOut<float>
 	const int16_t * table;
 	
 	void onInternalInputChange(BaseInput &internalInput);
+	void serialReport();
 
 	float adjust;
 	float position;
@@ -128,6 +129,10 @@ void Wave::onInterval(){
 			max.get()
 		)
 	);
+}
+
+void Wave::serialReport(){
+	Serial.write((byte)(Bot::map(out.get(), min.get(), max.get(), 0, 1) * 255));
 }
 
 #endif

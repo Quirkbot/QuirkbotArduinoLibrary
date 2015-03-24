@@ -4,6 +4,8 @@
 #include "Arduino.h"
 #include "Board.h"
 #include "Updatable.h"
+#include "Node.h"
+
 
 #include "Vector.h"
 
@@ -19,6 +21,7 @@ class Bot {
 	static void removeUpdatable(Updatable * updatable);
 	static int updatablePosition(Updatable * updatable);
 
+	static void setup();
 	static void update();
 
 	// Utils
@@ -35,11 +38,14 @@ class Bot {
 
 	static Vector <Node *> nodes;
 	static Vector <Updatable *> updatables;
+	static byte uuid[QB_UUID_SIZE];
 	static volatile unsigned long frames;
 	static volatile unsigned long dtMicros;
 	static volatile unsigned long micros;
 	static volatile unsigned long millis;
 	static volatile float seconds;
+	static bool serialReportEnabled;
+	static unsigned long reportMillisTick;
 };
 
 #endif
