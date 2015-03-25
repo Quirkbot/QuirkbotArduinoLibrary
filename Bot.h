@@ -34,7 +34,7 @@ class Bot {
 	static float maximum(float a, float b);
 	static int locationToBackPin(int location);
 	static int locationToFrontPin(int location);
-	
+
 
 	static Vector <Node *> nodes;
 	static Vector <Updatable *> updatables;

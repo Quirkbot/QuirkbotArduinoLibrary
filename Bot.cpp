@@ -114,10 +114,10 @@ void Bot::update(){
 		}		
 		// End delimiter
 		Serial.write('\n');
-		
 	}
 }
 
+// Utils -----------------------------------------------------------------------
 float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
 	float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
 	if(outMin < outMax){

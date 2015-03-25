@@ -8,6 +8,9 @@ class FilterBase {
 	
 	float get(){
 		return value;
+	}
+	float set(float v){
+		value = v;
 	} 
 
 	float alpha;

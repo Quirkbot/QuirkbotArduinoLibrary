@@ -55,6 +55,12 @@ class Vector {
 		}
 		d_size--;
 	}; // Pops a value at an specific index. All other values will be moved
+
+	void clear() {
+		d_size = 0;
+		d_capacity = 0;
+		free(d_data);
+	}; // Clears all the data from the vector
 	
 	unsigned int size() const { 
 		return d_size;
