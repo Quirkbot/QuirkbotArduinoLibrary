@@ -22,8 +22,8 @@ public HasInterval
 		hold = 0.3;
 
 		for (int i = 0; i < QB_MAX_SIMULTANEOUS_KEYS; ++i){
-			schedule[i][0] = 0;
-			schedule[i][1] = 0;
+			scheduleKey[i] = 0;
+			scheduleTime[i] = 0;
 		}
 
 		index = 0;
@@ -36,15 +36,16 @@ public HasInterval
 	void onInterval();
 	void onInternalInputChange(BaseInput &internalInput);
 
-	long schedule[QB_MAX_SIMULTANEOUS_KEYS][2];
+	int scheduleKey[QB_MAX_SIMULTANEOUS_KEYS];
+	long scheduleTime[QB_MAX_SIMULTANEOUS_KEYS];
 	int index;
 };
 
 void KeySequence::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
 		// Check if some key needs to be dropped
-		if(schedule[index][0] && Bot::millis < schedule[index][1]){
-			Bot::releaseKey(schedule[index][0]);
+		if(scheduleKey[index] && Bot::millis < scheduleTime[index]){
+			Keyboard.release(scheduleKey[index]);
 		}
 
 
@@ -53,8 +54,8 @@ void KeySequence::onInternalInputChange(BaseInput &internalInput){
 
 		Bot::pressKey(currentKey);
 
-		schedule[index][0] = currentKey;
-		schedule[index][1] = currentTime;
+		scheduleKey[index] = currentKey;
+		scheduleTime[index] = currentTime;
 
 		index++;
 		if(index == QB_MAX_SIMULTANEOUS_KEYS) index = 0;
@@ -66,16 +67,12 @@ void KeySequence::onInternalInputChange(BaseInput &internalInput){
 
 void KeySequence::onInterval(){
 	for (int i = 0; i < QB_MAX_SIMULTANEOUS_KEYS; ++i) {
-		int key = schedule[i][0];
-		long time =  schedule[i][1];
-		Serial.print(key);
-		Serial.print('\t');
-		Serial.print(time);
-		Serial.print('\t');
+		int key = scheduleKey[i];
+		long time =  scheduleTime[i];
 		if(!key) continue;
 		if(Bot::millis > time){
-			Bot::releaseKey(key);
-			schedule[i][0] = 0;
+			Keyboard.release(key);
+			scheduleKey[i] = 0;
 		}
 	}
 	Serial.println(' ');
