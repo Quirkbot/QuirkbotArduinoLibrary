@@ -26,7 +26,7 @@ void Bot::setup(){
 
 	// Load (or create) UUID from eeprom
 	byte delimiter = eeprom_read_byte((uint8_t*)QB_UUID_SIZE);
-	if(delimiter == '_'){
+	if(delimiter == 250){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			Bot::uuid[i] = eeprom_read_byte((uint8_t*)i);
 		}
@@ -49,7 +49,7 @@ void Bot::setup(){
 			eeprom_write_byte((uint8_t*) Bot::uuid[i], (uint8_t)i);
 			delay(10);
 		}
-		eeprom_write_byte((uint8_t*)'_', (uint8_t)QB_UUID_SIZE);
+		eeprom_write_byte((uint8_t*)250, (uint8_t)QB_UUID_SIZE);
 	}
 }
 
@@ -99,21 +99,21 @@ void Bot::update(){
 		Bot::reportMillisTick += 100;
 
 		// Start delimiter
-		Serial.write('_');
+		Serial.write((byte)250);
 		
 		// UUID --------
 		Serial.write((uint8_t*)Bot::uuid, QB_UUID_SIZE);
-		Serial.write('='); // delimiter
+		Serial.write((byte)251); // delimiter
 		// Number of nodes
 		Serial.write((byte)Bot::nodes.size());
-		Serial.write(':');  // delimiter
+		Serial.write((byte)252);  // delimiter
 		// Content
 		for(unsigned int i=0; i<Bot::nodes.size(); i++){
 			Bot::nodes[i]->serialReport();
-			Serial.write('|'); // delimiter
+			Serial.write((byte)253); // delimiter
 		}		
 		// End delimiter
-		Serial.write('\n');
+		Serial.write((byte)255);
 	}
 }
 
