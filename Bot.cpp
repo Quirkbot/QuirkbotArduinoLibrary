@@ -18,7 +18,7 @@ void Bot::setup(){
  	Serial.begin(115200);
 
  	// Start Keyboard
- 	#ifdef HID_ENABLED
+ 	#if defined(USBCON)
  		Keyboard.begin();
  	#endif
  	
@@ -121,17 +121,17 @@ void Bot::update(){
 
 // Keyboard management ---------------------------------------------------------
 void Bot::pressKey(byte key){
-	#ifdef HID_ENABLED
+	#if defined(USBCON)
 		Keyboard.press(key);
 	#endif
 };
 void Bot::releaseKey(byte key){
-	#ifdef HID_ENABLED
+	#if defined(USBCON)
 		Keyboard.release(key);
 	#endif
 };
 void Bot::releaseAllKeys(){
-	#ifdef HID_ENABLED
+	#if defined(USBCON)
 		Keyboard.releaseAll();
 	#endif
 };
