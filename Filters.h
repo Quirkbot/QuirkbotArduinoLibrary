@@ -9,7 +9,7 @@ class FilterBase {
 	float get(){
 		return value;
 	}
-	float set(float v){
+	void set(float v){
 		value = v;
 	} 
 
