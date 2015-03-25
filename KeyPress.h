@@ -33,11 +33,11 @@ void KeyPress::onInternalInputChange(BaseInput &internalInput){
 
 		if(!pressed && isTriggerActive()){
 			pressed = true;
-			Keyboard.press(currentKey);
+			Bot::pressKey(currentKey);
 		}
 		else if(pressed && !isTriggerActive()){
 			pressed = false;
-			Keyboard.release(currentKey);
+			Bot::releaseKey(currentKey);
 			currentKey = key.get();
 		}
 		

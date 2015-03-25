@@ -49,8 +49,52 @@ void Bot::update(){
 	for(unsigned int i=0; i<Bot::updatables.size(); i++){
 		Bot::updatables[i]->update();
 	}
+
+	// To make sure keyboar will never jam, do some
+	// cleanup every once in a while.
+	if(Bot::frames % 1500 == 0){
+		if(!pressedKeys.size())
+		releaseAllKeys(true);
+	}
+}
+// Keyboard management ---------------------------------------------------------
+Vector <uint8_t> Bot::pressedKeys = Vector<uint8_t>();
+Vector <uint8_t> Bot::usedKeys = Vector<uint8_t>();
+void Bot::pressKey(uint8_t key){
+	Keyboard.press(key);
+	pressedKeys.push(key);
+
+	bool isNew = true;
+	for(uint8_t i = 0; i < usedKeys.size(); i++){
+		if(usedKeys[i] == key){
+			isNew = false;
+		}	break;
+	}
+	if(isNew){
+		usedKeys.push(key);
+	}
+}
+void Bot::releaseKey(uint8_t key){
+	Keyboard.release(key);
+	pressedKeys.pop(key);
+
+	// Keep it clear
+	if(!pressedKeys.size())
+		releaseAllKeys();
+}
+void Bot::releaseAllKeys(bool force){
+	//pressedKeys.clear();
+	Keyboard.releaseAll();
+
+	if(force){
+		Serial.println('c');
+		for(uint8_t i = 0; i < usedKeys.size(); i++){
+			Keyboard.release(usedKeys[i]);
+		}
+	}
 }
 
+// Utils -----------------------------------------------------------------------
 float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
 	float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
 	if(outMin < outMax){
