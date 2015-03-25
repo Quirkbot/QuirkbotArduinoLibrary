@@ -24,6 +24,11 @@ class Bot {
 	static void setup();
 	static void update();
 
+	// Keyboard management
+	static void pressKey(byte key);
+	static void releaseKey(byte key);
+	static void releaseAllKeys();
+
 	// Utils
 	static float map(
 		float x, 

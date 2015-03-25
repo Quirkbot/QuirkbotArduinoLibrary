@@ -18,7 +18,9 @@ void Bot::setup(){
  	Serial.begin(115200);
 
  	// Start Keyboard
- 	Keyboard.begin();
+ 	#ifdef HID_ENABLED
+ 		Keyboard.begin();
+ 	#endif
  	
  	// Force mouth to turn off (only used if you have to use the LillyPad USB)
  	PORTD &= ~(1<<5);
@@ -116,6 +118,23 @@ void Bot::update(){
 		Serial.write((byte)255);
 	}
 }
+
+// Keyboard management ---------------------------------------------------------
+void Bot::pressKey(byte key){
+	#ifdef HID_ENABLED
+		Keyboard.press(key);
+	#endif
+};
+void Bot::releaseKey(byte key){
+	#ifdef HID_ENABLED
+		Keyboard.release(key);
+	#endif
+};
+void Bot::releaseAllKeys(){
+	#ifdef HID_ENABLED
+		Keyboard.releaseAll();
+	#endif
+};
 
 // Utils -----------------------------------------------------------------------
 float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){

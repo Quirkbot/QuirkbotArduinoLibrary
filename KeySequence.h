@@ -45,14 +45,14 @@ void KeySequence::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
 		// Check if some key needs to be dropped
 		if(scheduleKey[index] && Bot::millis < scheduleTime[index]){
-			Keyboard.release(scheduleKey[index]);
+			Bot::releaseKey(scheduleKey[index]);
 		}
 
 
 		int currentKey = in.get();
 		long currentTime = Bot::millis + hold.get() * 1000;
 
-		Keyboard.press(currentKey);
+		Bot::pressKey(currentKey);
 
 		scheduleKey[index] = currentKey;
 		scheduleTime[index] = currentTime;
@@ -71,7 +71,7 @@ void KeySequence::onInterval(){
 		long time =  scheduleTime[i];
 		if(!key) continue;
 		if(Bot::millis > time){
-			Keyboard.release(key);
+			Bot::releaseKey(key);
 			scheduleKey[i] = 0;
 		}
 	}
