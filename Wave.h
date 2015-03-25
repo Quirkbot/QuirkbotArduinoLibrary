@@ -64,7 +64,7 @@ public HasOut<float>
 
 	protected:
 
-	const int16_t * table;
+	const byte * table;
 	
 	void onInternalInputChange(BaseInput &internalInput);
 	void serialReport();
@@ -119,12 +119,12 @@ void Wave::onInterval(){
 	}
 	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * duration.get(), duration.get());
 	position = timeSeconds / duration.get();
-	int index = position * 256.0;
+	byte index = position * 256.0;
 	out.set(
 		Bot::map(
-			(float)(pgm_read_word_near(table + index)) * 0.001,
+			(float)(pgm_read_byte_near(table + index)),
 			0.0,
-			1.0,
+			255.0,
 			min.get(),
 			max.get()
 		)
