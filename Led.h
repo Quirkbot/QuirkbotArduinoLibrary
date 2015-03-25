@@ -25,6 +25,7 @@ public HasIn<float>{
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
 	void update();
+	void serialReport();
 
 	bool useSoftPWM;
 	int pwmWidth;
@@ -98,4 +99,9 @@ void Led::update(){
 		*outPort &= ~(pinMask);
 	}	
 };
+void Led::serialReport(){
+	byte b = (byte)Bot::map(in.get(), 0, 1.0, 0, 249);
+	Serial.write(b);
+}
+
 #endif

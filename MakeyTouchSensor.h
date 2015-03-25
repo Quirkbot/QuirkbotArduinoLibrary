@@ -29,6 +29,7 @@ public HasOut<float>
 	protected:	
 
 	void onInternalInputChange(BaseInput &internalInput);
+	void serialReport();
 
 	LowPassFilter filter;
 	MedianFilter median;
@@ -104,6 +105,10 @@ void MakeyTouchSensor::update(){
 		else  out.set(0);
 	}
 
+}
+
+void MakeyTouchSensor::serialReport(){
+	Serial.write((byte)(out.get() * 249));
 }
 
 #endif

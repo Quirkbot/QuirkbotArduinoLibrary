@@ -52,7 +52,7 @@ void KeySequence::onInternalInputChange(BaseInput &internalInput){
 		int currentKey = in.get();
 		long currentTime = Bot::millis + hold.get() * 1000;
 
-		Bot::pressKey(currentKey);
+		Keyboard.press(currentKey);
 
 		scheduleKey[index] = currentKey;
 		scheduleTime[index] = currentTime;
@@ -75,7 +75,6 @@ void KeySequence::onInterval(){
 			scheduleKey[i] = 0;
 		}
 	}
-	Serial.println(' ');
 }
 
 

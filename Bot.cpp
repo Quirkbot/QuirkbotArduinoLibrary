@@ -1,13 +1,57 @@
+#include <avr/eeprom.h>
 #include "Bot.h"
 
 
 Vector <Node *> Bot::nodes = Vector<Node *>();
 Vector <Updatable *> Bot::updatables = Vector<Updatable *>();
+byte Bot::uuid[QB_UUID_SIZE] = {0x00};
 volatile unsigned long Bot::frames = 0;
 volatile unsigned long Bot::dtMicros = 0;
 volatile unsigned long Bot::micros = 0;
 volatile unsigned long Bot::millis = 0;
 volatile float Bot::seconds = 0;
+unsigned long Bot::reportMillisTick = 0;
+bool Bot::serialReportEnabled = true;
+
+void Bot::setup(){
+	// Start serial
+ 	Serial.begin(115200);
+
+ 	// Start Keyboard
+ 	Keyboard.begin();
+ 	
+ 	// Force mouth to turn off (only used if you have to use the LillyPad USB)
+ 	PORTD &= ~(1<<5);
+	PORTB &= ~(1<<0);
+
+	// Load (or create) UUID from eeprom
+	byte delimiter = eeprom_read_byte((uint8_t*)QB_UUID_SIZE);
+	if(delimiter == 250){
+		for (int i = 0; i < QB_UUID_SIZE; ++i){
+			Bot::uuid[i] = eeprom_read_byte((uint8_t*)i);
+		}
+	}
+	else{
+		for (int i = 0; i < QB_UUID_SIZE; ++i){
+			
+			randomSeed(analogRead(A0) + analogRead(A1) +analogRead(A2) + analogRead(A3));
+			switch(random(0,3)){
+				case 0:
+					Bot::uuid[i] = '0' + random(0,9);
+					break;
+				case 1:
+					Bot::uuid[i] = 'a' + random(0,26);
+					break;
+				case 2:
+					Bot::uuid[i] = 'A' + random(0,26);
+					break;
+			}
+			eeprom_write_byte((uint8_t*) Bot::uuid[i], (uint8_t)i);
+			delay(10);
+		}
+		eeprom_write_byte((uint8_t*)250, (uint8_t)QB_UUID_SIZE);
+	}
+}
 
 void Bot::addNode(Node * node){
 	if(Bot::nodePosition(node) != -1) return;
@@ -50,47 +94,26 @@ void Bot::update(){
 		Bot::updatables[i]->update();
 	}
 
-	// To make sure keyboar will never jam, do some
-	// cleanup every once in a while.
-	if(Bot::frames % 1500 == 0){
-		if(!pressedKeys.size())
-		releaseAllKeys(true);
-	}
-}
-// Keyboard management ---------------------------------------------------------
-Vector <uint8_t> Bot::pressedKeys = Vector<uint8_t>();
-Vector <uint8_t> Bot::usedKeys = Vector<uint8_t>();
-void Bot::pressKey(uint8_t key){
-	Keyboard.press(key);
-	pressedKeys.push(key);
+	// Send serial report every 100 millis
+	if(Bot::serialReportEnabled && Bot::millis >= Bot::reportMillisTick){
+		Bot::reportMillisTick += 100;
 
-	bool isNew = true;
-	for(uint8_t i = 0; i < usedKeys.size(); i++){
-		if(usedKeys[i] == key){
-			isNew = false;
-		}	break;
-	}
-	if(isNew){
-		usedKeys.push(key);
-	}
-}
-void Bot::releaseKey(uint8_t key){
-	Keyboard.release(key);
-	pressedKeys.pop(key);
-
-	// Keep it clear
-	if(!pressedKeys.size())
-		releaseAllKeys();
-}
-void Bot::releaseAllKeys(bool force){
-	//pressedKeys.clear();
-	Keyboard.releaseAll();
-
-	if(force){
-		Serial.println('c');
-		for(uint8_t i = 0; i < usedKeys.size(); i++){
-			Keyboard.release(usedKeys[i]);
-		}
+		// Start delimiter
+		Serial.write((byte)250);
+		
+		// UUID --------
+		Serial.write((uint8_t*)Bot::uuid, QB_UUID_SIZE);
+		Serial.write((byte)251); // delimiter
+		// Number of nodes
+		Serial.write((byte)Bot::nodes.size());
+		Serial.write((byte)252);  // delimiter
+		// Content
+		for(unsigned int i=0; i<Bot::nodes.size(); i++){
+			Bot::nodes[i]->serialReport();
+			Serial.write((byte)253); // delimiter
+		}		
+		// End delimiter
+		Serial.write((byte)255);
 	}
 }
 

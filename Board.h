@@ -45,6 +45,9 @@
 // Pull up pin
 #define PULL_UP_PIN 4
 
+// UUID
+#define QB_UUID_SIZE 10
+
 
 // RX and TX -------------------------------------------------------------------
 // Keep off when doing serial communication
