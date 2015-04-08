@@ -1,6 +1,14 @@
 #include <avr/eeprom.h>
 #include "Bot.h"
+#include "trulyRandom.h"
 
+#define REPORT_INTERVAL_MILLIS 100
+#define REPORT_UUID_INTERVAL_TICKS 10
+#define REPORT_START_DELIMITER 250
+#define REPORT_END_DELIMITER 255
+#define REPORT_UUID_DELIMITER 251
+#define REPORT_NUMBER_OF_NODES_DELIMITER 252
+#define REPORT_NODE_CONTENT_DELIMITER 253
 
 Vector <Node *> Bot::nodes = Vector<Node *>();
 Vector <Updatable *> Bot::updatables = Vector<Updatable *>();
@@ -22,36 +30,23 @@ void Bot::setup(){
  		Keyboard.begin();
  	#endif
  	
- 	// Force mouth to turn off (only used if you have to use the LillyPad USB)
+ 	// Force mouth to turn off (only used if you have to use  'LillyPad USB' as the board)
  	PORTD &= ~(1<<5);
 	PORTB &= ~(1<<0);
 
-	// Load (or create) UUID from eeprom
-	byte delimiter = eeprom_read_byte((uint8_t*)QB_UUID_SIZE);
-	if(delimiter == 250){
+	// Load from eeprom (or create) UUID
+	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
+	if(delimiter == (byte)REPORT_UUID_DELIMITER){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
-			Bot::uuid[i] = eeprom_read_byte((uint8_t*)i);
+			Bot::uuid[i] = eeprom_read_byte((byte*)i);
 		}
 	}
 	else{
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
-			
-			randomSeed(analogRead(A0) + analogRead(A1) +analogRead(A2) + analogRead(A3));
-			switch(random(0,3)){
-				case 0:
-					Bot::uuid[i] = '0' + random(0,9);
-					break;
-				case 1:
-					Bot::uuid[i] = 'a' + random(0,26);
-					break;
-				case 2:
-					Bot::uuid[i] = 'A' + random(0,26);
-					break;
-			}
-			eeprom_write_byte((uint8_t*) Bot::uuid[i], (uint8_t)i);
-			delay(10);
+			Bot::uuid[i] = trulyRandomUuidComponent();
+			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
 		}
-		eeprom_write_byte((uint8_t*)250, (uint8_t)QB_UUID_SIZE);
+		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
 	}
 }
 
@@ -96,26 +91,27 @@ void Bot::update(){
 		Bot::updatables[i]->update();
 	}
 
-	// Send serial report every 100 millis
+	// Send serial reportis
 	if(Bot::serialReportEnabled && Bot::millis >= Bot::reportMillisTick){
-		Bot::reportMillisTick += 100;
-
+		Bot::reportMillisTick += REPORT_INTERVAL_MILLIS;
 		// Start delimiter
-		Serial.write((byte)250);
+		Serial.write((byte)REPORT_START_DELIMITER);
 		
 		// UUID --------
-		Serial.write((uint8_t*)Bot::uuid, QB_UUID_SIZE);
-		Serial.write((byte)251); // delimiter
+		// UUID is not printed on every tick
+		if(Bot::reportMillisTick % (REPORT_INTERVAL_MILLIS * REPORT_UUID_INTERVAL_TICKS) == 0)
+			Serial.write((uint8_t*)Bot::uuid, QB_UUID_SIZE);
+		Serial.write((byte)REPORT_UUID_DELIMITER); // delimiter
 		// Number of nodes
 		Serial.write((byte)Bot::nodes.size());
-		Serial.write((byte)252);  // delimiter
+		Serial.write((byte)REPORT_NUMBER_OF_NODES_DELIMITER);  // delimiter
 		// Content
 		for(unsigned int i=0; i<Bot::nodes.size(); i++){
 			Bot::nodes[i]->serialReport();
-			Serial.write((byte)253); // delimiter
+			Serial.write((byte)REPORT_NODE_CONTENT_DELIMITER); // delimiter
 		}		
 		// End delimiter
-		Serial.write((byte)255);
+		Serial.write((byte)REPORT_END_DELIMITER);
 	}
 }
 
