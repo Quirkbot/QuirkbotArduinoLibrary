@@ -1,0 +1,12 @@
+{
+    "name": "Quirkbot",
+    "keywords": "quirkbot, strawbees, kidshakday",
+    "description": "Make your own robots with drinking straws!",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/Quirkbot/QuirkbotArduinoLibrary.git"
+    },
+    "frameworks": "arduino",
+    "platforms": "atmelavr"
+}

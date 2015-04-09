@@ -5,36 +5,53 @@
 
 #include "CommonNodeIncludes.h"
 
-#include "Mathematics.h"
-#include "Converter.h"
-#include "AnalogSensor.h"
-#include "DigitalSensor.h"
-#include "SqueezeSensor.h"
-#include "Sonar.h"
-#include "OutputVoltage.h"
-#include "Led.h"
-#include "RGBLed.h"
-#include "Buzzer.h"
-#include "ServoMotor.h"
-#include "ContinuousServoMotor.h"
+// Keyboard & Mouse
+#include "KeyPress.h"
+#include "KeySequence.h"
+
+// Signal
 #include "Wave.h"
 #include "Randomizer.h"
-#include "Time.h"
-#include "SystemMemory.h"
-#include "SerialMonitor.h"
+
+// Sensors
+#include "AnalogSensor.h"
+#include "DigitalSensor.h"
+#include "MakeyTouchSensor.h"
+#include "SqueezeSensor.h"
+#include "Sonar.h"
+
+// Light
+#include "Led.h"
+#include "DualColorLed.h"
+#include "RGBLed.h"
+
+// Movement
+#include "ServoMotor.h"
+#include "ContinuousServoMotor.h"
+
+// Sound
+#include "Buzzer.h"
+
+// General
+#include "VoltageOutput.h"
+
+// Logic
+#include "Mathematics.h"
+#include "Converter.h"
 #include "List.h"
 #include "Sequence.h"
 #include "Gate.h"
+
+// Debug
+#include "SystemMemory.h"
+#include "SerialMonitor.h"
+#include "Time.h"
 
 void start();
 
 void setup(){
 
- 	// Start serial
- 	Serial.begin(115200);
- 	
- 	PORTD &= ~(1<<5);
-	PORTB &= ~(1<<0);
+	Bot::setup();
 
 	start();	
 }

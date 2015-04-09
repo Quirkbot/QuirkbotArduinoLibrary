@@ -42,6 +42,12 @@
 #define BP5	3	// Back Pack 5		(PD0)	SCL
 #define BP6	1 	// Back Pack 6		(PD3)	TXD1
 
+// Pull up pin
+#define PULL_UP_PIN 4
+
+// UUID
+#define QB_UUID_SIZE 16
+
 
 // RX and TX -------------------------------------------------------------------
 // Keep off when doing serial communication

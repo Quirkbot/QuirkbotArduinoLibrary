@@ -1,15 +1,15 @@
-#ifndef OutputVoltage_h_
-#define OutputVoltage_h_
+#ifndef VoltageOutput_h_
+#define VoltageOutput_h_
 
 #include "CommonNodeIncludes.h"
 
-class OutputVoltage :
+class VoltageOutput :
 public Updatable,
 public Node,
 public HasIn<float>{
 	public:
 	
-	OutputVoltage():
+	VoltageOutput():
 	HasIn<float>
 		(this){
 		registerInput(place);
@@ -17,6 +17,7 @@ public HasIn<float>{
 		pwmWidth = 16;
 		pwmOffset = pwmWidth;
 		signalPin = -1;
+		location = -1;
 	};
 
 	Input<float> place;
@@ -31,11 +32,17 @@ public HasIn<float>{
 	volatile uint8_t *outPort;
 	uint8_t pinMask;
 	int signalPin;
+	int location;
 
 };
-void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
+void VoltageOutput::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
-		int location = place.get();
+		// Disable when disconnected
+		if(location != -1){
+			*outPort &= ~(pinMask);
+		}
+
+		location = place.get();
 		
 		if(location == LM || location == RM){
 			useSoftPWM = true;
@@ -51,31 +58,27 @@ void OutputVoltage::onInternalInputChange(BaseInput &internalInput){
 					break;	
 			}
 		}
-		else{		
+		else{	
 			signalPin = Bot::locationToFrontPin(location);
 			if(signalPin == NO_LOCATION) signalPin = location;
-
+			outPort = portOutputRegister(digitalPinToPort(signalPin));
+			pinMask = digitalPinToBitMask(signalPin);
 			pinMode(signalPin, OUTPUT);
 
 			if( digitalPinToTimer(signalPin) == NOT_ON_TIMER ){
 				useSoftPWM = true;				
-				outPort = portOutputRegister(digitalPinToPort(signalPin));
-				pinMask = digitalPinToBitMask(signalPin);
 			}
 			else useSoftPWM = false;
 		}
 	}
-	else if(&internalInput == &in){
-		if(useSoftPWM){
-			pwmOffset = (int)((float)pwmWidth * in.get());
-		}
-		else{
-			analogWrite(signalPin, in.get() * 255.0);
-		}
-
+	if(useSoftPWM){
+		pwmOffset = (int)((float)pwmWidth * in.get());
+	}
+	else{
+		analogWrite(signalPin, in.get() * 255.0);
 	}
 };
-void OutputVoltage::update(){
+void VoltageOutput::update(){
 	if(!useSoftPWM) return;
 
 	if(Bot::frames % pwmWidth < pwmOffset){

@@ -18,9 +18,11 @@ class Node{
 	void registerInput(BaseInput &input);
 	virtual void onInternalInputChange(BaseInput &internalInput){};
 
+	virtual void serialReport(){};
 	
 	protected:
 	unsigned int id;
+	
 
 	private:
 
