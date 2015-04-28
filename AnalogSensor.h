@@ -16,11 +16,20 @@ public HasOut<float>
 	HasOut<float>
 		(this){
 		registerInput(place);
+		registerInput(min);
+		registerInput(max);
+
+		min = 0;
+		max = 1;
+
+		pin = -1;
 	};
 
 	void onInterval();
 
 	Input<float> place;
+	Input<float> min;
+	Input<float> max;
 
 	protected:
 
@@ -28,16 +37,26 @@ public HasOut<float>
 
 	MedianFilter preMedianFilter;
 	MedianFilter postMedianFilter;
+	int pin;
 };
 
 void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &place) pinMode(place.get(), INPUT);
+	if(&internalInput == &place){
+		pin = Bot::locationToBackPin(place.get());
+		if(pin == NO_LOCATION){
+			pin = place.get();
+		}
+
+		pinMode(pin, INPUT);
+	}
 };
 
 void AnalogSensor::onInterval(){
-	preMedianFilter.push(analogRead(place.get()));
+	if(pin == -1) return;
+	
+	preMedianFilter.push(analogRead(pin));
 	postMedianFilter.push(preMedianFilter.get());
-	out.set(postMedianFilter.get()/1024.0);
+	out.set(Bot::map(postMedianFilter.get(), 0, 1024, min.get(), max.get()));
 }
 
 #endif
