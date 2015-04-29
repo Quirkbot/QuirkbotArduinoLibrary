@@ -11,15 +11,7 @@ public HasOut<float>
 {
 	public:
 	
-	List():
-	HasInputCollection<float>
-		(this),
-	HasIn<float>
-		(this),
-	HasOut<float>
-		(this){
-		selected = NULL;	
-	};
+	List();
 	
 	protected:
 
@@ -46,16 +38,4 @@ public HasOut<float>
 
 	Input<float> * selected;
 };
-void List::onItemsUpdated(){
-	refreshSelected();
-};
-void List::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
-		refreshSelected();		
-	}
-	else if(&internalInput == selected){
-		out.set(selected->get());
-	}
-};
-
 #endif

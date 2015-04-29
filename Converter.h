@@ -10,22 +10,7 @@ public HasOut<float>
 {
 	public:
 	
-	Converter():
-	HasIn<float>
-		(this),
-	HasOut<float>
-		(this){
-
-		registerInput(inMin);
-		registerInput(inMax);
-		registerInput(outMin);
-		registerInput(outMax);
-		
-		inMin = 0.0;
-		inMax = 1.0;
-		outMin = 0.0;
-		outMax = 1.0;
-	};
+	Converter();
 	
 	Input<float> inMin;
 	Input<float> inMax;
@@ -36,19 +21,4 @@ public HasOut<float>
 
 	void onInternalInputChange(BaseInput &internalInput);
 };
-
-void Converter::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
-		out.set( 
-			Bot::map(
-				in.get(),
-				inMin.get(),
-				inMax.get(),
-				outMin.get(),
-				outMax.get()
-			)
-		);
-	}
-};
-
 #endif
