@@ -48,7 +48,12 @@
 #include "Time.h"
 
 void start();
-void setup();
-void loop();
+void setup(){
+	Bot::setup();
+	start();
+}
+void loop(){
+	Bot::update();
+}
 
 #endif
