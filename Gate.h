@@ -6,8 +6,8 @@
 class Gate:
 public Node,
 public HasTrigger,
-public HasIn<float>,
-public HasOut<float>
+public HasIn,
+public HasOut
 {
 	public:
 	

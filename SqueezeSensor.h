@@ -6,7 +6,7 @@
 class SqueezeSensor :
 public Node,
 public HasInterval,
-public HasOut<float>
+public HasOut
 {
 	public:
 
@@ -14,9 +14,9 @@ public HasOut<float>
 
 	void onInterval();
 
-	InputFloat place;
-	InputFloat min;
-	InputFloat max;
+	Input place;
+	Input min;
+	Input max;
 
 	protected:
 

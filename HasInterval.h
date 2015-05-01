@@ -3,8 +3,8 @@
 
 #include "Bot.h"
 #include "Updatable.h"
-#include "InputFloat.h"
-#include "OutputFloat.h"
+#include "Input.h"
+#include "Output.h"
 
 class Node;
 class Updatable;
@@ -18,7 +18,7 @@ public Updatable{
 
 	virtual void onInterval(){};
 
-	InputFloat interval;
+	Input interval;
 
 	private:
 	unsigned long nextTick;

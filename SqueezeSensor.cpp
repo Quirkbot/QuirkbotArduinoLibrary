@@ -3,7 +3,7 @@
 SqueezeSensor::SqueezeSensor():
 HasInterval
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	registerInput(place);
 

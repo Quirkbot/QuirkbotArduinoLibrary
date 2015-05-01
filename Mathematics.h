@@ -8,8 +8,8 @@
  */
 class MathNode:
 public Node,
-public HasIn<float>,
-public HasOut<float>{
+public HasIn,
+public HasOut{
 	public:
 	
 	MathNode();
@@ -34,7 +34,7 @@ public MathNode{
 	
 	MathOperationNode();
 
-	InputFloat operand;
+	Input operand;
 };
 
 
@@ -101,7 +101,7 @@ public MathOperationNode{
 	exponent(operand)
 	{};
 
-	InputFloat &exponent;
+	Input &exponent;
 
 	protected:
 	
@@ -119,7 +119,7 @@ public MathOperationNode{
 	addend(operand)
 	{};
 
-	InputFloat &addend;
+	Input &addend;
 
 	protected:
 	
@@ -137,7 +137,7 @@ public MathOperationNode{
 	subtraend(operand)
 	{};
 
-	InputFloat &subtraend;
+	Input &subtraend;
 
 	protected:
 	
@@ -155,7 +155,7 @@ public MathOperationNode{
 	multiplier(operand)
 	{};
 
-	InputFloat &multiplier;
+	Input &multiplier;
 
 	protected:
 	
@@ -173,7 +173,7 @@ public MathOperationNode{
 	divisor(operand)
 	{};
 
-	InputFloat &divisor;
+	Input &divisor;
 
 	protected:
 	
@@ -191,7 +191,7 @@ public MathOperationNode{
 	denominator(operand)
 	{};
 
-	InputFloat &denominator;
+	Input &denominator;
 
 	protected:
 	
@@ -209,7 +209,7 @@ public MathOperationNode{
 	alternative(operand)
 	{};
 
-	InputFloat &alternative;
+	Input &alternative;
 
 	protected:
 	
@@ -227,7 +227,7 @@ public MathOperationNode{
 	alternative(operand)
 	{};
 
-	InputFloat &alternative;
+	Input &alternative;
 
 	protected:
 	

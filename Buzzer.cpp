@@ -2,7 +2,7 @@
 
 float Buzzer::MAX_FREQUENCY = 4978.0;
 Buzzer::Buzzer():
-HasIn<float>
+HasIn
 	(this){
 
 	registerInput(place);

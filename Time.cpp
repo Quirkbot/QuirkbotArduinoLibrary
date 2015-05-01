@@ -3,7 +3,7 @@
 Time::Time():
 HasInterval
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	interval = 0.001;
 }

@@ -3,7 +3,7 @@
 Randomizer::Randomizer():
 HasInterval
 	(this),
-HasOut<float>
+HasOut
 	(this){
 
 	interval = 0.033;

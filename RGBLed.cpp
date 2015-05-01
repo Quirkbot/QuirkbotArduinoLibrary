@@ -1,7 +1,7 @@
 #include "RGBLed.h"
 
 RGBLed::RGBLed():
-HasIn<float>
+HasIn
 	(this){
 	registerInput(pinR);
 	registerInput(pinG);

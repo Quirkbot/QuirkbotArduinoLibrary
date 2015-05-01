@@ -29,7 +29,7 @@ RampDownWave
 class Wave :
 public Node,
 public HasInterval,
-public HasOut<float>
+public HasOut
 {
 	public:
 
@@ -37,11 +37,11 @@ public HasOut<float>
 
 	void onInterval();
 
-	InputFloat duration;
-	InputFloat min;
-	InputFloat max;
-	InputFloat offset;
-	InputFloat type;
+	Input duration;
+	Input min;
+	Input max;
+	Input offset;
+	Input type;
 
 	protected:
 

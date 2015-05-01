@@ -3,7 +3,7 @@
 AnalogSensor::AnalogSensor():
 	HasInterval
 		(this),
-	HasOut<float>
+	HasOut
 		(this){
 		registerInput(place);
 		registerInput(min);

@@ -3,7 +3,7 @@
 ServoMotor::ServoMotor():
 HasInterval
 	(this),
-HasIn<float>
+HasIn
 	(this){
 	registerInput(place);
 	registerInput(iddleTime);

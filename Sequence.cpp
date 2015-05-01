@@ -3,11 +3,11 @@
 Sequence::Sequence():
 HasInterval
 	(this),
-HasInputCollectionFloat
+HasInputCollection
 	(this),
 HasTrigger
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	registerInput(duration);
 	selected = NULL;

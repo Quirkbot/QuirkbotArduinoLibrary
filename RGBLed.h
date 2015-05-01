@@ -5,16 +5,16 @@
 
 class RGBLed :
 public Node,
-public HasIn<float>{
+public HasIn{
 	public:
 	
 	RGBLed();
 
-	InputFloat pinR;
-	InputFloat pinG;
-	InputFloat pinB;
-	InputFloat hue;
-	InputFloat saturation;
+	Input pinR;
+	Input pinG;
+	Input pinB;
+	Input hue;
+	Input saturation;
 
 	protected:
 	float r,g,b;

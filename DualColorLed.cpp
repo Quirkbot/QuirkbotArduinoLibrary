@@ -1,7 +1,7 @@
 #include "DualColorLed.h"
 
 DualColorLed::DualColorLed():
-HasIn<float>
+HasIn
 	(this){
 	registerInput(place);
 	registerInput(color);

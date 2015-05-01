@@ -8,13 +8,13 @@
 class ServoMotor:
 public Node,
 public HasInterval,
-public HasIn<float>{
+public HasIn{
 	public:
 	
 	ServoMotor();
 
-	InputFloat place;
-	InputFloat iddleTime;
+	Input place;
+	Input iddleTime;
 
 	protected:
 

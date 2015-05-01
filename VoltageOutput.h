@@ -6,12 +6,12 @@
 class VoltageOutput :
 public Updatable,
 public Node,
-public HasIn<float>{
+public HasIn{
 	public:
 	
 	VoltageOutput();
 
-	InputFloat place;
+	Input place;
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);

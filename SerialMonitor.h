@@ -6,7 +6,7 @@
 class SerialMonitor:
 public Node,
 public HasInterval,
-public HasInputCollectionFloat{
+public HasInputCollection{
 	public:
 
 	SerialMonitor();

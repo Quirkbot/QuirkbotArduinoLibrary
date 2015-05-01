@@ -3,7 +3,7 @@
 SystemMemory::SystemMemory():
 HasInterval
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	interval = 0.01;
 }

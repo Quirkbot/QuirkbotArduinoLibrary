@@ -2,20 +2,13 @@
 #define HasIn_h
 
 #include "Node.h"
+#include "Input.h"
 
-template <class T>
-class Input;
-
-template <class T>
 class HasIn{
 	public:
-		HasIn(Node * node):
-		streamNode(node){
-			streamNode->registerInput(in);
-			in = 0;
-		}
+		HasIn(Node * node);
 	
-		InputFloat in;
+		Input in;
 
 		private:
 

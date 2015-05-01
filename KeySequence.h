@@ -7,14 +7,14 @@
 
 class KeySequence :
 public Node,
-public HasIn<float>,
+public HasIn,
 public HasInterval
 {
 	public:
 	
 	KeySequence();
 
-	InputFloat hold;
+	Input hold;
 
 
 	protected:

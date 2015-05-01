@@ -20,7 +20,7 @@ void Event::remove(TypedHandler handler){
 	if(pos == -1) return;
 	typedHandlers.erase(pos);
 }
-void Event::add(InputFloat* input, TypedInputHandler handler){
+void Event::add(Input* input, TypedInputHandler handler){
 	int pos = position(handler);
 	if(pos != -1) return;
 	typedInputs.push(input);
@@ -32,7 +32,7 @@ void Event::remove(TypedInputHandler handler){
 	typedInputs.erase(pos);
 	typedInputHandlers.erase(pos);
 }
-void Event::add(InputFloat* input, VoidInputHandler handler){
+void Event::add(Input* input, VoidInputHandler handler){
 	int pos = position(handler);
 	if(pos != -1) return;
 	voidInputs.push(input);

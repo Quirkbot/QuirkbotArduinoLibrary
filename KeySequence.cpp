@@ -1,7 +1,7 @@
 #include "KeySequence.h"
 
 KeySequence::KeySequence():
-HasIn<float>
+HasIn
 	(this),
 HasInterval
 	(this){

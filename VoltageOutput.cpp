@@ -1,7 +1,7 @@
 #include "VoltageOutput.h"
 
 VoltageOutput::VoltageOutput():
-HasIn<float>
+HasIn
 	(this){
 	registerInput(place);
 	useSoftPWM = false;

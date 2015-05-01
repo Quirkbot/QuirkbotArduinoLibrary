@@ -3,15 +3,15 @@
 
 #include "Vector.h"
 
-class InputFloat;
+class Input;
 
 class Event {
 	public:
 
 	typedef void (*VoidHandler)();
 	typedef void (*TypedHandler)(float value);
-	typedef void (InputFloat::*TypedInputHandler)(float value);
-	typedef void (InputFloat::*VoidInputHandler)();
+	typedef void (Input::*TypedInputHandler)(float value);
+	typedef void (Input::*VoidInputHandler)();
 	
 	void add(VoidHandler handler);
 	void remove(VoidHandler handler);
@@ -19,10 +19,10 @@ class Event {
 	void add(TypedHandler handler);
 	void remove(TypedHandler handler);
 
-	void add(InputFloat* input, TypedInputHandler handler);
+	void add(Input* input, TypedInputHandler handler);
 	void remove(TypedInputHandler handler);
 
-	void add(InputFloat* input, VoidInputHandler handler);
+	void add(Input* input, VoidInputHandler handler);
 	void remove(VoidInputHandler handler);
 	
 	void dispatch(float &value);
@@ -38,8 +38,8 @@ class Event {
 	Vector<TypedHandler > typedHandlers;
 	Vector<TypedInputHandler > typedInputHandlers;
 	Vector<VoidInputHandler > voidInputHandlers;
-	Vector<InputFloat* > typedInputs;
-	Vector<InputFloat* > voidInputs;
+	Vector<Input* > typedInputs;
+	Vector<Input* > voidInputs;
 	
 };
 

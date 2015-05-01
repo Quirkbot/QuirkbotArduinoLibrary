@@ -8,13 +8,13 @@
 class MakeyTouchSensor :
 public Node,
 public Updatable,
-public HasOut<float>
+public HasOut
 {
 	public:
 	
 	MakeyTouchSensor();
 
-	InputFloat place;
+	Input place;
 
 	void update();
 

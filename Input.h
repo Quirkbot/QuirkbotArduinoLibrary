@@ -1,16 +1,16 @@
-#ifndef InputFloat_h_
-#define InputFloat_h_
+#ifndef Input_h_
+#define Input_h_
 
 #include "BaseInput.h"
-#include "OutputFloat.h"
-class OutputFloat;
+#include "Output.h"
+class Output;
 
-class InputFloat : public BaseInput{
+class Input : public BaseInput{
 	friend class Node;
 	public:
 
-	InputFloat();
-	~InputFloat();
+	Input();
+	~Input();
 	
 	/**
 	 * Handle for primitives connections.
@@ -20,7 +20,7 @@ class InputFloat : public BaseInput{
 	/**
 	 * Handle for output connections.
 	 **/
-	void connect(const OutputFloat &output);
+	void connect(const Output &output);
 
 	/**
 	 * Remove connections
@@ -34,11 +34,11 @@ class InputFloat : public BaseInput{
 
 	protected:
 	void handleValueConnection(const float &value);
-	void handleOutputConnection(const OutputFloat &output);
+	void handleOutputConnection(const Output &output);
 	void onOutputChange(float value);
 	void clearOutput();
 
 	float value;
-	OutputFloat * output;
+	Output * output;
 };
 #endif

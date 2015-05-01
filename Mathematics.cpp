@@ -1,9 +1,9 @@
 #include "Mathematics.h"
 
 MathNode::MathNode() :
-HasIn<float>
+HasIn
 	(this),
-HasOut<float>
+HasOut
 	(this){
 };
 MathBasicNode::MathBasicNode(){}

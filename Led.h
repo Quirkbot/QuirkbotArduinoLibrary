@@ -6,12 +6,12 @@
 class Led :
 public Updatable,
 public Node,
-public HasIn<float>{
+public HasIn{
 	public:
 	
 	Led();
 
-	InputFloat place;
+	Input place;
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);

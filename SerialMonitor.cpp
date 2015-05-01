@@ -3,7 +3,7 @@
 SerialMonitor::SerialMonitor():
 HasInterval
 	(this),
-HasInputCollectionFloat
+HasInputCollection
 	(this){
 	interval = 0.1;
 }

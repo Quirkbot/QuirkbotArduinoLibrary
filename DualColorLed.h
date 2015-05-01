@@ -6,13 +6,13 @@
 class DualColorLed :
 public Updatable,
 public Node,
-public HasIn<float>{
+public HasIn{
 	public:
 	
 	DualColorLed();
 
-	InputFloat place;
-	InputFloat color;
+	Input place;
+	Input color;
 	
 
 	protected:

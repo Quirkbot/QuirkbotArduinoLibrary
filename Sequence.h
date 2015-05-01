@@ -6,9 +6,9 @@
 class Sequence:
 public Node,
 public HasInterval,
-public HasInputCollectionFloat,
+public HasInputCollection,
 public HasTrigger,
-public HasOut<float>
+public HasOut
 {
 	public:
 	
@@ -16,7 +16,7 @@ public HasOut<float>
 
 	void onInterval();
 
-	InputFloat duration;
+	Input duration;
 	
 	protected:
 
@@ -24,7 +24,7 @@ public HasOut<float>
 
 	private:
 
-	InputFloat * selected;
+	Input * selected;
 	bool running;
 	float startTime;
 

@@ -1,7 +1,7 @@
 #include "MakeyTouchSensor.h"
 
 MakeyTouchSensor::MakeyTouchSensor():
-HasOut<float>
+HasOut
 	(this){
 	registerInput(place);
 	

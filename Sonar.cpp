@@ -3,7 +3,7 @@
 Sonar::Sonar():
 HasInterval
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	registerInput(place);
 

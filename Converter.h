@@ -5,17 +5,17 @@
 
 class Converter :
 public Node,
-public HasIn<float>,
-public HasOut<float>
+public HasIn,
+public HasOut
 {
 	public:
 	
 	Converter();
 	
-	InputFloat inMin;
-	InputFloat inMax;
-	InputFloat outMin;
-	InputFloat outMax;
+	Input inMin;
+	Input inMax;
+	Input outMin;
+	Input outMax;
 
 	protected:
 

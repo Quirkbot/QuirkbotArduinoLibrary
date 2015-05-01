@@ -6,7 +6,7 @@
 class DigitalSensor :
 public Node,
 public HasInterval,
-public HasOut<float>
+public HasOut
 {
 	public:
 	
@@ -14,7 +14,7 @@ public HasOut<float>
 
 	void onInterval();
 
-	InputFloat place;
+	Input place;
 
 	protected:
 

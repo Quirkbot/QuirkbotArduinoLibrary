@@ -3,9 +3,9 @@
 Gate::Gate():
 HasTrigger
 	(this),
-HasIn<float>
+HasIn
 	(this),
-HasOut<float>
+HasOut
 	(this){
 };
 

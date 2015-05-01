@@ -1,11 +1,11 @@
 #include "List.h"
 
 List::List():
-HasInputCollectionFloat
+HasInputCollection
 	(this),
-HasIn<float>
+HasIn
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	selected = NULL;	
 }

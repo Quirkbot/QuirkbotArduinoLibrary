@@ -5,14 +5,14 @@
 
 class Buzzer:
 public Node,
-public HasIn<float>{
+public HasIn{
 	public:
 	
 	Buzzer();
 
 	void process();
 
-	InputFloat place;
+	Input place;
 
 	static float calculateTone(float frequency);
 	static float MAX_FREQUENCY;

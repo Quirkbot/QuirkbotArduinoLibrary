@@ -1,7 +1,7 @@
 #include "Led.h"
 
 Led::Led():
-HasIn<float>
+HasIn
 	(this){
 	registerInput(place);
 	useSoftPWM = false;

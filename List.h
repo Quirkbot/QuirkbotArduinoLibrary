@@ -5,9 +5,9 @@
 
 class List:
 public Node,
-public HasInputCollectionFloat,
-public HasIn<float>,
-public HasOut<float>
+public HasInputCollection,
+public HasIn,
+public HasOut
 {
 	public:
 	
@@ -36,6 +36,6 @@ public HasOut<float>
 		}
 	}
 
-	InputFloat * selected;
+	Input * selected;
 };
 #endif

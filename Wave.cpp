@@ -2,7 +2,7 @@
 Wave::Wave():
 HasInterval
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	registerInput(duration);
 	registerInput(offset);

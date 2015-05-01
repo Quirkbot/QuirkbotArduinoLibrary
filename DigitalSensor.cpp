@@ -3,7 +3,7 @@
 DigitalSensor::DigitalSensor():
 HasInterval
 	(this),
-HasOut<float>
+HasOut
 	(this){
 	registerInput(place);
 };

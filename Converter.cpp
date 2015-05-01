@@ -1,9 +1,9 @@
 #include "Converter.h"
 
 Converter::Converter():
-HasIn<float>
+HasIn
 	(this),
-HasOut<float>
+HasOut
 	(this){
 
 	registerInput(inMin);

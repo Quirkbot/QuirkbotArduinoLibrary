@@ -6,7 +6,7 @@
 class Time :
 public Node,
 public HasInterval,
-public HasOut<float>
+public HasOut
 {
 	public:
 

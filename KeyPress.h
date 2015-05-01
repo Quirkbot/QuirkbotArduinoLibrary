@@ -11,7 +11,7 @@ public HasTrigger
 	
 	KeyPress();
 
-	InputFloat key;
+	Input key;
 
 	protected:
 

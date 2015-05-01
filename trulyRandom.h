@@ -14,4 +14,4 @@ void trulyRandomSeed(int8_t entropy = 32);
 int trulyRandom(int min, int max, int8_t entropy = 32);
 byte trulyRandomUuidComponent(int8_t entropy = 32);
 
-#endif;
+#endif

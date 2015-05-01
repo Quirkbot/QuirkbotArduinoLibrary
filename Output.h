@@ -1,22 +1,22 @@
-#ifndef OutputFloat_h_
-#define OutputFloat_h_
+#ifndef Output_h_
+#define Output_h_
 
 #include "Event.h"
-#include "InputFloat.h"
+#include "Input.h"
 
 class Event;
 
-class OutputFloat {
+class Output {
 	public:
 
-	OutputFloat();
-	~OutputFloat();
+	Output();
+	~Output();
 
 
 	/**
 	 * Handle for input connections.
 	 **/
-	void connect(InputFloat &input);
+	void connect(Input &input);
 
 	/**
 	 * Getter and setter.
