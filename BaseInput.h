@@ -1,6 +1,7 @@
 #ifndef BaseInput_h_
 #define BaseInput_h_
 
+#include "Node.h"
 class Node;
 
 class BaseInput{

@@ -13,8 +13,8 @@ public HasIn<float>{
 	
 	ServoMotor();
 
-	Input<float> place;
-	Input<float> iddleTime;
+	InputFloat place;
+	InputFloat iddleTime;
 
 	protected:
 

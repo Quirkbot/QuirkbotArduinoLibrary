@@ -2,8 +2,8 @@
 #define HasInputCollection_h_
 
 #include "Bot.h"
-#include "Input.h"
-#include "Output.h"
+#include "InputFloat.h"
+#include "OutputFloat.h"
 
 template <class T>
 class HasInputCollection{
@@ -15,23 +15,23 @@ class HasInputCollection{
 	};
 
 	// Getter
-	Input<T>& operator[](unsigned int idx)  {
+	InputFloat& operator[](unsigned int idx)  {
 		while(items.size() <= idx){
 			registerNewInput();
 		}
 		return *(items[idx]);
 	};
 
-	void add(Output<T> &output){
-		Input<T> * input = registerNewInput();
+	void add(OutputFloat &output){
+		InputFloat * input = registerNewInput();
 		input->connect(output);
 	};
 	void add(T &value){
-		Input<T> * input = registerNewInput();
+		InputFloat * input = registerNewInput();
 		(*input) = value;
 	};
 	void add(T value){
-		Input<T> * input = registerNewInput();
+		InputFloat * input = registerNewInput();
 		(*input) = value;		
 	};
 	void clear(){
@@ -43,15 +43,15 @@ class HasInputCollection{
 	};
 
 	private:
-	Input<T> * registerNewInput(){
-		Input<T> * input = new Input<T>();
+	InputFloat * registerNewInput(){
+		InputFloat * input = new InputFloat();
 		inputCollectionNode->registerInput(*input);
 		items.push(input);
 		return input;
 	}
 
 	protected:
-	Vector<Input<T> * > items;
+	Vector<InputFloat * > items;
 
 	Node * inputCollectionNode;
 	virtual void onItemsUpdated(){};

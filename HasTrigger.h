@@ -2,13 +2,13 @@
 #define HasTrigger_h_
 
 #include "Node.h"
-#include "Input.h"
-#include "Output.h"
+#include "InputFloat.h"
+#include "OutputFloat.h"
 class HasTrigger{
 	public:
 	HasTrigger(Node * node);
 
-	Input<float> trigger;
+	InputFloat trigger;
 	float triggerThreshold;
 
 	protected:

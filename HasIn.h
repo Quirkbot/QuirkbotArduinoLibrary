@@ -15,7 +15,7 @@ class HasIn{
 			in = 0;
 		}
 	
-		Input<T> in;
+		InputFloat in;
 
 		private:
 

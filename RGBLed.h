@@ -10,11 +10,11 @@ public HasIn<float>{
 	
 	RGBLed();
 
-	Input<int> pinR;
-	Input<int> pinG;
-	Input<int> pinB;
-	Input<float> hue;
-	Input<float> saturation;
+	InputFloat pinR;
+	InputFloat pinG;
+	InputFloat pinB;
+	InputFloat hue;
+	InputFloat saturation;
 
 	protected:
 	float r,g,b;

@@ -37,11 +37,11 @@ public HasOut<float>
 
 	void onInterval();
 
-	Input<float> duration;
-	Input<float> min;
-	Input<float> max;
-	Input<float> offset;
-	Input<float> type;
+	InputFloat duration;
+	InputFloat min;
+	InputFloat max;
+	InputFloat offset;
+	InputFloat type;
 
 	protected:
 

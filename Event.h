@@ -3,8 +3,7 @@
 
 #include "Vector.h"
 
-template <class T>
-class Input;
+class InputFloat;
 
 template <class T>
 class Event {
@@ -12,8 +11,8 @@ class Event {
 
 	typedef void (*VoidHandler)();
 	typedef void (*TypedHandler)(T value);
-	typedef void (Input<T>::*TypedInputHandler)(T value);
-	typedef void (Input<T>::*VoidInputHandler)();
+	typedef void (InputFloat::*TypedInputHandler)(T value);
+	typedef void (InputFloat::*VoidInputHandler)();
 	
 	void add(VoidHandler handler){
 		int pos = position(handler);
@@ -37,7 +36,7 @@ class Event {
 		typedHandlers.erase(pos);
 	}
 
-	void add(Input<T>* input, TypedInputHandler handler){
+	void add(InputFloat* input, TypedInputHandler handler){
 		int pos = position(handler);
 		if(pos != -1) return;
 		typedInputs.push(input);
@@ -50,7 +49,7 @@ class Event {
 		typedInputHandlers.erase(pos);
 	}
 
-	void add(Input<T>* input, VoidInputHandler handler){
+	void add(InputFloat* input, VoidInputHandler handler){
 		int pos = position(handler);
 		if(pos != -1) return;
 		voidInputs.push(input);
@@ -96,8 +95,8 @@ class Event {
 	Vector<TypedHandler > typedHandlers;
 	Vector<TypedInputHandler > typedInputHandlers;
 	Vector<VoidInputHandler > voidInputHandlers;
-	Vector<Input<T>* > typedInputs;
-	Vector<Input<T>* > voidInputs;
+	Vector<InputFloat* > typedInputs;
+	Vector<InputFloat* > voidInputs;
 	
 };
 template <class T>

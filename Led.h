@@ -11,7 +11,7 @@ public HasIn<float>{
 	
 	Led();
 
-	Input<float> place;
+	InputFloat place;
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);

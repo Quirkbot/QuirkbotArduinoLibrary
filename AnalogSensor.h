@@ -14,9 +14,9 @@ public HasOut<float>
 
 	void onInterval();
 
-	Input<float> place;
-	Input<float> min;
-	Input<float> max;
+	InputFloat place;
+	InputFloat min;
+	InputFloat max;
 
 	protected:
 

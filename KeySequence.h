@@ -14,7 +14,7 @@ public HasInterval
 	
 	KeySequence();
 
-	Input<float> hold;
+	InputFloat hold;
 
 
 	protected:

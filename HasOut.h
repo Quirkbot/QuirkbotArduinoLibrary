@@ -3,14 +3,13 @@
 
 #include "Node.h"
 
-template <class T>
-class Output;
+class OutputFloat;
 
 template <class T>
 class HasOut{
 	public:
 		HasOut(Node * node){}
-		Output<T> out;
+		OutputFloat out;
 };
 
 #endif

@@ -14,7 +14,7 @@ public HasOut<float>
 	
 	MakeyTouchSensor();
 
-	Input<float> place;
+	InputFloat place;
 
 	void update();
 

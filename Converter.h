@@ -12,10 +12,10 @@ public HasOut<float>
 	
 	Converter();
 	
-	Input<float> inMin;
-	Input<float> inMax;
-	Input<float> outMin;
-	Input<float> outMax;
+	InputFloat inMin;
+	InputFloat inMax;
+	InputFloat outMin;
+	InputFloat outMax;
 
 	protected:
 

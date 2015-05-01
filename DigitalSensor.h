@@ -14,7 +14,7 @@ public HasOut<float>
 
 	void onInterval();
 
-	Input<float> place;
+	InputFloat place;
 
 	protected:
 

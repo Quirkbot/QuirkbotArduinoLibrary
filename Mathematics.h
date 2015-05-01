@@ -34,7 +34,7 @@ public MathNode{
 	
 	MathOperationNode();
 
-	Input<float> operand;
+	InputFloat operand;
 };
 
 
@@ -101,7 +101,7 @@ public MathOperationNode{
 	exponent(operand)
 	{};
 
-	Input<float> &exponent;
+	InputFloat &exponent;
 
 	protected:
 	
@@ -119,7 +119,7 @@ public MathOperationNode{
 	addend(operand)
 	{};
 
-	Input<float> &addend;
+	InputFloat &addend;
 
 	protected:
 	
@@ -137,7 +137,7 @@ public MathOperationNode{
 	subtraend(operand)
 	{};
 
-	Input<float> &subtraend;
+	InputFloat &subtraend;
 
 	protected:
 	
@@ -155,7 +155,7 @@ public MathOperationNode{
 	multiplier(operand)
 	{};
 
-	Input<float> &multiplier;
+	InputFloat &multiplier;
 
 	protected:
 	
@@ -173,7 +173,7 @@ public MathOperationNode{
 	divisor(operand)
 	{};
 
-	Input<float> &divisor;
+	InputFloat &divisor;
 
 	protected:
 	
@@ -191,7 +191,7 @@ public MathOperationNode{
 	denominator(operand)
 	{};
 
-	Input<float> &denominator;
+	InputFloat &denominator;
 
 	protected:
 	
@@ -209,7 +209,7 @@ public MathOperationNode{
 	alternative(operand)
 	{};
 
-	Input<float> &alternative;
+	InputFloat &alternative;
 
 	protected:
 	
@@ -227,7 +227,7 @@ public MathOperationNode{
 	alternative(operand)
 	{};
 
-	Input<float> &alternative;
+	InputFloat &alternative;
 
 	protected:
 	

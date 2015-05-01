@@ -16,7 +16,7 @@ public HasOut<float>
 
 	void onInterval();
 
-	Input<float> duration;
+	InputFloat duration;
 	
 	protected:
 
@@ -24,7 +24,7 @@ public HasOut<float>
 
 	private:
 
-	Input<float> * selected;
+	InputFloat * selected;
 	bool running;
 	float startTime;
 

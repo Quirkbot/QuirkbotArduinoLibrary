@@ -11,8 +11,8 @@ public HasIn<float>{
 	
 	DualColorLed();
 
-	Input<float> place;
-	Input<float> color;
+	InputFloat place;
+	InputFloat color;
 	
 
 	protected:

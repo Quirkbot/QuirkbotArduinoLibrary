@@ -36,6 +36,6 @@ public HasOut<float>
 		}
 	}
 
-	Input<float> * selected;
+	InputFloat * selected;
 };
 #endif
