@@ -3,7 +3,7 @@
 Sequence::Sequence():
 HasInterval
 	(this),
-HasInputCollection<float>
+HasInputCollectionFloat
 	(this),
 HasTrigger
 	(this),

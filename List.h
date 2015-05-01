@@ -5,7 +5,7 @@
 
 class List:
 public Node,
-public HasInputCollection<float>,
+public HasInputCollectionFloat,
 public HasIn<float>,
 public HasOut<float>
 {

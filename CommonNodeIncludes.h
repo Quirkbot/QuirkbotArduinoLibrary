@@ -13,7 +13,7 @@
 #include "HasIn.h"
 #include "HasOut.h"
 #include "HasInterval.h"
-#include "HasInputCollection.h"
+#include "HasInputCollectionFloat.h"
 #include "HasTrigger.h"
 #include "Filters.h"
 #include "KeyCodes.h"

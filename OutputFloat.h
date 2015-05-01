@@ -4,7 +4,6 @@
 #include "Event.h"
 #include "InputFloat.h"
 
-template <class T>
 class Event;
 
 class OutputFloat {
@@ -25,7 +24,7 @@ class OutputFloat {
 	void set(float value);
 	float get();
 
-	Event<float> event;
+	Event event;
 
 	private:
 

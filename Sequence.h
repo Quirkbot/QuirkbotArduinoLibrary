@@ -6,7 +6,7 @@
 class Sequence:
 public Node,
 public HasInterval,
-public HasInputCollection<float>,
+public HasInputCollectionFloat,
 public HasTrigger,
 public HasOut<float>
 {

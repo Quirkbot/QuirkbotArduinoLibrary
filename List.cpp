@@ -1,7 +1,7 @@
 #include "List.h"
 
 List::List():
-HasInputCollection<float>
+HasInputCollectionFloat
 	(this),
 HasIn<float>
 	(this),
