@@ -3,8 +3,6 @@
 
 #include "Arduino.h"
 
-#include "CommonNodeIncludes.h"
-
 // Keyboard & Mouse
 #include "KeyPress.h"
 #include "KeySequence.h"
@@ -48,12 +46,7 @@
 #include "Time.h"
 
 void start();
-void setup(){
-	Bot::setup();
-	start();
-}
-void loop(){
-	Bot::update();
-}
+void setup();
+void loop();
 
 #endif
