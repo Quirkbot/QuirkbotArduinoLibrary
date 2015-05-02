@@ -23,7 +23,7 @@ class HasInputCollection{
 	Input * registerNewInput();
 
 	protected:
-	Vector<Input * > items;
+	VectorInputsPointer items;
 
 	Node * inputCollectionNode;
 	virtual void onItemsUpdated(){};

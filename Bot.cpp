@@ -10,8 +10,8 @@
 #define REPORT_NUMBER_OF_NODES_DELIMITER 252
 #define REPORT_NODE_CONTENT_DELIMITER 253
 
-Vector <Node *> Bot::nodes = Vector<Node *>();
-Vector <Updatable *> Bot::updatables = Vector<Updatable *>();
+VectorNodesPointer Bot::nodes = VectorNodesPointer();
+VectorUpdatablesPointer Bot::updatables = VectorUpdatablesPointer();
 byte Bot::uuid[QB_UUID_SIZE] = {0x00};
 volatile unsigned long Bot::frames = 0;
 volatile unsigned long Bot::dtMicros = 0;
