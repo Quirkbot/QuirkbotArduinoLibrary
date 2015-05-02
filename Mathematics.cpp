@@ -6,22 +6,30 @@ HasIn
 HasOut
 	(this){
 };
-MathBasicNode::MathBasicNode(){}
+
 MathOperationNode::MathOperationNode(){
 	registerInput(operand);
 };
 /*******************************************************************************
 ** BASIC MATH ******************************************************************
 *******************************************************************************/
+Logarithm::Logarithm(){}
+Logarithm::~Logarithm(){}
 void Logarithm::onInternalInputChange(BaseInput &internalInput){
 	out.set( log(in.get()) );
 };
+Logarithm10::Logarithm10(){}
+Logarithm10::~Logarithm10(){}
 void Logarithm10::onInternalInputChange(BaseInput &internalInput){
 	out.set( log10(in.get()) );
 };
+SquareRoot::SquareRoot(){}
+SquareRoot::~SquareRoot(){}
 void SquareRoot::onInternalInputChange(BaseInput &internalInput){
 	out.set( sqrt(in.get()) );
 };
+Absolute::Absolute(){}
+Absolute::~Absolute(){}
 void Absolute::onInternalInputChange(BaseInput &internalInput){
 	out.set( fabs(in.get()) );
 };

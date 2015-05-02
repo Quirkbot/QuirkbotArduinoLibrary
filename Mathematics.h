@@ -16,16 +16,6 @@ public HasOut{
 };
 
 /**
- * Node with a single "in" input and "out" output.
- */
-class MathBasicNode:
-public MathNode{
-	public:
-	
-	MathBasicNode();
-};
-
-/**
  * Node with "in" and "operand" inputs and "out" output.
  */
 class MathOperationNode:
@@ -47,9 +37,11 @@ public MathNode{
  * If "in" negative, a domain error occurs.
  */
 class Logarithm :
-public MathBasicNode{
+public MathNode{
+	public:
+	Logarithm();
+	~Logarithm();
 	protected:
-
 	void onInternalInputChange(BaseInput &internalInput);
 };
 /**
@@ -57,9 +49,11 @@ public MathBasicNode{
  * If "in" negative, a domain error occurs.
  */
 class Logarithm10 :
-public MathBasicNode{
+public MathNode{
+	public:
+	Logarithm10();
+	~Logarithm10();
 	protected:
-
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -68,9 +62,11 @@ public MathBasicNode{
  * If "in" negative, a domain error occurs.
  */
 class SquareRoot : 
-public MathBasicNode{
+public MathNode{
+	public:
+	SquareRoot();
+	~SquareRoot();
 	protected:
-
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -79,9 +75,11 @@ public MathBasicNode{
  * If "in" negative, a domain error occurs.
  */
 class Absolute :
-public MathBasicNode{
+public MathNode{
+	public:
+	Absolute();
+	~Absolute();
 	protected:
-
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -244,7 +242,7 @@ public MathOperationNode{
  * integral value that is not less than the "in".
  */
 class Ceiling :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -256,7 +254,7 @@ public MathBasicNode{
  * integral value that is not greater than the "in".
  */
 class Floor :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -268,7 +266,7 @@ public MathBasicNode{
  * nearest to the "in", with halfway cases rounded away from zero.
  */
 class Round :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -284,7 +282,7 @@ public MathBasicNode{
  * The "in" is an angle (in radians). The "out" will be between -1 and 1.
  */
 class Sine :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -297,7 +295,7 @@ public MathBasicNode{
  * error occurs.
  */
 class ArcSine :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -308,7 +306,7 @@ public MathBasicNode{
  * The "in" is an angle (in radians). The "out" will be between -1 and 1.
  */
 class Cosine :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -321,7 +319,7 @@ public MathBasicNode{
  * error occurs.
  */
 class ArcCosine :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -333,7 +331,7 @@ public MathBasicNode{
  * infinity and infinity.
  */
 class Tangent :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -344,7 +342,7 @@ public MathBasicNode{
  * The "in" is a range. The "out" will be an angle (in radians).
  */
 class ArcTangent :
-public MathBasicNode{
+public MathNode{
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);

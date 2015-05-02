@@ -10,6 +10,7 @@ public HasIn{
 	public:
 	
 	Led();
+	~Led();
 
 	Input place;
 

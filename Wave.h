@@ -34,6 +34,7 @@ public HasOut
 	public:
 
 	Wave();
+	~Wave();
 
 	void onInterval();
 

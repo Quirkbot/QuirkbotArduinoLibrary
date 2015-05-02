@@ -19,6 +19,7 @@ HasOut
 
 	position = 0;
 }
+Wave::~Wave(){}
 
 void Wave::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &type){
