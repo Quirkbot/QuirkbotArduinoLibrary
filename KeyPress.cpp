@@ -8,6 +8,7 @@ HasTrigger
 	currentKey = 0;
 	pressed = 5;
 };
+KeyPress::~KeyPress(){}
 
 void KeyPress::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &trigger){

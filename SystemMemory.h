@@ -11,6 +11,7 @@ public HasOut
 	public:
 
 	SystemMemory();
+	~SystemMemory();
 
 	void onInterval();
 

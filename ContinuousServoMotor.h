@@ -8,6 +8,7 @@ class ContinuousServoMotor:
 public ServoMotor {
 	public:
 	ContinuousServoMotor();
+	~ContinuousServoMotor();
 	void onInterval();
 };
 

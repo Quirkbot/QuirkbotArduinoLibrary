@@ -21,6 +21,8 @@ volatile float Bot::seconds = 0;
 unsigned long Bot::reportMillisTick = 0;
 bool Bot::serialReportEnabled = true;
 
+Bot::Bot(){}
+Bot::~Bot(){}
 void Bot::setup(){
 	// Start serial
  	Serial.begin(115200);

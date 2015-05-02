@@ -7,8 +7,9 @@ class RGBLed :
 public Node,
 public HasIn{
 	public:
-	
+
 	RGBLed();
+	~RGBLed();
 
 	Input pinR;
 	Input pinG;

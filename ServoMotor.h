@@ -10,8 +10,9 @@ public Node,
 public HasInterval,
 public HasIn{
 	public:
-	
+
 	ServoMotor();
+	~ServoMotor();
 
 	Input place;
 	Input iddleTime;

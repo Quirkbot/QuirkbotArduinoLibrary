@@ -10,6 +10,7 @@ HasIn
 	signalPin = -1;
 	location = -1;
 }
+VoltageOutput::~VoltageOutput(){}
 void VoltageOutput::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		// Disable when disconnected

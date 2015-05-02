@@ -3,6 +3,7 @@
 ContinuousServoMotor::ContinuousServoMotor(){
 	iddleTime = 0.1;
 }
+ContinuousServoMotor::~ContinuousServoMotor(){}
 void ContinuousServoMotor::onInterval(){
 	if(!attached) return;
 

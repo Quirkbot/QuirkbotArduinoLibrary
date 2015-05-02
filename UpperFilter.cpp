@@ -8,6 +8,7 @@ UpperFilter::UpperFilter(){
 	d = 0;
 	value = 0;
 }
+UpperFilter::~UpperFilter(){}
 void UpperFilter::push(float number){
 	a = b;
 	b = c;

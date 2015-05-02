@@ -7,6 +7,7 @@ HasOut
 	(this){
 	interval = 0.01;
 }
+SystemMemory::~SystemMemory(){}
 int SystemMemory::getFreeRam(){
 	extern int __heap_start, *__brkval; 
 	int v; 

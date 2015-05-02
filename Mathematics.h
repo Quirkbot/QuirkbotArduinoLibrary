@@ -13,6 +13,7 @@ public HasOut{
 	public:
 	
 	MathNode();
+	~MathNode();
 };
 
 /**
@@ -23,6 +24,7 @@ public MathNode{
 	public:
 	
 	MathOperationNode();
+	~MathOperationNode();
 
 	Input operand;
 };
@@ -93,16 +95,13 @@ public MathNode{
  */
 class Power :
 public MathOperationNode{
-	public:
-	
-	Power():
-	exponent(operand)
-	{};
+	public:	
+	Power();
+	~Power();
 
 	Input &exponent;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -112,15 +111,12 @@ public MathOperationNode{
 class Addition :
 public MathOperationNode{
 	public:
-	
-	Addition():
-	addend(operand)
-	{};
+	Addition();
+	~Addition();
 
 	Input &addend;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -130,15 +126,12 @@ public MathOperationNode{
 class Subtraction :
 public MathOperationNode{
 	public:
-	
-	Subtraction():
-	subtraend(operand)
-	{};
+	Subtraction();
+	~Subtraction();
 
 	Input &subtraend;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -148,15 +141,12 @@ public MathOperationNode{
 class Multiplication :
 public MathOperationNode{
 	public:
-	
-	Multiplication():
-	multiplier(operand)
-	{};
+	Multiplication();
+	~Multiplication();
 
 	Input &multiplier;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -166,15 +156,12 @@ public MathOperationNode{
 class Division :
 public MathOperationNode{
 	public:
-	
-	Division():
-	divisor(operand)
-	{};
+	Division();
+	~Division();
 
 	Input &divisor;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -184,15 +171,12 @@ public MathOperationNode{
 class Modulo :
 public MathOperationNode{
 	public:
-	
-	Modulo():
-	denominator(operand)
-	{};
+	Modulo();
+	~Modulo();
 
 	Input &denominator;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -202,15 +186,12 @@ public MathOperationNode{
 class Maximum :
 public MathOperationNode{
 	public:
-	
-	Maximum():
-	alternative(operand)
-	{};
+	Maximum();
+	~Maximum();
 
 	Input &alternative;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -220,15 +201,12 @@ public MathOperationNode{
 class Minimum :
 public MathOperationNode{
 	public:
-	
-	Minimum():
-	alternative(operand)
-	{};
+	Minimum();
+	~Minimum();
 
 	Input &alternative;
 
 	protected:
-	
 	void onInternalInputChange(BaseInput &internalInput);
 };
 
@@ -243,6 +221,9 @@ public MathOperationNode{
  */
 class Ceiling :
 public MathNode{
+	public:
+	Ceiling();
+	~Ceiling();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -255,6 +236,9 @@ public MathNode{
  */
 class Floor :
 public MathNode{
+	public:
+	Floor();
+	~Floor();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -267,6 +251,9 @@ public MathNode{
  */
 class Round :
 public MathNode{
+	public:
+	Round();
+	~Round();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -283,6 +270,9 @@ public MathNode{
  */
 class Sine :
 public MathNode{
+	public:
+	Sine();
+	~Sine();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -296,6 +286,9 @@ public MathNode{
  */
 class ArcSine :
 public MathNode{
+	public:
+	ArcSine();
+	~ArcSine();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -307,6 +300,9 @@ public MathNode{
  */
 class Cosine :
 public MathNode{
+	public:
+	Cosine();
+	~Cosine();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -320,6 +316,9 @@ public MathNode{
  */
 class ArcCosine :
 public MathNode{
+	public:
+	ArcCosine();
+	~ArcCosine();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -332,6 +331,9 @@ public MathNode{
  */
 class Tangent :
 public MathNode{
+	public:
+	Tangent();
+	~Tangent();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
@@ -343,6 +345,9 @@ public MathNode{
  */
 class ArcTangent :
 public MathNode{
+	public:
+	ArcTangent();
+	~ArcTangent();
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);

@@ -1,5 +1,7 @@
 #include "Event.h"
 
+Event::Event(){}
+Event::~Event(){}
 void Event::add(VoidHandler handler){
 	int pos = position(handler);
 	if(pos != -1) return;

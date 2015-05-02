@@ -4,6 +4,9 @@
 class BaseFilter {
 	public:
 
+	BaseFilter();
+	~BaseFilter();
+
 	virtual void push(float number){};
 	
 	float get();

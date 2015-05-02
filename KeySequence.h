@@ -13,6 +13,7 @@ public HasInterval
 	public:
 	
 	KeySequence();
+	~KeySequence();
 
 	Input hold;
 

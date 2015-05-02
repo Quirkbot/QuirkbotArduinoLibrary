@@ -9,6 +9,7 @@ HasIn
 
 	lastFrequency = 0;
 }
+Buzzer::~Buzzer(){}
 float Buzzer::calculateTone(float frequency){
 	return sqrt(frequency / MAX_FREQUENCY);
 }

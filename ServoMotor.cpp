@@ -16,6 +16,7 @@ HasIn
 	iddleAngle = -1;
 	iddleCount = 0;			
 };
+ServoMotor::~ServoMotor(){}
 void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 
 	if(&internalInput == &place){

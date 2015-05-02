@@ -12,7 +12,8 @@ public HasOut
 	public:
 	
 	List();
-	
+	~List();
+
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);

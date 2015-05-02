@@ -8,6 +8,9 @@ class Input;
 class Event {
 	public:
 
+	Event();
+	~Event();
+
 	typedef void (*VoidHandler)();
 	typedef void (*TypedHandler)(float value);
 	typedef void (Input::*TypedInputHandler)(float value);

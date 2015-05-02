@@ -7,6 +7,7 @@ HasOut
 	(this){
 	registerInput(place);
 };
+DigitalSensor::~DigitalSensor(){}
 
 void DigitalSensor::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place) pinMode(place.get(), INPUT);

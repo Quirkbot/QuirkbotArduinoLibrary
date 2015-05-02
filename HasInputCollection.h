@@ -9,6 +9,7 @@ class HasInputCollection{
 	public:
 	
 	HasInputCollection(Node * node);
+	~HasInputCollection();
 
 	// Getter
 	Input& operator[](unsigned int idx);

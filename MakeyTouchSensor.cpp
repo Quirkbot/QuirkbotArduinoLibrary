@@ -9,6 +9,7 @@ HasOut
 
 	filter.alpha = 0.87;
 }
+MakeyTouchSensor::~MakeyTouchSensor(){}
 void MakeyTouchSensor::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place) {
 		int location = place.get();

@@ -11,8 +11,9 @@ public HasTrigger,
 public HasOut
 {
 	public:
-	
+
 	Sequence();
+	~Sequence();
 
 	void onInterval();
 

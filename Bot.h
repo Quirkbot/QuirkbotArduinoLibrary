@@ -14,6 +14,8 @@ class Updatable;
 
 class Bot {
 	public:
+	Bot();
+	~Bot();
 	static void addNode(Node * node);
 	static void removeNode(Node * node);
 	static int nodePosition(Node * node);

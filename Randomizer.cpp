@@ -8,7 +8,7 @@ HasOut
 
 	interval = 0.033;
 }
-
+Randomizer::~Randomizer(){}
 void Randomizer::onInterval(){
 	out.set((float)random(1000) * 0.001);
 }

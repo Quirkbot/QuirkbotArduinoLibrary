@@ -10,6 +10,7 @@ public HasIn{
 	public:
 	
 	VoltageOutput();
+	~VoltageOutput();
 
 	Input place;
 

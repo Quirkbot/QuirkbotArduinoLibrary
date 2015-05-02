@@ -16,6 +16,7 @@ HasOut
 	outMin = 0.0;
 	outMax = 1.0;
 };
+Converter::~Converter(){}
 void Converter::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
 		out.set( 

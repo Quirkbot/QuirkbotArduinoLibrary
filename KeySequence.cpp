@@ -16,6 +16,7 @@ HasInterval
 
 	index = 0;
 };
+KeySequence::~KeySequence(){}
 
 void KeySequence::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
