@@ -6,24 +6,12 @@
 class Randomizer :
 public Node,
 public HasInterval,
-public HasOut<float>
+public HasOut
 {
 	public:
 
-	Randomizer():
-	HasInterval
-		(this),
-	HasOut<float>
-		(this){
-
-		interval = 0.033;
-	};
+	Randomizer();
 
 	void onInterval();
 };
-
-void Randomizer::onInterval(){
-	out.set((float)random(1000) * 0.001);
-}
-
 #endif

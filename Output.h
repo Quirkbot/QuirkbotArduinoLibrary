@@ -4,50 +4,31 @@
 #include "Event.h"
 #include "Input.h"
 
-template <class T>
 class Event;
 
-template <class T>
-class Input;
-
-template <class T>
 class Output {
 	public:
 
-	Output(){
-		value = T();
-	}
-	~Output(){
-	}
+	Output();
+	~Output();
 
 
 	/**
 	 * Handle for input connections.
 	 **/
-	/*void operator=(Input<T> &input){
-		input.connect(*this);
-	}*/
-	void connect(Input<T> &input){
-		input.connect(*this);
-	}
+	void connect(Input &input);
 
 	/**
 	 * Getter and setter.
 	 **/
-	void set(T value){
-		if(this->value == value) return;
-		this->value = value;
-		event.dispatch(value);
-	}
-	T get(){
-		return value;
-	}
+	void set(float value);
+	float get();
 
-	Event<T> event;
+	Event event;
 
 	private:
 
-	T value;
+	float value;
 };
 
 #endif
