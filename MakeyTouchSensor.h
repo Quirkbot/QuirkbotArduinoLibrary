@@ -13,6 +13,7 @@ public HasOut
 	public:
 	
 	MakeyTouchSensor();
+	~MakeyTouchSensor();
 
 	Input place;
 

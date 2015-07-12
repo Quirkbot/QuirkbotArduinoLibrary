@@ -9,6 +9,7 @@ public BaseFilter
 	public:
 	
 	UpperFilter();
+	~UpperFilter();
 
 	void push(float number);
 

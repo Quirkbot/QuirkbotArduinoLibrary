@@ -9,6 +9,7 @@ public BaseFilter
 	public:
 	
 	MedianFilter();
+	~MedianFilter();
 
 	void push(float number);
 

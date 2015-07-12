@@ -6,6 +6,7 @@ intervalNode(node){
 	interval = 0.1;
 	nextTick = Bot::millis + (unsigned long)(interval.get()*1000);
 }
+HasInterval::~HasInterval(){}
 void HasInterval::update(){
 	if(Bot::millis >= nextTick){
 		nextTick = Bot::millis + (unsigned long)(interval.get()*1000);

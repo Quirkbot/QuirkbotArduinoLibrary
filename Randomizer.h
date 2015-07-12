@@ -11,6 +11,7 @@ public HasOut
 	public:
 
 	Randomizer();
+	~Randomizer();
 
 	void onInterval();
 };

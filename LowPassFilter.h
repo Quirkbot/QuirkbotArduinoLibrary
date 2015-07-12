@@ -9,6 +9,7 @@ public BaseFilter
 	public:
 	
 	LowPassFilter();
+	~LowPassFilter();
 
 	void push(float number);
 };

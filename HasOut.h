@@ -6,8 +6,10 @@
 
 class HasOut{
 	public:
-		HasOut(Node * node);
-		Output out;
+	HasOut(Node * node);
+	~HasOut();
+	
+	Output out;
 };
 
 #endif

@@ -9,6 +9,7 @@ HasOut
 	(this){
 	selected = NULL;	
 }
+List::~List(){}
 void List::onItemsUpdated(){
 	refreshSelected();
 }

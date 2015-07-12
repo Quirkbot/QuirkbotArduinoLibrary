@@ -10,6 +10,7 @@ public HasInputCollection{
 	public:
 
 	SerialMonitor();
+	~SerialMonitor();
 
 	void onInterval();
 };

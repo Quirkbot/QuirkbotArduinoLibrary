@@ -8,6 +8,7 @@ HasIn
 HasOut
 	(this){
 };
+Gate::~Gate(){}
 
 void Gate::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){

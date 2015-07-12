@@ -16,6 +16,7 @@ HasOut
 	refMin = 1024;
 	refMax = 0;
 }
+SqueezeSensor::~SqueezeSensor(){}
 void SqueezeSensor::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		backPin = Bot::locationToBackPin(place.get());

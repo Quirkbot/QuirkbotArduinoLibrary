@@ -7,8 +7,9 @@ class Buzzer:
 public Node,
 public HasIn{
 	public:
-	
+
 	Buzzer();
+	~Buzzer();
 
 	void process();
 

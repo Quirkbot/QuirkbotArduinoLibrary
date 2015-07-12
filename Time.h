@@ -11,6 +11,7 @@ public HasOut
 	public:
 
 	Time();
+	~Time();
 
 	void onInterval();
 };

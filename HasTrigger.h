@@ -7,6 +7,7 @@
 class HasTrigger{
 	public:
 	HasTrigger(Node * node);
+	~HasTrigger();
 
 	Input trigger;
 	float triggerThreshold;

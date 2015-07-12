@@ -10,6 +10,7 @@ public HasTrigger
 	public:
 	
 	KeyPress();
+	~KeyPress();
 
 	Input key;
 

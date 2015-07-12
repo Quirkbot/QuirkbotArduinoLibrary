@@ -13,6 +13,7 @@ class HasInterval:
 public Updatable{
 	public:
 	HasInterval(Node * node);
+	~HasInterval();
 
 	void update();
 

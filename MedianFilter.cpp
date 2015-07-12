@@ -6,6 +6,7 @@ MedianFilter::MedianFilter(){
 	c = 0;
 	value = 0;
 }
+MedianFilter::~MedianFilter(){}
 void MedianFilter::push(float number){
 	a = b;
 	b = c;
