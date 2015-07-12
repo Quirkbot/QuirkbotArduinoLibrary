@@ -11,6 +11,7 @@ public HasOut
 	public:
 	
 	Converter();
+	~Converter();
 	
 	Input inMin;
 	Input inMax;

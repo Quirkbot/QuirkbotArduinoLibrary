@@ -4,6 +4,7 @@ HasInputCollection::HasInputCollection(Node * node):
 inputCollectionNode(node){
 
 };
+HasInputCollection::~HasInputCollection(){}
 Input& HasInputCollection::operator[](unsigned int idx)  {
 	while(items.size() <= idx){
 		registerNewInput();

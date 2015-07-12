@@ -14,6 +14,7 @@ AnalogSensor::AnalogSensor():
 
 		pin = -1;
 };
+AnalogSensor::~AnalogSensor(){}
 
 void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){

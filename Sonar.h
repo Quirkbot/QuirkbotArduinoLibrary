@@ -9,8 +9,9 @@ public HasInterval,
 public HasOut
 {
 	public:
-	
+
 	Sonar();
+	~Sonar();
 
 	void onInterval();
 

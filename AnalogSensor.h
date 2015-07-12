@@ -11,6 +11,7 @@ public HasOut
 	public:
 	
 	AnalogSensor();
+	~AnalogSensor();
 
 	void onInterval();
 

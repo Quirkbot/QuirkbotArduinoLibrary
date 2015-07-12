@@ -7,6 +7,7 @@ HasInputCollection
 	(this){
 	interval = 0.1;
 }
+SerialMonitor::~SerialMonitor(){}
 void SerialMonitor::onInterval(){
 	if(!items.size()) return;
 

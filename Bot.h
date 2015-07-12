@@ -14,6 +14,8 @@ class Updatable;
 
 class Bot {
 	public:
+	Bot();
+	~Bot();
 	static void addNode(Node * node);
 	static void removeNode(Node * node);
 	static int nodePosition(Node * node);
@@ -41,8 +43,8 @@ class Bot {
 	static int locationToFrontPin(int location);
 
 
-	static Vector <Node *> nodes;
-	static Vector <Updatable *> updatables;
+	static VectorNodesPointer nodes;
+	static VectorUpdatablesPointer updatables;
 	static byte uuid[QB_UUID_SIZE];
 	static volatile unsigned long frames;
 	static volatile unsigned long dtMicros;

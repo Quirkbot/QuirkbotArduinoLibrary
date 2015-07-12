@@ -10,6 +10,7 @@ public HasIn{
 	public:
 	
 	DualColorLed();
+	~DualColorLed();
 
 	Input place;
 	Input color;

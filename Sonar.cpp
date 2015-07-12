@@ -9,6 +9,7 @@ HasOut
 
 	place = BP4;
 }
+Sonar::~Sonar(){}
 void Sonar::onInterval(){
 	if(place.get() == -1) return;
 

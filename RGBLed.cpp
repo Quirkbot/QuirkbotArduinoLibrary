@@ -16,6 +16,7 @@ HasIn
 	saturation = 1;
 	hue = 1;
 }
+RGBLed::~RGBLed(){}
 void RGBLed::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &pinR) pinMode(pinR.get(), OUTPUT);
 	else if(&internalInput == &pinG) pinMode(pinG.get(), OUTPUT);

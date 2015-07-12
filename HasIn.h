@@ -6,13 +6,14 @@
 
 class HasIn{
 	public:
-		HasIn(Node * node);
-	
-		Input in;
+	HasIn(Node * node);
+	~HasIn();
 
-		private:
+	Input in;
 
-		Node * streamNode;
+	private:
+
+	Node * streamNode;
 };
 
 #endif

@@ -15,6 +15,7 @@ HasOut
 	interval = 0.033;
 	duration = 1.0;
 }
+Sequence::~Sequence(){}
 void Sequence::onInterval(){
 	if(!running) return;
 	float position = (Bot::seconds - startTime) / duration.get();

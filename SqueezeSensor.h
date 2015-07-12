@@ -11,6 +11,7 @@ public HasOut
 	public:
 
 	SqueezeSensor();
+	~SqueezeSensor();
 
 	void onInterval();
 

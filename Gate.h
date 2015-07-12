@@ -10,9 +10,10 @@ public HasIn,
 public HasOut
 {
 	public:
-	
+
 	Gate();
-	
+	~Gate();
+
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
 };

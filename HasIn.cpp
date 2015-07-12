@@ -5,3 +5,4 @@ streamNode(node){
 	streamNode->registerInput(in);
 	in = 0;
 }
+HasIn::~HasIn(){}

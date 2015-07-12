@@ -14,6 +14,7 @@ HasIn
 	active = false;
 	location = -1;
 };
+DualColorLed::~DualColorLed(){}
 
 void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
