@@ -3,7 +3,7 @@
 
 // TODO THIS SHOULD BE MOVED TO BOARD ------------------------------------------
 #include "Board.h"
-// /TODO THIS SHOULD BE MOVED TO BOARD ------------------------------------------
+// /TODO THIS SHOULD BE MOVED TO BOARD -----------------------------------------
 
 #include "Arduino.h"
 #include "Bot.h"
