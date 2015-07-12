@@ -6,23 +6,12 @@
 class Time :
 public Node,
 public HasInterval,
-public HasOut<float>
+public HasOut
 {
 	public:
 
-	Time():
-	HasInterval
-		(this),
-	HasOut<float>
-		(this){
-		interval = 0.001;
-	};
+	Time();
 
 	void onInterval();
 };
-
-void Time::onInterval(){
-	out.set(Bot::seconds);
-}
-
 #endif

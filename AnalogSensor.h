@@ -6,21 +6,17 @@
 class AnalogSensor :
 public Node,
 public HasInterval,
-public HasOut<float>
+public HasOut
 {
 	public:
 	
-	AnalogSensor():
-	HasInterval
-		(this),
-	HasOut<float>
-		(this){
-		registerInput(place);
-	};
+	AnalogSensor();
 
 	void onInterval();
 
-	Input<float> place;
+	Input place;
+	Input min;
+	Input max;
 
 	protected:
 
@@ -28,16 +24,6 @@ public HasOut<float>
 
 	MedianFilter preMedianFilter;
 	MedianFilter postMedianFilter;
+	int pin;
 };
-
-void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &place) pinMode(place.get(), INPUT);
-};
-
-void AnalogSensor::onInterval(){
-	preMedianFilter.push(analogRead(place.get()));
-	postMedianFilter.push(preMedianFilter.get());
-	out.set(postMedianFilter.get()/1024.0);
-}
-
 #endif

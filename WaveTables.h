@@ -1,6 +1,7 @@
 #ifndef WaveTables_h_
 #define WaveTables_h_
 
+#include "Arduino.h"
 #include <avr/pgmspace.h>
 
 

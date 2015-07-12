@@ -5,21 +5,13 @@
 
 class List:
 public Node,
-public HasInputCollection<float>,
-public HasIn<float>,
-public HasOut<float>
+public HasInputCollection,
+public HasIn,
+public HasOut
 {
 	public:
 	
-	List():
-	HasInputCollection<float>
-		(this),
-	HasIn<float>
-		(this),
-	HasOut<float>
-		(this){
-		selected = NULL;	
-	};
+	List();
 	
 	protected:
 
@@ -44,18 +36,6 @@ public HasOut<float>
 		}
 	}
 
-	Input<float> * selected;
+	Input * selected;
 };
-void List::onItemsUpdated(){
-	refreshSelected();
-};
-void List::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
-		refreshSelected();		
-	}
-	else if(&internalInput == selected){
-		out.set(selected->get());
-	}
-};
-
 #endif

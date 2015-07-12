@@ -2,15 +2,12 @@
 #define HasOut_h
 
 #include "Node.h"
+#include "Output.h"
 
-template <class T>
-class Output;
-
-template <class T>
 class HasOut{
 	public:
-		HasOut(Node * node){}
-		Output<T> out;
+		HasOut(Node * node);
+		Output out;
 };
 
 #endif

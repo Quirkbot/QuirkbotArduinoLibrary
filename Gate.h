@@ -6,30 +6,14 @@
 class Gate:
 public Node,
 public HasTrigger,
-public HasIn<float>,
-public HasOut<float>
+public HasIn,
+public HasOut
 {
 	public:
 	
-	Gate():
-	HasTrigger
-		(this),
-	HasIn<float>
-		(this),
-	HasOut<float>
-		(this){
-	};
+	Gate();
 	
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
 };
-
-void Gate::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
-		if(isTriggerActive()){
-			out.set(in.get());
-		}
-	}
-};
-
 #endif
