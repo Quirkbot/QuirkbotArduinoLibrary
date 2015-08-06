@@ -4,7 +4,7 @@ MakeyTouchSensor::MakeyTouchSensor():
 HasOut
 	(this){
 	registerInput(place);
-	
+
 	place = -1;
 
 	filter.alpha = 0.87;
@@ -76,5 +76,6 @@ void MakeyTouchSensor::update(){
 }
 
 void MakeyTouchSensor::serialReport(){
-	Serial.write((byte)(out.get() * 249));
+	byte b = (byte)(out.get() * 249);
+	Serial.write(b);
 }

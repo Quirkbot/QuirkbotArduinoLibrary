@@ -28,10 +28,8 @@ void Bot::setup(){
  	Serial.begin(115200);
 
  	// Start Keyboard
- 	#if defined(USBCON)
- 		Keyboard.begin();
- 	#endif
- 	
+ 	Keyboard.begin();
+
  	// Force mouth to turn off (only used if you have to use  'LillyPad USB' as the board)
  	PORTD &= ~(1<<5);
 	PORTB &= ~(1<<0);
@@ -44,12 +42,53 @@ void Bot::setup(){
 		}
 	}
 	else{
+		// Blink eyes to indicate progress
+		pinMode(LE, OUTPUT);
+		pinMode(RE, OUTPUT);
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
+			digitalWrite(LE, HIGH);
+			digitalWrite(RE, HIGH);
 			Bot::uuid[i] = trulyRandomUuidComponent();
 			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
+			digitalWrite(LE, LOW);
+			digitalWrite(RE, LOW);
 		}
 		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
 	}
+
+	// Startup animation
+	pinMode(LE, OUTPUT);
+	pinMode(RE, OUTPUT);
+	digitalWrite(LE, LOW);
+	digitalWrite(RE, LOW);
+	PORTD &= ~(1<<5);
+	PORTB &= ~(1<<0);
+	for (int i = 0; i < 2; i++) {
+		PORTB |= (1<<0);
+		delay(50);
+		PORTB &= ~(1<<0);
+		digitalWrite(RE, HIGH);
+		delay(50);
+		digitalWrite(RE, LOW);
+		digitalWrite(LE, HIGH);
+		delay(50);
+		digitalWrite(LE, LOW);
+		PORTD |= (1<<5);
+		delay(50);
+		PORTD &= ~(1<<5);
+	}
+	delay(100);
+	digitalWrite(LE, HIGH);
+	digitalWrite(RE, HIGH);
+	delay(100);
+	digitalWrite(LE, LOW);
+	digitalWrite(RE, LOW);
+	delay(100);
+	digitalWrite(LE, HIGH);
+	digitalWrite(RE, HIGH);
+	delay(100);
+	digitalWrite(LE, LOW);
+	digitalWrite(RE, LOW);
 }
 
 void Bot::addNode(Node * node){
@@ -88,7 +127,7 @@ void Bot::update(){
 	Bot::micros = ::micros();
 	Bot::millis = ::millis();
 	Bot::seconds = Bot::millis * 0.001;
-	
+
 	for(unsigned int i=0; i<Bot::updatables.size(); i++){
 		Bot::updatables[i]->update();
 	}
@@ -98,7 +137,7 @@ void Bot::update(){
 		Bot::reportMillisTick += REPORT_INTERVAL_MILLIS;
 		// Start delimiter
 		Serial.write((byte)REPORT_START_DELIMITER);
-		
+
 		// UUID --------
 		// UUID is not printed on every tick
 		if(Bot::reportMillisTick % (REPORT_INTERVAL_MILLIS * REPORT_UUID_INTERVAL_TICKS) == 0)
@@ -111,7 +150,7 @@ void Bot::update(){
 		for(unsigned int i=0; i<Bot::nodes.size(); i++){
 			Bot::nodes[i]->serialReport();
 			Serial.write((byte)REPORT_NODE_CONTENT_DELIMITER); // delimiter
-		}		
+		}
 		// End delimiter
 		Serial.write((byte)REPORT_END_DELIMITER);
 	}
@@ -119,19 +158,13 @@ void Bot::update(){
 
 // Keyboard management ---------------------------------------------------------
 void Bot::pressKey(byte key){
-	#if defined(USBCON)
-		Keyboard.press(key);
-	#endif
+	Keyboard.press(key);
 };
 void Bot::releaseKey(byte key){
-	#if defined(USBCON)
-		Keyboard.release(key);
-	#endif
+	Keyboard.release(key);
 };
 void Bot::releaseAllKeys(){
-	#if defined(USBCON)
-		Keyboard.releaseAll();
-	#endif
+	Keyboard.releaseAll();
 };
 
 // Utils -----------------------------------------------------------------------
@@ -145,7 +178,7 @@ float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
 		if(result > outMin) result = outMin;
 		else if(result < outMax) result = outMax;
 	}
-	
+
 	return result;
 }
 float Bot::minimum(float a, float b){

@@ -2,10 +2,11 @@
 #define Bot_h_
 
 #include "Arduino.h"
+#include "_libs_Keyboard.h"
+
 #include "Board.h"
 #include "Updatable.h"
 #include "Node.h"
-
 
 #include "Vector.h"
 
@@ -33,8 +34,8 @@ class Bot {
 
 	// Utils
 	static float map(
-		float x, 
-		float inMin, float inMax, 
+		float x,
+		float inMin, float inMax,
 		float outMin, float outMax
 	);
 	static float minimum(float a, float b);
@@ -56,4 +57,3 @@ class Bot {
 };
 
 #endif
-
