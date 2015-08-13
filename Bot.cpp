@@ -48,10 +48,11 @@ void Bot::setup(){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			digitalWrite(LE, HIGH);
 			digitalWrite(RE, HIGH);
-			Bot::uuid[i] = trulyRandomUuidComponent();
-			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
+			delay(100);
 			digitalWrite(LE, LOW);
 			digitalWrite(RE, LOW);
+			Bot::uuid[i] = trulyRandomUuidComponent();
+			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
 		}
 		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
 	}
