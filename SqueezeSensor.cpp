@@ -7,7 +7,7 @@ HasOut
 	(this){
 	registerInput(place);
 
-	place = 0;
+	place = NO_LOCATION;
 
 	min = 0;
 	max = 1;

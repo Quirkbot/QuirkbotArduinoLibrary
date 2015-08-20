@@ -6,6 +6,7 @@ HasInterval
 HasOut
 	(this){
 	registerInput(place);
+	place = NO_LOCATION;
 };
 DigitalSensor::~DigitalSensor(){}
 

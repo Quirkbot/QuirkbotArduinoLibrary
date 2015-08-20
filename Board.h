@@ -39,6 +39,8 @@
 #define BP4	2	// Back Pack 4		(PD1)	SDA
 #define BP5	3	// Back Pack 5		(PD0)	SCL
 #define BP6	1 	// Back Pack 6		(PD3)	TXD1
+#define SERVO_BP1 BP6
+#define SERVO_BP2 BP3
 
 // Pull up pin
 #define PULL_UP_PIN 4
