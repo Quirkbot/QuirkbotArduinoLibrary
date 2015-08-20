@@ -9,9 +9,9 @@ HasIn
 	registerInput(hue);
 	registerInput(saturation);
 
-	pinR = -1;
-	pinG = -1;
-	pinB = -1;
+	pinR = NO_LOCATION;
+	pinG = NO_LOCATION;
+	pinB = NO_LOCATION;
 
 	saturation = 1;
 	hue = 1;
@@ -44,7 +44,7 @@ void RGBLed::calculateRGB(float h, float s, float l) {
 		vsf = v * sv * fract;
 		mid1 = m + vsf;
 		mid2 = v - vsf;
-		
+
 		switch (sextant){
 			case 0:
 				r = v;
@@ -79,7 +79,7 @@ void RGBLed::calculateRGB(float h, float s, float l) {
 		}
 	}
 	else{
-		r = l; 
+		r = l;
 		g = l;
 		b = l;
 	}

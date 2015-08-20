@@ -4,6 +4,7 @@ VoltageOutput::VoltageOutput():
 HasIn
 	(this){
 	registerInput(place);
+	place = NO_LOCATION;
 	useSoftPWM = false;
 	pwmWidth = 16;
 	pwmOffset = pwmWidth;
@@ -19,7 +20,7 @@ void VoltageOutput::onInternalInputChange(BaseInput &internalInput){
 		}
 
 		location = place.get();
-		
+
 		if(location == LM || location == RM){
 			useSoftPWM = true;
 			signalPin = -1;
@@ -31,10 +32,10 @@ void VoltageOutput::onInternalInputChange(BaseInput &internalInput){
 				case RM:
 					outPort = &PORTB;
 					pinMask = (1<<0);
-					break;	
+					break;
 			}
 		}
-		else{	
+		else{
 			signalPin = Bot::locationToFrontPin(location);
 			if(signalPin == NO_LOCATION) signalPin = location;
 			outPort = portOutputRegister(digitalPinToPort(signalPin));
@@ -42,7 +43,7 @@ void VoltageOutput::onInternalInputChange(BaseInput &internalInput){
 			pinMode(signalPin, OUTPUT);
 
 			if( digitalPinToTimer(signalPin) == NOT_ON_TIMER ){
-				useSoftPWM = true;				
+				useSoftPWM = true;
 			}
 			else useSoftPWM = false;
 		}
@@ -62,5 +63,5 @@ void VoltageOutput::update(){
 	}
 	else{
 		*outPort &= ~(pinMask);
-	}	
+	}
 }

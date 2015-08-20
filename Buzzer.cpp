@@ -7,6 +7,8 @@ HasIn
 
 	registerInput(place);
 
+	place = NO_LOCATION;
+	
 	lastFrequency = 0;
 }
 Buzzer::~Buzzer(){}

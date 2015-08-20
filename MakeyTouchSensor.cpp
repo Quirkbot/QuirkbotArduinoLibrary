@@ -5,7 +5,7 @@ HasOut
 	(this){
 	registerInput(place);
 
-	place = -1;
+	place = NO_LOCATION;
 
 	filter.alpha = 0.87;
 }
