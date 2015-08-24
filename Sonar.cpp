@@ -5,9 +5,15 @@ HasInterval
 	(this),
 HasOut
 	(this){
+	registerInput(meters);
 	registerInput(place);
+	registerInput(min);
+	registerInput(max);
 
-	place = BP4;
+	meters = 4;
+	place = NO_LOCATION;
+	min = 0;
+	max = 1;
 }
 Sonar::~Sonar(){}
 void Sonar::onInterval(){
@@ -27,6 +33,7 @@ void Sonar::onInterval(){
 	float reading = pulseIn(place.get(), HIGH, 5000);
 	if(reading == 0) reading = 5000;
 	medianFilter.push( reading );
-	
-	out.set(medianFilter.get() / 5000.0);
+
+	float centimeters = medianFilter.get() / 29 / 2;
+	out.set(Bot::map(centimeters, 0, meters.get()*100, min.get(), max.get()));
 }

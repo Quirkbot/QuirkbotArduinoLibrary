@@ -14,7 +14,7 @@
 // Sensors
 #include "AnalogSensor.h"
 #include "DigitalSensor.h"
-#include "MakeyTouchSensor.h"
+#include "MakeyTouch.h"
 #include "SqueezeSensor.h"
 #include "Sonar.h"
 
@@ -25,7 +25,7 @@
 
 // Movement
 #include "ServoMotor.h"
-#include "ContinuousServoMotor.h"
+#include "ContinuousServo.h"
 
 // Sound
 #include "Buzzer.h"

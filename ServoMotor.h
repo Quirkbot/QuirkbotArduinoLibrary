@@ -7,13 +7,13 @@
 
 class ServoMotor:
 public Node,
-public HasInterval,
-public HasIn{
+public HasInterval{
 	public:
 
 	ServoMotor();
 	~ServoMotor();
 
+	Input position;
 	Input place;
 	Input iddleTime;
 
@@ -29,7 +29,7 @@ public HasIn{
 
 	_libs_Servo servo;
 	int angle;
-	
+
 	int attachedPin;
 	bool attached;
 	int iddleAngle;

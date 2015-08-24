@@ -12,20 +12,6 @@
 #define	WAVE_RAMP_UP 4
 #define	WAVE_RAMP_DOWN 5
 
-/*
-Should we have a bunch of different nodes with an specific wave form, instead of
-configuring the wave via the 'type' input? We would get longer and more cryptic
-node names, but also would remove the type input (removing inputs is always a 
-good thig).
-
-SineWave
-SquareWave
-TriangleWave
-PulseWave
-RampUpWave
-RampDownWave
-*/
-
 class Wave :
 public Node,
 public HasInterval,
@@ -38,7 +24,7 @@ public HasOut
 
 	void onInterval();
 
-	Input duration;
+	Input length;
 	Input min;
 	Input max;
 	Input offset;
@@ -47,7 +33,7 @@ public HasOut
 	protected:
 
 	const byte * table;
-	
+
 	void onInternalInputChange(BaseInput &internalInput);
 	void serialReport();
 

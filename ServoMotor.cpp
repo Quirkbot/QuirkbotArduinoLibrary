@@ -2,13 +2,13 @@
 
 ServoMotor::ServoMotor():
 HasInterval
-	(this),
-HasIn
 	(this){
+	registerInput(position);
 	registerInput(place);
 	registerInput(iddleTime);
 
 	interval = 0.1;
+	position = 0.5;
 	place = NO_LOCATION;
 	iddleTime = 1.5;
 
@@ -29,7 +29,7 @@ void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 			write();
 		}
 	}
-	else if(&internalInput == &in){
+	else if(&internalInput == &position){
 		if(!attached){
 			attach();
 		}
@@ -52,7 +52,7 @@ void ServoMotor::detach(){
 	servo.detach();
 }
 void ServoMotor::write(){
-	if(in.get() == -1) return;
+	if(position.get() == -1) return;
 
 	int newAngle = mapAngle();
 	if(newAngle != angle){
@@ -61,7 +61,7 @@ void ServoMotor::write(){
 	}
 }
 int ServoMotor::mapAngle(){
-	return in.get() * 180.0;
+	return position.get() * 180.0;
 }
 void ServoMotor::onInterval(){
 	if(!attached) return;

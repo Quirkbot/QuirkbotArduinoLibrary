@@ -7,16 +7,15 @@
 
 class KeySequence :
 public Node,
-public HasIn,
 public HasInterval
 {
 	public:
-	
+
 	KeySequence();
 	~KeySequence();
 
-	Input hold;
-
+	Input key;
+	Input holdTime;
 
 	protected:
 	void onInterval();
