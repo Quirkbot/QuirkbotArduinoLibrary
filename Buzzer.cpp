@@ -1,14 +1,14 @@
 #include "Buzzer.h"
 
 float Buzzer::MAX_FREQUENCY = 4978.0;
-Buzzer::Buzzer():
-HasIn
-	(this){
+Buzzer::Buzzer(){
 
+	registerInput(note);
 	registerInput(place);
 
+	note = NO_NOTE;
 	place = NO_LOCATION;
-	
+
 	lastFrequency = 0;
 }
 Buzzer::~Buzzer(){}
@@ -20,12 +20,12 @@ void Buzzer::onInternalInputChange(BaseInput &internalInput){
 		pinMode(place.get(), OUTPUT);
 		process();
 	}
-	else if(&internalInput == &in){
+	else if(&internalInput == &note){
 		process();
 	}
 }
 void Buzzer::process(){
-	int frequency = (in.get() * in.get()) * MAX_FREQUENCY;
+	int frequency = (note.get() * note.get()) * MAX_FREQUENCY;
 	if(lastFrequency == frequency) return;
 	lastFrequency = frequency;
 	if(frequency != 0) {

@@ -15,7 +15,10 @@ public HasOut
 
 	void onInterval();
 
+	Input meters;
 	Input place;
+	Input min;
+	Input max;
 
 	protected:
 

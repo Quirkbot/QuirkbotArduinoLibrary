@@ -4,7 +4,7 @@ HasInterval
 	(this),
 HasOut
 	(this){
-	registerInput(duration);
+	registerInput(length);
 	registerInput(offset);
 	registerInput(type);
 
@@ -15,7 +15,7 @@ HasOut
 
 	offset = 0.0;
 	type = WAVE_SINE;
-	duration = 1.0;
+	length = 1.0;
 
 	position = 0;
 }
@@ -46,26 +46,26 @@ void Wave::onInternalInputChange(BaseInput &internalInput){
 			table = WAVE_SINE_TABLE;
 		}
 	}
-	else if(&internalInput == &duration){
+	else if(&internalInput == &length){
 		float basePosition = position - offset.get();
 		if(basePosition < 0) basePosition += 1;
 
-		float currentTime = fmod(Bot::seconds, duration.get());
-		if(duration.get() == 0){
+		float currentTime = fmod(Bot::seconds, length.get());
+		if(length.get() == 0){
 			adjust = 0;
 			return;
 		}
-		float diff = currentTime/duration.get() - basePosition;
-		adjust = diff * duration.get();
+		float diff = currentTime/length.get() - basePosition;
+		adjust = diff * length.get();
 	}
 }
 void Wave::onInterval(){
-	if(duration.get() == 0){
+	if(length.get() == 0){
 		//out.set(0);
 		return;
 	}
-	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * duration.get(), duration.get());
-	position = timeSeconds / duration.get();
+	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * length.get(), length.get());
+	position = timeSeconds / length.get();
 	byte index = position * 256.0;
 	out.set(
 		Bot::map(

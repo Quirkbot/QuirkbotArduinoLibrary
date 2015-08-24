@@ -1,6 +1,7 @@
 #ifndef KeyCodes_h_
 #define KeyCodes_h_
 
+#define NO_KEY					-1
 #define KEY_0					'0'
 #define KEY_1					'1'
 #define KEY_2					'2'

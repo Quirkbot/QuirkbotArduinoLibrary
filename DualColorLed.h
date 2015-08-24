@@ -5,27 +5,26 @@
 
 class DualColorLed :
 public Updatable,
-public Node,
-public HasIn{
+public Node {
 	public:
-	
+
 	DualColorLed();
 	~DualColorLed();
 
 	Input place;
+	Input light;
 	Input color;
-	
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
 	void update();
 
 	int pwmWidth;
-	
+
 	unsigned int pwmOffset;
 	unsigned int pwmOffsetFront;
 	unsigned int pwmOffsetBack;
-	
+
 	int frontPin;
 	volatile uint8_t *outPortFront;
 	uint8_t pinMaskFront;

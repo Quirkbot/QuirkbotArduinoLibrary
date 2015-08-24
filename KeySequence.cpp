@@ -1,13 +1,13 @@
 #include "KeySequence.h"
 
 KeySequence::KeySequence():
-HasIn
-	(this),
 HasInterval
 	(this){
-	registerInput(hold);
+	registerInput(key);
+	registerInput(holdTime);
 
-	hold = 0.3;
+	key = NO_KEY;
+	holdTime = 0.3;
 
 	for (int i = 0; i < QB_MAX_SIMULTANEOUS_KEYS; ++i){
 		scheduleKey[i] = 0;
@@ -19,14 +19,14 @@ HasInterval
 KeySequence::~KeySequence(){}
 
 void KeySequence::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
+	if(&internalInput == &key){
 		// Check if some key needs to be dropped
 		if(scheduleKey[index] && Bot::millis < scheduleTime[index]){
 			Bot::releaseKey(scheduleKey[index]);
 		}
 
-		int currentKey = in.get();
-		long currentTime = Bot::millis + hold.get() * 1000;
+		int currentKey = key.get();
+		long currentTime = Bot::millis + holdTime.get() * 1000;
 
 		Bot::pressKey(currentKey);
 
