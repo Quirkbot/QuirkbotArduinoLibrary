@@ -6,7 +6,6 @@
 class Sequence:
 public Node,
 public HasInterval,
-public HasInputCollection,
 public HasTrigger,
 public HasOut
 {
@@ -18,7 +17,8 @@ public HasOut
 	void onInterval();
 
 	Input duration;
-	
+	InputCollection items;
+
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);

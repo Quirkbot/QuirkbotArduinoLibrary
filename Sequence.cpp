@@ -3,13 +3,12 @@
 Sequence::Sequence():
 HasInterval
 	(this),
-HasInputCollection
-	(this),
 HasTrigger
 	(this),
 HasOut
 	(this){
 	registerInput(duration);
+	registerInputCollection(items);
 	selected = NULL;
 
 	interval = 0.033;
@@ -23,10 +22,10 @@ void Sequence::onInterval(){
 		position = 1;
 		running = false;
 	}
-	int i = floor(position * items.size());
-	if( i == items.size()) i = items.size() - 1;
-	if(items[i] != selected){
-		selected = items[i];
+	int i = floor(position * items.collection.size());
+	if( i == items.collection.size()) i = items.collection.size() - 1;
+	if(items.collection[i] != selected){
+		selected = items.collection[i];
 		out.set(selected->get());
 	}
 }
