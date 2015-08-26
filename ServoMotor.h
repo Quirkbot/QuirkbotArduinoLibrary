@@ -27,7 +27,7 @@ public HasInterval{
 	void write();
 	int mapAngle();
 
-	_libs_Servo servo;
+	Servo servo;
 	int angle;
 
 	int attachedPin;

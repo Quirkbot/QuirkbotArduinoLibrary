@@ -55,8 +55,10 @@ void ServoMotor::write(){
 	if(position.get() == -1) return;
 
 	int newAngle = mapAngle();
+
 	if(newAngle != angle){
 		angle = newAngle;
+		Serial.println(newAngle);
 		servo.write(angle);
 	}
 }

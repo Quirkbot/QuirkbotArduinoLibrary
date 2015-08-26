@@ -24,7 +24,8 @@ class Bot {
 	static void removeUpdatable(Updatable * updatable);
 	static int updatablePosition(Updatable * updatable);
 
-	static void setup();
+	static void beforeStart();
+	static void afterStart();
 	static void update();
 
 	// Keyboard management
@@ -46,6 +47,7 @@ class Bot {
 
 	static VectorNodesPointer nodes;
 	static VectorUpdatablesPointer updatables;
+	static bool forceSaveUuid;
 	static byte uuid[QB_UUID_SIZE];
 	static volatile unsigned long frames;
 	static volatile unsigned long dtMicros;
