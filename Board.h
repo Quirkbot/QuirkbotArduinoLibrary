@@ -4,7 +4,7 @@
 // BOARD LOCATIONS -------------------------------------------------------------
 
 // No Location
-#define NO_LOCATION	0
+#define NO_LOCATION	999
 
 // Built in LEDs
 #define LM	106	// Left Mouth		(PD5)
