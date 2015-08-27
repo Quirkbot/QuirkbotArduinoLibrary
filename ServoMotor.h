@@ -3,7 +3,7 @@
 
 #include "CommonNodeIncludes.h"
 
-#include "_libs_Servo.h"
+#include "Servo.h"
 
 class ServoMotor:
 public Node,

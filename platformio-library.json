@@ -1,7 +1,7 @@
 {
     "name": "Quirkbot",
-    "keywords": "quirkbot, strawbees, kidshackday",
-    "description": "Make your own robots with drinking straws!",
+    "keywords": "quirkbot, strawbees, kidshackday, flow-programming",
+    "description": "Make your own robotic creatures!",
     "repository":
     {
         "type": "git",

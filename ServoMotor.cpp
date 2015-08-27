@@ -43,6 +43,8 @@ void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 void ServoMotor::attach(){
 	if(attached) detach();
 
+	if(place.get() == NO_LOCATION) return;
+
 	attached = true;
 	attachedPin = place.get();
 	servo.attach(attachedPin);
@@ -52,13 +54,12 @@ void ServoMotor::detach(){
 	servo.detach();
 }
 void ServoMotor::write(){
-	if(position.get() == -1) return;
+	if(!attached) return;
 
 	int newAngle = mapAngle();
 
 	if(newAngle != angle){
 		angle = newAngle;
-		Serial.println(newAngle);
 		servo.write(angle);
 	}
 }
