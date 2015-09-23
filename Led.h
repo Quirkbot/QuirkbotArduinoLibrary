@@ -5,13 +5,13 @@
 
 class Led :
 public Updatable,
-public Node,
-public HasIn{
+public Node{
 	public:
-	
+
 	Led();
 	~Led();
 
+	Input light;
 	Input place;
 
 	protected:
@@ -27,7 +27,7 @@ public HasIn{
 
 	int signalPin;
 
-	int location;	
+	int location;
 
 };
 #endif

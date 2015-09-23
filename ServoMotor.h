@@ -3,17 +3,17 @@
 
 #include "CommonNodeIncludes.h"
 
-#include "_libs_Servo.h"
+#include "Servo.h"
 
 class ServoMotor:
 public Node,
-public HasInterval,
-public HasIn{
+public HasInterval{
 	public:
 
 	ServoMotor();
 	~ServoMotor();
 
+	Input position;
 	Input place;
 	Input iddleTime;
 
@@ -27,9 +27,9 @@ public HasIn{
 	void write();
 	int mapAngle();
 
-	_libs_Servo servo;
+	Servo servo;
 	int angle;
-	
+
 	int attachedPin;
 	bool attached;
 	int iddleAngle;

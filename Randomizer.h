@@ -13,6 +13,9 @@ public HasOut
 	Randomizer();
 	~Randomizer();
 
+	Input min;
+	Input max;
+	
 	void onInterval();
 };
 #endif

@@ -18,3 +18,6 @@ Node::~Node(){
 void Node::registerInput(BaseInput &input){
 	input.node = this;
 }
+void Node::registerInputCollection(InputCollection &inputCollection){
+	inputCollection.node = this;
+}

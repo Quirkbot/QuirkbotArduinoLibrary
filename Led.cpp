@@ -1,9 +1,12 @@
 #include "Led.h"
 
-Led::Led():
-HasIn
-	(this){
+Led::Led(){
+	registerInput(light);
 	registerInput(place);
+
+	light = 1;
+	place = NO_LOCATION;
+
 	useSoftPWM = false;
 	pwmWidth = 16;
 	pwmOffset = pwmWidth;
@@ -19,7 +22,7 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 		}
 
 		location = place.get();
-		
+
 		if(location == LM || location == RM){
 			useSoftPWM = true;
 			signalPin = -1;
@@ -31,7 +34,7 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 				case RM:
 					outPort = &PORTB;
 					pinMask = (1<<0);
-					break;	
+					break;
 			}
 		}
 		else{
@@ -41,7 +44,7 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 				pinMode(groundPin, OUTPUT);
 				digitalWrite(groundPin, LOW);
 			}
-			
+
 			signalPin = Bot::locationToFrontPin(location);
 			if(signalPin == NO_LOCATION) signalPin = location;
 			outPort = portOutputRegister(digitalPinToPort(signalPin));
@@ -56,10 +59,10 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 	}
 
 	if(useSoftPWM){
-		pwmOffset = (int)((float)pwmWidth * pow(in.get(), 2.5));
+		pwmOffset = (int)((float)pwmWidth * pow(light.get(), 2.5));
 	}
 	else{
-		analogWrite(signalPin, pow(in.get(), 2.5) * 255.0);
+		analogWrite(signalPin, pow(light.get(), 2.5) * 255.0);
 	}
 }
 void Led::update(){
@@ -73,6 +76,6 @@ void Led::update(){
 	}
 }
 void Led::serialReport(){
-	byte b = (byte)Bot::map(in.get(), 0, 1.0, 0, 249);
+	byte b = (byte)Bot::map(light.get(), 0, 1.0, 0, 249);
 	Serial.write(b);
 }

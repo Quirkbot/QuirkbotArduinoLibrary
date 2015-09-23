@@ -4,8 +4,7 @@
 #include "CommonNodeIncludes.h"
 
 class Buzzer:
-public Node,
-public HasIn{
+public Node{
 	public:
 
 	Buzzer();
@@ -13,6 +12,7 @@ public HasIn{
 
 	void process();
 
+	Input note;
 	Input place;
 
 	static float calculateTone(float frequency);
@@ -52,7 +52,7 @@ for(var note in freq){
 	s += "\n";
 }
 console.log(s);
-**/	
+**/
 #define NO_NOTE		0.0
 #define NOTE_B0		0.07891388f
 #define NOTE_C1		0.08141970f

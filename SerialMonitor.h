@@ -5,12 +5,13 @@
 
 class SerialMonitor:
 public Node,
-public HasInterval,
-public HasInputCollection{
+public HasInterval{
 	public:
 
 	SerialMonitor();
 	~SerialMonitor();
+
+	InputCollection items;
 
 	void onInterval();
 };

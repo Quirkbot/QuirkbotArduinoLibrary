@@ -1,16 +1,20 @@
-#include "MakeyTouchSensor.h"
+#include "MakeyTouch.h"
 
-MakeyTouchSensor::MakeyTouchSensor():
+MakeyTouch::MakeyTouch():
 HasOut
 	(this){
 	registerInput(place);
+	registerInput(min);
+	registerInput(max);
 
-	place = -1;
+	place = NO_LOCATION;
+	min = 0;
+	max = 1;
 
 	filter.alpha = 0.87;
 }
-MakeyTouchSensor::~MakeyTouchSensor(){}
-void MakeyTouchSensor::onInternalInputChange(BaseInput &internalInput){
+MakeyTouch::~MakeyTouch(){}
+void MakeyTouch::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place) {
 		int location = place.get();
 
@@ -53,7 +57,7 @@ void MakeyTouchSensor::onInternalInputChange(BaseInput &internalInput){
 	}
 };
 
-void MakeyTouchSensor::update(){
+void MakeyTouch::update(){
 	if(frontPin == NO_LOCATION) return;
 
 	int tick = Bot::frames % QB_MAX_MAKEY_SENSORS;
@@ -69,13 +73,13 @@ void MakeyTouchSensor::update(){
 
 		if(Bot::seconds < 1.5) return;
 
-		if(filter.get() < 0.3) out.set(1);
-		else  out.set(0);
+		if(filter.get() < 0.3) out.set(max.get());
+		else  out.set(min.get());
 	}
 
 }
 
-void MakeyTouchSensor::serialReport(){
+void MakeyTouch::serialReport(){
 	byte b = (byte)(out.get() * 249);
 	Serial.write(b);
 }

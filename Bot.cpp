@@ -1,6 +1,5 @@
 #include <avr/eeprom.h>
 #include "Bot.h"
-#include "trulyRandom.h"
 
 #define REPORT_INTERVAL_MILLIS 100
 #define REPORT_UUID_INTERVAL_TICKS 10
@@ -12,6 +11,7 @@
 
 VectorNodesPointer Bot::nodes = VectorNodesPointer();
 VectorUpdatablesPointer Bot::updatables = VectorUpdatablesPointer();
+bool Bot::forceSaveUuid = false;
 byte Bot::uuid[QB_UUID_SIZE] = {0x00};
 volatile unsigned long Bot::frames = 0;
 volatile unsigned long Bot::dtMicros = 0;
@@ -23,7 +23,7 @@ bool Bot::serialReportEnabled = true;
 
 Bot::Bot(){}
 Bot::~Bot(){}
-void Bot::setup(){
+void Bot::beforeStart(){
 	// Start serial
  	Serial.begin(115200);
 
@@ -33,28 +33,6 @@ void Bot::setup(){
  	// Force mouth to turn off (only used if you have to use  'LillyPad USB' as the board)
  	PORTD &= ~(1<<5);
 	PORTB &= ~(1<<0);
-
-	// Load from eeprom (or create) UUID
-	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
-	if(delimiter == (byte)REPORT_UUID_DELIMITER){
-		for (int i = 0; i < QB_UUID_SIZE; ++i){
-			Bot::uuid[i] = eeprom_read_byte((byte*)i);
-		}
-	}
-	else{
-		// Blink eyes to indicate progress
-		pinMode(LE, OUTPUT);
-		pinMode(RE, OUTPUT);
-		for (int i = 0; i < QB_UUID_SIZE; ++i){
-			digitalWrite(LE, HIGH);
-			digitalWrite(RE, HIGH);
-			Bot::uuid[i] = trulyRandomUuidComponent();
-			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
-			digitalWrite(LE, LOW);
-			digitalWrite(RE, LOW);
-		}
-		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
-	}
 
 	// Startup animation
 	pinMode(LE, OUTPUT);
@@ -89,6 +67,24 @@ void Bot::setup(){
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
+}
+
+void Bot::afterStart(){
+    // UUID - Load from or save to eeprom
+	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
+    // If the delimer is found, load it...
+	if(!Bot::forceSaveUuid && delimiter == (byte)REPORT_UUID_DELIMITER){
+		for (int i = 0; i < QB_UUID_SIZE; ++i){
+			Bot::uuid[i] = eeprom_read_byte((byte*)i);
+		}
+	}
+	else{
+        // If not, save it...
+		for (int i = 0; i < QB_UUID_SIZE; ++i){
+			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
+		}
+		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
+	}
 }
 
 void Bot::addNode(Node * node){

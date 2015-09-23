@@ -2,19 +2,20 @@
 
 ServoMotor::ServoMotor():
 HasInterval
-	(this),
-HasIn
 	(this){
+	registerInput(position);
 	registerInput(place);
 	registerInput(iddleTime);
 
 	interval = 0.1;
+	position = 0.5;
+	place = NO_LOCATION;
 	iddleTime = 1.5;
 
 	attached = false;
-	angle = -1;		
+	angle = -1;
 	iddleAngle = -1;
-	iddleCount = 0;			
+	iddleCount = 0;
 };
 ServoMotor::~ServoMotor(){}
 void ServoMotor::onInternalInputChange(BaseInput &internalInput){
@@ -28,19 +29,21 @@ void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 			write();
 		}
 	}
-	else if(&internalInput == &in){
+	else if(&internalInput == &position){
 		if(!attached){
 			attach();
 		}
-		write();		
+		write();
 	}
 	else if(&internalInput == &iddleTime){
-		iddleLimit = iddleTime.get() / interval.get();		
+		iddleLimit = iddleTime.get() / interval.get();
 	}
-	
+
 }
 void ServoMotor::attach(){
 	if(attached) detach();
+
+	if(place.get() == NO_LOCATION) return;
 
 	attached = true;
 	attachedPin = place.get();
@@ -51,16 +54,17 @@ void ServoMotor::detach(){
 	servo.detach();
 }
 void ServoMotor::write(){
-	if(in.get() == -1) return;
+	if(!attached) return;
 
 	int newAngle = mapAngle();
+
 	if(newAngle != angle){
 		angle = newAngle;
 		servo.write(angle);
 	}
 }
 int ServoMotor::mapAngle(){
-	return in.get() * 180.0;
+	return position.get() * 180.0;
 }
 void ServoMotor::onInterval(){
 	if(!attached) return;

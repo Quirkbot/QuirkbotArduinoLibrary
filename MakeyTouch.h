@@ -1,25 +1,27 @@
-#ifndef MakeyTouchSensor_h_
-#define MakeyTouchSensor_h_
+#ifndef MakeyTouch_h_
+#define MakeyTouch_h_
 
 #include "CommonNodeIncludes.h"
 
 #define QB_MAX_MAKEY_SENSORS 5
 
-class MakeyTouchSensor :
+class MakeyTouch :
 public Node,
 public Updatable,
 public HasOut
 {
 	public:
-	
-	MakeyTouchSensor();
-	~MakeyTouchSensor();
+
+	MakeyTouch();
+	~MakeyTouch();
 
 	Input place;
+	Input min;
+	Input max;
 
 	void update();
 
-	protected:	
+	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
 	void serialReport();

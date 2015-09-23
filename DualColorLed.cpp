@@ -1,13 +1,13 @@
 #include "DualColorLed.h"
 
-DualColorLed::DualColorLed():
-HasIn
-	(this){
+DualColorLed::DualColorLed(){
 	registerInput(place);
+	registerInput(light);
 	registerInput(color);
 
-	in = 0;
+	light = 1;
 	color = 0;
+	place = NO_LOCATION;
 
 	pwmWidth = 32;
 	pwmOffsetFront = pwmWidth;
@@ -39,13 +39,13 @@ void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 
 		outPortFront = portOutputRegister(digitalPinToPort(frontPin));
 		pinMaskFront = digitalPinToBitMask(frontPin);
-		
+
 		pinMode(backPin, OUTPUT);
 		pinMode(frontPin, OUTPUT);
 
 	}
-	else if(&internalInput == &in || &internalInput == &color){
-		pwmOffset = (int)((float)pwmWidth * pow(in.get(), 2.5));
+	else if(&internalInput == &light || &internalInput == &color){
+		pwmOffset = (int)((float)pwmWidth * pow(light.get(), 2.5));
 		pwmOffsetBack = (float)pwmOffset * color.get();
 		pwmOffsetFront = pwmOffset - pwmOffsetBack;
 	}

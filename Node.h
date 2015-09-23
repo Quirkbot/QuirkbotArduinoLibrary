@@ -3,26 +3,29 @@
 
 #include "Bot.h"
 #include "BaseInput.h"
+#include "InputCollection.h"
 
 class Bot;
 class BaseInput;
+class InputCollection;
 
 class Node{
 	public:
-	
+
 	Node();
 	Node(unsigned int id);
 	~Node();
 
 
 	void registerInput(BaseInput &input);
+	void registerInputCollection(InputCollection &inputCollection);
 	virtual void onInternalInputChange(BaseInput &internalInput){};
 
 	virtual void serialReport(){};
-	
+
 	protected:
 	unsigned int id;
-	
+
 
 	private:
 
