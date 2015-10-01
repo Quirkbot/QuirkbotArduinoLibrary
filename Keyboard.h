@@ -22,7 +22,7 @@
 #ifndef KEYBOARD_h
 #define KEYBOARD_h
 
-#include "_libs_HID.h"
+#include "HID.h"
 
 #if !defined(_USING_HID)
 
