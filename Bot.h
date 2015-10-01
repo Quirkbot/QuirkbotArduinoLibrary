@@ -2,7 +2,7 @@
 #define Bot_h_
 
 #include "Arduino.h"
-#include "_libs_Keyboard.h"
+#include "Keyboard.h"
 
 #include "Board.h"
 #include "Updatable.h"
