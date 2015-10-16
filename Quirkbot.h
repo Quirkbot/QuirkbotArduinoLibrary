@@ -15,6 +15,7 @@
 #include "AnalogSensor.h"
 #include "DigitalSensor.h"
 #include "MakeyTouch.h"
+#include "CapacitiveTouch.h"
 #include "SqueezeSensor.h"
 #include "Sonar.h"
 
