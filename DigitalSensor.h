@@ -9,13 +9,15 @@ public HasInterval,
 public HasOut
 {
 	public:
-	
+
 	DigitalSensor();
 	~DigitalSensor();
 
 	void onInterval();
 
 	Input place;
+	Input min;
+	Input max;
 
 	protected:
 
