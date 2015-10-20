@@ -3,7 +3,8 @@
 
 #include "CommonNodeIncludes.h"
 
-#define QB_MAX_MAKEY_SENSORS 5
+#define QB_MAKEY_TOUCH_MAX_TIME 10000
+#define QB_MAKEY_TOUCH_DISCHARGE_TIME 1000
 
 class MakeyTouch :
 public Node,
@@ -24,16 +25,14 @@ public HasOut
 	protected:
 
 	void onInternalInputChange(BaseInput &internalInput);
-	void serialReport();
 
+	UpperFilter upper;
 	LowPassFilter filter;
-	MedianFilter median;
 
 	unsigned int frontPin;
 	unsigned int backPin;
-	unsigned int tickA;
-	unsigned int tickB;
-
-
+	unsigned long startTime;
+	unsigned long deadlineTime;
+	bool measuring;
 };
 #endif
