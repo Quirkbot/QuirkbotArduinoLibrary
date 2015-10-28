@@ -24,14 +24,15 @@ bool Bot::serialReportEnabled = true;
 Bot::Bot(){}
 Bot::~Bot(){}
 void Bot::beforeStart(){
+
 	// Start serial
- 	Serial.begin(115200);
+	Serial.begin(115200);
 
- 	// Start Keyboard
- 	Keyboard.begin();
+	// Start Keyboard
+	Keyboard.begin();
 
- 	// Force mouth to turn off (only used if you have to use  'LillyPad USB' as the board)
- 	PORTD &= ~(1<<5);
+	// Force mouth to turn off (only used if you have to use  'LillyPad USB' as the board)
+	PORTD &= ~(1<<5);
 	PORTB &= ~(1<<0);
 
 	// Startup animation
@@ -67,24 +68,31 @@ void Bot::beforeStart(){
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
+
+	*(uint16_t *)0x0800 = 0x7777;
+	wdt_enable(WDTO_250MS);
 }
 
 void Bot::afterStart(){
-    // UUID - Load from or save to eeprom
+	// UUID - Load from or save to eeprom
 	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
-    // If the delimer is found, load it...
+	// If the delimer is found, load it...
 	if(!Bot::forceSaveUuid && delimiter == (byte)REPORT_UUID_DELIMITER){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			Bot::uuid[i] = eeprom_read_byte((byte*)i);
 		}
 	}
 	else{
-        // If not, save it...
+		// If not, save it...
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
 		}
 		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
 	}
+
+	wdt_disable();
+	wdt_reset();
+	*(uint16_t *)0x0800 = 0x0000;
 }
 
 void Bot::addNode(Node * node){

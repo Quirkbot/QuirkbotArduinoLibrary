@@ -1,6 +1,8 @@
 #ifndef Bot_h_
 #define Bot_h_
 
+#include <avr/wdt.h>
+
 #include "Arduino.h"
 #include "Keyboard.h"
 
