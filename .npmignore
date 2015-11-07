@@ -3,10 +3,10 @@ npm-debug.log
 .npmignore
 .gitignore
 .git
-.build-release
+build-release.sh
 stino.settings
 QuirkbotArduinoLibrary.zip
 Quirkbot.zip
 *.gch
-s3-publish
+s3-publish.sh
 s3_publish
