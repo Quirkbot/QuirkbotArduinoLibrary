@@ -3,6 +3,7 @@
 
 #include "Arduino.h"
 #include "Keyboard.h"
+#include "Mouse.h"
 
 #include "Board.h"
 #include "Updatable.h"
