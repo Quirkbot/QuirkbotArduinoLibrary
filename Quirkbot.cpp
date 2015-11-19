@@ -25,7 +25,5 @@ void loop(){
 }
 
 ISR(TIMER4_OVF_vect) {
-	sei();
 	Bot::interruptUpdate();
-	cli();
 }
