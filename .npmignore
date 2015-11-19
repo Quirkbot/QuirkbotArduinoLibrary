@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.npmignore
+.gitignore
+.git
+build-release.sh
+stino.settings
+QuirkbotArduinoLibrary.zip
+Quirkbot.zip
+*.gch
+s3-publish.sh
+s3_publish

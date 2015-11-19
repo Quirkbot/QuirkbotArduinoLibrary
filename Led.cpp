@@ -7,9 +7,7 @@ Led::Led(){
 	light = 1;
 	place = NO_LOCATION;
 
-	useSoftPWM = false;
-	pwmWidth = 16;
-	pwmOffset = pwmWidth;
+	pwmCompare = Bot::INTERUPT_COUNT_OVERFLOW;
 	signalPin = -1;
 	location = -1;
 }
@@ -24,7 +22,6 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 		location = place.get();
 
 		if(location == LM || location == RM){
-			useSoftPWM = true;
 			signalPin = -1;
 			switch(location){
 				case LM:
@@ -47,32 +44,26 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 
 			signalPin = Bot::locationToFrontPin(location);
 			if(signalPin == NO_LOCATION) signalPin = location;
+			uint8_t SaveSREG = SREG;   // save interrupt flag
+			cli();   // disable interrupts
 			outPort = portOutputRegister(digitalPinToPort(signalPin));
 			pinMask = digitalPinToBitMask(signalPin);
+			SREG = SaveSREG;   // restore the interrupt flag
 			pinMode(signalPin, OUTPUT);
-
-			if( digitalPinToTimer(signalPin) == NOT_ON_TIMER ){
-				useSoftPWM = true;
-			}
-			else useSoftPWM = false;
 		}
+		isOn = false;
 	}
 
-	if(useSoftPWM){
-		pwmOffset = (int)((float)pwmWidth * pow(light.get(), 2.5));
-	}
-	else{
-		analogWrite(signalPin, pow(light.get(), 2.5) * 255.0);
-	}
+	pwmCompare = (int)((float)Bot::INTERUPT_COUNT_OVERFLOW * pow(light.get(), 1.5));
 }
-void Led::update(){
-	if(!useSoftPWM) return;
-
-	if(Bot::frames % pwmWidth < pwmOffset){
+volatile void Led::interruptUpdate(){
+	if(Bot::interruptCount < pwmCompare && !isOn){
 		*outPort |= pinMask;
+		isOn = true;
 	}
-	else{
+	else if(Bot::interruptCount >= pwmCompare && isOn){
 		*outPort &= ~(pinMask);
+		isOn = false;
 	}
 }
 void Led::serialReport(){

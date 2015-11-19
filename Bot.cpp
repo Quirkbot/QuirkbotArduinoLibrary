@@ -9,30 +9,31 @@
 #define REPORT_NUMBER_OF_NODES_DELIMITER 252
 #define REPORT_NODE_CONTENT_DELIMITER 253
 
+const unsigned int Bot::INTERUPT_COUNT_OVERFLOW = 100;
+
 VectorNodesPointer Bot::nodes = VectorNodesPointer();
 VectorUpdatablesPointer Bot::updatables = VectorUpdatablesPointer();
+VectorInterruptUpdatablesPointer Bot::interruptUpdatables = VectorInterruptUpdatablesPointer();
 bool Bot::forceSaveUuid = false;
 byte Bot::uuid[QB_UUID_SIZE] = {0x00};
-volatile unsigned long Bot::frames = 0;
-volatile unsigned long Bot::dtMicros = 0;
-volatile unsigned long Bot::micros = 0;
-volatile unsigned long Bot::millis = 0;
-volatile float Bot::seconds = 0;
+volatile unsigned int Bot::interruptCount = 0;
+unsigned long Bot::frames = 0;
+unsigned long Bot::dtMicros = 0;
+unsigned long Bot::micros = 0;
+unsigned long Bot::millis = 0;
+float Bot::seconds = 0;
 unsigned long Bot::reportMillisTick = 0;
 bool Bot::serialReportEnabled = true;
 
 Bot::Bot(){}
 Bot::~Bot(){}
 void Bot::beforeStart(){
-	// Start serial
- 	Serial.begin(115200);
+	// Start Serial
+	Serial.begin(115200);
 
- 	// Start Keyboard
- 	Keyboard.begin();
-
- 	// Force mouth to turn off (only used if you have to use  'LillyPad USB' as the board)
- 	PORTD &= ~(1<<5);
-	PORTB &= ~(1<<0);
+	// Start HID
+	Keyboard.begin();
+	Mouse.begin();
 
 	// Startup animation
 	pinMode(LE, OUTPUT);
@@ -70,16 +71,16 @@ void Bot::beforeStart(){
 }
 
 void Bot::afterStart(){
-    // UUID - Load from or save to eeprom
+	// UUID - Load from or save to eeprom
 	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
-    // If the delimer is found, load it...
+	// If the delimer is found, load it...
 	if(!Bot::forceSaveUuid && delimiter == (byte)REPORT_UUID_DELIMITER){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			Bot::uuid[i] = eeprom_read_byte((byte*)i);
 		}
 	}
 	else{
-        // If not, save it...
+		// If not, save it...
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
 		}
@@ -113,6 +114,21 @@ void Bot::removeUpdatable(Updatable * updatable){
 int Bot::updatablePosition(Updatable * updatable){
 	for(unsigned int i=0; i<Bot::updatables.size(); i++){
 		if(Bot::updatables[i] == updatable) return i;
+	}
+	return -1;
+}
+
+void Bot::addInterruptUpdatable(InterruptUpdatable * interruptUpdatable){
+	if(Bot::interruptUpdatablePosition(interruptUpdatable) != -1) return;
+	Bot::interruptUpdatables.push(interruptUpdatable);
+}
+void Bot::removeInterruptUpdatable(InterruptUpdatable * interruptUpdatable){
+	if(Bot::interruptUpdatablePosition(interruptUpdatable) == -1) return;
+	Bot::interruptUpdatables.pop(interruptUpdatable);
+}
+int Bot::interruptUpdatablePosition(InterruptUpdatable * interruptUpdatable){
+	for(unsigned int i=0; i<Bot::interruptUpdatables.size(); i++){
+		if(Bot::interruptUpdatables[i] == interruptUpdatable) return i;
 	}
 	return -1;
 }
@@ -152,6 +168,16 @@ void Bot::update(){
 	}
 }
 
+volatile void Bot::interruptUpdate(){
+	for(unsigned int i=0; i<Bot::interruptUpdatables.size(); i++){
+		Bot::interruptUpdatables[i]->interruptUpdate();
+	}
+
+	Bot::interruptCount++;
+	if(interruptCount >= INTERUPT_COUNT_OVERFLOW){
+		Bot::interruptCount = 0;
+	}
+}
 // Keyboard management ---------------------------------------------------------
 void Bot::pressKey(byte key){
 	Keyboard.press(key);

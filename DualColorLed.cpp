@@ -9,8 +9,12 @@ DualColorLed::DualColorLed(){
 	color = 0;
 	place = NO_LOCATION;
 
-	pwmWidth = 32;
-	pwmOffsetFront = pwmWidth;
+	isOnFront = true;
+	isOnBack = true;
+	pwmStartBack = 0;
+	pwmEndBack = 0;
+	pwmStartFront = 0;
+	pwmEndFront = 0;
 	active = false;
 	location = -1;
 };
@@ -30,9 +34,14 @@ void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 
 		if(backPin == NO_LOCATION || frontPin == NO_LOCATION){
 			active = false;
+			*outPortBack &= ~(pinMaskBack);
+			*outPortFront &= ~(pinMaskFront);
 			return;
 		}
 		active = true;
+
+		uint8_t SaveSREG = SREG;   // save interrupt flag
+		cli();   // disable interrupts
 
 		outPortBack = portOutputRegister(digitalPinToPort(backPin));
 		pinMaskBack = digitalPinToBitMask(backPin);
@@ -40,36 +49,43 @@ void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 		outPortFront = portOutputRegister(digitalPinToPort(frontPin));
 		pinMaskFront = digitalPinToBitMask(frontPin);
 
+		isOnFront = true;
+		isOnBack = true;
+
+		SREG = SaveSREG;   // restore the interrupt flag
+
 		pinMode(backPin, OUTPUT);
 		pinMode(frontPin, OUTPUT);
 
 	}
 	else if(&internalInput == &light || &internalInput == &color){
-		pwmOffset = (int)((float)pwmWidth * pow(light.get(), 2.5));
-		pwmOffsetBack = (float)pwmOffset * color.get();
-		pwmOffsetFront = pwmOffset - pwmOffsetBack;
+		uint8_t pwmSize = (int)((float)Bot::INTERUPT_COUNT_OVERFLOW  * pow(light.get(), 1.5));
+
+		pwmStartBack = 0;
+		pwmEndBack = (float)(pwmSize ) * color.get();
+
+		pwmStartFront = pwmEndBack;
+		pwmEndFront = pwmStartFront + (pwmSize - pwmStartFront);
 	}
 };
-void DualColorLed::update(){
+volatile void DualColorLed::interruptUpdate(){
 	if(!active) return;
 
-	int index = Bot::frames % pwmWidth;
-
-	if(index == 0){
-		digitalWrite(backPin, LOW);
-	}
-	else if(index == pwmOffsetFront){
-		digitalWrite(frontPin, LOW);
-	}
-
-	if(index < pwmOffsetFront){
-		*outPortFront |= pinMaskFront;
-	}
-	else if(index < pwmOffsetBack){
+	if(Bot::interruptCount >= pwmStartBack && Bot::interruptCount < pwmEndBack && !isOnBack){
 		*outPortBack |= pinMaskBack;
+		isOnBack = true;
 	}
-	else{
-		*outPortFront &= ~(pinMaskFront);
+	else if(Bot::interruptCount >= pwmEndBack && isOnBack){
 		*outPortBack &= ~(pinMaskBack);
+		isOnBack = false;
+	}
+
+	if(Bot::interruptCount >= pwmStartFront && Bot::interruptCount < pwmEndFront&& !isOnFront){
+		*outPortFront |= pinMaskFront;
+		isOnFront = true;
+	}
+	else if((Bot::interruptCount < pwmStartFront || Bot::interruptCount >= pwmEndFront) && isOnFront){
+		*outPortFront &= ~(pinMaskFront);
+		isOnFront = false;
 	}
 };
