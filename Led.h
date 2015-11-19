@@ -4,7 +4,7 @@
 #include "CommonNodeIncludes.h"
 
 class Led :
-public Updatable,
+public InterruptUpdatable,
 public Node{
 	public:
 
@@ -16,18 +16,15 @@ public Node{
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
-	void update();
+	volatile void interruptUpdate();
 	void serialReport();
 
-	bool useSoftPWM;
-	int pwmWidth;
-	unsigned int pwmOffset;
+	volatile uint8_t pwmCompare;
 	volatile uint8_t *outPort;
-	uint8_t pinMask;
+	volatile uint8_t pinMask;
+	volatile bool isOn;
 
 	int signalPin;
-
 	int location;
-
 };
 #endif
