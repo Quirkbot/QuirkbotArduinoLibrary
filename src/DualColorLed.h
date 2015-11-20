@@ -4,7 +4,7 @@
 #include "CommonNodeIncludes.h"
 
 class DualColorLed :
-public Updatable,
+public InterruptUpdatable,
 public Node {
 	public:
 
@@ -17,23 +17,23 @@ public Node {
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
-	void update();
-
-	int pwmWidth;
-
-	unsigned int pwmOffset;
-	unsigned int pwmOffsetFront;
-	unsigned int pwmOffsetBack;
+	volatile void interruptUpdate();
 
 	int frontPin;
+	volatile uint8_t pwmStartFront;
+	volatile uint8_t pwmEndFront;
 	volatile uint8_t *outPortFront;
-	uint8_t pinMaskFront;
+	volatile uint8_t pinMaskFront;
+	volatile bool isOnFront;
 
 	int backPin;
+	volatile uint8_t pwmStartBack;
+	volatile uint8_t pwmEndBack;
 	volatile uint8_t *outPortBack;
-	uint8_t pinMaskBack;
+	volatile uint8_t pinMaskBack;
+	volatile bool isOnBack;
 
-	bool active;
+	volatile bool active;
 
 	int location;
 

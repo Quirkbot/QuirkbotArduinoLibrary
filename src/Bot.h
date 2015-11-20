@@ -5,9 +5,11 @@
 
 #include "Arduino.h"
 #include "Keyboard.h"
+#include "Mouse.h"
 
 #include "Board.h"
 #include "Updatable.h"
+#include "InterruptUpdatable.h"
 #include "Node.h"
 
 #include "Vector.h"
@@ -25,10 +27,14 @@ class Bot {
 	static void addUpdatable(Updatable * updatable);
 	static void removeUpdatable(Updatable * updatable);
 	static int updatablePosition(Updatable * updatable);
+	static void addInterruptUpdatable(InterruptUpdatable * interruptUpdatable);
+	static void removeInterruptUpdatable(InterruptUpdatable * interruptUpdatable);
+	static int interruptUpdatablePosition(InterruptUpdatable * interruptUpdatable);
 
 	static void beforeStart();
 	static void afterStart();
 	static void update();
+	static volatile void interruptUpdate();
 
 	// Keyboard management
 	static void pressKey(byte key);
@@ -46,18 +52,22 @@ class Bot {
 	static int locationToBackPin(int location);
 	static int locationToFrontPin(int location);
 
+	static const unsigned int INTERUPT_COUNT_OVERFLOW;
 
 	static VectorNodesPointer nodes;
 	static VectorUpdatablesPointer updatables;
+	static VectorInterruptUpdatablesPointer interruptUpdatables;
 	static bool forceSaveUuid;
 	static byte uuid[QB_UUID_SIZE];
-	static volatile unsigned long frames;
-	static volatile unsigned long dtMicros;
-	static volatile unsigned long micros;
-	static volatile unsigned long millis;
-	static volatile float seconds;
+	static volatile unsigned int interruptCount;
+	static unsigned long frames;
+	static unsigned long dtMicros;
+	static unsigned long micros;
+	static unsigned long millis;
+	static float seconds;
 	static bool serialReportEnabled;
 	static unsigned long reportMillisTick;
+
 };
 
 #endif

@@ -2,4 +2,7 @@
 stino.settings
 QuirkbotArduinoLibrary.zip
 Quirkbot.zip
+Quirkbot
 *.gch
+node_modules
+npm-debug.log
