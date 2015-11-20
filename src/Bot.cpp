@@ -28,29 +28,19 @@ bool Bot::serialReportEnabled = true;
 Bot::Bot(){}
 Bot::~Bot(){}
 void Bot::beforeStart(){
-<<<<<<< HEAD:Bot.cpp
 
-	// Start serial
-	Serial.begin(115200);
-
-	// Start Keyboard
-	Keyboard.begin();
-
-	// Force mouth to turn off (only used if you have to use  'LillyPad USB' as the board)
-	PORTD &= ~(1<<5);
-	PORTB &= ~(1<<0);
-=======
 	// Start Serial
 	Serial.begin(115200);
 
 	// Start HID
 	Keyboard.begin();
 	Mouse.begin();
->>>>>>> develop:src/Bot.cpp
 
 	// Startup animation
 	pinMode(LE, OUTPUT);
 	pinMode(RE, OUTPUT);
+	DDRD |= (1<<5);
+	DDRB |= (1<<0);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
 	PORTD &= ~(1<<5);
@@ -82,8 +72,8 @@ void Bot::beforeStart(){
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
 
-	*(uint16_t *)0x0800 = 0x7777;
-	wdt_enable(WDTO_250MS);
+	//*(uint16_t *)0x0800 = 0x7777;
+	//wdt_enable(WDTO_250MS);
 }
 
 void Bot::afterStart(){
@@ -103,9 +93,9 @@ void Bot::afterStart(){
 		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
 	}
 
-	wdt_disable();
-	wdt_reset();
-	*(uint16_t *)0x0800 = 0x0000;
+	//wdt_disable();
+	//wdt_reset();
+	//*(uint16_t *)0x0800 = 0x0000;
 }
 
 void Bot::addNode(Node * node){
