@@ -71,12 +71,10 @@ void Bot::beforeStart(){
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
-
-	//*(uint16_t *)0x0800 = 0x7777;
-	//wdt_enable(WDTO_250MS);
 }
 
 void Bot::afterStart(){
+	*(uint16_t *)0x0800 = 0x7777;
 	// UUID - Load from or save to eeprom
 	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
 	// If the delimer is found, load it...
@@ -92,10 +90,6 @@ void Bot::afterStart(){
 		}
 		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
 	}
-
-	//wdt_disable();
-	//wdt_reset();
-	//*(uint16_t *)0x0800 = 0x0000;
 }
 
 void Bot::addNode(Node * node){
