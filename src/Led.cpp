@@ -27,10 +27,12 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 				case LM:
 					outPort = &PORTD;
 					pinMask = (1<<5);
+					DDRD |= (1<<5); // pinMode OUTPUT
 					break;
 				case RM:
 					outPort = &PORTB;
 					pinMask = (1<<0);
+					DDRB |= (1<<0); // pinMode OUTPUT
 					break;
 			}
 		}
