@@ -16,6 +16,8 @@
 #include "DigitalSensor.h"
 #include "MakeyTouch.h"
 #include "SqueezeSensor.h"
+// Sensors
+#include "LightSensor.h"
 #include "Sonar.h"
 
 // Light

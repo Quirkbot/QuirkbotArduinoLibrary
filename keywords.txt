@@ -16,6 +16,7 @@ Gate	LITERAL1
 KeyPress	LITERAL1
 KeySequence	LITERAL1
 Led	LITERAL1
+LightSensor	LITERAL1
 List	LITERAL1
 MakeyTouch	LITERAL1
 Randomizer	LITERAL1
