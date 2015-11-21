@@ -11,7 +11,6 @@ void Output::connect(Input &input){
 void Output::set(float value){
 	if(this->value == value) return;
 	this->value = value;
-	event.dispatch(value);
 }
 float Output::get(){
 	return value;

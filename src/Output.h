@@ -1,10 +1,7 @@
 #ifndef Output_h_
 #define Output_h_
 
-#include "Event.h"
 #include "Input.h"
-
-class Event;
 
 class Output {
 	public:
@@ -23,8 +20,6 @@ class Output {
 	 **/
 	void set(float value);
 	float get();
-
-	Event event;
 
 	private:
 
