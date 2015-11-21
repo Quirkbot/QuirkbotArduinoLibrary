@@ -26,7 +26,7 @@ public HasOut
 
 	MedianFilter filter;
 
-	uint8_t *outputPort;
+	volatile uint8_t *outputPort;
 	uint8_t outputMask;
 
 	bool readingFlag;

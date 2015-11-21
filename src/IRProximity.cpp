@@ -34,7 +34,6 @@ void IRProximity::onInterval(){
 		readingB = analogRead(QB_IR_PROXIMITY_INPUT_PIN);
 	}
 
-	preMedianFilter.push(abs(readingA-readingB));
-	postMedianFilter.push(preMedianFilter.get());
-	out.set(Bot::map(postMedianFilter.get(), 0, QB_IR_PROXIMITY_MAX, min.get(), max.get()));
+	filter.push(abs(readingA-readingB));
+	out.set(Bot::map(filter.get(), 0, QB_IR_PROXIMITY_MAX, min.get(), max.get()));
 }
