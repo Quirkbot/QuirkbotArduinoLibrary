@@ -1,20 +1,20 @@
-#ifndef MakeyTouch_h_
-#define MakeyTouch_h_
+#ifndef CircuitTouch_h_
+#define CircuitTouch_h_
 
 #include "CommonNodeIncludes.h"
 
 #define QB_MAKEY_TOUCH_MAX_TIME 10000
 #define QB_MAKEY_TOUCH_DISCHARGE_TIME 1000
 
-class MakeyTouch :
+class CircuitTouch :
 public Node,
 public Updatable,
 public HasOut
 {
 	public:
 
-	MakeyTouch();
-	~MakeyTouch();
+	CircuitTouch();
+	~CircuitTouch();
 
 	Input place;
 	Input min;

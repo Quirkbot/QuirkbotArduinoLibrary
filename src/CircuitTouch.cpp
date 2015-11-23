@@ -1,6 +1,6 @@
-#include "MakeyTouch.h"
+#include "CircuitTouch.h"
 
-MakeyTouch::MakeyTouch():
+CircuitTouch::CircuitTouch():
 HasOut
 	(this){
 	registerInput(place);
@@ -15,8 +15,8 @@ HasOut
 
 	measuring = false;
 }
-MakeyTouch::~MakeyTouch(){}
-void MakeyTouch::onInternalInputChange(BaseInput &internalInput){
+CircuitTouch::~CircuitTouch(){}
+void CircuitTouch::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place) {
 		int location = place.get();
 
@@ -38,7 +38,7 @@ void MakeyTouch::onInternalInputChange(BaseInput &internalInput){
 	}
 };
 
-void MakeyTouch::update(){
+void CircuitTouch::update(){
 	if(frontPin == NO_LOCATION) return;
 	if(measuring){
 		if(bool(digitalRead(frontPin)) || Bot::micros > deadlineTime) {

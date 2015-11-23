@@ -19,13 +19,13 @@ public HasInterval{
 
 	protected:
 
-	void onInternalInputChange(BaseInput &internalInput);
+	virtual void onInternalInputChange(BaseInput &internalInput);
 	void onInterval();
 
 	void attach();
 	void detach();
 	void write();
-	int mapAngle();
+	virtual int mapAngle();
 
 	Servo servo;
 	int angle;

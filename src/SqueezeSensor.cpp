@@ -12,7 +12,7 @@ HasOut
 	min = 0;
 	max = 1;
 
-	reference.alpha = 0.9;
+	reference.alpha = 0.7;
 	refMin = 1024;
 	refMax = 0;
 }

@@ -4,8 +4,6 @@
 #include "Event.h"
 #include "Input.h"
 
-class Event;
-
 class Output {
 	public:
 

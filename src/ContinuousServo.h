@@ -10,6 +10,11 @@ public ServoMotor {
 	ContinuousServo();
 	~ContinuousServo();
 	void onInterval();
+	void onInternalInputChange(BaseInput &internalInput);
+	int mapAngle();
+
+	Input &speed; // alias to position
+	Input direction;
 };
 
 #endif

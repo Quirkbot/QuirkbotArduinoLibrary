@@ -14,8 +14,10 @@
 // Sensors
 #include "AnalogSensor.h"
 #include "DigitalSensor.h"
-#include "MakeyTouch.h"
+#include "CircuitTouch.h"
 #include "SqueezeSensor.h"
+#include "IRProximity.h"
+#include "LightSensor.h"
 #include "Sonar.h"
 
 // Light
