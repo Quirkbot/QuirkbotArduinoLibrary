@@ -3,7 +3,7 @@
 
 #include "CommonNodeIncludes.h"
 
-#define QB_IR_PROXIMITY_OUTPUT_PIN BP1
+#define QB_IR_PROXIMITY_OUTPUT_PIN BP4
 #define QB_IR_PROXIMITY_INPUT_PIN BP2
 #define QB_IR_PROXIMITY_MAX 512
 
