@@ -4,6 +4,7 @@
 #include "Bot.h"
 #include "Input.h"
 #include "Node.h"
+#include "Vector.h"
 class Node;
 class Output;
 

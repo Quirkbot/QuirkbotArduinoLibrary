@@ -23,7 +23,7 @@ void Input::handleValueConnection(const float &value){
 	/**
 	 * Should value connections really clear the output? Maybe it's better
 	 * if they keep the connection, so we know that every time we connect to
-	 * an output, the only way to disconnect is by explicitly calling the 
+	 * an output, the only way to disconnect is by explicitly calling the
 	 * 'disconnect' method.
 	 **/
 	clearOutput();
