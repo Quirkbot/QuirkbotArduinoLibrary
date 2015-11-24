@@ -11,7 +11,7 @@ class Input : public BaseInput{
 
 	Input();
 	~Input();
-	
+
 	/**
 	 * Handle for primitives connections.
 	 **/
@@ -29,7 +29,7 @@ class Input : public BaseInput{
 
 	/**
 	 * Getter
-	 **/	
+	 **/
 	float get();
 
 	protected:

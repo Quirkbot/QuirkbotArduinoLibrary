@@ -1,6 +1,7 @@
 #include "Input.h"
 
 Input::Input(){
+	node = NULL;
 	output = NULL;
 	value = 0;
 }
@@ -36,7 +37,9 @@ void Input::handleOutputConnection(const Output &output){
 }
 void Input::onOutputChange(float value){
 	this->value = value;
-	if(node) node->onInternalInputChange(*this);
+	if(node != NULL){
+		node->onInternalInputChange(*this);
+	}
 }
 void Input::clearOutput(){
 	if(output){
