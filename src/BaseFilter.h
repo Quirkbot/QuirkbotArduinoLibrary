@@ -8,7 +8,7 @@ class BaseFilter {
 	~BaseFilter();
 
 	virtual void push(float number){};
-	
+
 	float get();
 	void set(float v);
 

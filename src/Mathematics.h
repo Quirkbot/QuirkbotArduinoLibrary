@@ -11,7 +11,7 @@ public Node,
 public HasIn,
 public HasOut{
 	public:
-	
+
 	MathNode();
 	~MathNode();
 };
@@ -22,7 +22,7 @@ public HasOut{
 class MathOperationNode:
 public MathNode{
 	public:
-	
+
 	MathOperationNode();
 	~MathOperationNode();
 
@@ -63,7 +63,7 @@ public MathNode{
  * Computes square root.
  * If "in" negative, a domain error occurs.
  */
-class SquareRoot : 
+class SquareRoot :
 public MathNode{
 	public:
 	SquareRoot();
@@ -95,7 +95,7 @@ public MathNode{
  */
 class Power :
 public MathOperationNode{
-	public:	
+	public:
 	Power();
 	~Power();
 

@@ -4,10 +4,10 @@
 #include "BaseFilter.h"
 
 class LowPassFilter :
-public BaseFilter 
+public BaseFilter
 {
 	public:
-	
+
 	LowPassFilter();
 	~LowPassFilter();
 

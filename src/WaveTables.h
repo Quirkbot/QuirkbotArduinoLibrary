@@ -9,9 +9,9 @@
 Table generate with JavaScript with:
 ------------------------------------
 var s = '';
-for(var i = 0; i < 256; i++){  
+for(var i = 0; i < 256; i++){
 s+= (((Math.sin(((Math.PI * 2) * i/256 + Math.PI * 1.5) ) + 1) * 0.5) * 255)
-.toFixed(0); 
+.toFixed(0);
 s+=',';   } console.log(s); s = '';
 **/
 const byte PROGMEM WAVE_SINE_TABLE[] = {
@@ -34,8 +34,8 @@ const byte PROGMEM WAVE_SINE_TABLE[] = {
 Table generate with JavaScript with:
 ------------------------------------
 var s = '';
-for(var i = 0; i < 256; i++){  
-s+= (i<(128-64)|| i > (128+64))?0:255; 
+for(var i = 0; i < 256; i++){
+s+= (i<(128-64)|| i > (128+64))?0:255;
 s+=',';   } console.log(s); s = '';
 **/
 const byte PROGMEM WAVE_SQUARE_TABLE[] = {
@@ -55,8 +55,8 @@ const byte PROGMEM WAVE_SQUARE_TABLE[] = {
 Table generate with JavaScript with:
 ------------------------------------
 var s = '';
-for(var i = 0; i < 256; i++){  
-s+= (i<(128-16)|| i > (128+16))?0:255; 
+for(var i = 0; i < 256; i++){
+s+= (i<(128-16)|| i > (128+16))?0:255;
 s+=',';   } console.log(s); s = '';
 **/
 const byte PROGMEM WAVE_PULSE_TABLE[] = {
@@ -74,7 +74,7 @@ const byte PROGMEM WAVE_PULSE_TABLE[] = {
 Table generate with JavaScript with:
 ------------------------------------
 var s = '';
-for(var i = 0; i < 256; i++){  
+for(var i = 0; i < 256; i++){
 	var t = 255;
   if(i < 128){
     s+= (t/128 * i).toFixed(0);
@@ -103,8 +103,8 @@ const byte PROGMEM WAVE_TRIANGLE_TABLE[] = {
 Table generate with JavaScript with:
 ------------------------------------
 var s = '';
-for(var i = 0; i < 256; i++){  
-s+= i; 
+for(var i = 0; i < 256; i++){
+s+= i;
 s+=',';   } console.log(s); s = '';
 **/
 const byte PROGMEM WAVE_RAMP_UP_TABLE[] = {
@@ -126,8 +126,8 @@ const byte PROGMEM WAVE_RAMP_UP_TABLE[] = {
 Table generate with JavaScript with:
 ------------------------------------
 var s = '';
-for(var i = 255; i >= 0; i--){  
-s+= i; 
+for(var i = 255; i >= 0; i--){
+s+= i;
 s+=',';   } console.log(s); s = '';
 **/
 const byte PROGMEM WAVE_RAMP_DOWN_TABLE[] = {

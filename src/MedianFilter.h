@@ -4,10 +4,10 @@
 #include "BaseFilter.h"
 
 class MedianFilter :
-public BaseFilter 
+public BaseFilter
 {
 	public:
-	
+
 	MedianFilter();
 	~MedianFilter();
 

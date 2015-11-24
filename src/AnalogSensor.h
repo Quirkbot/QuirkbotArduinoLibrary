@@ -9,7 +9,7 @@ public HasInterval,
 public HasOut
 {
 	public:
-	
+
 	AnalogSensor();
 	~AnalogSensor();
 

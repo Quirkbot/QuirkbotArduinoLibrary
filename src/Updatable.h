@@ -14,7 +14,7 @@ class Updatable{
 	~Updatable();
 
 	protected:
-		
+
 	virtual void update(){};
 };
 

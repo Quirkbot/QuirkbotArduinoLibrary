@@ -4,10 +4,10 @@
 #include "BaseFilter.h"
 
 class UpperFilter :
-public BaseFilter 
+public BaseFilter
 {
 	public:
-	
+
 	UpperFilter();
 	~UpperFilter();
 

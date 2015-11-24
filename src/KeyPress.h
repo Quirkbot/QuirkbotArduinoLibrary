@@ -8,7 +8,7 @@ public Node,
 public HasTrigger
 {
 	public:
-	
+
 	KeyPress();
 	~KeyPress();
 

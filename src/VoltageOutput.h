@@ -8,7 +8,7 @@ public Updatable,
 public Node,
 public HasIn{
 	public:
-	
+
 	VoltageOutput();
 	~VoltageOutput();
 

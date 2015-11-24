@@ -15,7 +15,7 @@ public HasOut
 
 	Input min;
 	Input max;
-	
+
 	void onInterval();
 };
 #endif
