@@ -49,6 +49,7 @@ class Bot {
 	);
 	static float minimum(float a, float b);
 	static float maximum(float a, float b);
+	static int locationToAnalogPin(int location);
 	static int locationToBackPin(int location);
 	static int locationToFrontPin(int location);
 

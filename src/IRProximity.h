@@ -5,7 +5,7 @@
 
 #define QB_IR_PROXIMITY_OUTPUT_PIN BP4
 #define QB_IR_PROXIMITY_INPUT_PIN BP2
-#define QB_IR_PROXIMITY_MAX 512
+#define QB_IR_PROXIMITY_MAX 120
 
 class IRProximity :
 public Node,
@@ -28,6 +28,7 @@ public HasOut
 
 	volatile uint8_t *outputPort;
 	uint8_t outputMask;
+	uint8_t readPin;
 
 	bool readingFlag;
 	unsigned int readingA;

@@ -19,7 +19,7 @@ AnalogSensor::~AnalogSensor(){}
 
 void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
-		pin = Bot::locationToBackPin(place.get());
+		pin = Bot::locationToAnalogPin(place.get());
 
 		if(pin == NO_LOCATION){
 			pin = place.get();

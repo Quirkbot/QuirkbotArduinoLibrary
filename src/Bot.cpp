@@ -214,6 +214,26 @@ float Bot::maximum(float a, float b){
 	return max(a,b);
 }
 
+int Bot::locationToAnalogPin(int location){
+	switch(location){
+		case LL:
+			return LLB;
+		case RL:
+			return RLB;
+		case RA:
+			return RAB;
+		case H:
+			return HB;
+		case LA:
+			return LAB;
+		case BP1:
+			return BP1_ANALOG;
+		case BP2:
+			return BP2_ANALOG;
+		default:
+			return NO_LOCATION;
+	}
+};
 int Bot::locationToBackPin(int location){
 	switch(location){
 		case LL:
