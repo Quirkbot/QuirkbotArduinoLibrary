@@ -32,13 +32,14 @@ class Input : public BaseInput{
 	 **/
 	float get();
 
+	float value;
 	protected:
 	void handleValueConnection(const float &value);
 	void handleOutputConnection(const Output &output);
 	void onOutputChange(float value);
 	void clearOutput();
 
-	float value;
+
 	Output * output;
 };
 #endif

@@ -25,6 +25,7 @@ public HasOut
 	protected:
 
 	MedianFilter filter;
+	LowPassFilter lowpass;
 
 	volatile uint8_t *outputPort;
 	uint8_t outputMask;

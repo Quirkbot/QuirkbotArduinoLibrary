@@ -28,7 +28,6 @@ bool Bot::serialReportEnabled = true;
 Bot::Bot(){}
 Bot::~Bot(){}
 void Bot::beforeStart(){
-
 	// Start Serial
 	Serial.begin(115200);
 
@@ -74,7 +73,6 @@ void Bot::beforeStart(){
 }
 
 void Bot::afterStart(){
-	*(uint16_t *)0x0800 = 0x7777;
 	// UUID - Load from or save to eeprom
 	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
 	// If the delimer is found, load it...

@@ -8,10 +8,6 @@ IRProximity::IRProximity():
 		registerInput(min);
 		registerInput(max);
 
-		min = 0;
-		max = 1;
-		interval = 0.05;
-
 		readingFlag = false;
 		readingA = 0;
 		readingB = 0;
@@ -23,6 +19,12 @@ IRProximity::IRProximity():
 
 		pinMode(QB_IR_PROXIMITY_OUTPUT_PIN, OUTPUT);
 		pinMode(readPin, INPUT);
+
+		lowpass.alpha = 0.4;
+
+		min = 0;
+		max = 1;
+		interval = 0.05;
 };
 IRProximity::~IRProximity(){}
 
@@ -43,6 +45,8 @@ void IRProximity::onInterval(){
 	else{
 		filter.push(abs(readingB-readingA));
 	}
-	
-	out.set(Bot::map(filter.get(), 0, QB_IR_PROXIMITY_MAX, min.get(), max.get()));
+
+	lowpass.push(filter.get());
+
+	out.set(Bot::map(lowpass.get(), 0, QB_IR_PROXIMITY_MAX, min.get(), max.get()));
 }

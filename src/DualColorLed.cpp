@@ -5,10 +5,6 @@ DualColorLed::DualColorLed(){
 	registerInput(light);
 	registerInput(color);
 
-	light = 1;
-	color = 0;
-	place = NO_LOCATION;
-
 	isOnFront = true;
 	isOnBack = true;
 	pwmStartBack = 0;
@@ -17,6 +13,10 @@ DualColorLed::DualColorLed(){
 	pwmEndFront = 0;
 	active = false;
 	location = -1;
+
+	light = 1;
+	color = 0;
+	place = NO_LOCATION;
 };
 DualColorLed::~DualColorLed(){}
 
