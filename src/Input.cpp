@@ -35,6 +35,10 @@ void Input::handleValueConnection(const float &value){
 	onOutputChange(value);
 }
 void Input::handleOutputConnection(const Output &output){
+	if(this->output == (Output*) &output){
+		return;
+	}
+
 	clearOutput();
 	this->output = (Output*) &output;
 	this->output->event.add(this, &Input::onOutputChange);
