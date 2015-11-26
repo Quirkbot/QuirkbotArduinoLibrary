@@ -51,6 +51,8 @@ class Quirkbot_{
 	public:
 	void setup(void);
 	void loop(void);
+	void delay(unsigned long ms);
+	void delayMicroseconds(unsigned int us);
 	void disableSerialReport(void);
 	void enableSerialReport(void);
 };

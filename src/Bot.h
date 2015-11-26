@@ -30,8 +30,7 @@ class Bot {
 	static void removeInterruptUpdatable(InterruptUpdatable * interruptUpdatable);
 	static int interruptUpdatablePosition(InterruptUpdatable * interruptUpdatable);
 
-	static void beforeStart();
-	static void afterStart();
+	static void start();
 	static void update();
 	static volatile void interruptUpdate();
 
