@@ -1,6 +1,10 @@
 #include "Quirkbot.h"
 
+Quirkbot_::Quirkbot_(){
+	inited = false;
+}
 void Quirkbot_::setup(void){
+	inited = true;
 	Bot::start();
 	// Setup the timer interrupt
 	TCCR4B = 7;
@@ -14,16 +18,28 @@ void Quirkbot_::setup(void){
 	PLLFRQ = 0b01011010;
 }
 void Quirkbot_::loop(void){
+	if(!inited) {
+		return;
+	}
 	Bot::update();
 }
-void Quirkbot_::delay(unsigned long ms){
+void Quirkbot_::delay_(unsigned long ms){
+	if(!inited) {
+		return (delay)(ms);
+	}
 	unsigned long deadline = Bot::millis + ms;
 	while(Bot::millis < deadline){
 		Bot::update();
 	}
 }
-void Quirkbot_::delayMicroseconds(unsigned int us){
-	unsigned long deadline = Bot::micros + us;
+void Quirkbot_::delayMicroseconds_(unsigned long us){
+	if(!inited) {
+		return (delayMicroseconds)(us);
+	}
+	if(us > 1000){
+		return delay_((float)us / 1000.0);
+	}
+	unsigned int deadline = Bot::micros + us;
 	while(Bot::micros < deadline){
 		Bot::update();
 	}
