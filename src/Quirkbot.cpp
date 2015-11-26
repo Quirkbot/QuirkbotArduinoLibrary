@@ -1,7 +1,5 @@
 #include "Quirkbot.h"
 
-volatile unsigned int qb_timer_count;
-
 void setup(){
 	Bot::beforeStart();
 	start();

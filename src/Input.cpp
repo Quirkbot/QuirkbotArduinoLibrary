@@ -3,7 +3,11 @@
 Input::Input(){
 	node = NULL;
 	output = NULL;
-	value = 0;
+
+	// A crazy initial value, so when onOutputChange is called for the first
+	// time with a real value, it won't clash and  be forwarded to
+	// node->onInternalInputChange
+	value = -12345.67890;
 }
 Input::~Input(){
 	clearOutput();
@@ -34,8 +38,12 @@ void Input::handleOutputConnection(const Output &output){
 	clearOutput();
 	this->output = (Output*) &output;
 	this->output->event.add(this, &Input::onOutputChange);
+	onOutputChange(this->output->get());
 }
 void Input::onOutputChange(float value){
+	if(this->value == value) {
+		return;
+	}
 	this->value = value;
 	if(node != NULL){
 		node->onInternalInputChange(*this);
