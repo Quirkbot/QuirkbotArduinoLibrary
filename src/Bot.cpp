@@ -224,10 +224,20 @@ int Bot::locationToAnalogPin(int location){
 			return HB;
 		case LA:
 			return LAB;
+		case LLB:
+			return LLB;
+		case RLB:
+			return RLB;
+		case RAB:
+			return RAB;
+		case HB:
+			return HB;
+		case LAB:
+			return LAB;
 		case BP1:
-			return BP1_ANALOG;
+			return BP1;
 		case BP2:
-			return BP2_ANALOG;
+			return BP1;
 		default:
 			return NO_LOCATION;
 	}

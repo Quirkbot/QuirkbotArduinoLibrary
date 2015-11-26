@@ -47,8 +47,13 @@
 #include "SerialMonitor.h"
 #include "Time.h"
 
-void start();
-void setup();
-void loop();
+class Quirkbot_{
+	public:
+	void setup(void);
+	void loop(void);
+	void disableSerialReport(void);
+	void enableSerialReport(void);
+};
+extern Quirkbot_ Quirkbot;
 
 #endif
