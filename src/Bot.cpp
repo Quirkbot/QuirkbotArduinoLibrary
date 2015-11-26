@@ -237,7 +237,7 @@ int Bot::locationToAnalogPin(int location){
 		case BP1:
 			return BP1;
 		case BP2:
-			return BP1;
+			return BP2;
 		default:
 			return NO_LOCATION;
 	}
