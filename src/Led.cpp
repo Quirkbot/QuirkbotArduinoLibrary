@@ -55,8 +55,9 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 		}
 		isOn = false;
 	}
-
-	pwmCompare = (int)((float)Bot::INTERUPT_COUNT_OVERFLOW * pow(light.get(), 1.5));
+	else if(&internalInput == &light){
+		pwmCompare = (int)((float)Bot::INTERUPT_COUNT_OVERFLOW * pow(light.get(), 1.5));
+	}
 }
 volatile void Led::interruptUpdate(){
 	if(Bot::interruptCount < pwmCompare && !isOn){

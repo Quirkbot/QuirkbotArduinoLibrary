@@ -16,7 +16,7 @@ void Event::remove(TypedInputHandler handler){
 }
 int Event::position(TypedInputHandler handler){
 	for(int i=0; i<typedInputHandlers.size(); i++){
-		if(&(typedInputHandlers[i]) == &handler) return i;
+		if(typedInputHandlers[i] == handler) return i;
 	}
 	return -1;
 }

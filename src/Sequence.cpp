@@ -37,4 +37,7 @@ void Sequence::onInternalInputChange(BaseInput &internalInput){
 			onInterval(); // start immediatelly
 		}
 	}
+	else if(&internalInput == selected){
+		out.set(selected->get());
+	}
 }

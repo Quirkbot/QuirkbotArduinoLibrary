@@ -8,7 +8,7 @@ class HasOut{
 	public:
 	HasOut(Node * node);
 	~HasOut();
-	
+
 	Output out;
 };
 

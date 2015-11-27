@@ -7,7 +7,7 @@ HasInterval
 	registerInput(holdTime);
 
 	key = NO_KEY;
-	holdTime = 0.3;
+	holdTime = 0;
 
 	for (int i = 0; i < QB_MAX_SIMULTANEOUS_KEYS; ++i){
 		scheduleKey[i] = 0;
@@ -20,6 +20,8 @@ KeySequence::~KeySequence(){}
 
 void KeySequence::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &key){
+		if(key.get() == NO_KEY) return;
+
 		// Check if some key needs to be dropped
 		if(scheduleKey[index] && Bot::millis < scheduleTime[index]){
 			Bot::releaseKey(scheduleKey[index]);
@@ -36,6 +38,9 @@ void KeySequence::onInternalInputChange(BaseInput &internalInput){
 		index++;
 		if(index == QB_MAX_SIMULTANEOUS_KEYS) index = 0;
 
+		// Reset key internally to NO_KEY, so we can accept a stream of repeated
+		// keys.
+		key.value = NO_KEY;
 	}
 
 };

@@ -11,7 +11,7 @@ class Input : public BaseInput{
 
 	Input();
 	~Input();
-	
+
 	/**
 	 * Handle for primitives connections.
 	 **/
@@ -29,16 +29,17 @@ class Input : public BaseInput{
 
 	/**
 	 * Getter
-	 **/	
+	 **/
 	float get();
 
+	float value;
 	protected:
 	void handleValueConnection(const float &value);
 	void handleOutputConnection(const Output &output);
 	void onOutputChange(float value);
 	void clearOutput();
 
-	float value;
+
 	Output * output;
 };
 #endif

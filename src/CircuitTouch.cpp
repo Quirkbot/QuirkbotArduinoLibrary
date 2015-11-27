@@ -52,7 +52,7 @@ void CircuitTouch::update(){
 			float value = (filter.get() >= QB_MAKEY_TOUCH_MAX_TIME) ? 1.0: 0;
 			value = Bot::map(value, 0, 1, min.get(), max.get());
 			out.set(value);
-			
+
 			// Discharge pin
 			pinMode(frontPin, OUTPUT);
 			digitalWrite(frontPin, LOW);

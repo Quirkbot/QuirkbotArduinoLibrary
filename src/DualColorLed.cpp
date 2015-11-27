@@ -5,10 +5,6 @@ DualColorLed::DualColorLed(){
 	registerInput(light);
 	registerInput(color);
 
-	light = 1;
-	color = 0;
-	place = NO_LOCATION;
-
 	isOnFront = true;
 	isOnBack = true;
 	pwmStartBack = 0;
@@ -17,6 +13,10 @@ DualColorLed::DualColorLed(){
 	pwmEndFront = 0;
 	active = false;
 	location = -1;
+
+	light = 1;
+	color = 0;
+	place = NO_LOCATION;
 };
 DualColorLed::~DualColorLed(){}
 
@@ -59,13 +59,14 @@ void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 
 	}
 	else if(&internalInput == &light || &internalInput == &color){
-		uint8_t pwmSize = (int)((float)Bot::INTERUPT_COUNT_OVERFLOW  * pow(light.get(), 1.5));
+		uint8_t pwmSize = (int)((float)(Bot::INTERUPT_COUNT_OVERFLOW-1)  * pow(light.get(), 1.5));
 
 		pwmStartBack = 0;
 		pwmEndBack = (float)(pwmSize ) * color.get();
 
 		pwmStartFront = pwmEndBack;
 		pwmEndFront = pwmStartFront + (pwmSize - pwmStartFront);
+
 	}
 };
 volatile void DualColorLed::interruptUpdate(){
@@ -80,7 +81,7 @@ volatile void DualColorLed::interruptUpdate(){
 		isOnBack = false;
 	}
 
-	if(Bot::interruptCount >= pwmStartFront && Bot::interruptCount < pwmEndFront&& !isOnFront){
+	if(Bot::interruptCount >= pwmStartFront && Bot::interruptCount < pwmEndFront && !isOnFront){
 		*outPortFront |= pinMaskFront;
 		isOnFront = true;
 	}

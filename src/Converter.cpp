@@ -10,7 +10,7 @@ HasOut
 	registerInput(inMax);
 	registerInput(outMin);
 	registerInput(outMax);
-	
+
 	inMin = 0.0;
 	inMax = 1.0;
 	outMin = 0.0;
@@ -19,7 +19,7 @@ HasOut
 Converter::~Converter(){}
 void Converter::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
-		out.set( 
+		out.set(
 			Bot::map(
 				in.get(),
 				inMin.get(),

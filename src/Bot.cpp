@@ -27,8 +27,7 @@ bool Bot::serialReportEnabled = true;
 
 Bot::Bot(){}
 Bot::~Bot(){}
-void Bot::beforeStart(){
-
+void Bot::start(){
 	// Start Serial
 	Serial.begin(115200);
 
@@ -71,10 +70,7 @@ void Bot::beforeStart(){
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
-}
 
-void Bot::afterStart(){
-	*(uint16_t *)0x0800 = 0x7777;
 	// UUID - Load from or save to eeprom
 	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
 	// If the delimer is found, load it...
@@ -214,6 +210,36 @@ float Bot::maximum(float a, float b){
 	return max(a,b);
 }
 
+int Bot::locationToAnalogPin(int location){
+	switch(location){
+		case LL:
+			return LLB;
+		case RL:
+			return RLB;
+		case RA:
+			return RAB;
+		case H:
+			return HB;
+		case LA:
+			return LAB;
+		case LLB:
+			return LLB;
+		case RLB:
+			return RLB;
+		case RAB:
+			return RAB;
+		case HB:
+			return HB;
+		case LAB:
+			return LAB;
+		case BP1:
+			return BP1;
+		case BP2:
+			return BP2;
+		default:
+			return NO_LOCATION;
+	}
+};
 int Bot::locationToBackPin(int location){
 	switch(location){
 		case LL:

@@ -7,7 +7,6 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 
-#include "Board.h"
 #include "Updatable.h"
 #include "InterruptUpdatable.h"
 #include "Node.h"
@@ -31,8 +30,7 @@ class Bot {
 	static void removeInterruptUpdatable(InterruptUpdatable * interruptUpdatable);
 	static int interruptUpdatablePosition(InterruptUpdatable * interruptUpdatable);
 
-	static void beforeStart();
-	static void afterStart();
+	static void start();
 	static void update();
 	static volatile void interruptUpdate();
 
@@ -49,6 +47,7 @@ class Bot {
 	);
 	static float minimum(float a, float b);
 	static float maximum(float a, float b);
+	static int locationToAnalogPin(int location);
 	static int locationToBackPin(int location);
 	static int locationToFrontPin(int location);
 

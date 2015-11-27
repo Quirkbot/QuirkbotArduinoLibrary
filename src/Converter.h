@@ -9,10 +9,10 @@ public HasIn,
 public HasOut
 {
 	public:
-	
+
 	Converter();
 	~Converter();
-	
+
 	Input inMin;
 	Input inMax;
 	Input outMin;
