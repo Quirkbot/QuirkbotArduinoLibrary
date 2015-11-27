@@ -14,11 +14,11 @@ class Event {
 	typedef void (Input::*TypedInputHandler)(float value);
 
 	void add(Input* input, TypedInputHandler handler);
-	void remove(TypedInputHandler handler);
+	void remove(Input* input, TypedInputHandler handler);
 	void dispatch(float &value);
 
 	private:
-	int position(TypedInputHandler handler);
+	int position(Input* input, TypedInputHandler handler);
 
 	VectorTypedInputHandler typedInputHandlers;
 	VectorInputsPointer typedInputs;

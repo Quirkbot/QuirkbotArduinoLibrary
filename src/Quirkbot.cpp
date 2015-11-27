@@ -3,7 +3,11 @@
 Quirkbot_::Quirkbot_(){
 	inited = false;
 }
-void Quirkbot_::setup(void){
+void (setup)(){
+	Quirkbot.setup_();
+	setup_();
+}
+void Quirkbot_::setup_(void){
 	inited = true;
 	Bot::start();
 	// Setup the timer interrupt
@@ -17,7 +21,11 @@ void Quirkbot_::setup(void){
 	TIMSK4 = (1<<TOIE4);
 	PLLFRQ = 0b01011010;
 }
-void Quirkbot_::loop(void){
+void (loop)(){
+	Quirkbot.loop_();
+	loop_();
+}
+void Quirkbot_::loop_(void){
 	if(!inited) {
 		return;
 	}
@@ -53,5 +61,4 @@ void Quirkbot_::enableSerialReport(void){
 ISR(TIMER4_OVF_vect) {
 	Bot::interruptUpdate();
 }
-
 Quirkbot_ Quirkbot;

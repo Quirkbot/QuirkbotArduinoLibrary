@@ -55,7 +55,7 @@ void Input::onOutputChange(float value){
 }
 void Input::clearOutput(){
 	if(output){
-		output->event.remove(&Input::onOutputChange);
+		output->event.remove(this, &Input::onOutputChange);
 		output = NULL;
 	}
 }
