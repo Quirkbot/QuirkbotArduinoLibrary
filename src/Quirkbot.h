@@ -50,8 +50,8 @@
 class Quirkbot_{
 	public:
 		Quirkbot_();
-		void setup(void);
-		void loop(void);
+		void setup_(void);
+		void loop_(void);
 		void delay_(unsigned long ms);
 		void delayMicroseconds_(unsigned long us);
 		void disableSerialReport(void);
@@ -61,7 +61,11 @@ class Quirkbot_{
 };
 extern Quirkbot_ Quirkbot;
 
-// Ovewrite Arduino's delays with the Quirkbot safe equivalent
+// Use some macro sorcery to ovewrite Arduino's delays with Quirkbot's safe equivalents
+void setup_();
+void loop_();
+#define setup() setup_()
+#define loop() loop_()
 #define delay(ms) Quirkbot.delay_(ms)
 #define delayMicroseconds(us) Quirkbot.delayMicroseconds_(us)
 
