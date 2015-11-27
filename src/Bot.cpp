@@ -27,7 +27,7 @@ bool Bot::serialReportEnabled = true;
 
 Bot::Bot(){}
 Bot::~Bot(){}
-void Bot::beforeStart(){
+void Bot::start(){
 	// Start Serial
 	Serial.begin(115200);
 
@@ -70,9 +70,7 @@ void Bot::beforeStart(){
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
-}
 
-void Bot::afterStart(){
 	// UUID - Load from or save to eeprom
 	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
 	// If the delimer is found, load it...
@@ -237,7 +235,7 @@ int Bot::locationToAnalogPin(int location){
 		case BP1:
 			return BP1;
 		case BP2:
-			return BP1;
+			return BP2;
 		default:
 			return NO_LOCATION;
 	}
