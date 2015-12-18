@@ -25,6 +25,6 @@ public Node{
 	volatile bool isOn;
 
 	int signalPin;
-	int location;
+	volatile int location;
 };
 #endif

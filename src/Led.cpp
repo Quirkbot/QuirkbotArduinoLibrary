@@ -8,21 +8,21 @@ Led::Led(){
 	place = NO_LOCATION;
 
 	pwmCompare = Bot::INTERUPT_COUNT_OVERFLOW;
-	signalPin = -1;
-	location = -1;
+	signalPin = NO_LOCATION;
+	location = NO_LOCATION;
 }
 Led::~Led(){}
 void Led::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		// Disable when disconnected
-		if(location != -1){
+		if(location != NO_LOCATION){
 			*outPort &= ~(pinMask);
 		}
 
 		location = place.get();
 
 		if(location == LM || location == RM){
-			signalPin = -1;
+			signalPin = NO_LOCATION;
 			switch(location){
 				case LM:
 					outPort = &PORTD;
@@ -36,7 +36,7 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 					break;
 			}
 		}
-		else{
+		else if(location != NO_LOCATION){
 			int groundPin = Bot::locationToBackPin(location);
 
 			if(groundPin != NO_LOCATION){
@@ -53,6 +53,9 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 			SREG = SaveSREG;   // restore the interrupt flag
 			pinMode(signalPin, OUTPUT);
 		}
+		else{
+			signalPin = NO_LOCATION;
+		}
 		isOn = false;
 	}
 	else if(&internalInput == &light){
@@ -60,14 +63,17 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 	}
 }
 volatile void Led::interruptUpdate(){
-	if(Bot::interruptCount < pwmCompare && !isOn){
-		*outPort |= pinMask;
-		isOn = true;
+	if(location != NO_LOCATION){
+		if(Bot::interruptCount < pwmCompare && !isOn){
+			*outPort |= pinMask;
+			isOn = true;
+		}
+		else if(Bot::interruptCount >= pwmCompare && isOn){
+			*outPort &= ~(pinMask);
+			isOn = false;
+		}
 	}
-	else if(Bot::interruptCount >= pwmCompare && isOn){
-		*outPort &= ~(pinMask);
-		isOn = false;
-	}
+
 }
 void Led::serialReport(){
 	byte b = (byte)Bot::map(light.get(), 0, 1.0, 0, 249);

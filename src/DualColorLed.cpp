@@ -12,7 +12,7 @@ DualColorLed::DualColorLed(){
 	pwmStartFront = 0;
 	pwmEndFront = 0;
 	active = false;
-	location = -1;
+	location = NO_LOCATION;
 
 	light = 1;
 	color = 0;
@@ -23,7 +23,7 @@ DualColorLed::~DualColorLed(){}
 void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		// Disable when disconnected
-		if(location != -1){
+		if(location != NO_LOCATION){
 			*outPortBack &= ~(pinMaskBack);
 			*outPortFront &= ~(pinMaskFront);
 		}
