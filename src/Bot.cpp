@@ -1,6 +1,7 @@
 #include <avr/eeprom.h>
 #include "Bot.h"
 
+// Serial Report constants
 #define REPORT_INTERVAL_MILLIS 100
 #define REPORT_UUID_INTERVAL_TICKS 10
 #define REPORT_START_DELIMITER 250
@@ -8,6 +9,10 @@
 #define REPORT_UUID_DELIMITER 251
 #define REPORT_NUMBER_OF_NODES_DELIMITER 252
 #define REPORT_NODE_CONTENT_DELIMITER 253
+
+// Bootloader support
+#define BOOTLOADER_ID_SIGNATURE_START		((FLASHEND + 1UL) - 2)
+#define BOOTLOADER_VERSION_SIGNATURE_START 	((FLASHEND + 1UL) - 4)
 
 const unsigned int Bot::INTERUPT_COUNT_OVERFLOW = 100;
 
@@ -144,7 +149,12 @@ void Bot::update(){
 		Bot::updatables[i]->update();
 	}
 
-	// Send serial reportis
+	serialTask();
+	midiTask();
+}
+
+void Bot::serialTask(){
+	// Send serial report
 	if(Bot::serialReportEnabled && Bot::millis >= Bot::reportMillisTick){
 		Bot::reportMillisTick += REPORT_INTERVAL_MILLIS;
 		// Start delimiter
@@ -168,6 +178,17 @@ void Bot::update(){
 	}
 }
 
+void Bot::midiTask(){
+	midiEventPacket_t rx;
+	rx = MidiUSB.read();
+	if (rx.header != 0) {
+		Serial.print(rx.header);
+		Serial.print(rx.byte1);
+		Serial.print(rx.byte2);
+		Serial.println(rx.byte3);
+	}
+}
+
 volatile void Bot::interruptUpdate(){
 	for(unsigned int i=0; i<Bot::interruptUpdatables.size(); i++){
 		Bot::interruptUpdatables[i]->interruptUpdate();
@@ -188,6 +209,26 @@ void Bot::releaseKey(byte key){
 void Bot::releaseAllKeys(){
 	Keyboard.releaseAll();
 };
+
+// Bootloader Support ----------------------------------------------------------
+uint16_t Bot::readFlashWord(uint16_t address){
+	uint16_t word = pgm_read_byte((void *)address);
+	word += pgm_read_byte((void *)address+1) << 8;
+	return word;
+};
+uint16_t Bot::getBootloaderId(){
+	return Bot::readFlashWord(BOOTLOADER_ID_SIGNATURE_START);
+};
+uint16_t Bot::getBootloaderVersion(){
+	return Bot::readFlashWord(BOOTLOADER_VERSION_SIGNATURE_START);
+};
+void Bot::enterBootloader(){
+	cli();
+	// Set the bootloader key to the magic value and force a reset
+	*(uint16_t *)0x0800 = 0x7777;
+	wdt_enable(WDTO_120MS);
+	for (;;);
+}
 
 // Utils -----------------------------------------------------------------------
 float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){

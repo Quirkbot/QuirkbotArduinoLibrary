@@ -6,6 +6,7 @@
 #include "Arduino.h"
 #include "Keyboard.h"
 #include "Mouse.h"
+#include "MIDIUSB.h"
 
 #include "Updatable.h"
 #include "InterruptUpdatable.h"
@@ -34,10 +35,20 @@ class Bot {
 	static void update();
 	static volatile void interruptUpdate();
 
+	// USB interfaces
+	static void serialTask();
+	static void midiTask();
+
 	// Keyboard management
 	static void pressKey(byte key);
 	static void releaseKey(byte key);
 	static void releaseAllKeys();
+
+	// Bootloader support
+	static uint16_t readFlashWord(uint16_t address);
+	static uint16_t getBootloaderId();
+	static uint16_t getBootloaderVersion();
+	static void enterBootloader();
 
 	// Utils
 	static float map(
