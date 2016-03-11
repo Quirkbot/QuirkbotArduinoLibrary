@@ -7,6 +7,10 @@ build-release.sh
 stino.settings
 QuirkbotArduinoLibrary.zip
 Quirkbot.zip
+quirkbot-arduino-library
+quirkbot-arduino-library.zip
+quirkbot-arduino-library-*
 *.gch
 s3-publish.sh
 s3_publish
+aws-config

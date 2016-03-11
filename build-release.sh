@@ -5,10 +5,14 @@ rm Quirkbot.zip
 cp -r ./* $temp/
 
 rm -r $temp/.git
-rm $temp/.gitignore
-rm $temp/build-release.sh
+rm -r $temp/.gitignore
+rm -r $temp/.npmignore
+rm -r $temp/node_modules
+rm -r $temp/gulpfile.js
+rm -r $temp/library.template.properties
+rm -r $temp/build-release.sh
 rm -r $temp/s3_publish
-rm $temp/s3-publish.sh
+rm -r $temp/s3-publish.sh
 
 cd $temp
 zip -vr Quirkbot.zip \

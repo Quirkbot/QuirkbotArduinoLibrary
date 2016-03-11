@@ -51,6 +51,7 @@ class Quirkbot_{
 	public:
 		Quirkbot_();
 		void setup_(void);
+		void afterSetup_(void);
 		void loop_(void);
 		void delay_(unsigned long ms);
 		void delayMicroseconds_(unsigned long us);

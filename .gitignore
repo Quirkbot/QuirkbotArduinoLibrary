@@ -2,8 +2,12 @@
 stino.settings
 QuirkbotArduinoLibrary.zip
 Quirkbot.zip
+quirkbot-arduino-library
+quirkbot-arduino-library.zip
+quirkbot-arduino-library-*
 Quirkbot
 s3_publish
 *.gch
 node_modules
 npm-debug.log
+aws-config
