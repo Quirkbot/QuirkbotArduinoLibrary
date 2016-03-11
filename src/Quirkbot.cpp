@@ -6,6 +6,7 @@ Quirkbot_::Quirkbot_(){
 void (setup)(){
 	Quirkbot.setup_();
 	setup_();
+	Quirkbot.afterSetup_();
 }
 void Quirkbot_::setup_(void){
 	inited = true;
@@ -20,6 +21,9 @@ void Quirkbot_::setup_(void){
 	TCNT4 = 0;
 	TIMSK4 = (1<<TOIE4);
 	PLLFRQ = 0b01011010;
+}
+void Quirkbot_::afterSetup_(void){
+	Bot::afterStart();
 }
 void (loop)(){
 	Quirkbot.loop_();

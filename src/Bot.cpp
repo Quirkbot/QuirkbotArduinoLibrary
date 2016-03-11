@@ -1,19 +1,6 @@
 #include <avr/eeprom.h>
 #include "Bot.h"
 
-// Serial Report constants
-#define REPORT_INTERVAL_MILLIS 100
-#define REPORT_UUID_INTERVAL_TICKS 10
-#define REPORT_START_DELIMITER 250
-#define REPORT_END_DELIMITER 255
-#define REPORT_UUID_DELIMITER 251
-#define REPORT_NUMBER_OF_NODES_DELIMITER 252
-#define REPORT_NODE_CONTENT_DELIMITER 253
-
-// Bootloader support
-#define BOOTLOADER_ID_SIGNATURE_START		((FLASHEND + 1UL) - 2)
-#define BOOTLOADER_VERSION_SIGNATURE_START 	((FLASHEND + 1UL) - 4)
-
 const unsigned int Bot::INTERUPT_COUNT_OVERFLOW = 100;
 
 VectorNodesPointer Bot::nodes = VectorNodesPointer();
@@ -50,6 +37,8 @@ void Bot::start(){
 	PORTD &= ~(1<<5);
 	PORTB &= ~(1<<0);
 	for (int i = 0; i < 2; i++) {
+		wdt_reset();
+
 		PORTB |= (1<<0);
 		delay(50);
 		PORTB &= ~(1<<0);
@@ -63,34 +52,57 @@ void Bot::start(){
 		delay(50);
 		PORTD &= ~(1<<5);
 	}
+	wdt_reset();
 	delay(100);
 	digitalWrite(LE, HIGH);
 	digitalWrite(RE, HIGH);
-	delay(100);
-	digitalWrite(LE, LOW);
-	digitalWrite(RE, LOW);
-	delay(100);
-	digitalWrite(LE, HIGH);
-	digitalWrite(RE, HIGH);
+
+	wdt_reset();
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
 
-	// UUID - Load from or save to eeprom
-	byte delimiter = eeprom_read_byte((byte *)QB_UUID_SIZE);
-	// If the delimer is found, load it...
-	if(!Bot::forceSaveUuid && delimiter == (byte)REPORT_UUID_DELIMITER){
+	wdt_reset();
+	delay(100);
+	digitalWrite(LE, HIGH);
+	digitalWrite(RE, HIGH);
+
+	wdt_reset();
+	delay(100);
+	digitalWrite(LE, LOW);
+	digitalWrite(RE, LOW);
+}
+void Bot::afterStart(){
+	// Build the UUID
+
+	// If the Bot::forceSaveUuid flag is not set, read the uuid from MEMORY.
+	if(!Bot::forceSaveUuid){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			Bot::uuid[i] = eeprom_read_byte((byte*)i);
 		}
 	}
-	else{
-		// If not, save it...
+
+	// ALWAYS overwrite the "header" of Bot::uuid
+
+	// The first 2 bytes are the bootloader id
+	uint16_t bootloaderId = Bot::getBootloaderId();
+	Bot::uuid[0] = bootloaderId >> 8;
+	Bot::uuid[1] = bootloaderId & 0xFF;
+
+	// The foolowing 2 bytes are the bootloader version
+	uint16_t bootloaderVersion = Bot::getBootloaderVersion();
+	Bot::uuid[2] = bootloaderVersion >> 8;
+	Bot::uuid[3] = bootloaderVersion & 0xFF;
+
+
+	// If the Bot::forceSaveUuid flag is set, save whatever is on Bot::uuid to EEPROM
+	if(Bot::forceSaveUuid){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
 			eeprom_write_byte((byte *)i, (byte) Bot::uuid[i]);
 		}
 		eeprom_write_byte((byte *)QB_UUID_SIZE, (byte)REPORT_UUID_DELIMITER);
 	}
+
 }
 
 void Bot::addNode(Node * node){
@@ -151,6 +163,8 @@ void Bot::update(){
 
 	serialTask();
 	midiTask();
+
+	wdt_reset();
 }
 
 void Bot::serialTask(){
@@ -162,8 +176,10 @@ void Bot::serialTask(){
 
 		// UUID --------
 		// UUID is not printed on every tick
-		if(Bot::reportMillisTick % (REPORT_INTERVAL_MILLIS * REPORT_UUID_INTERVAL_TICKS) == 0)
+		if(Bot::reportMillisTick % (REPORT_INTERVAL_MILLIS * REPORT_UUID_INTERVAL_TICKS) == 0){
 			Serial.write((uint8_t*)Bot::uuid, QB_UUID_SIZE);
+
+		}
 		Serial.write((byte)REPORT_UUID_DELIMITER); // delimiter
 		// Number of nodes
 		Serial.write((byte)Bot::nodes.size());
@@ -179,14 +195,53 @@ void Bot::serialTask(){
 }
 
 void Bot::midiTask(){
-	midiEventPacket_t rx;
-	rx = MidiUSB.read();
-	if (rx.header != 0) {
-		Serial.print(rx.header);
-		Serial.print(rx.byte1);
-		Serial.print(rx.byte2);
-		Serial.println(rx.byte3);
+	// Handle incoming messages
+	midiEventPacket_t midiPacket;
+	midiPacket = MidiUSB.read();
+	if (midiPacket.header != 0){
+		// Parse the message
+		uint8_t command;
+		uint8_t byte1;
+		uint8_t byte2;
+		uint16_t data;
+		Bot::midiToData(&midiPacket, &command, &byte1, &byte2);
+
+		// Enter bootloader mode
+		if(command == BotMIDICommands::EnterBootloader){
+			Bot::enterBootloader();
+		}
+		// Get the UUID
+		else if(command == BotMIDICommands::ReadUUID){
+			// Send it 2 bytes at the time
+			for (uint8_t i = 0; i < QB_UUID_SIZE; i +=2 ) {
+				command = BotMIDICommands::Data;
+				byte1 = Bot::uuid[i];
+				byte2 = Bot::uuid[i + 1];
+				Bot::sendMidiData(command, byte1, byte2);
+			}
+		}
+		// Echo a sync acknowledgment
+		else if(command ==  BotMIDICommands::Sync){
+			Bot::sendMidiData(command, byte1, byte2);
+		}
 	}
+}
+void Bot::sendMidiData(uint8_t command, uint8_t byte1, uint8_t byte2){
+	midiEventPacket_t midiPacket;
+	dataToMidi(command, byte1, byte2, &midiPacket);
+	MidiUSB.sendMIDI(midiPacket);
+	MidiUSB.flush();
+}
+void Bot::dataToMidi(uint8_t command, uint8_t byte1, uint8_t byte2, midiEventPacket_t * packet){
+	packet->byte1 = (command << 2) | (byte1 >> 6) | 0x80;
+	packet->byte2 = (byte2 >> 7) | ((byte1 & 0x3F) << 1);
+	packet->byte3 =  byte2 & 0x7F;
+	packet->header = packet->byte1 >> 4;
+}
+void Bot::midiToData(midiEventPacket_t *packet, uint8_t *command, uint8_t *byte1, uint8_t *byte2){
+	*command =  (packet->byte1 - 0x80) >> 2;
+	*byte1   = ((packet->byte1 & 0x3) << 6) | (packet->byte2 >> 1);
+	*byte2   = ((packet->byte2 & 0x1) << 7) |  packet->byte3;
 }
 
 volatile void Bot::interruptUpdate(){
