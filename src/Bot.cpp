@@ -200,7 +200,7 @@ void Bot::serialTask(){
 		Serial.write((byte)REPORT_NUMBER_OF_NODES_DELIMITER);  // delimiter
 		// Content
 		for(unsigned int i=0; i<Bot::nodes.size(); i++){
-			Bot::nodes[i]->serialReport();
+			//Bot::nodes[i]->serialReport();
 			Serial.write((byte)REPORT_NODE_CONTENT_DELIMITER); // delimiter
 		}
 		// End delimiter

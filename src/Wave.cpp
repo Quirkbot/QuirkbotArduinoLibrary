@@ -75,7 +75,3 @@ void Wave::onInterval(){
 		)
 	);
 }
-void Wave::serialReport(){
-	byte b = (byte)Bot::map(out.get(), min.get(), max.get(), 0, 249);
-	Serial.write(b);
-}

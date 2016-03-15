@@ -21,8 +21,6 @@ class Node{
 	void registerInputCollection(InputCollection &inputCollection);
 	virtual void onInternalInputChange(BaseInput &internalInput){};
 
-	virtual void serialReport(){};
-
 	protected:
 	unsigned int id;
 
