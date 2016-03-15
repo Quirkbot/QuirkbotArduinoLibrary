@@ -35,7 +35,6 @@ public HasOut
 	const byte * table;
 
 	void onInternalInputChange(BaseInput &internalInput);
-	void serialReport();
 
 	float adjust;
 	float position;

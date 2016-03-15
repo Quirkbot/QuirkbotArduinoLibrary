@@ -89,7 +89,6 @@ void Bot::afterStart(){
 	}
 
 	// ALWAYS overwrite the "header" of Bot::uuid
-
 	// The first 2 bytes are the bootloader id
 	uint16_t bootloaderId = Bot::getBootloaderId();
 	Bot::uuid[0] = bootloaderId >> 8;
@@ -100,6 +99,15 @@ void Bot::afterStart(){
 	Bot::uuid[2] = bootloaderVersion >> 8;
 	Bot::uuid[3] = bootloaderVersion & 0xFF;
 
+	// Make that no part of the UUID matches the reserved serial delimiters
+	for (int i = 0; i < QB_UUID_SIZE; ++i){
+		if(    Bot::uuid[i] == REPORT_START_DELIMITER
+			|| Bot::uuid[i] == REPORT_END_DELIMITER
+			|| Bot::uuid[i] == REPORT_UUID_DELIMITER
+			|| Bot::uuid[i] == REPORT_NUMBER_OF_NODES_DELIMITER ){
+				Bot::uuid[i] = 0;
+			}
+	}
 
 	// If the Bot::forceSaveUuid flag is set, save whatever is on Bot::uuid to EEPROM
 	if(Bot::forceSaveUuid){
@@ -192,7 +200,7 @@ void Bot::serialTask(){
 		Serial.write((byte)REPORT_NUMBER_OF_NODES_DELIMITER);  // delimiter
 		// Content
 		for(unsigned int i=0; i<Bot::nodes.size(); i++){
-			Bot::nodes[i]->serialReport();
+			//Bot::nodes[i]->serialReport();
 			Serial.write((byte)REPORT_NODE_CONTENT_DELIMITER); // delimiter
 		}
 		// End delimiter

@@ -75,7 +75,3 @@ volatile void Led::interruptUpdate(){
 	}
 
 }
-void Led::serialReport(){
-	byte b = (byte)Bot::map(light.get(), 0, 1.0, 0, 249);
-	Serial.write(b);
-}

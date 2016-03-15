@@ -1,6 +1,6 @@
 {
 	"name": "quirkbot-arduino-library",
-	"version" : "2.1.1",
+	"version" : "2.1.3",
 	"description" : "Quirkbot Arduino Library",
 	"author" : "Paulo Barcelos <paulo@quirkbot.com>",
 	"homepage" : "https://github.com/Quirkbot/QuirkbotArduinoLibrary",
