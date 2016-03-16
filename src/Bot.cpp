@@ -206,6 +206,18 @@ void Bot::serialTask(){
 		// End delimiter
 		Serial.write((byte)REPORT_END_DELIMITER);
 	}
+
+	// Read incoming serial data
+	if(Serial.available() > 0){
+		// Store the current command
+		uint8_t command = Serial.read();
+
+		// Enter bootloader mode
+		if(command == BotSerialCommands::EnterBootloader){
+			Bot::enterBootloader();
+		}
+
+	}
 }
 
 void Bot::midiTask(){

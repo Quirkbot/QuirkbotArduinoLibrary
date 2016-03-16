@@ -40,6 +40,12 @@ namespace BotMIDICommands{
 	};
 }
 
+namespace BotSerialCommands{
+	enum Enum {
+		EnterBootloader = 0xb
+	};
+}
+
 class Node;
 class Updatable;
 
