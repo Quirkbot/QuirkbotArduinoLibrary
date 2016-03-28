@@ -39,8 +39,8 @@ void Quirkbot_::delay_(unsigned long ms){
 	if(!inited) {
 		return (delay)(ms);
 	}
-	unsigned long deadline = Bot::millis + ms;
-	while(Bot::millis < deadline){
+	unsigned long deadline = ::millis() + ms;
+	while(::millis() < deadline){
 		Bot::update();
 	}
 }
@@ -51,7 +51,7 @@ void Quirkbot_::delayMicroseconds_(unsigned long us){
 	if(us > 1000){
 		return delay_((float)us / 1000.0);
 	}
-	unsigned int deadline = Bot::micros + us;
+	unsigned int deadline = ::micros() + us;
 	while(Bot::micros < deadline){
 		Bot::update();
 	}
