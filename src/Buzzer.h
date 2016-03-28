@@ -23,6 +23,7 @@ public Node{
 	void onInternalInputChange(BaseInput &internalInput);
 
 	int lastFrequency;
+	int lastPlace;
 };
 /**
 Notes generated via JavaScript:
