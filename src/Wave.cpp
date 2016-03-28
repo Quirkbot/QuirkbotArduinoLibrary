@@ -54,7 +54,10 @@ void Wave::onInternalInputChange(BaseInput &internalInput){
 			adjust = 0;
 			return;
 		}
-		float diff = currentTime/length.get() - basePosition;
+		float diff = 0;
+		if(length.get() != 0) {
+			diff = currentTime / length.get() - basePosition;
+		}
 		adjust = diff * length.get();
 	}
 }
@@ -63,7 +66,13 @@ void Wave::onInterval(){
 		return;
 	}
 	float timeSeconds = fmod(Bot::seconds -adjust + offset.get() * length.get(), length.get());
-	position = timeSeconds / length.get();
+	if(length.get() != 0) {
+		position = timeSeconds / length.get();
+	}
+	else{
+		position = 0;
+	}
+
 	byte index = position * 256.0;
 	out.set(
 		Bot::map(

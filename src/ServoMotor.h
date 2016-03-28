@@ -30,7 +30,6 @@ public HasInterval{
 	Servo servo;
 	int angle;
 
-	int attachedPin;
 	bool attached;
 	int iddleAngle;
 	int iddleCount;

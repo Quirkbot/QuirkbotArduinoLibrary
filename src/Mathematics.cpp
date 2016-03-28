@@ -75,7 +75,12 @@ divisor(operand)
 {};
 Division::~Division(){}
 void Division::onInternalInputChange(BaseInput &internalInput){
-	out.set( in.get() / operand.get() );
+	if(operand.get() == 0){
+		out.set( in.get() );
+	}
+	else{
+		out.set( in.get() / operand.get() );
+	}
 };
 
 Modulo::Modulo():

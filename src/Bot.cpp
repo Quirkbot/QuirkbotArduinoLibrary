@@ -313,6 +313,9 @@ void Bot::enterBootloader(){
 
 // Utils -----------------------------------------------------------------------
 float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
+	if(inMin == inMax){
+		return inMin;
+	}
 	float result = ((x - inMin) / (inMax - inMin)) * (outMax - outMin) + outMin;
 	if(outMin < outMax){
 		if(result < outMin) result = outMin;
