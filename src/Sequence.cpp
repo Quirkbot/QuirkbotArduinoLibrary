@@ -17,7 +17,10 @@ HasOut
 Sequence::~Sequence(){}
 void Sequence::onInterval(){
 	if(!running) return;
-	float position = (Bot::seconds - startTime) / duration.get();
+	float position = 0;
+	if(duration.get() != 0){
+		position = (Bot::seconds() - startTime) / duration.get();
+	}
 	if(position > 1){
 		position = 1;
 		running = false;
@@ -32,7 +35,7 @@ void Sequence::onInterval(){
 void Sequence::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &trigger){
 		if(!running && isTriggerActive()){
-			startTime = Bot::seconds;
+			startTime = Bot::seconds();
 			running = true;
 			onInterval(); // start immediatelly
 		}

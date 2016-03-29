@@ -6,10 +6,12 @@ HasOut
 	registerInput(place);
 	registerInput(min);
 	registerInput(max);
+	registerInput(sensitivity);
 
 	place = NO_LOCATION;
 	min = 0;
 	max = 1;
+	sensitivity = 0;
 
 	filter.alpha = 0.7;
 
@@ -33,39 +35,38 @@ void CircuitTouch::onInternalInputChange(BaseInput &internalInput){
 		// Set back pin as ground
 		pinMode(backPin, OUTPUT);
 		digitalWrite(backPin, LOW);
-
-		out.set(1);
 	}
 };
 
 void CircuitTouch::update(){
 	if(frontPin == NO_LOCATION) return;
 	if(measuring){
-		if(bool(digitalRead(frontPin)) || Bot::micros > deadlineTime) {
-			int reading = Bot::micros - startTime;
+		if(bool(digitalRead(frontPin)) || ::micros() > deadlineTime) {
+			int reading = ::micros() - startTime;
 
 			// Filter the signal
 			upper.push(reading);
 			filter.push(upper.get());
 
 			// Activate if over threshold
-			float value = (filter.get() >= QB_MAKEY_TOUCH_MAX_TIME) ? 1.0: 0;
+			float threshold = QB_CIRCUIT_TOUCH_MAX_TIME * (1 - Bot::map(sensitivity.get(),0,1,0,0.95));
+			float value = (filter.get() >= threshold) ? 1.0: 0;
 			value = Bot::map(value, 0, 1, min.get(), max.get());
 			out.set(value);
 
 			// Discharge pin
 			pinMode(frontPin, OUTPUT);
 			digitalWrite(frontPin, LOW);
-			deadlineTime =  deadlineTime + QB_MAKEY_TOUCH_DISCHARGE_TIME;
+			deadlineTime =  deadlineTime + QB_CIRCUIT_TOUCH_DISCHARGE_TIME;
 			measuring = false;
 		}
 	}
 
-	if(Bot::micros > deadlineTime) {
+	if(::micros() > deadlineTime) {
 		// Charge pin
 		pinMode(frontPin, INPUT);
-		startTime = Bot::micros;
-		deadlineTime = startTime + QB_MAKEY_TOUCH_MAX_TIME;
+		startTime = ::micros();
+		deadlineTime = startTime + QB_CIRCUIT_TOUCH_MAX_TIME;
 		measuring = true;
 	}
 }

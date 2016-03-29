@@ -9,5 +9,5 @@ HasOut
 }
 Time::~Time(){}
 void Time::onInterval(){
-	out.set(Bot::seconds);
+	out.set(Bot::seconds());
 }
