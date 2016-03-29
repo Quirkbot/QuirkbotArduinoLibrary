@@ -39,7 +39,7 @@ void SqueezeSensor::onInterval(){
 	reference.push(reading);
 
 	// Initial delay for low pass to stabilize from 0
-	if(Bot::seconds < 2.5) return;
+	if(::millis() < 2500) return;
 
 	refMin = Bot::minimum(refMin, reference.get());
 	refMax = Bot::maximum(refMax, reference.get());

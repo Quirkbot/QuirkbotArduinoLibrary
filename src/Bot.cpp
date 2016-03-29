@@ -10,10 +10,6 @@ bool Bot::forceSaveUuid = false;
 byte Bot::uuid[QB_UUID_SIZE] = {0x00};
 volatile unsigned int Bot::interruptCount = 0;
 unsigned long Bot::frames = 0;
-unsigned long Bot::dtMicros = 0;
-unsigned long Bot::micros = 0;
-unsigned long Bot::millis = 0;
-float Bot::seconds = 0;
 unsigned long Bot::reportMillisTick = 0;
 bool Bot::serialReportEnabled = true;
 
@@ -166,10 +162,6 @@ int Bot::interruptUpdatablePosition(InterruptUpdatable * interruptUpdatable){
 
 void Bot::update(){
 	Bot::frames++;
-	Bot::dtMicros = ::micros() - Bot::micros;
-	Bot::micros = ::micros();
-	Bot::millis = ::millis();
-	Bot::seconds = Bot::millis * 0.001;
 
 	for(unsigned int i=0; i<Bot::updatables.size(); i++){
 		Bot::updatables[i]->update();
@@ -183,7 +175,7 @@ void Bot::update(){
 
 void Bot::serialTask(){
 	// Send serial report
-	if(Bot::serialReportEnabled && Bot::millis >= Bot::reportMillisTick){
+	if(Bot::serialReportEnabled && ::millis() >= Bot::reportMillisTick){
 		Bot::reportMillisTick += REPORT_INTERVAL_MILLIS;
 		// Start delimiter
 		Serial.write((byte)REPORT_START_DELIMITER);
@@ -327,6 +319,9 @@ float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
 	}
 
 	return result;
+}
+float Bot::seconds(){
+	return ::millis() * 0.001;
 }
 float Bot::minimum(float a, float b){
 	return min(a,b);

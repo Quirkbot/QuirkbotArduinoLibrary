@@ -73,6 +73,7 @@ items	KEYWORD2
 place	KEYWORD2
 position	KEYWORD2
 speed	KEYWORD2
+sensitivity	KEYWORD2
 direction	KEYWORD2
 duration	KEYWORD2
 length	KEYWORD2

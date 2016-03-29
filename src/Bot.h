@@ -76,8 +76,6 @@ class Bot {
 	static void dataToMidi(uint8_t command, uint8_t byte1, uint8_t byte2, midiEventPacket_t * packet);
 	static void midiToData(midiEventPacket_t *packet, uint8_t *command, uint8_t *byte1, uint8_t *byte2);
 
-
-
 	// Keyboard management
 	static void pressKey(byte key);
 	static void releaseKey(byte key);
@@ -95,6 +93,7 @@ class Bot {
 		float inMin, float inMax,
 		float outMin, float outMax
 	);
+	static float seconds();
 	static float minimum(float a, float b);
 	static float maximum(float a, float b);
 	static int locationToAnalogPin(int location);
@@ -110,10 +109,6 @@ class Bot {
 	static byte uuid[QB_UUID_SIZE];
 	static volatile unsigned int interruptCount;
 	static unsigned long frames;
-	static unsigned long dtMicros;
-	static unsigned long micros;
-	static unsigned long millis;
-	static float seconds;
 	static bool serialReportEnabled;
 	static unsigned long reportMillisTick;
 

@@ -52,7 +52,7 @@ void Quirkbot_::delayMicroseconds_(unsigned long us){
 		return delay_((float)us / 1000.0);
 	}
 	unsigned int deadline = ::micros() + us;
-	while(Bot::micros < deadline){
+	while(::micros() < deadline){
 		Bot::update();
 	}
 }
