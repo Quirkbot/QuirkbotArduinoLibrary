@@ -35,5 +35,6 @@ void LightSensor::onInterval(){
 	if(backPin == NO_LOCATION) return;
 
 	filter.push(analogRead(backPin));
-	out.set(Bot::map(filter.get(), 0, 1024, min.get(), max.get()));
+	// 686 as is the max value of the "black" light sensor. Discovered empirically.
+	out.set(Bot::map(filter.get(), 0, 686, min.get(), max.get()));
 }
