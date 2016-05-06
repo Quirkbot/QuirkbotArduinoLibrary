@@ -18,15 +18,13 @@ HasOut
 };
 Converter::~Converter(){}
 void Converter::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
-		out.set(
-			Bot::map(
-				in.get(),
-				inMin.get(),
-				inMax.get(),
-				outMin.get(),
-				outMax.get()
-			)
-		);
-	}
+	out.set(
+		Bot::map(
+			in.get(),
+			inMin.get(),
+			inMax.get(),
+			outMin.get(),
+			outMax.get()
+		)
+	);
 };
