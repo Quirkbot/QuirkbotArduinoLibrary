@@ -16,7 +16,7 @@ bool Bot::serialReportEnabled = true;
 Bot::Bot(){}
 Bot::~Bot(){}
 void Bot::start(){
-	// Enable the watchdog and set the magic key right on the beggining, so in
+	// Enable the watchdog and set the magic key right on the beginning, so in
 	// case the program crashes (eg. ram overlfow), it will return to booloader
 	// mode, allowing the user to upload new code again.
 	*(uint16_t *)0x0800 = 0x7777;
@@ -73,6 +73,9 @@ void Bot::start(){
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
+
+	// Leave the LM high, by default. Power indication
+	PORTD |= (1<<5);
 }
 void Bot::afterStart(){
 	// Build the UUID
