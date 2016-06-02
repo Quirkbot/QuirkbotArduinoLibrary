@@ -73,6 +73,9 @@ void Bot::start(){
 	delay(100);
 	digitalWrite(LE, LOW);
 	digitalWrite(RE, LOW);
+
+	// Leave the LM high, by default. Power indication
+	PORTD |= (1<<5);
 }
 void Bot::afterStart(){
 	// Build the UUID
