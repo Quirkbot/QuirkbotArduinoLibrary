@@ -7,7 +7,7 @@ class Node;
 class BaseInput{
 	friend class Node;
 	public:
-	virtual ~BaseInput(){}
+	virtual ~BaseInput(){};
 
 	protected:
 	Node * node;

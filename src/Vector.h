@@ -1,7 +1,11 @@
 #ifndef Vector_h_
 #define Vector_h_
 
-#include "Arduino.h"
+#include "VectorInputsPointer.h"
+#include "VectorInterruptUpdatablesPointer.h"
+#include "VectorNodesPointer.h"
+#include "VectorTypedInputHandler.h"
+#include "VectorUpdatablesPointer.h"
 
 // Minimal class to replace std::vector
 /*template<typename Data>
@@ -85,6 +89,7 @@ class Vector {
 	};// Allocates double the old space
 };*/
 
+/*
 class Input;
 class VectorInputsPointer {
 	typedef Input* Data;
@@ -167,7 +172,9 @@ class VectorInputsPointer {
 		d_data = newdata;
 	};// Allocates double the old space
 };
+*/
 
+/*
 class Node;
 class VectorNodesPointer {
 	typedef Node* Data;
@@ -250,7 +257,8 @@ class VectorNodesPointer {
 		d_data = newdata;
 	};// Allocates double the old space
 };
-
+*/
+/*
 class Updatable;
 class VectorUpdatablesPointer {
 	typedef Updatable* Data;
@@ -333,7 +341,8 @@ class VectorUpdatablesPointer {
 		d_data = newdata;
 	};// Allocates double the old space
 };
-
+*/
+/*
 class InterruptUpdatable;
 class VectorInterruptUpdatablesPointer {
 	typedef InterruptUpdatable* Data;
@@ -416,7 +425,9 @@ class VectorInterruptUpdatablesPointer {
 		d_data = newdata;
 	};// Allocates double the old space
 };
+*/
 
+/*
 typedef void (Input::*TypedInputHandler)(float value);
 class VectorTypedInputHandler {
 	typedef TypedInputHandler Data;
@@ -499,5 +510,5 @@ class VectorTypedInputHandler {
 		d_data = newdata;
 	};// Allocates double the old space
 };
-
+*/
 #endif
