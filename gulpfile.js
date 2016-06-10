@@ -8,9 +8,12 @@ var $ = require('gulp-load-plugins')();
 var merge = require('merge-stream');
 var runSequence = require('run-sequence');
 
+var SRC_NAME = 'Quirkbot.zip';
 var RELEASE_NAME = 'quirkbot-arduino-library';
 var PACKAGE = JSON.parse(fs.readFileSync('package.json'));
-var ZIP_FILENAME = `${RELEASE_NAME}-${PACKAGE.version}.zip`;
+var VERSION_FILENAME = `${RELEASE_NAME}-${PACKAGE.version}.zip`;
+var LATEST_FILENAME = `${RELEASE_NAME}-latest.zip`;
+
 
 
 /**
@@ -18,9 +21,10 @@ var ZIP_FILENAME = `${RELEASE_NAME}-${PACKAGE.version}.zip`;
  */
 gulp.task('clean', function () {
 	return gulp.src([
+		LATEST_FILENAME,
 		RELEASE_NAME,
 		RELEASE_NAME + '-*.zip',
-		'Quirkbot.zip'
+		SRC_NAME
 	])
 	.pipe($.clean());
 });
@@ -56,8 +60,9 @@ gulp.task('bundle', ['check-release-overwrite','clean'], function (cb){
 	var exec = require('child_process').exec;
 
 	exec(
-		`sh build-release.sh`
-		+ ` && mv Quirkbot.zip ${ZIP_FILENAME}`,
+		`sh build-release.sh ` +
+		`&& cp ${SRC_NAME} ${LATEST_FILENAME} `+
+		`&& cp ${SRC_NAME} ${VERSION_FILENAME}`,
 		(error, stdout, stderr) => {
 			console.log(stderr)
 			cb();
@@ -89,7 +94,8 @@ gulp.task('s3', ['build'], function () {
 	var aws = JSON.parse(fs.readFileSync(path.join('aws-config', `${argv.environment}.json`)));
 
 	return gulp.src([
-		ZIP_FILENAME
+		VERSION_FILENAME,
+		LATEST_FILENAME
 	])
 	.pipe($.s3(aws, {
 		uploadPath: 'downloads/'
