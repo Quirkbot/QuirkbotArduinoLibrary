@@ -10,10 +10,11 @@ HasOut
 }
 List::~List(){}
 void List::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
+	if(&internalInput == &in || !selected){
 		refreshSelected();
 	}
-	else if(&internalInput == selected){
+
+	if(&internalInput == selected){
 		out.set(selected->get());
 	}
 }
