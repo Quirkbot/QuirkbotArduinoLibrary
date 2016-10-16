@@ -68,7 +68,7 @@ volatile void Led::interruptUpdate(){
 			*outPort |= pinMask;
 			isOn = true;
 		}
-		else if(Bot::interruptCount >= pwmCompare && isOn){
+		else if(!pwmCompare || Bot::interruptCount >= pwmCompare && isOn){
 			*outPort &= ~(pinMask);
 			isOn = false;
 		}
