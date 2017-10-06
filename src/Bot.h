@@ -93,6 +93,7 @@ class Bot {
 		float inMin, float inMax,
 		float outMin, float outMax
 	);
+	static float constrain(float x, float min, float max);
 	static float seconds();
 	static float minimum(float a, float b);
 	static float maximum(float a, float b);

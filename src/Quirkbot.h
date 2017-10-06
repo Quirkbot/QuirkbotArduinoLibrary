@@ -3,15 +3,7 @@
 
 #include "Arduino.h"
 
-// Keyboard & Mouse
-#include "KeyPress.h"
-#include "KeySequence.h"
-
-// Signal
-#include "Wave.h"
-#include "Randomizer.h"
-
-// Sensors
+// Inputs
 #include "AnalogSensor.h"
 #include "DigitalSensor.h"
 #include "CircuitTouch.h"
@@ -20,27 +12,29 @@
 #include "LightSensor.h"
 #include "Sonar.h"
 
-// Light
+// Brains
+#include "Converter.h"
+#include "Comparison.h"
+#include "Constrain.h"
+#include "Gate.h"
+#include "List.h"
+#include "Logic.h"
+#include "NodeMath.h"
+#include "Mathematics.h"
+#include "Randomizer.h"
+#include "Sequence.h"
+#include "Statistics.h"
+#include "Wave.h"
+
+// Outputs
 #include "Led.h"
 #include "DualColorLed.h"
-#include "RGBLed.h"
-
-// Movement
 #include "ServoMotor.h"
 #include "ContinuousServo.h"
-
-// Sound
-#include "Buzzer.h"
-
-// General
+#include "RGBLed.h"
+#include "KeyPress.h"
+#include "KeySequence.h"
 #include "VoltageOutput.h"
-
-// Logic
-#include "Mathematics.h"
-#include "Converter.h"
-#include "List.h"
-#include "Sequence.h"
-#include "Gate.h"
 
 // Debug
 #include "SystemMemory.h"

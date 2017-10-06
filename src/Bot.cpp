@@ -323,6 +323,28 @@ float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
 
 	return result;
 }
+float Bot::constrain(float x, float min, float max){
+	// Just return quick in case min and max are equal
+	if(min == max){
+		return min;
+	}
+	// In counter intuitive case min is greather than max
+	if(min > max) {
+		if(x > min){
+			return min;
+		}
+		if(x < max){
+			return max;
+		}
+	}
+	// The normal case...
+	if(x < min){
+		return min;
+	}
+	if(x > max){
+		return max;
+	}
+}
 float Bot::seconds(){
 	return ::millis() * 0.001;
 }
