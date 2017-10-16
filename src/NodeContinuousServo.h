@@ -2,7 +2,7 @@
 #define NodeContinuousServo_h_
 
 #include "CommonNodeIncludes.h"
-#include "ServoMotor.h"
+#include "NodeServoMotor.h"
 
 class ContinuousServo:
 public ServoMotor {
