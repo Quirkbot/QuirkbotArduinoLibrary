@@ -3,49 +3,42 @@
 
 #include "Arduino.h"
 
-// Keyboard & Mouse
-#include "KeyPress.h"
-#include "KeySequence.h"
+// Inputs
+#include "NodeAnalogSensor.h"
+#include "NodeDigitalSensor.h"
+#include "NodeCircuitTouch.h"
+#include "NodeSqueezeSensor.h"
+#include "NodeIRProximity.h"
+#include "NodeLightSensor.h"
+#include "NodeSonar.h"
 
-// Signal
-#include "Wave.h"
-#include "Randomizer.h"
+// Brains
+#include "NodeConverter.h"
+#include "NodeComparison.h"
+#include "NodeConstrain.h"
+#include "NodeGate.h"
+#include "NodeList.h"
+#include "NodeLogic.h"
+#include "NodeMath.h"
+#include "NodeRandomizer.h"
+#include "NodeSequence.h"
+#include "NodeStatistics.h"
+#include "NodeWave.h"
 
-// Sensors
-#include "AnalogSensor.h"
-#include "DigitalSensor.h"
-#include "CircuitTouch.h"
-#include "SqueezeSensor.h"
-#include "IRProximity.h"
-#include "LightSensor.h"
-#include "Sonar.h"
-
-// Light
-#include "Led.h"
-#include "DualColorLed.h"
-#include "RGBLed.h"
-
-// Movement
-#include "ServoMotor.h"
-#include "ContinuousServo.h"
-
-// Sound
-#include "Buzzer.h"
-
-// General
-#include "VoltageOutput.h"
-
-// Logic
-#include "Mathematics.h"
-#include "Converter.h"
-#include "List.h"
-#include "Sequence.h"
-#include "Gate.h"
+// Outputs
+#include "NodeLed.h"
+#include "NodeDualColorLed.h"
+#include "NodeServoMotor.h"
+#include "NodeContinuousServo.h"
+#include "NodeRGBLed.h"
+#include "NodeKeyPress.h"
+#include "NodeKeySequence.h"
+#include "NodeVoltageOutput.h"
 
 // Debug
-#include "SystemMemory.h"
-#include "SerialMonitor.h"
-#include "Time.h"
+#include "NodeSystemMemory.h"
+#include "NodeSerialMonitor.h"
+#include "NodeTime.h"
 
 class Quirkbot_{
 	public:
