@@ -14,5 +14,5 @@ HasOut
 };
 Constrain::~Constrain(){}
 void Constrain::onInternalInputChange(BaseInput &internalInput){
-	out.set(Bot::constrain(result, min.get(), max.get()));
+	out.set(Bot::constrainValue(result, min.get(), max.get()));
 };

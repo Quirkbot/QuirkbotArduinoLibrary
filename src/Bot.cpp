@@ -323,7 +323,7 @@ float Bot::map(float x, float inMin, float inMax, float outMin, float outMax){
 
 	return result;
 }
-float Bot::constrain(float x, float min, float max){
+float Bot::constrainValue(float x, float min, float max){
 	// Just return quick in case min and max are equal
 	if(min == max){
 		return min;
