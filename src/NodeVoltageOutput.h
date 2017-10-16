@@ -2,7 +2,7 @@
 #define NodeVoltageOutput_h_
 
 #include "CommonNodeIncludes.h"
-#include "Led.h"
+#include "NodeLed.h"
 
 class VoltageOutput :
 public Led{
