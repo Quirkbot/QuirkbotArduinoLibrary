@@ -6,11 +6,11 @@ HasOut
 	registerInput(operation);
 	registerInputCollection(items);
 
-	operation = STATISICS_AVERAGE;
+	operation = STATISTICS_AVERAGE;
 }
 Statistics::~Statistics(){}
 void Statistics::onInternalInputChange(BaseInput &internalInput){
-	if(operation.get() == STATISICS_AVERAGE) {
+	if(operation.get() == STATISTICS_AVERAGE) {
 		float sum = 0.0;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			sum += items.collection[i]->get();
@@ -19,7 +19,7 @@ void Statistics::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == STATISICS_SUM) {
+	if(operation.get() == STATISTICS_SUM) {
 		float sum = 0.0;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			sum += items.collection[i]->get();
@@ -28,7 +28,7 @@ void Statistics::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == STATISICS_MIN) {
+	if(operation.get() == STATISTICS_MIN) {
 		float ref = 3.4028235E+38;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			if (items.collection[i]->get() < ref)
@@ -38,7 +38,7 @@ void Statistics::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == STATISICS_MAX) {
+	if(operation.get() == STATISTICS_MAX) {
 		float ref = 0.0;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			if (items.collection[i]->get() > ref)
