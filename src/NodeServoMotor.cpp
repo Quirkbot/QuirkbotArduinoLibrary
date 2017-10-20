@@ -61,7 +61,7 @@ void ServoMotor::write(){
 	}
 }
 int ServoMotor::mapAngle(){
-	return 9.0 + position.get() * 162.0;
+	return 9.0 + position.get() * 156.0;
 }
 void ServoMotor::onInterval(){
 	if(!attached) return;
