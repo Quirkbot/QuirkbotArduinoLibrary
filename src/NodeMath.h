@@ -7,6 +7,7 @@
 #define MATH_SUBTRACT 1
 #define MATH_MULTIPLY 2
 #define MATH_DIVIDE 3
+#define MATH_MODULO 4
 
 class Math :
 public Node

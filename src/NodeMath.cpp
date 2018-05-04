@@ -35,4 +35,13 @@ void Math::onInternalInputChange(BaseInput &internalInput){
 		out.set(in.get() / value.get());
 		return;
 	}
+
+	if(operation.get() == MATH_MODULO) {
+		if(value.get() == 0) {
+			out.set(0);
+			return;
+		}
+		out.set(fmod(in.get(), value.get()));
+		return;
+	}
 };
