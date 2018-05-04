@@ -9,8 +9,7 @@
 #define STATISTICS_SUM 3
 
 class Statistics :
-public Node,
-public HasOut
+public Node
 {
 	public:
 
@@ -19,6 +18,8 @@ public HasOut
 
 	Input operation;
 	InputCollection items;
+
+	Output out;
 
 	protected:
 

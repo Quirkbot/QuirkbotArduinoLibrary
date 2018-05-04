@@ -1,18 +1,17 @@
 #include "NodeRGBLed.h"
 
-RGBLed::RGBLed():
-HasIn
-	(this){
+RGBLed::RGBLed(){
+	registerInput(in);
 	registerInput(pinR);
 	registerInput(pinG);
 	registerInput(pinB);
 	registerInput(hue);
 	registerInput(saturation);
 
+	in = 0.0;
 	pinR = NO_LOCATION;
 	pinG = NO_LOCATION;
 	pinB = NO_LOCATION;
-
 	saturation = 1;
 	hue = 1;
 }

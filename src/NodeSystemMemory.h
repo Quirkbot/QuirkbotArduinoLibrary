@@ -5,8 +5,7 @@
 
 class SystemMemory :
 public Node,
-public HasInterval,
-public HasOut
+public HasInterval
 {
 	public:
 
@@ -14,6 +13,8 @@ public HasOut
 	~SystemMemory();
 
 	void onInterval();
+
+	Output out;
 
 	private:
 

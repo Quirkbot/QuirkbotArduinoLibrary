@@ -4,19 +4,20 @@
 #include "CommonNodeIncludes.h"
 
 class Converter :
-public Node,
-public HasIn,
-public HasOut
+public Node
 {
 	public:
 
 	Converter();
 	~Converter();
 
+	Input in;
 	Input inMin;
 	Input inMax;
 	Input outMin;
 	Input outMax;
+
+	Output out;
 
 	protected:
 

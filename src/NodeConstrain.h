@@ -4,8 +4,7 @@
 #include "CommonNodeIncludes.h"
 
 class Constrain :
-public Node,
-public HasOut
+public Node
 {
 	public:
 
@@ -15,6 +14,8 @@ public HasOut
 	Input in;
 	Input min;
 	Input max;
+
+	Output out;
 
 	protected:
 

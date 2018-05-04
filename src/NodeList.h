@@ -4,16 +4,17 @@
 #include "CommonNodeIncludes.h"
 
 class List:
-public Node,
-public HasIn,
-public HasOut
+public Node
 {
 	public:
 
 	List();
 	~List();
 
+	Input in;
 	InputCollection items;
+
+	Output out;
 
 	protected:
 

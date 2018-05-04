@@ -1,11 +1,10 @@
 #include "NodeList.h"
 
-List::List():
-HasIn
-	(this),
-HasOut
-	(this){
+List::List(){
+	registerInput(in);
 	registerInputCollection(items);
+
+	in = 0.0;
 	selected = NULL;
 }
 List::~List(){}

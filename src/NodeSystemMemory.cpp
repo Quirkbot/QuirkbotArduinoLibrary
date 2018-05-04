@@ -2,8 +2,6 @@
 
 SystemMemory::SystemMemory():
 HasInterval
-	(this),
-HasOut
 	(this){
 	interval = 0.01;
 }

@@ -11,8 +11,7 @@
 #define COMP_LESS_EQUAL 5
 
 class Comparison :
-public Node,
-public HasOut
+public Node
 {
 	public:
 
@@ -24,6 +23,8 @@ public HasOut
 	Input value;
 	Input min;
 	Input max;
+
+	Output out;
 
 	protected:
 

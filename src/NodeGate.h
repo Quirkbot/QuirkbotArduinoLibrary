@@ -5,14 +5,16 @@
 
 class Gate:
 public Node,
-public HasTrigger,
-public HasIn,
-public HasOut
+public HasTrigger
 {
 	public:
 
 	Gate();
 	~Gate();
+
+	Input in;
+
+	Output out;
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);

@@ -4,8 +4,6 @@ Sequence::Sequence():
 HasInterval
 	(this),
 HasTrigger
-	(this),
-HasOut
 	(this){
 	registerInput(duration);
 	registerInputCollection(items);

@@ -1,8 +1,6 @@
 #include "NodeConstrain.h"
 
-Constrain::Constrain():
-HasOut
-	(this){
+Constrain::Constrain(){
 
 	registerInput(in);
 	registerInput(min);

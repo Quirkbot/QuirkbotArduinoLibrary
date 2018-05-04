@@ -1,8 +1,6 @@
 #include "NodeLogic.h"
 
-Logic::Logic():
-HasOut
-	(this){
+Logic::Logic(){
 	registerInput(operation);
 	registerInputCollection(items);
 	registerInput(min);

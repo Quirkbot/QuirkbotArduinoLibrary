@@ -2,8 +2,6 @@
 
 IRProximity::IRProximity():
 	HasInterval
-		(this),
-	HasOut
 		(this){
 		registerInput(min);
 		registerInput(max);

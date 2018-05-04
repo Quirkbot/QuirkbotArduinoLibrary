@@ -2,8 +2,6 @@
 
 Time::Time():
 HasInterval
-	(this),
-HasOut
 	(this){
 	interval = 0.001;
 }

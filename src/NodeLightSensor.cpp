@@ -2,8 +2,6 @@
 
 LightSensor::LightSensor():
 	HasInterval
-		(this),
-	HasOut
 		(this){
 		registerInput(place);
 		registerInput(min);

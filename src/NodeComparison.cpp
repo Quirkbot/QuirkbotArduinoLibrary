@@ -1,8 +1,6 @@
 #include "NodeComparison.h"
 
-Comparison::Comparison():
-HasOut
-	(this){
+Comparison::Comparison(){
 
 	registerInput(in);
 	registerInput(operation);

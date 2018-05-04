@@ -5,13 +5,14 @@
 
 class Time :
 public Node,
-public HasInterval,
-public HasOut
+public HasInterval
 {
 	public:
 
 	Time();
 	~Time();
+
+	Output out;
 
 	void onInterval();
 };

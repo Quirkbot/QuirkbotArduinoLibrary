@@ -5,8 +5,7 @@
 
 class Sonar :
 public Node,
-public HasInterval,
-public HasOut
+public HasInterval
 {
 	public:
 
@@ -19,6 +18,8 @@ public HasOut
 	Input place;
 	Input min;
 	Input max;
+
+	Output out;
 
 	protected:
 

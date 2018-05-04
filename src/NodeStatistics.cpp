@@ -1,8 +1,6 @@
 #include "NodeStatistics.h"
 
-Statistics::Statistics():
-HasOut
-	(this){
+Statistics::Statistics(){
 	registerInput(operation);
 	registerInputCollection(items);
 

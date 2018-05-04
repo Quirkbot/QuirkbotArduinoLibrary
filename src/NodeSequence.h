@@ -6,8 +6,7 @@
 class Sequence:
 public Node,
 public HasInterval,
-public HasTrigger,
-public HasOut
+public HasTrigger
 {
 	public:
 
@@ -18,6 +17,8 @@ public HasOut
 
 	Input duration;
 	InputCollection items;
+
+	Output out;
 
 	protected:
 

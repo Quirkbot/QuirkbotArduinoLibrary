@@ -9,8 +9,7 @@
 #define MATH_DIVIDE 3
 
 class Math :
-public Node,
-public HasOut
+public Node
 {
 	public:
 
@@ -20,6 +19,8 @@ public HasOut
 	Input in;
 	Input operation;
 	Input value;
+
+	Output out;
 
 	protected:
 

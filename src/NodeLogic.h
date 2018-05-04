@@ -8,8 +8,7 @@
 #define LOGIC_XOR 2
 
 class Logic :
-public Node,
-public HasOut
+public Node
 {
 	public:
 
@@ -20,6 +19,8 @@ public HasOut
 	InputCollection items;
 	Input min;
 	Input max;
+
+	Output out;
 
 	protected:
 

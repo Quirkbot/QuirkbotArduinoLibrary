@@ -1,8 +1,6 @@
 #include "NodeWave.h"
 Wave::Wave():
 HasInterval
-	(this),
-HasOut
 	(this){
 	registerInput(length);
 	registerInput(min);

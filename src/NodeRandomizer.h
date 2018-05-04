@@ -5,8 +5,7 @@
 
 class Randomizer :
 public Node,
-public HasInterval,
-public HasOut
+public HasInterval
 {
 	public:
 
@@ -15,6 +14,8 @@ public HasOut
 
 	Input min;
 	Input max;
+
+	Output out;
 
 	void onInterval();
 };

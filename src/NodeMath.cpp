@@ -1,8 +1,6 @@
 #include "NodeMath.h"
 
-Math::Math():
-HasOut
-	(this){
+Math::Math(){
 
 	registerInput(in);
 	registerInput(operation);
