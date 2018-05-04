@@ -21,8 +21,8 @@ public Node
 	Input in;
 	Input operation;
 	Input value;
-	Input min;
-	Input max;
+	Input valueThen;
+	Input valueElse;
 
 	Output out;
 
