@@ -17,9 +17,9 @@ class Node{
 	~Node();
 
 
-	void registerInput(BaseInput &input);
-	void registerInputCollection(InputCollection &inputCollection);
-	virtual void onInternalInputChange(BaseInput &internalInput){};
+	void registerInput(BaseInput& input);
+	void registerInputCollection(InputCollection& inputCollection);
+	virtual void onInternalInputChange(BaseInput& /*internalInput*/){}; // <-- unnamed parameter to avoid compiler warnings
 
 	protected:
 	unsigned int id;

@@ -11,6 +11,6 @@ Constrain::Constrain(){
 	max = 1.0;
 };
 Constrain::~Constrain(){}
-void Constrain::onInternalInputChange(BaseInput &internalInput){
+void Constrain::onInternalInputChange(BaseInput&){
 	out.set(Bot::constrainValue(in.get(), min.get(), max.get()));
 };

@@ -15,7 +15,7 @@ Comparison::Comparison(){
 	valueElse = 0.0;
 };
 Comparison::~Comparison(){}
-void Comparison::onInternalInputChange(BaseInput &internalInput){
+void Comparison::onInternalInputChange(BaseInput&){
 	bool result;
 
 	if (operation.get() == COMP_EQUAL) {

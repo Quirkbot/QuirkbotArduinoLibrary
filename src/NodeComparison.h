@@ -28,6 +28,6 @@ public Node
 
 	protected:
 
-	void onInternalInputChange(BaseInput &internalInput);
+	void onInternalInputChange(BaseInput&);
 };
 #endif

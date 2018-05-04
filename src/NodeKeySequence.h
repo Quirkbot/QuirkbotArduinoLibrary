@@ -21,9 +21,9 @@ public HasInterval
 	void onInterval();
 	void onInternalInputChange(BaseInput &internalInput);
 
-	int scheduleKey[QB_MAX_SIMULTANEOUS_KEYS];
-	long scheduleTime[QB_MAX_SIMULTANEOUS_KEYS];
-	int index;
+	unsigned int scheduleKey[QB_MAX_SIMULTANEOUS_KEYS];
+	unsigned long scheduleTime[QB_MAX_SIMULTANEOUS_KEYS];
+	unsigned int index;
 };
 
 #endif

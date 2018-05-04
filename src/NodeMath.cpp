@@ -11,7 +11,7 @@ Math::Math(){
 	value = 0.0;
 };
 Math::~Math(){}
-void Math::onInternalInputChange(BaseInput &internalInput){
+void Math::onInternalInputChange(BaseInput&){
 	if(operation.get() == MATH_ADD) {
 		out.set(in.get() + value.get());
 		return;

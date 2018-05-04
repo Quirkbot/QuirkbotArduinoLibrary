@@ -67,7 +67,7 @@ class Bot {
 	static void start();
 	static void afterStart();
 	static void update();
-	static volatile void interruptUpdate();
+	static void interruptUpdate();
 
 	// USB interfaces
 	static void serialTask();

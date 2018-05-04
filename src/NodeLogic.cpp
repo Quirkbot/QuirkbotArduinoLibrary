@@ -11,7 +11,7 @@ Logic::Logic(){
 	max = 1.0;
 }
 Logic::~Logic(){}
-void Logic::onInternalInputChange(BaseInput &internalInput){
+void Logic::onInternalInputChange(BaseInput&){
 	bool result;
 
 	if(operation.get() == LOGIC_AND) {

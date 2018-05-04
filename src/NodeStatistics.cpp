@@ -7,7 +7,7 @@ Statistics::Statistics(){
 	operation = STAT_AVG;
 }
 Statistics::~Statistics(){}
-void Statistics::onInternalInputChange(BaseInput &internalInput){
+void Statistics::onInternalInputChange(BaseInput&){
 	if(operation.get() == STAT_AVG) {
 		float sum = 0.0;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {

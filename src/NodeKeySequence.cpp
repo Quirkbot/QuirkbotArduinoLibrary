@@ -47,8 +47,8 @@ void KeySequence::onInternalInputChange(BaseInput &internalInput){
 
 void KeySequence::onInterval(){
 	for (int i = 0; i < QB_MAX_SIMULTANEOUS_KEYS; ++i) {
-		int key = scheduleKey[i];
-		long time =  scheduleTime[i];
+		unsigned int key = scheduleKey[i];
+		unsigned long time =  scheduleTime[i];
 		if(!key) continue;
 		if(::millis() > time){
 			Bot::releaseKey(key);

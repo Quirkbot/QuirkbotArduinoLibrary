@@ -23,7 +23,7 @@ void Sequence::onInterval(){
 		position = 1;
 		running = false;
 	}
-	int i = floor(position * items.collection.size());
+	unsigned int i = floor(position * items.collection.size());
 	if( i == items.collection.size()) i = items.collection.size() - 1;
 	if(items.collection[i] != selected){
 		selected = items.collection[i];

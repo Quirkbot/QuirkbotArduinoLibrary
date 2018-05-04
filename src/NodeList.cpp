@@ -19,8 +19,7 @@ void List::onInternalInputChange(BaseInput &internalInput){
 }
 void List::refreshSelected(){
 	if(items.collection.size()){
-		int i = floor(in.get() * items.collection.size());
-		if(i < 0 ) i  = 0;
+		unsigned int i = floor(in.get() * items.collection.size());
 		if(i >= items.collection.size()) i = items.collection.size() - 1;
 		if(items.collection[i] != selected){
 			selected = items.collection[i];

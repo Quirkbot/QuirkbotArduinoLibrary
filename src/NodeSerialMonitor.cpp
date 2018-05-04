@@ -10,7 +10,7 @@ SerialMonitor::~SerialMonitor(){}
 void SerialMonitor::onInterval(){
 	if(!items.collection.size()) return;
 
-	for(int i = 0; i < items.collection.size(); i++){
+	for(unsigned int i = 0; i < items.collection.size(); i++){
 		Serial.print(i);
 		Serial.write(": ");
 		Serial.print(items.collection[i]->get(), 3);

@@ -15,7 +15,7 @@ Converter::Converter(){
 	outMax = 1.0;
 };
 Converter::~Converter(){}
-void Converter::onInternalInputChange(BaseInput &internalInput){
+void Converter::onInternalInputChange(BaseInput&){
 	out.set(
 		Bot::map(
 			in.get(),

@@ -223,7 +223,6 @@ void Bot::midiTask(){
 		uint8_t command;
 		uint8_t byte1;
 		uint8_t byte2;
-		uint16_t data;
 		Bot::midiToData(&midiPacket, &command, &byte1, &byte2);
 
 		// Enter bootloader mode
@@ -268,7 +267,7 @@ void Bot::midiToData(midiEventPacket_t *packet, uint8_t *command, uint8_t *byte1
 	*byte2   = ((packet->byte2 & 0x1) << 7) |  packet->byte3;
 }
 
-volatile void Bot::interruptUpdate(){
+void Bot::interruptUpdate(){
 	for(unsigned int i=0; i<Bot::interruptUpdatables.size(); i++){
 		Bot::interruptUpdatables[i]->interruptUpdate();
 	}
@@ -292,7 +291,7 @@ void Bot::releaseAllKeys(){
 // Bootloader Support ----------------------------------------------------------
 uint16_t Bot::readFlashWord(uint16_t address){
 	uint16_t word = pgm_read_byte((void *)address);
-	word += pgm_read_byte((void *)address+1) << 8;
+	word += pgm_read_byte(((byte*)(void *)address) + 1) << 8;
 	return word;
 };
 uint16_t Bot::getBootloaderId(){
@@ -339,6 +338,7 @@ float Bot::constrainValue(float x, float min, float max){
 		if(x < max){
 			return max;
 		}
+		return x;
 	}
 	// The normal case...
 	if(x < min){
@@ -347,6 +347,7 @@ float Bot::constrainValue(float x, float min, float max){
 	if(x > max){
 		return max;
 	}
+	return x;
 }
 float Bot::seconds(){
 	return ::millis() * 0.001;

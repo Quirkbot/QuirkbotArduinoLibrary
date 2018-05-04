@@ -15,7 +15,7 @@ void Event::remove(Input* input, TypedInputHandler handler){
 	typedInputHandlers.erase(pos);
 }
 int Event::position(Input* input, TypedInputHandler handler){
-	for(int i=0; i<typedInputHandlers.size(); i++){
+	for(unsigned int i=0; i<typedInputHandlers.size(); i++){
 		if(typedInputs[i] == input && typedInputHandlers[i] == handler) {
 			return i;
 		}
@@ -23,7 +23,7 @@ int Event::position(Input* input, TypedInputHandler handler){
 	return -1;
 }
 void Event::dispatch(float &value){
-	for(int i=0; i<typedInputHandlers.size(); i++){
+	for(unsigned int i=0; i<typedInputHandlers.size(); i++){
 		(typedInputs[i]->*(typedInputHandlers[i]))(value);
 	}
 }
