@@ -16,6 +16,7 @@
 #include "NodeConverter.h"
 #include "NodeComparison.h"
 #include "NodeConstrain.h"
+#include "NodeCounter.h"
 #include "NodeGate.h"
 #include "NodeList.h"
 #include "NodeLogic.h"
