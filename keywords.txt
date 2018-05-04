@@ -14,6 +14,7 @@ Comparison	KEYWORD1
 Constrain	KEYWORD1
 ContinuousServo	KEYWORD1
 Converter	KEYWORD1
+Counter	KEYWORD1
 DigitalSensor	KEYWORD1
 DualColorLed	KEYWORD1
 Gate	KEYWORD1

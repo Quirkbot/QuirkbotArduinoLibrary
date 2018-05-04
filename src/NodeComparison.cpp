@@ -5,14 +5,14 @@ Comparison::Comparison(){
 	registerInput(in);
 	registerInput(operation);
 	registerInput(value);
-	registerInput(valueThen);
-	registerInput(valueElse);
+	registerInput(ifThen);
+	registerInput(ifElse);
 
 	in = 0.0;
 	operation = COMP_EQUAL;
 	value = 0.0;
-	valueThen = 1.0;
-	valueElse = 0.0;
+	ifThen = 1.0;
+	ifElse = 0.0;
 };
 Comparison::~Comparison(){}
 void Comparison::onInternalInputChange(BaseInput&){
@@ -37,5 +37,5 @@ void Comparison::onInternalInputChange(BaseInput&){
 		result = in.get() <= value.get();
 	}
 
-	out.set(result ? valueThen.get() : valueElse.get());
+	out.set(result ? ifThen.get() : ifElse.get());
 };

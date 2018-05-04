@@ -31,6 +31,7 @@
 #include "NodeDualColorLed.h"
 #include "NodeServoMotor.h"
 #include "NodeContinuousServo.h"
+#include "NodeBuzzer.h"
 #include "NodeRGBLed.h"
 #include "NodeKeyPress.h"
 #include "NodeKeySequence.h"
