@@ -21,8 +21,8 @@ public Node
 	Input in;
 	Input operation;
 	Input value;
-	Input valueThen;
-	Input valueElse;
+	Input ifThen;
+	Input ifElse;
 
 	Output out;
 
