@@ -5,7 +5,7 @@
 
 #include "Arduino.h"
 #include "Keyboard.h"
-#include "Mouse.h"
+// #include "Mouse.h"
 #include "MIDIUSB.h"
 
 #include "Updatable.h"

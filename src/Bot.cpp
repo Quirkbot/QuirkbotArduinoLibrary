@@ -27,7 +27,7 @@ void Bot::start(){
 
 	// Start HID
 	Keyboard.begin();
-	Mouse.begin();
+	// Mouse.begin();
 
 	// Build the UUID
 	// Read the uuid from MEMORY.
