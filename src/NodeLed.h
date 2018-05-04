@@ -16,7 +16,7 @@ public Node{
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
-	volatile void interruptUpdate();
+	void interruptUpdate();
 
 	volatile uint8_t pwmCompare;
 	volatile uint8_t *outPort;

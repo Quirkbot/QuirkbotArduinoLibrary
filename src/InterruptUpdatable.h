@@ -15,7 +15,7 @@ class InterruptUpdatable{
 
 	protected:
 
-	virtual volatile void interruptUpdate(){};
+	virtual void interruptUpdate(){};
 };
 
 #endif

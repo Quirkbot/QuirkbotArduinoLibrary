@@ -6,13 +6,12 @@
 #define COMP_EQUAL 0
 #define COMP_DIFF 1
 #define COMP_GREATER 2
-#define COMP_GREATER_EQUAL 3
+#define COMP_GREATER_EQ 3
 #define COMP_LESS 4
-#define COMP_LESS_EQUAL 5
+#define COMP_LESS_EQ 5
 
 class Comparison :
-public Node,
-public HasOut
+public Node
 {
 	public:
 
@@ -22,11 +21,13 @@ public HasOut
 	Input in;
 	Input operation;
 	Input value;
-	Input min;
-	Input max;
+	Input valueThen;
+	Input valueElse;
+
+	Output out;
 
 	protected:
 
-	void onInternalInputChange(BaseInput &internalInput);
+	void onInternalInputChange(BaseInput&);
 };
 #endif

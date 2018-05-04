@@ -1,8 +1,6 @@
 #include "NodeMath.h"
 
-Math::Math():
-HasOut
-	(this){
+Math::Math(){
 
 	registerInput(in);
 	registerInput(operation);
@@ -13,7 +11,7 @@ HasOut
 	value = 0.0;
 };
 Math::~Math(){}
-void Math::onInternalInputChange(BaseInput &internalInput){
+void Math::onInternalInputChange(BaseInput&){
 	if(operation.get() == MATH_ADD) {
 		out.set(in.get() + value.get());
 		return;
@@ -29,12 +27,21 @@ void Math::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == MATH_DIVIDE && value.get() != 0) {
+	if(operation.get() == MATH_DIVIDE) {
 		if(value.get() == 0) {
 			out.set(0);
 			return;
 		}
 		out.set(in.get() / value.get());
+		return;
+	}
+
+	if(operation.get() == MATH_MODULO) {
+		if(value.get() == 0) {
+			out.set(0);
+			return;
+		}
+		out.set(fmod(in.get(), value.get()));
 		return;
 	}
 };

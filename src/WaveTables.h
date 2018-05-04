@@ -6,7 +6,7 @@
 
 
 /**
-Table generate with JavaScript with:
+Table generated with JavaScript:
 ------------------------------------
 var s = '';
 for(var i = 0; i < 256; i++){
@@ -31,7 +31,7 @@ const byte WAVE_SINE_TABLE[] PROGMEM = {
 
 
 /**
-Table generate with JavaScript with:
+Table generated with JavaScript:
 ------------------------------------
 var s = '';
 for(var i = 0; i < 256; i++){
@@ -52,7 +52,7 @@ const byte WAVE_SQUARE_TABLE[] PROGMEM = {
 };
 
 /**
-Table generate with JavaScript with:
+Table generated with JavaScript:
 ------------------------------------
 var s = '';
 for(var i = 0; i < 256; i++){
@@ -71,7 +71,7 @@ const byte WAVE_PULSE_TABLE[] PROGMEM = {
 };
 
 /**
-Table generate with JavaScript with:
+Table generated with JavaScript:
 ------------------------------------
 var s = '';
 for(var i = 0; i < 256; i++){
@@ -100,7 +100,7 @@ const byte WAVE_TRIANGLE_TABLE[] PROGMEM = {
 };
 
 /**
-Table generate with JavaScript with:
+Table generated with JavaScript:
 ------------------------------------
 var s = '';
 for(var i = 0; i < 256; i++){
@@ -123,7 +123,7 @@ const byte WAVE_RAMP_UP_TABLE[] PROGMEM = {
 };
 
 /**
-Table generate with JavaScript with:
+Table generated with JavaScript:
 ------------------------------------
 var s = '';
 for(var i = 255; i >= 0; i--){

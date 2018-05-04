@@ -1,22 +1,24 @@
-#ifndef NodeGate_h_
-#define NodeGate_h_
+#ifndef NodeCounter_h_
+#define NodeCounter_h_
 
 #include "CommonNodeIncludes.h"
 
-class Gate:
+class Counter:
 public Node,
 public HasTrigger
 {
 	public:
 
-	Gate();
-	~Gate();
+	Counter();
+	~Counter();
 
-	Input in;
+	Input amount;
 
 	Output out;
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
+
+	float count;
 };
 #endif

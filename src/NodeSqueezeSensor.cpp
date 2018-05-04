@@ -2,8 +2,6 @@
 
 SqueezeSensor::SqueezeSensor():
 HasInterval
-	(this),
-HasOut
 	(this){
 	registerInput(place);
 

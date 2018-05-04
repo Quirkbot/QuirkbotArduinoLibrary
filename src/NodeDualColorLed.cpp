@@ -69,7 +69,7 @@ void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 
 	}
 };
-volatile void DualColorLed::interruptUpdate(){
+void DualColorLed::interruptUpdate(){
 	if(!active) return;
 
 	if(Bot::interruptCount >= pwmStartBack && Bot::interruptCount < pwmEndBack && !isOnBack){

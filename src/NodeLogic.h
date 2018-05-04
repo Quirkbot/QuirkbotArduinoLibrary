@@ -8,8 +8,7 @@
 #define LOGIC_XOR 2
 
 class Logic :
-public Node,
-public HasOut
+public Node
 {
 	public:
 
@@ -21,8 +20,10 @@ public HasOut
 	Input min;
 	Input max;
 
+	Output out;
+
 	protected:
 
-	void onInternalInputChange(BaseInput &internalInput);
+	void onInternalInputChange(BaseInput&);
 };
 #endif

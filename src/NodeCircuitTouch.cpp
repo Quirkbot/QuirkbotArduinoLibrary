@@ -1,8 +1,6 @@
 #include "NodeCircuitTouch.h"
 
-CircuitTouch::CircuitTouch():
-HasOut
-	(this){
+CircuitTouch::CircuitTouch(){
 	registerInput(place);
 	registerInput(min);
 	registerInput(max);

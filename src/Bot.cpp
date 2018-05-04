@@ -27,7 +27,36 @@ void Bot::start(){
 
 	// Start HID
 	Keyboard.begin();
-	Mouse.begin();
+	// Mouse.begin();
+
+	// Build the UUID
+	// Read the uuid from MEMORY.
+	if(!Bot::forceSaveUuid){
+		for (int i = 0; i < QB_UUID_SIZE; ++i){
+			Bot::uuid[i] = eeprom_read_byte((byte*)i);
+		}
+	}
+
+	// ALWAYS overwrite the "header" of Bot::uuid
+	// The first 2 bytes are the bootloader id
+	uint16_t bootloaderId = Bot::getBootloaderId();
+	Bot::uuid[0] = bootloaderId >> 8;
+	Bot::uuid[1] = bootloaderId & 0xFF;
+
+	// The foolowing 2 bytes are the bootloader version
+	uint16_t bootloaderVersion = Bot::getBootloaderVersion();
+	Bot::uuid[2] = bootloaderVersion >> 8;
+	Bot::uuid[3] = bootloaderVersion & 0xFF;
+
+	// Make that no part of the UUID matches the reserved serial delimiters
+	for (int i = 0; i < QB_UUID_SIZE; ++i){
+		if(    Bot::uuid[i] == REPORT_START_DELIMITER
+			|| Bot::uuid[i] == REPORT_END_DELIMITER
+			|| Bot::uuid[i] == REPORT_UUID_DELIMITER
+			|| Bot::uuid[i] == REPORT_NUMBER_OF_NODES_DELIMITER ){
+				Bot::uuid[i] = 0;
+			}
+	}
 
 	// Startup animation
 	pinMode(LE, OUTPUT);
@@ -78,36 +107,6 @@ void Bot::start(){
 	PORTD |= (1<<5);
 }
 void Bot::afterStart(){
-	// Build the UUID
-
-	// If the Bot::forceSaveUuid flag is not set, read the uuid from MEMORY.
-	if(!Bot::forceSaveUuid){
-		for (int i = 0; i < QB_UUID_SIZE; ++i){
-			Bot::uuid[i] = eeprom_read_byte((byte*)i);
-		}
-	}
-
-	// ALWAYS overwrite the "header" of Bot::uuid
-	// The first 2 bytes are the bootloader id
-	uint16_t bootloaderId = Bot::getBootloaderId();
-	Bot::uuid[0] = bootloaderId >> 8;
-	Bot::uuid[1] = bootloaderId & 0xFF;
-
-	// The foolowing 2 bytes are the bootloader version
-	uint16_t bootloaderVersion = Bot::getBootloaderVersion();
-	Bot::uuid[2] = bootloaderVersion >> 8;
-	Bot::uuid[3] = bootloaderVersion & 0xFF;
-
-	// Make that no part of the UUID matches the reserved serial delimiters
-	for (int i = 0; i < QB_UUID_SIZE; ++i){
-		if(    Bot::uuid[i] == REPORT_START_DELIMITER
-			|| Bot::uuid[i] == REPORT_END_DELIMITER
-			|| Bot::uuid[i] == REPORT_UUID_DELIMITER
-			|| Bot::uuid[i] == REPORT_NUMBER_OF_NODES_DELIMITER ){
-				Bot::uuid[i] = 0;
-			}
-	}
-
 	// If the Bot::forceSaveUuid flag is set, save whatever is on Bot::uuid to EEPROM
 	if(Bot::forceSaveUuid){
 		for (int i = 0; i < QB_UUID_SIZE; ++i){
@@ -224,7 +223,6 @@ void Bot::midiTask(){
 		uint8_t command;
 		uint8_t byte1;
 		uint8_t byte2;
-		uint16_t data;
 		Bot::midiToData(&midiPacket, &command, &byte1, &byte2);
 
 		// Enter bootloader mode
@@ -240,13 +238,13 @@ void Bot::midiTask(){
 				byte2 = Bot::uuid[i + 1];
 				// Delay is necessary otherwise messages go way too fast and
 				// computers might not be able to pick it up
-				delayMicroseconds(50);
+				delayMicroseconds(100);
 				Bot::sendMidiData(command, byte1, byte2);
 			}
 		}
 		// Echo a sync acknowledgment
 		else if(command ==  BotMIDICommands::Sync){
-			delayMicroseconds(50);
+			delayMicroseconds(100);
 			Bot::sendMidiData(command, byte1, byte2);
 		}
 	}
@@ -269,7 +267,7 @@ void Bot::midiToData(midiEventPacket_t *packet, uint8_t *command, uint8_t *byte1
 	*byte2   = ((packet->byte2 & 0x1) << 7) |  packet->byte3;
 }
 
-volatile void Bot::interruptUpdate(){
+void Bot::interruptUpdate(){
 	for(unsigned int i=0; i<Bot::interruptUpdatables.size(); i++){
 		Bot::interruptUpdatables[i]->interruptUpdate();
 	}
@@ -293,7 +291,7 @@ void Bot::releaseAllKeys(){
 // Bootloader Support ----------------------------------------------------------
 uint16_t Bot::readFlashWord(uint16_t address){
 	uint16_t word = pgm_read_byte((void *)address);
-	word += pgm_read_byte((void *)address+1) << 8;
+	word += pgm_read_byte(((byte*)(void *)address) + 1) << 8;
 	return word;
 };
 uint16_t Bot::getBootloaderId(){
@@ -340,6 +338,7 @@ float Bot::constrainValue(float x, float min, float max){
 		if(x < max){
 			return max;
 		}
+		return x;
 	}
 	// The normal case...
 	if(x < min){
@@ -348,6 +347,7 @@ float Bot::constrainValue(float x, float min, float max){
 	if(x > max){
 		return max;
 	}
+	return x;
 }
 float Bot::seconds(){
 	return ::millis() * 0.001;

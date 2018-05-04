@@ -14,8 +14,7 @@
 
 class Wave :
 public Node,
-public HasInterval,
-public HasOut
+public HasInterval
 {
 	public:
 
@@ -29,6 +28,8 @@ public HasOut
 	Input max;
 	Input offset;
 	Input type;
+
+	Output out;
 
 	protected:
 

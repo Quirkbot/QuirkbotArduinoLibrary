@@ -7,8 +7,6 @@
 #include "Input.h"
 #include "Output.h"
 #include "InputCollection.h"
-#include "HasIn.h"
-#include "HasOut.h"
 #include "HasInterval.h"
 #include "HasTrigger.h"
 #include "Filters.h"

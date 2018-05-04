@@ -2,8 +2,6 @@
 
 DigitalSensor::DigitalSensor():
 HasInterval
-	(this),
-HasOut
 	(this){
 	registerInput(place);
 	registerInput(min);
@@ -20,5 +18,9 @@ void DigitalSensor::onInternalInputChange(BaseInput &internalInput){
 
 void DigitalSensor::onInterval(){
 	medianFilter.push(digitalRead(place.get()));
-	out.set(Bot::map(medianFilter.get(), 0, 1, min.get(), max.get()));
+	out.set(Bot::map(
+		medianFilter.get(),
+		0, 1,
+		min.get(), max.get()
+	));
 }

@@ -2,13 +2,13 @@
 
 Gate::Gate():
 HasTrigger
-	(this),
-HasIn
-	(this),
-HasOut
 	(this){
 };
-Gate::~Gate(){}
+Gate::~Gate(){
+	registerInput(in);
+
+	in = 0.0;
+}
 
 void Gate::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){

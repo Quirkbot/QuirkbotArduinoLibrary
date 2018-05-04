@@ -17,7 +17,7 @@ public Node {
 
 	protected:
 	void onInternalInputChange(BaseInput &internalInput);
-	volatile void interruptUpdate();
+	void interruptUpdate();
 
 	int frontPin;
 	volatile uint8_t pwmStartFront;

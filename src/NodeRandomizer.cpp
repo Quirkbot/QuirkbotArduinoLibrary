@@ -2,8 +2,6 @@
 
 Randomizer::Randomizer():
 HasInterval
-	(this),
-HasOut
 	(this){
 	registerInput(min);
 	registerInput(max);
@@ -14,5 +12,9 @@ HasOut
 }
 Randomizer::~Randomizer(){}
 void Randomizer::onInterval(){
-	out.set(Bot::map((float)random(1000), 0, 1000, min.get(), max.get()));
+	out.set(Bot::map(
+		(float)random(1000),
+		0.0, 1000.0,
+		min.get(), max.get()
+	));
 }

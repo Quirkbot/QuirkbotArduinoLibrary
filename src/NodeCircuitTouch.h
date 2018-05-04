@@ -8,8 +8,7 @@
 
 class CircuitTouch :
 public Node,
-public Updatable,
-public HasOut
+public Updatable
 {
 	public:
 
@@ -20,6 +19,8 @@ public HasOut
 	Input min;
 	Input max;
 	Input sensitivity;
+
+	Output out;
 
 	void update();
 

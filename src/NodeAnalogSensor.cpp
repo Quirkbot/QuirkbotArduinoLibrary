@@ -2,8 +2,6 @@
 
 AnalogSensor::AnalogSensor():
 	HasInterval
-		(this),
-	HasOut
 		(this){
 		registerInput(place);
 		registerInput(min);
@@ -34,5 +32,9 @@ void AnalogSensor::onInterval(){
 
 	preMedianFilter.push(analogRead(pin));
 	postMedianFilter.push(preMedianFilter.get());
-	out.set(Bot::map(postMedianFilter.get(), 0, 1024, min.get(), max.get()));
+	out.set(Bot::map(
+		postMedianFilter.get(),
+		0, 1024,
+		min.get(), max.get()
+	));
 }

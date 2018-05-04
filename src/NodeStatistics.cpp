@@ -1,16 +1,14 @@
 #include "NodeStatistics.h"
 
-Statistics::Statistics():
-HasOut
-	(this){
+Statistics::Statistics(){
 	registerInput(operation);
 	registerInputCollection(items);
 
-	operation = STATISTICS_AVERAGE;
+	operation = STAT_AVG;
 }
 Statistics::~Statistics(){}
-void Statistics::onInternalInputChange(BaseInput &internalInput){
-	if(operation.get() == STATISTICS_AVERAGE) {
+void Statistics::onInternalInputChange(BaseInput&){
+	if(operation.get() == STAT_AVG) {
 		float sum = 0.0;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			sum += items.collection[i]->get();
@@ -19,7 +17,7 @@ void Statistics::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == STATISTICS_SUM) {
+	if(operation.get() == STAT_SUM) {
 		float sum = 0.0;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			sum += items.collection[i]->get();
@@ -28,7 +26,7 @@ void Statistics::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == STATISTICS_MIN) {
+	if(operation.get() == STAT_MIN) {
 		float ref = 3.4028235E+38;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			if (items.collection[i]->get() < ref)
@@ -38,7 +36,7 @@ void Statistics::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == STATISTICS_MAX) {
+	if(operation.get() == STAT_MAX) {
 		float ref = 0.0;
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			if (items.collection[i]->get() > ref)

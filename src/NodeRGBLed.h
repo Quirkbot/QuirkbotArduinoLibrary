@@ -4,13 +4,14 @@
 #include "CommonNodeIncludes.h"
 
 class RGBLed :
-public Node,
-public HasIn{
+public Node
+{
 	public:
 
 	RGBLed();
 	~RGBLed();
 
+	Input in;
 	Input pinR;
 	Input pinG;
 	Input pinB;

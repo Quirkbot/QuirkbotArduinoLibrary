@@ -2,8 +2,6 @@
 
 Sonar::Sonar():
 HasInterval
-	(this),
-HasOut
 	(this){
 	registerInput(meters);
 	registerInput(place);

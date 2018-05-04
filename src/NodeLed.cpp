@@ -62,13 +62,13 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 		pwmCompare = (int)((float)Bot::INTERUPT_COUNT_OVERFLOW * pow(light.get(), 1.5));
 	}
 }
-volatile void Led::interruptUpdate(){
+void Led::interruptUpdate(){
 	if(location != NO_LOCATION){
 		if(Bot::interruptCount < pwmCompare && !isOn){
 			*outPort |= pinMask;
 			isOn = true;
 		}
-		else if(!pwmCompare || Bot::interruptCount >= pwmCompare && isOn){
+		else if(!pwmCompare || (Bot::interruptCount >= pwmCompare && isOn)){
 			*outPort &= ~(pinMask);
 			isOn = false;
 		}
