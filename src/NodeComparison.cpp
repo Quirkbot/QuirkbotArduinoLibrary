@@ -27,13 +27,13 @@ void Comparison::onInternalInputChange(BaseInput &internalInput){
 	else if (operation.get() == COMP_GREATER) {
 		result = in.get() > value.get();
 	}
-	else if (operation.get() == COMP_GREATER_EQUAL) {
+	else if (operation.get() == COMP_GREATER_EQ) {
 		result = in.get() >= value.get();
 	}
 	else if (operation.get() == COMP_LESS) {
 		result = in.get() < value.get();
 	}
-	else if (operation.get() == COMP_LESS_EQUAL) {
+	else if (operation.get() == COMP_LESS_EQ) {
 		result = in.get() <= value.get();
 	}
 

@@ -3,10 +3,10 @@
 
 #include "CommonNodeIncludes.h"
 
-#define STATISTICS_AVERAGE 0
-#define STATISTICS_MIN 1
-#define STATISTICS_MAX 2
-#define STATISTICS_SUM 3
+#define STAT_AVG 0
+#define STAT_MIN 1
+#define STAT_MAX 2
+#define STAT_SUM 3
 
 class Statistics :
 public Node
