@@ -238,13 +238,13 @@ void Bot::midiTask(){
 				byte2 = Bot::uuid[i + 1];
 				// Delay is necessary otherwise messages go way too fast and
 				// computers might not be able to pick it up
-				delayMicroseconds(50);
+				delayMicroseconds(100);
 				Bot::sendMidiData(command, byte1, byte2);
 			}
 		}
 		// Echo a sync acknowledgment
 		else if(command ==  BotMIDICommands::Sync){
-			delayMicroseconds(50);
+			delayMicroseconds(100);
 			Bot::sendMidiData(command, byte1, byte2);
 		}
 	}
