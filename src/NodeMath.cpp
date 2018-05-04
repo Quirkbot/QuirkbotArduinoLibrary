@@ -27,7 +27,7 @@ void Math::onInternalInputChange(BaseInput &internalInput){
 		return;
 	}
 
-	if(operation.get() == MATH_DIVIDE && value.get() != 0) {
+	if(operation.get() == MATH_DIVIDE) {
 		if(value.get() == 0) {
 			out.set(0);
 			return;
