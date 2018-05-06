@@ -1,15 +1,15 @@
-#include "LowerFilter.h"
+#include "FilterLower.h"
 #include "Arduino.h"
 
-LowerFilter::LowerFilter(){
+FilterLower::FilterLower(){
 	a = 0;
 	b = 0;
 	c = 0;
 	d = 0;
 	value = 0;
 }
-LowerFilter::~LowerFilter(){}
-void LowerFilter::push(float number){
+FilterLower::~FilterLower(){}
+void FilterLower::push(float number){
 	a = b;
 	b = c;
 	c = d;

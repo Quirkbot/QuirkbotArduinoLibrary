@@ -1,11 +1,11 @@
-#ifndef BaseFilter_h_
-#define BaseFilter_h_
+#ifndef FilterBase_h_
+#define FilterBase_h_
 
-class BaseFilter {
+class FilterBase {
 	public:
 
-	BaseFilter();
-	~BaseFilter();
+	FilterBase();
+	~FilterBase();
 
 	virtual void push(float /* number */){};
 

@@ -28,8 +28,8 @@ public Updatable
 
 	void onInternalInputChange(BaseInput &internalInput);
 
-	UpperFilter upper;
-	LowPassFilter filter;
+	FilterUpper upper;
+	FilterLowPass filter;
 
 	unsigned int frontPin;
 	unsigned int backPin;

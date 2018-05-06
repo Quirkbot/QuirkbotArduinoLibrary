@@ -25,8 +25,8 @@ public HasInterval
 
 	protected:
 
-	MedianFilter filter;
-	LowPassFilter lowpass;
+	FilterMedian filter;
+	FilterLowPass lowpass;
 
 	volatile uint8_t *outputPort;
 	uint8_t outputMask;

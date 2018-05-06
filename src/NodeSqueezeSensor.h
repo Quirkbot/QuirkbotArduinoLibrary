@@ -24,11 +24,11 @@ public HasInterval
 
 	void onInternalInputChange(BaseInput &internalInput);
 
-	LowPassFilter reference;
+	FilterLowPass reference;
 	float refMin;
 	float refMax;
 	int backPin;
 	int frontPin;
-	MedianFilter filter;
+	FilterMedian filter;
 };
 #endif
