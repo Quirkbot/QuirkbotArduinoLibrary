@@ -1,22 +1,23 @@
 {
-	"name": "quirkbot-arduino-library",
-	"version" : "2.6.1",
-	"description" : "Quirkbot Arduino Library",
-	"author" : "Paulo Barcelos <paulo@quirkbot.com>",
-	"homepage" : "https://github.com/Quirkbot/QuirkbotArduinoLibrary",
-	"license" : "SEE LICENSE IN LICENSE.txt",
-	"devDependencies": {
-      "gulp": "^3.9.1",
-      "gulp-clean": "^0.3.2",
-      "gulp-load-plugins": "^1.2.0",
-      "gulp-prompt": "^0.1.2",
-      "gulp-s3": "^0.3.0",
-      "merge-stream": "^1.0.0",
-      "run-sequence": "^1.1.5",
-      "yargs": "^4.2.0"
-    },
-    "scripts": {
-      "gulp": "node ./node_modules/gulp/bin/gulp.js",
-      "gulp:xunit": "npm run gulp -- --reporter xunit"
-    }
+  "name": "quirkbot-arduino-library",
+  "version": "2.6.2",
+  "description": "Quirkbot Arduino Library",
+  "author": "Paulo Barcelos <paulo@quirkbot.com>",
+  "homepage": "https://github.com/Quirkbot/QuirkbotArduinoLibrary",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-prompt": "^1.0.1",
+    "gulp-s3": "^0.11.0",
+    "merge-stream": "^1.0.0",
+    "run-sequence": "^2.2.1",
+    "yargs": "^11.0.0"
+  },
+  "scripts": {
+    "gulp": "node ./node_modules/gulp/bin/gulp.js",
+    "gulp:xunit": "yarn gulp -- --reporter xunit",
+    "build": "yarn gulp build"
+  }
 }
