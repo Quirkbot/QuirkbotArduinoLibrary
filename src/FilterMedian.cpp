@@ -1,13 +1,13 @@
-#include "MedianFilter.h"
+#include "FilterMedian.h"
 
-MedianFilter::MedianFilter(){
+FilterMedian::FilterMedian(){
 	a = 0;
 	b = 0;
 	c = 0;
 	value = 0;
 }
-MedianFilter::~MedianFilter(){}
-void MedianFilter::push(float number){
+FilterMedian::~FilterMedian(){}
+void FilterMedian::push(float number){
 	a = b;
 	b = c;
 	c = number;

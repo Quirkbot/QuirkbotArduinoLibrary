@@ -24,7 +24,7 @@ public HasInterval
 
 	void onInternalInputChange(BaseInput &internalInput);
 
-	MedianFilter filter;
+	FilterMedian filter;
 	int pin;
 	int backPin;
 	int frontPin;

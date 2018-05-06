@@ -23,6 +23,6 @@ public HasInterval
 
 	protected:
 
-	MedianFilter medianFilter;
+	FilterMedian medianFilter;
 };
 #endif

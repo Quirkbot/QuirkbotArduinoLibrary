@@ -30,10 +30,10 @@ void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
 void AnalogSensor::onInterval(){
 	if(pin == NO_LOCATION) return;
 
-	preMedianFilter.push(analogRead(pin));
-	postMedianFilter.push(preMedianFilter.get());
+	preFilterMedian.push(analogRead(pin));
+	postFilterMedian.push(preFilterMedian.get());
 	out.set(Bot::map(
-		postMedianFilter.get(),
+		postFilterMedian.get(),
 		0, 1024,
 		min.get(), max.get()
 	));
