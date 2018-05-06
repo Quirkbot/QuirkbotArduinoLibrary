@@ -17,8 +17,8 @@ public Node
 
 	Input operation;
 	InputCollection items;
-	Input min;
-	Input max;
+	Input close;
+	Input open;
 
 	Output out;
 

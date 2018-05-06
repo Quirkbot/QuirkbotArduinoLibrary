@@ -3,12 +3,12 @@
 Logic::Logic(){
 	registerInput(operation);
 	registerInputCollection(items);
-	registerInput(min);
-	registerInput(max);
+	registerInput(close);
+	registerInput(open);
 
 	operation = LOGIC_AND;
-	min = 0.0;
-	max = 1.0;
+	close = 0.0;
+	open = 1.0;
 }
 Logic::~Logic(){}
 void Logic::onInternalInputChange(BaseInput&){
@@ -41,5 +41,5 @@ void Logic::onInternalInputChange(BaseInput&){
 		}
 	}
 
-	out.set(result ? max.get() : min.get());
+	out.set(result ? open.get() : close.get());
 }
