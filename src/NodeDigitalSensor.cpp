@@ -6,7 +6,7 @@ HasInterval
 	registerInput(place);
 	registerInput(min);
 	registerInput(max);
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 	min = 0;
 	max = 1;
 };

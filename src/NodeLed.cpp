@@ -5,24 +5,24 @@ Led::Led(){
 	registerInput(place);
 
 	light = 1;
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 
 	pwmCompare = Bot::INTERUPT_COUNT_OVERFLOW;
-	signalPin = NO_LOCATION;
-	location = NO_LOCATION;
+	signalPin = DISCONNECTED;
+	location = DISCONNECTED;
 }
 Led::~Led(){}
 void Led::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		// Disable when disconnected
-		if(location != NO_LOCATION){
+		if(location != DISCONNECTED){
 			*outPort &= ~(pinMask);
 		}
 
 		location = place.get();
 
 		if(location == LM || location == RM){
-			signalPin = NO_LOCATION;
+			signalPin = DISCONNECTED;
 			switch(location){
 				case LM:
 					outPort = &PORTD;
@@ -36,16 +36,16 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 					break;
 			}
 		}
-		else if(location != NO_LOCATION){
+		else if(location != DISCONNECTED){
 			int groundPin = Bot::locationToBackPin(location);
 
-			if(groundPin != NO_LOCATION){
+			if(groundPin != DISCONNECTED){
 				pinMode(groundPin, OUTPUT);
 				digitalWrite(groundPin, LOW);
 			}
 
 			signalPin = Bot::locationToFrontPin(location);
-			if(signalPin == NO_LOCATION) signalPin = location;
+			if(signalPin == DISCONNECTED) signalPin = location;
 			uint8_t SaveSREG = SREG;   // save interrupt flag
 			cli();   // disable interrupts
 			outPort = portOutputRegister(digitalPinToPort(signalPin));
@@ -54,7 +54,7 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 			pinMode(signalPin, OUTPUT);
 		}
 		else{
-			signalPin = NO_LOCATION;
+			signalPin = DISCONNECTED;
 		}
 		isOn = false;
 	}
@@ -63,7 +63,7 @@ void Led::onInternalInputChange(BaseInput &internalInput){
 	}
 }
 void Led::interruptUpdate(){
-	if(location != NO_LOCATION){
+	if(location != DISCONNECTED){
 		if(Bot::interruptCount < pwmCompare && !isOn){
 			*outPort |= pinMask;
 			isOn = true;

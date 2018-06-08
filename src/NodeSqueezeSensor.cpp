@@ -5,7 +5,7 @@ HasInterval
 	(this){
 	registerInput(place);
 
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 
 	min = 0;
 	max = 1;
@@ -20,7 +20,7 @@ void SqueezeSensor::onInternalInputChange(BaseInput &internalInput){
 		backPin = Bot::locationToBackPin(place.get());
 		frontPin = Bot::locationToFrontPin(place.get());
 
-		if(backPin != NO_LOCATION &&  frontPin != NO_LOCATION){
+		if(backPin != DISCONNECTED &&  frontPin != DISCONNECTED){
 			pinMode(backPin, INPUT);
 			digitalWrite(backPin, LOW);
 			pinMode(frontPin, OUTPUT);
@@ -29,7 +29,7 @@ void SqueezeSensor::onInternalInputChange(BaseInput &internalInput){
 	}
 }
 void SqueezeSensor::onInterval(){
-	if(backPin == NO_LOCATION ||  frontPin == NO_LOCATION) return;
+	if(backPin == DISCONNECTED ||  frontPin == DISCONNECTED) return;
 
 	float reading = analogRead(backPin);
 

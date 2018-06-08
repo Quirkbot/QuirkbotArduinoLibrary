@@ -12,18 +12,18 @@ DualColorLed::DualColorLed(){
 	pwmStartFront = 0;
 	pwmEndFront = 0;
 	active = false;
-	location = NO_LOCATION;
+	location = DISCONNECTED;
 
 	light = 1;
 	color = 0;
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 };
 DualColorLed::~DualColorLed(){}
 
 void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		// Disable when disconnected
-		if(location != NO_LOCATION){
+		if(location != DISCONNECTED){
 			*outPortBack &= ~(pinMaskBack);
 			*outPortFront &= ~(pinMaskFront);
 		}
@@ -32,7 +32,7 @@ void DualColorLed::onInternalInputChange(BaseInput &internalInput){
 		backPin = Bot::locationToBackPin(location);
 		frontPin = Bot::locationToFrontPin(location);
 
-		if(backPin == NO_LOCATION || frontPin == NO_LOCATION){
+		if(backPin == DISCONNECTED || frontPin == DISCONNECTED){
 			active = false;
 			*outPortBack &= ~(pinMaskBack);
 			*outPortFront &= ~(pinMaskFront);

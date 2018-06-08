@@ -9,9 +9,9 @@ RGBLed::RGBLed(){
 	registerInput(saturation);
 
 	in = 0.0;
-	pinR = NO_LOCATION;
-	pinG = NO_LOCATION;
-	pinB = NO_LOCATION;
+	pinR = DISCONNECTED;
+	pinG = DISCONNECTED;
+	pinB = DISCONNECTED;
 	saturation = 1;
 	hue = 1;
 }

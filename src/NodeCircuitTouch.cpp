@@ -6,7 +6,7 @@ CircuitTouch::CircuitTouch(){
 	registerInput(max);
 	registerInput(sensitivity);
 
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 	min = 0;
 	max = 1;
 	sensitivity = 0;
@@ -21,10 +21,10 @@ void CircuitTouch::onInternalInputChange(BaseInput &internalInput){
 		int location = place.get();
 
 		frontPin = Bot::locationToFrontPin(location);
-		if(frontPin == NO_LOCATION) return;
+		if(frontPin == DISCONNECTED) return;
 
 		backPin = Bot::locationToBackPin(location);
-		if(backPin == NO_LOCATION) return;
+		if(backPin == DISCONNECTED) return;
 
 		// Internal pull up
 		pinMode(PULL_UP_PIN, OUTPUT);
@@ -37,7 +37,7 @@ void CircuitTouch::onInternalInputChange(BaseInput &internalInput){
 };
 
 void CircuitTouch::update(){
-	if(frontPin == NO_LOCATION) return;
+	if(frontPin == DISCONNECTED) return;
 	if(measuring){
 		if(bool(digitalRead(frontPin)) || ::micros() > deadlineTime) {
 			int reading = ::micros() - startTime;

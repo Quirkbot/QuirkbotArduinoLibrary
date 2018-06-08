@@ -9,7 +9,7 @@ HasInterval
 
 	interval = 0.1;
 	position = 0.5;
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 	iddleTime = 1.5;
 
 	attached = false;
@@ -41,7 +41,7 @@ void ServoMotor::onInternalInputChange(BaseInput &internalInput){
 void ServoMotor::attach(){
 	if(attached) detach();
 
-	if(place.get() == NO_LOCATION) return;
+	if(place.get() == DISCONNECTED) return;
 
 	attached = true;
 	int attachedPin = place.get();

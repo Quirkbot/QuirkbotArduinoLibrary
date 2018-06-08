@@ -7,10 +7,10 @@ Buzzer::Buzzer(){
 	registerInput(place);
 
 	note = NO_NOTE;
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 
 	lastFrequency = -1;
-	lastPlace = NO_LOCATION;
+	lastPlace = DISCONNECTED;
 }
 Buzzer::~Buzzer(){}
 float Buzzer::calculateTone(float frequency){
@@ -19,7 +19,7 @@ float Buzzer::calculateTone(float frequency){
 void Buzzer::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		pinMode(place.get(), OUTPUT);
-		if(lastPlace != NO_LOCATION){
+		if(lastPlace != DISCONNECTED){
 			::noTone(lastPlace);
 		}
 		lastPlace = place.get();
@@ -31,7 +31,7 @@ void Buzzer::onInternalInputChange(BaseInput &internalInput){
 	}
 }
 void Buzzer::process(){
-	if(place.get() == NO_LOCATION) return;
+	if(place.get() == DISCONNECTED) return;
 
 	int frequency = (note.get() * note.get()) * MAX_FREQUENCY;
 
