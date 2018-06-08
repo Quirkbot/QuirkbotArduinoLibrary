@@ -7,11 +7,11 @@ AnalogSensor::AnalogSensor():
 		registerInput(min);
 		registerInput(max);
 
-		place = NO_LOCATION;
+		place = DISCONNECTED;
 		min = 0;
 		max = 1;
 
-		pin = NO_LOCATION;
+		pin = DISCONNECTED;
 };
 AnalogSensor::~AnalogSensor(){}
 
@@ -19,7 +19,7 @@ void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &place){
 		pin = Bot::locationToAnalogPin(place.get());
 
-		if(pin == NO_LOCATION){
+		if(pin == DISCONNECTED){
 			pin = place.get();
 		}
 
@@ -28,7 +28,7 @@ void AnalogSensor::onInternalInputChange(BaseInput &internalInput){
 };
 
 void AnalogSensor::onInterval(){
-	if(pin == NO_LOCATION) return;
+	if(pin == DISCONNECTED) return;
 
 	preFilterMedian.push(analogRead(pin));
 	postFilterMedian.push(preFilterMedian.get());

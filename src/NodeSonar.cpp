@@ -9,7 +9,7 @@ HasInterval
 	registerInput(max);
 
 	meters = 4;
-	place = NO_LOCATION;
+	place = DISCONNECTED;
 	min = 0;
 	max = 1;
 }

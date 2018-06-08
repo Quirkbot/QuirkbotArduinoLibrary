@@ -386,7 +386,7 @@ int Bot::locationToAnalogPin(int location){
 		case BP2:
 			return BP2;
 		default:
-			return NO_LOCATION;
+			return DISCONNECTED;
 	}
 };
 int Bot::locationToBackPin(int location){
@@ -402,7 +402,7 @@ int Bot::locationToBackPin(int location){
 		case LA:
 			return LAB;
 		default:
-			return NO_LOCATION;
+			return DISCONNECTED;
 	}
 };
 int Bot::locationToFrontPin(int location){
@@ -418,6 +418,6 @@ int Bot::locationToFrontPin(int location){
 		case LA:
 			return LAF;
 		default:
-			return NO_LOCATION;
+			return DISCONNECTED;
 	}
 };

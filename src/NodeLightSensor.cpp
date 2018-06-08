@@ -7,11 +7,11 @@ LightSensor::LightSensor():
 		registerInput(min);
 		registerInput(max);
 
-		place = NO_LOCATION;
+		place = DISCONNECTED;
 		min = 0;
 		max = 1;
 
-		pin = NO_LOCATION;
+		pin = DISCONNECTED;
 };
 LightSensor::~LightSensor(){}
 
@@ -20,7 +20,7 @@ void LightSensor::onInternalInputChange(BaseInput &internalInput){
 		backPin = Bot::locationToBackPin(place.get());
 		frontPin = Bot::locationToFrontPin(place.get());
 
-		if(backPin != NO_LOCATION &&  frontPin != NO_LOCATION){
+		if(backPin != DISCONNECTED &&  frontPin != DISCONNECTED){
 			pinMode(backPin, INPUT);
 			digitalWrite(backPin, LOW);
 			pinMode(frontPin, OUTPUT);
@@ -30,7 +30,7 @@ void LightSensor::onInternalInputChange(BaseInput &internalInput){
 };
 
 void LightSensor::onInterval(){
-	if(backPin == NO_LOCATION) return;
+	if(backPin == DISCONNECTED) return;
 
 	filter.push(analogRead(backPin));
 	// 686 as is the max value of the "black" light sensor. Discovered empirically.
