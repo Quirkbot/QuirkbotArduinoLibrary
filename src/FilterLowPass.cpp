@@ -2,9 +2,9 @@
 
 FilterLowPass::FilterLowPass(){
 	value = 0;
-	alpha = 0.5;
+	factor = 0.5;
 }
 FilterLowPass::~FilterLowPass(){}
 void FilterLowPass::push(float number){
-	value = value * alpha + number * (1 - alpha);
+	value = value * factor + number * (1 - factor);
 }

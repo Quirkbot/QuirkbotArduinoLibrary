@@ -5,8 +5,10 @@
 #include "Input.h"
 #include "Node.h"
 #include "Vector.h"
+
 class Node;
 class Output;
+class Input;
 
 class InputCollection{
 	friend class Node;
@@ -23,7 +25,7 @@ class InputCollection{
 	void add(float value);
 	void clear();
 
-	VectorInputsPointer collection;
+	Vector<Input*> collection;
 
 	protected:
 	Node * node;

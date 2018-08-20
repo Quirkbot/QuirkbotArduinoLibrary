@@ -1,14 +1,10 @@
 #ifndef Vector_h_
 #define Vector_h_
 
-#include "VectorInputsPointer.h"
-#include "VectorInterruptUpdatablesPointer.h"
-#include "VectorNodesPointer.h"
-#include "VectorTypedInputHandler.h"
-#include "VectorUpdatablesPointer.h"
+#include "Arduino.h"
 
 // Minimal class to replace std::vector
-/*template<typename Data>
+template<typename Data>
 class Vector {
 	unsigned int d_size; // Stores no. of actually stored objects
 	unsigned int d_capacity; // Stores allocated capacity
@@ -16,23 +12,27 @@ class Vector {
 
 	public:
 
+	// Default constructor
 	Vector() :
 	d_size(0),
 	d_capacity(0),
-	d_data(0) {}; // Default constructor
+	d_data(0) {};
 
+	// Copy constuctor
 	Vector(Vector const &other) :
 	d_size(other.d_size),
 	d_capacity(other.d_capacity),
 	d_data(0){
 		d_data = (Data *)malloc(d_capacity*sizeof(Data));
 		memcpy(d_data, other.d_data, d_size*sizeof(Data));
-	}; // Copy constuctor
+	};
 
+	// Destructor
 	~Vector() {
 		free(d_data);
-	}; // Destructor
+	};
 
+	// Needed for memory management
 	Vector &operator=(Vector const &other) {
 		free(d_data);
 		d_size = other.d_size;
@@ -40,52 +40,93 @@ class Vector {
 		d_data = (Data *)malloc(d_capacity*sizeof(Data));
 		memcpy(d_data, other.d_data, d_size*sizeof(Data));
 		return *this;
-	}; // Needed for memory management
+	};
 
-	void push(Data const &x) {
-		if (d_capacity == d_size) resize();
-		d_data[d_size++] = x;
-	}; // Adds new value. If needed, allocates more space
+	// Adds new value. If needed, allocates more space
+	void add(Data const &data) {
+		if (d_capacity == d_size) resize(d_capacity + 1);
+		d_data[d_size++] = data;
+	};
 
-	void pop(Data const &x) {
-		for (unsigned int i = 0; i < d_size; ++i){
-			if(d_data[i] == x) return erase(i);
+	// Adds new value at specific index. If needed, allocates more space
+	void addAt(unsigned int index, Data const &data) {
+		if (index >= d_capacity) resize(index + 1);
+		if (d_capacity == d_size) resize(d_capacity + 1);
+		if (index >= d_size) {
+			for (unsigned int i = d_size; i <= index; ++i) {
+				d_data[i] = data;
+			}
+			d_size = index + 1;
+		} else {
+			for (unsigned int i = d_size; i > index; --i) {
+				d_data[i] = d_data[i - 1];
+			}
+			d_data[index] = data;
+			d_size++;
 		}
-	}; // Removes value by finding it's index and erasing it.
+	};
 
-	void erase(unsigned int index) {
+	// Removes value by finding it's index and erasing it.
+	void remove(Data const &data) {
+		for (unsigned int i = 0; i < d_size; ++i){
+			if(d_data[i] == data) return removeAt(i);
+		}
+	};
+
+	// Remove a value at an specific index. All other values will be moved
+	void removeAt(unsigned int index) {
+		if (index >= d_size) return;
 		for (unsigned int i = index; i < d_size; ++i){
 			d_data[i] = d_data[i+1];
 		}
 		d_size--;
-	}; // Pops a value at an specific index. All other values will be moved
+	};
 
+	// Find the position index of an item
+	int position(Data const &data) {
+		for (unsigned int i = 0; i < d_size; ++i){
+			if(d_data[i] == data) return i;
+		}
+		return -1;
+	};
+
+	// Finds if the vector contains the item
+	bool contains(Data const &data) {
+		return position(data) != -1;
+	};
+
+	// Clears all the data from the vector
 	void clear() {
 		d_size = 0;
 		d_capacity = 0;
 		free(d_data);
-	}; // Clears all the data from the vector
+	};
 
+	// Size getter
 	unsigned int size() const {
 		return d_size;
-	}; // Size getter
+	};
 
-	Data const &operator[](unsigned int idx) const {
-		return d_data[idx];
-	}; // Const getter
+	// Const getter
+	Data const &operator[](unsigned int index) const {
+		return d_data[index];
+	};
 
-	Data &operator[](unsigned int idx) {
-		return d_data[idx];
-	}; // Changeable getter
+	// Changeable getter
+	Data &operator[](unsigned int index) {
+		return d_data[index];
+	};
 
 	private:
 
-	void resize() {
-		d_capacity = d_capacity ? d_capacity*2 : 1;
+	// Allocates more space
+	void resize(unsigned int newsize) {
+		if (newsize <= d_size) return;
+		d_capacity = newsize;
 		Data *newdata = (Data *)malloc(d_capacity*sizeof(Data));
 		memcpy(newdata, d_data, d_size * sizeof(Data));
 		free(d_data);
 		d_data = newdata;
-	};// Allocates double the old space
-};*/
+	};
+};
 #endif

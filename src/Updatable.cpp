@@ -1,8 +1,8 @@
 #include "Updatable.h"
 
 Updatable::Updatable(){
-	Bot::addUpdatable(this);
+	Bot::updatables.add(this);
 }
 Updatable::~Updatable(){
-	Bot::removeUpdatable(this);
+	Bot::updatables.remove(this);
 }

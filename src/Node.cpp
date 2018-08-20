@@ -4,16 +4,16 @@ unsigned int Node::ID_FACTORY = 0;
 
 Node::Node(){
 	id = Node::ID_FACTORY++;
-	Bot::addNode(this);
+	Bot::nodes.add(this);
 }
 Node::Node(unsigned int id){
 	this->id = id;
 	if(Node::ID_FACTORY < id)
 		Node::ID_FACTORY = id;
-	Bot::addNode(this);
+	Bot::nodes.add(this);
 }
 Node::~Node(){
-	Bot::removeNode(this);
+	Bot::nodes.remove(this);
 }
 void Node::registerInput(BaseInput &input){
 	input.node = this;

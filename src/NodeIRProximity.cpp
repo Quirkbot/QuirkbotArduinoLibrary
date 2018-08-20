@@ -18,7 +18,7 @@ IRProximity::IRProximity():
 		pinMode(QB_IR_PROXIMITY_OUTPUT_PIN, OUTPUT);
 		pinMode(readPin, INPUT);
 
-		lowpass.alpha = 0.4;
+		lowpass.factor = 0.4;
 
 		min = 0;
 		max = 1;

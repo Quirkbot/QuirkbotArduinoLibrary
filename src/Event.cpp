@@ -2,28 +2,28 @@
 
 Event::Event(){}
 Event::~Event(){}
-void Event::add(Input* input, TypedInputHandler handler){
+void Event::add(Input* input, InputHandler handler){
 	int pos = position(input, handler);
 	if(pos != -1) return;
-	typedInputs.push(input);
-	typedInputHandlers.push(handler);
+	inputs.add(input);
+	handlers.add(handler);
 }
-void Event::remove(Input* input, TypedInputHandler handler){
+void Event::remove(Input* input, InputHandler handler){
 	int pos = position(input, handler);
 	if(pos == -1) return;
-	typedInputs.erase(pos);
-	typedInputHandlers.erase(pos);
+	inputs.removeAt(pos);
+	handlers.removeAt(pos);
 }
-int Event::position(Input* input, TypedInputHandler handler){
-	for(unsigned int i=0; i<typedInputHandlers.size(); i++){
-		if(typedInputs[i] == input && typedInputHandlers[i] == handler) {
+int Event::position(Input* input, InputHandler handler){
+	for(unsigned int i=0; i<handlers.size(); i++){
+		if(inputs[i] == input && handlers[i] == handler) {
 			return i;
 		}
 	}
 	return -1;
 }
 void Event::dispatch(float &value){
-	for(unsigned int i=0; i<typedInputHandlers.size(); i++){
-		(typedInputs[i]->*(typedInputHandlers[i]))(value);
+	for(unsigned int i=0; i<handlers.size(); i++){
+		(inputs[i]->*(handlers[i]))(value);
 	}
 }
