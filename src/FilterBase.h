@@ -12,9 +12,6 @@ class FilterBase {
 	float get();
 	void set(float v);
 
-	float alpha;
-	float beta;
-	float gamma;
 	float value;
 };
 #endif

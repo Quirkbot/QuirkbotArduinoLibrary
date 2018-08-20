@@ -4,6 +4,7 @@
 #include "Vector.h"
 
 class Input;
+typedef void (Input::*InputHandler)(float value);
 
 class Event {
 	public:
@@ -11,17 +12,15 @@ class Event {
 	Event();
 	~Event();
 
-	typedef void (Input::*TypedInputHandler)(float value);
-
-	void add(Input* input, TypedInputHandler handler);
-	void remove(Input* input, TypedInputHandler handler);
+	void add(Input* input, InputHandler handler);
+	void remove(Input* input, InputHandler handler);
 	void dispatch(float &value);
 
 	private:
-	int position(Input* input, TypedInputHandler handler);
+	int position(Input* input, InputHandler handler);
 
-	VectorTypedInputHandler typedInputHandlers;
-	VectorInputsPointer typedInputs;
+	Vector<InputHandler> handlers;
+	Vector<Input*> inputs;
 
 };
 

@@ -48,21 +48,12 @@ namespace BotSerialCommands{
 
 class Node;
 class Updatable;
+class InterruptUpdatable;
 
 class Bot {
 	public:
 	Bot();
 	~Bot();
-
-	static void addNode(Node * node);
-	static void removeNode(Node * node);
-	static int nodePosition(Node * node);
-	static void addUpdatable(Updatable * updatable);
-	static void removeUpdatable(Updatable * updatable);
-	static int updatablePosition(Updatable * updatable);
-	static void addInterruptUpdatable(InterruptUpdatable * interruptUpdatable);
-	static void removeInterruptUpdatable(InterruptUpdatable * interruptUpdatable);
-	static int interruptUpdatablePosition(InterruptUpdatable * interruptUpdatable);
 
 	static void start();
 	static void afterStart();
@@ -103,9 +94,9 @@ class Bot {
 
 	static const unsigned int INTERUPT_COUNT_OVERFLOW;
 
-	static VectorNodesPointer nodes;
-	static VectorUpdatablesPointer updatables;
-	static VectorInterruptUpdatablesPointer interruptUpdatables;
+	static Vector<Node*> nodes;
+	static Vector<Updatable*> updatables;
+	static Vector<InterruptUpdatable*> interruptUpdatables;
 	static bool forceSaveUuid;
 	static byte uuid[QB_UUID_SIZE];
 	static volatile unsigned int interruptCount;

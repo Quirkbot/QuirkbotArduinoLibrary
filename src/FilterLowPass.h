@@ -12,5 +12,7 @@ public FilterBase
 	~FilterLowPass();
 
 	void push(float number);
+
+	float factor;
 };
 #endif

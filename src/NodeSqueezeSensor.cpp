@@ -10,7 +10,7 @@ HasInterval
 	min = 0;
 	max = 1;
 
-	reference.alpha = 0.7;
+	reference.factor = 0.7;
 	refMin = 1024;
 	refMax = 0;
 }

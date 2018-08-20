@@ -11,7 +11,7 @@ CircuitTouch::CircuitTouch(){
 	max = 1;
 	sensitivity = 0;
 
-	filter.alpha = 0.7;
+	filter.factor = 0.7;
 
 	measuring = false;
 }

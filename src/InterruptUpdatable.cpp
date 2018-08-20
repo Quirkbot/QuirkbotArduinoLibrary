@@ -1,8 +1,8 @@
 #include "InterruptUpdatable.h"
 
 InterruptUpdatable::InterruptUpdatable(){
-	Bot::addInterruptUpdatable(this);
+	Bot::interruptUpdatables.add(this);
 }
 InterruptUpdatable::~InterruptUpdatable(){
-	Bot::removeInterruptUpdatable(this);
+	Bot::interruptUpdatables.remove(this);
 }

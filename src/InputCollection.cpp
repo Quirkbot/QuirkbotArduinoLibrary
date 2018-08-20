@@ -26,12 +26,12 @@ void InputCollection::clear(){
 	while(collection.size()){
 		collection[0]->disconnect();
 		delete collection[0];
-		collection.erase(0);
+		collection.removeAt(0);
 	}
 };
 Input * InputCollection::registerNewInput(){
 	Input * input = new Input();
 	node->registerInput(*input);
-	collection.push(input);
+	collection.add(input);
 	return input;
 }
