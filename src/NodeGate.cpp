@@ -3,12 +3,10 @@
 Gate::Gate():
 HasTrigger
 	(this){
+		registerInput(in);
+		in = 0.0;
 };
-Gate::~Gate(){
-	registerInput(in);
-
-	in = 0.0;
-}
+Gate::~Gate(){}
 
 void Gate::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &in){
