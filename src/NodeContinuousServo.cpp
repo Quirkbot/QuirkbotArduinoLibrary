@@ -5,7 +5,7 @@ speed(position){
 	registerInput(direction);
 
 	direction = 0;
-	iddleAngle = 90;
+	iddleMicroseconds = 1300;
 }
 ContinuousServo::~ContinuousServo(){}
 void ContinuousServo::onInternalInputChange(BaseInput &internalInput){
@@ -19,13 +19,16 @@ void ContinuousServo::onInternalInputChange(BaseInput &internalInput){
 		ServoMotor::onInternalInputChange(internalInput);
 	}
 }
-int ContinuousServo::mapAngle(){
-	return speed.get() * 90.0 * (direction.get() < 0.5 ? -1 : 1) + 90;
+int ContinuousServo::mapMicroseconds(){
+	if (direction.get() < 0.5) {
+		return iddleMicroseconds - 125 - speed.get() * 375;
+	}
+	return iddleMicroseconds + 125 + speed.get() * 375;
 }
 void ContinuousServo::onInterval(){
 	if(!attached) return;
 
-	if(angle == iddleAngle) {
+	if(microseconds >= iddleMicroseconds - 125 && microseconds <= iddleMicroseconds + 125) {
 		detach();
 	}
 }

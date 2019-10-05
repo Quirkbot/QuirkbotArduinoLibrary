@@ -11,7 +11,7 @@ public ServoMotor {
 	~ContinuousServo();
 	void onInterval();
 	void onInternalInputChange(BaseInput &internalInput);
-	int mapAngle();
+	int mapMicroseconds();
 
 	Input &speed; // alias to position
 	Input direction;
