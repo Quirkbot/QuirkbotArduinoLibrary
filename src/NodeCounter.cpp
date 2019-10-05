@@ -10,7 +10,7 @@ Counter::~Counter(){
 	amount = 1.0;
 
 	count = 0.0;
-	active = false
+	active = false;
 }
 
 void Counter::onInternalInputChange(BaseInput &internalInput){
