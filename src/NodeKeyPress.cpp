@@ -5,9 +5,9 @@ HasTrigger
 	(this){
 	registerInput(key);
 
-	key = KEY_SPACE;
+	key = NO_KEY;
 	currentKey = 0;
-	pressed = 5;
+	pressed = false;
 };
 KeyPress::~KeyPress(){}
 
@@ -16,11 +16,11 @@ void KeyPress::onInternalInputChange(BaseInput &internalInput){
 
 		if(!pressed && isTriggerActive()){
 			pressed = true;
-			Bot::pressKey(currentKey);
+			if(currentKey != NO_KEY) Bot::pressKey(currentKey);
 		}
 		else if(pressed && !isTriggerActive()){
 			pressed = false;
-			Bot::releaseKey(currentKey);
+			if(currentKey != NO_KEY) Bot::releaseKey(currentKey);
 			currentKey = key.get();
 		}
 

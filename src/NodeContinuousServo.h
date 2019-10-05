@@ -4,6 +4,9 @@
 #include "CommonNodeIncludes.h"
 #include "NodeServoMotor.h"
 
+#define DIRECTION_COUNTER_CLOCKWISE 0
+#define DIRECTION_CLOCKWISE 1
+
 class ContinuousServo:
 public ServoMotor {
 	public:
@@ -11,7 +14,7 @@ public ServoMotor {
 	~ContinuousServo();
 	void onInterval();
 	void onInternalInputChange(BaseInput &internalInput);
-	int mapAngle();
+	int mapMicroseconds();
 
 	Input &speed; // alias to position
 	Input direction;

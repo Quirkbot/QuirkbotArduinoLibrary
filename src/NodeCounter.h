@@ -20,5 +20,6 @@ public HasTrigger
 	void onInternalInputChange(BaseInput &internalInput);
 
 	float count;
+	bool active;
 };
 #endif

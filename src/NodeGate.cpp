@@ -8,10 +8,8 @@ HasTrigger
 };
 Gate::~Gate(){}
 
-void Gate::onInternalInputChange(BaseInput &internalInput){
-	if(&internalInput == &in){
-		if(isTriggerActive()){
-			out.set(in.get());
-		}
+void Gate::onInternalInputChange(BaseInput &){
+	if(isTriggerActive()){
+		out.set(in.get());
 	}
 };

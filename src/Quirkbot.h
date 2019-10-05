@@ -3,6 +3,9 @@
 
 #include "Arduino.h"
 
+// Easing
+#include "Easing.h"
+
 // Inputs
 #include "NodeAnalogSensor.h"
 #include "NodeDigitalSensor.h"

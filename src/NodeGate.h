@@ -17,6 +17,6 @@ public HasTrigger
 	Output out;
 
 	protected:
-	void onInternalInputChange(BaseInput &internalInput);
+	void onInternalInputChange(BaseInput &);
 };
 #endif
