@@ -25,13 +25,13 @@ public HasInterval{
 	void attach();
 	void detach();
 	void write();
-	virtual int mapAngle();
+	virtual int mapMicroseconds();
 
 	Servo servo;
-	int angle;
+	int microseconds;
 
 	bool attached;
-	int iddleAngle;
+	int iddleMicroseconds;
 	int iddleCount;
 	int iddleLimit;
 };

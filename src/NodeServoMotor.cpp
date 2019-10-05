@@ -13,8 +13,8 @@ HasInterval
 	iddleTime = 1.5;
 
 	attached = false;
-	angle = -1;
-	iddleAngle = -1;
+	microseconds = -1;
+	iddleMicroseconds = -1;
 	iddleCount = 0;
 };
 ServoMotor::~ServoMotor(){}
@@ -54,22 +54,22 @@ void ServoMotor::detach(){
 void ServoMotor::write(){
 	if(!attached) return;
 
-	int newAngle = mapAngle();
-	if(newAngle != angle){
-		angle = newAngle;
-		servo.write(angle);
+	int newMicroseconds = mapMicroseconds();
+	if(newMicroseconds != microseconds){
+		microseconds = newMicroseconds;
+		servo.writeMicroseconds(microseconds);
 	}
 }
-int ServoMotor::mapAngle(){
-	return 9.0 + position.get() * 156.0;
+int ServoMotor::mapMicroseconds(){
+	return 600 + position.get() * 1400;
 }
 void ServoMotor::onInterval(){
 	if(!attached) return;
 
-	if(iddleAngle == angle) iddleCount++;
+	if(iddleMicroseconds == microseconds) iddleCount++;
 	else iddleCount = 0;
 
-	iddleAngle = angle;
+	iddleMicroseconds = microseconds;
 
 	if(iddleCount >= iddleLimit) {
 		detach();
