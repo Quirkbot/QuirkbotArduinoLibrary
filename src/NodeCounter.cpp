@@ -10,13 +10,18 @@ Counter::~Counter(){
 	amount = 1.0;
 
 	count = 0.0;
+	active = false
 }
 
 void Counter::onInternalInputChange(BaseInput &internalInput){
 	if(&internalInput == &trigger){
-		if(isTriggerActive()){
+		if(!active && isTriggerActive()){
+			active = true;
 			count += amount.get();
 			out.set(count);
+		}
+		else if(active && !isTriggerActive()){
+			active = false;
 		}
 	}
 };

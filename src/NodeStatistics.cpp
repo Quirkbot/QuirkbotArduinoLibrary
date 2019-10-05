@@ -13,7 +13,12 @@ void Statistics::onInternalInputChange(BaseInput&){
 		for (unsigned int i = 0; i < items.collection.size(); i++) {
 			sum += items.collection[i]->get();
 		}
-		out.set(sum / (float)items.collection.size());
+		if (items.collection.size() > 0) {
+			out.set(sum / (float)items.collection.size());
+		}
+		else {
+			out.set(sum);
+		}
 		return;
 	}
 

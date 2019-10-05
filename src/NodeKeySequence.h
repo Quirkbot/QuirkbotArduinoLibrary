@@ -18,8 +18,8 @@ public HasInterval
 	Input holdTime;
 
 	protected:
-	void onInterval();
 	void onInternalInputChange(BaseInput &internalInput);
+	void onInterval();
 
 	unsigned int scheduleKey[QB_MAX_SIMULTANEOUS_KEYS];
 	unsigned long scheduleTime[QB_MAX_SIMULTANEOUS_KEYS];
