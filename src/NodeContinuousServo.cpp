@@ -4,7 +4,7 @@ ContinuousServo::ContinuousServo():
 speed(position){
 	registerInput(direction);
 
-	direction = 0;
+	direction = DIRECTION_COUNTER_CLOCKWISE;
 	iddleMicroseconds = 1300;
 }
 ContinuousServo::~ContinuousServo(){}
