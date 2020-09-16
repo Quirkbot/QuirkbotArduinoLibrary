@@ -4,9 +4,10 @@ SqueezeSensor::SqueezeSensor():
 HasInterval
 	(this){
 	registerInput(place);
+	registerInput(min);
+	registerInput(max);
 
 	place = DISCONNECTED;
-
 	min = 0;
 	max = 1;
 
