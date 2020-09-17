@@ -6,6 +6,10 @@
 ```
 npm install
 ```
+- Use node version 10 (tested with 14 and it doesn't work):
+```
+nvm use 10
+```
 - Update the version in `package.json`
 - Run:
 ```

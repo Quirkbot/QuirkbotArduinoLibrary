@@ -7,10 +7,12 @@ HasTrigger
 	(this){
 	registerInput(duration);
 	registerInputCollection(items);
-	selected = NULL;
 
 	interval = 0.033;
 	duration = 1.0;
+
+	selected = NULL;
+	running = false;
 }
 Sequence::~Sequence(){}
 void Sequence::onInterval(){
