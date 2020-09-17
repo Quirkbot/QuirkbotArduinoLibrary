@@ -2,6 +2,7 @@
 #define Quirkbot_h_
 
 #include "Arduino.h"
+#include "protothreads.h"
 
 // Easing
 #include "Easing.h"
