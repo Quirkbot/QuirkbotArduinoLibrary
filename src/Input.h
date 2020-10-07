@@ -18,6 +18,11 @@ class Input : public BaseInput{
 	void operator=(const float &value);
 
 	/**
+	 * Handle for primitives connections.
+	 **/
+	void set(const float &value);
+
+	/**
 	 * Handle for output connections.
 	 **/
 	void connect(const Output &output);
