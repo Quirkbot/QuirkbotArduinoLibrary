@@ -15,6 +15,9 @@ Input::~Input(){
 void Input::operator=(const float &value){
 	handleValueConnection(value);
 }
+void Input::set(const float &value){
+	handleValueConnection(value);
+}
 void Input::connect(const Output &output){
 	handleOutputConnection(output);
 }
