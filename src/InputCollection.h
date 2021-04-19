@@ -18,6 +18,7 @@ class InputCollection{
 	~InputCollection();
 
 	// Getter
+	Input& get(unsigned int idx);
 	Input& operator[](unsigned int idx);
 
 	void add(Output &output);

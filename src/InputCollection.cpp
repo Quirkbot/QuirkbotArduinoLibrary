@@ -4,11 +4,14 @@ InputCollection::InputCollection(){
 	node = NULL;
 };
 InputCollection::~InputCollection(){}
-Input& InputCollection::operator[](unsigned int idx)  {
+Input& InputCollection::get(unsigned int idx){
 	while(collection.size() <= idx){
 		registerNewInput();
 	}
 	return *(collection[idx]);
+};
+Input& InputCollection::operator[](unsigned int idx)  {
+	return this->get(idx);
 };
 void InputCollection::add(Output &output){
 	Input * input = registerNewInput();
