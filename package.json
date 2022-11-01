@@ -6,7 +6,7 @@
   "homepage": "https://github.com/Quirkbot/QuirkbotArduinoLibrary",
   "license": "SEE LICENSE IN LICENSE.txt",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-load-plugins": "^1.2.0",
     "gulp-prompt": "^1.0.1",
